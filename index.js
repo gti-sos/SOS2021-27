@@ -6,7 +6,7 @@ var port=10000;
 app.get("/cool", (request,response)=>{
     response.send(cool());
     console.log("New Request to /cool has arrived");
-
+ 
 });
 
 app.listen(port, () =>{
