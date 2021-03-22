@@ -2,7 +2,7 @@ var cool = require("cool-ascii-faces");
 var express=require("express");
 
 var app=express();
-var port= (process.env.PORT || 10000); // Obtiene el puerto que se le indique o el 10000 en caso de no existir
+var port= (process.env.PORT || 10000); // Obtiene el puerto que se le indique o el 10000 en caso de no existir  (Heroku no trabaja con puerto 10000)
 
 app.get("/cool", (request,response)=>{ 
     response.send(cool());
