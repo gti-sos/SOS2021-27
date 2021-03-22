@@ -26,6 +26,7 @@ app.get("/info/suicide-records", (request,response)=>{
 });
 
 
+
 var path=require("path");
 
 // Dirname obtiene la carpeta donde se ejecuto npm start (C:\\....). Path permite concatenar directorios con join, para tener un metodo estandar en windows y linux.
