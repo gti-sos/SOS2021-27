@@ -66,14 +66,14 @@ app.post(BASE_API_PATH+"/azar-games-and-bet-activities", (req,res)=>{
     console.log(`Stored Resource: <${JSON.stringify(recurso, null, 2)}>`);
     res.sendStatus(201)
 
-app.get(BASE_API_PATH+"/azar-games-and-bet-activities/:province/:year", (request, response)=>{
+app.get(BASE_API_PATH+"/azar-games-and-bet-activities/:province/:year", (req, res)=>{
     var activity = activities.filter(function(s){
-        return s.province==String(req.params.province)&& s.year==String(req.params.year);
-        response.status(200).send(JSON.stringify(activities,null,2));
-    })
-})     
+        return s.province==String(req.params.province)&& s.year==String(req.params.year);});
 
-});
+        res.status(200).send(JSON.stringify(activities,null,2));
+   
+}) ;    
+
 
 //API province-budget-and-investment-in-social-promotion
 
