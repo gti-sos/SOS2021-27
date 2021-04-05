@@ -31,7 +31,7 @@ var activities=[];
 app.get(BASE_API_PATH+"/azar-games-and-bet-activities/loadInitialData", (request, response) => {
     activities_initial = [
         {
-            "province": 'SEVILLE',
+            "province": 'seville',
             "year": 2018,
             "catering-bingo-machine": 4965,
             "lottery-engagement ": 24028820,
@@ -39,7 +39,7 @@ app.get(BASE_API_PATH+"/azar-games-and-bet-activities/loadInitialData", (request
             "national-lottery-expend":141889249,
         },
         {
-            "province": 'BARCELONA',
+            "province": 'barcelona',
             "year": 2018,
             "catering-bingo-machine":13389,
             "lottery-engagement ": 56425240,
