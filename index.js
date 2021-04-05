@@ -124,9 +124,6 @@ app.get("/info/province-budget-and-investment-in-social-promotion",(request,resp
 
 var budgets = [];
 
-app.get(BASE_API_PATH+"/province-budget-and-investment-in-social-promotion", (request, response) => {
-    response.sendStatus(JSON.stringify(budgets,null,2));
-})
 
 app.get(BASE_API_PATH+"/province-budget-and-investment-in-social-promotion/loadInitialData", (request, response) => {
     budgets_ini = [
@@ -153,6 +150,10 @@ app.get(BASE_API_PATH+"/province-budget-and-investment-in-social-promotion/loadI
 
     console.log(`Initial data loaded: <${JSON.stringify(budgets_ini, null, 2)}>`);
 	return response.sendStatus(200);
+})
+
+app.get(BASE_API_PATH+"/province-budget-and-investment-in-social-promotion", (request, response) => {
+    response.sendStatus(JSON.stringify(budgets,null,2));
 })
 
 app.post(BASE_API_PATH+"/province-budget-and-investment-in-social-promotion", (request,response)=>{ 
