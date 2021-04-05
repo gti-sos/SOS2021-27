@@ -57,6 +57,15 @@ app.get(BASE_API_PATH+"/azar-games-and-bet-activities/loadInitialData", (request
 
 	return response.sendStatus(200);
 });
+app.post(BASE_API_PATH+"/azar-games-and-bet-activities", (req,res)=>{ 
+	var recurso = req.body;
+	suicide.push(recurso)
+    console.log(`Stored Resource: <${JSON.stringify(recurso, null, 2)}>`);
+    res.sendStatus(201)
+
+      
+
+});
 
 //API province-budget-and-investment-in-social-promotion
 
