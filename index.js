@@ -151,11 +151,11 @@ app.get(BASE_API_PATH+"/province-budget-and-investment-in-social-promotion/loadI
         budgets.push(data)
     }
 
-    console.log(`Loaded Initial Data: <${JSON.stringify(budgets_ini, null, 2)}>`);
+    console.log(`Initial data loaded: <${JSON.stringify(budgets_ini, null, 2)}>`);
 	return response.sendStatus(200);
 })
 
-app.post(BASE_API_PATH+"/pC", (request,response)=>{ 
+app.post(BASE_API_PATH+"/province-budget-and-investment-in-social-promotion", (request,response)=>{ 
 	var data = request.body;
 	budgets.push(data)
     console.log(`Resource stored: <${JSON.stringify(data, null, 2)}>`);
@@ -186,7 +186,7 @@ app.put(BASE_API_PATH+"/province-budget-and-investment-in-social-promotion/:prov
 		
 		if(budgets[s].province == String(request.params.province) &&
 			budgets[s].year == String(request.params.year)){
-				var changes = req.body;
+				var changes = request.body;
 				budgets[s] = changes;
 				break;
 		}
