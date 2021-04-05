@@ -70,7 +70,7 @@ app.get(BASE_API_PATH+"/azar-games-and-bet-activities/:province/:year", (req, re
     var activity = activities.filter(function(s){
         return s.province==String(req.params.province)&& s.year==String(req.params.year);});
 
-        res.status(200).send(JSON.stringify(activities,null,2));
+        res.status(200).send(JSON.stringify(activity,null,2));
    
 }) ;    
 
