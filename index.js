@@ -1,8 +1,12 @@
 const { response } = require("express");
 
 var express=require("express"); // Cargamos el modulo
+var bodyParser=require("body-parser");
+
+
 
 var app=express(); // Generamos una aplicación que hace uso de express
+app.use(bodyParser.json());
 
 var port= (process.env.PORT || 10000); // Obtiene el puerto que se le indique o el 10000 en caso de no existir  (Heroku no trabaja con puerto 10000)
 
@@ -56,7 +60,7 @@ app.get(BASE_API_PATH+"/budgets/loadInitialData", (request, response) => {
     }
 
     console.log(`Loaded Initial Data: <${JSON.stringify(budgets_ini, null, 2)}>`);
-	return res.sendStatus(200);
+	return response.sendStatus(200);
 })
 
 
@@ -64,10 +68,7 @@ app.get(BASE_API_PATH+"/budgets/loadInitialData", (request, response) => {
 
 var suicide=[];
 
-app.get(BASE_API_PATH+"/suicide-records", (request,response)=>{ 
-
-    response.send(JSON.stringify(suicide,null,2));
-});
+// 5.2 Crear recursos iniciales
 
 app.get(BASE_API_PATH+"/suicide-records/loadInitialData",(request,response)=>{
     
@@ -99,6 +100,26 @@ app.get(BASE_API_PATH+"/suicide-records/loadInitialData",(request,response)=>{
 
 })
 
+
+
+// (5.1) y 6.1 GET a la lista de recursos.
+app.get(BASE_API_PATH+"/suicide-records", (request,response)=>{ 
+
+    response.send(JSON.stringify(suicide,null,2));
+});
+
+
+// 6.2 Post a la lista de recursos.
+
+app.post(BASE_API_PATH+"/suicide-records", (req,res)=>{ 
+	var recurso = req.body;
+	suicide.push(recurso)
+    console.log(`Stored Resource: <${JSON.stringify(recurso, null, 2)}>`);
+    res.sendStatus(201)
+
+      
+
+});
 
 
 app.get(BASE_API_PATH+"/precariousness",(request,response)=>{
