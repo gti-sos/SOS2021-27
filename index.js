@@ -176,11 +176,18 @@ app.post(BASE_API_PATH+"/suicide-records", (req,res)=>{
 
 // 6.3 Get a un recurso
 
-app.get(BASE_API_PATH+"/suicide-records/:country/:year",(req,res)=>{
-    
+app.get(BASE_API_PATH+"/suicide-records/:province/:year",(req,res)=>{
+    console.log(suicide)
+    var registro=suicide.filter(a => a.province==req.params.province&&a.year==req.params.year);
+    console.log(registro)
+
+    res.status(200).send(JSON.stringify(registro,null,2));
+
 
 
 })
+
+// 6.4 Delete 
 
 
 
