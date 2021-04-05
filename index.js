@@ -20,11 +20,37 @@ app.use("/",express.static(path.join(__dirname + "/public")));
 
 var activities=[];
 
-app.get(BASE_API_PATH+"/info/azar-games-and-bet-activities", (request,response)=>{ 
+app.get(BASE_API_PATH+"/azar-games-and-bet-activities", (request,response)=>{ 
     response.send(JSON.stringify(activities,null,2));
  
 });
 
+app.get(BASE_API_PATH+"/azar-games-and-bet-activities/loadInitialData", (request, response) => {
+    activities_initial = [
+        {
+            "province": 'SEVILLE',
+            "year": 2018,
+            "catering-bingo-machine": 4965,
+            "lottery-engagement ": 24028820,
+            "bingo-site": 6,
+            "national-lottery-expend":141889249,
+        },
+        {
+            "province": 'BARCELONA',
+            "year": 2018,
+            "catering-bingo-machine":13389,
+            "lottery-engagement ": 56425240,
+            "bingo-site": 34,
+            "national-lottery-expend":486535860,
+        }
+    ]
+    for(var registro of activities_initial){
+        activities.push(registro)
+    }
+
+    console.log(`Loaded Initial Data: <${JSON.stringify(activities_initial, null, 2)}>`);
+	return res.sendStatus(200);
+})
 //API province-budget-and-investment-in-social-promotion
 var budgets = [];
 
