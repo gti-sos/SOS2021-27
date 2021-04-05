@@ -6,6 +6,7 @@ var app=express(); // Generamos una aplicación que hace uso de express
 
 var port= (process.env.PORT || 10000); // Obtiene el puerto que se le indique o el 10000 en caso de no existir  (Heroku no trabaja con puerto 10000)
 
+var BASE_API_PATH = "/api/v1";
 
 app.listen(port, () =>{ // Cuando el servidor está listo, ejecuta el código interior.
     console.log("Server ready listening on port "+port); 
