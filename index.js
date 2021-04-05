@@ -32,9 +32,25 @@ app.get(BASE_API_PATH+"/budgets", (request, response) => {
 })
 
 app.get(BASE_API_PATH+"/budgets/loadInitialData", (request, response) => {
-    var ini=budgets_ini;
-    budgets.push(ini);
-    response.sendStatus(201);
+    budgets = [
+        {
+            "province": 'SEVILLE',
+            "year": 2018,
+            "budget": 30714715,
+            "invest-promotion": 2322823,
+            "liquid": 28391892,
+            "percentage": 7.563,
+        },
+        {
+            "province": 'BARCELONA',
+            "year": 2018,
+            "budget": 29178828,
+            "invest-promotion": 2089505,
+            "liquid": 27089323,
+            "percentage": 7.161,
+        }
+    ]
+    
 })
 
 //app.get(BASE_API_PATH+"/province-budget-and-investment-in-social-promotion", (request,response)=>{ 
