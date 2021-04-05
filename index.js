@@ -17,6 +17,7 @@ var path=require("path");
 // Dirname obtiene la carpeta donde se ejecuto npm start (C:\\....).
 // Use hace que cuando se llame a lo que sea que esté dentro de /, lo busque en la carpeta public...
 app.use("/",express.static(path.join(__dirname + "/public")));  
+//API azar-games-and-bet-activities
 
 var activities=[];
 
