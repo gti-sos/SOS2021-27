@@ -56,7 +56,7 @@ app.get(BASE_API_PATH+"/budgets/loadInitialData", (request, response) => {
     }
 
     console.log(`Loaded Initial Data: <${JSON.stringify(budgets_ini, null, 2)}>`);
-	return res.sendStatus(200);
+	return response.sendStatus(200);
 })
 
 
@@ -95,7 +95,7 @@ app.get(BASE_API_PATH+"/suicide-records/loadInitialData",(request,response)=>{
     }
 
     console.log(`Loaded Initial Data: <${JSON.stringify(suicide_initial, null, 2)}>`);
-	return res.sendStatus(200);
+	return response.sendStatus(200);
 
 })
 
