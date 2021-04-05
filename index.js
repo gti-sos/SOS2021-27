@@ -66,9 +66,10 @@ app.post(BASE_API_PATH+"/azar-games-and-bet-activities", (req,res)=>{
     console.log(`Stored Resource: <${JSON.stringify(recurso, null, 2)}>`);
     res.sendStatus(201)
 
-app.get(BASE_API_PATH+"/azar-games-and-bet-activities/:country/:year", (request, response)=>{
-    var activity = req.params.country && req.params.year;
-    response.send(JSON.stringify(activity,null,2))
+app.get(BASE_API_PATH+"/azar-games-and-bet-activities/:province/:year", (request, response)=>{
+    var activity = activities.filter(function(s){
+        return s.province==String(req.params.province)&& s.year==String(req.params.year);
+    })
 })     
 
 });
