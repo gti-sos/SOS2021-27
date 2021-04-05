@@ -49,8 +49,13 @@ app.get(BASE_API_PATH+"/azar-games-and-bet-activities/loadInitialData", (request
     }
 
     console.log(`Loaded Initial Data: <${JSON.stringify(activities_initial, null, 2)}>`);
+<<<<<<< HEAD
 	return res.sendStatus(200);
 });
+=======
+	return response.sendStatus(200);
+})
+>>>>>>> 30badb95bf78fd9bdb1783fa934623a274149ac7
 //API province-budget-and-investment-in-social-promotion
 
 app.get("/info/province-budget-and-investment-in-social-promotion",(request,response) => {
