@@ -74,6 +74,17 @@ app.get(BASE_API_PATH+"/azar-games-and-bet-activities/:province/:year", (req, re
    
 }) ;    
 
+app.delete(BASE_API_PATH+"/azar-games-and-bet-activities/:province/:year", function(req, res) { 
+	activities = activities.filter(function(s){
+		if(s.province!==String(req.params.province) || s.year!==(String(req.params.year))) {
+			return s;
+		}
+	});
+
+
+	res.status(200).send("Se ha eliminado correctamente");
+});
+
 
 //API province-budget-and-investment-in-social-promotion
 
