@@ -25,6 +25,7 @@ app.get(BASE_API_PATH+"/info/azar-games-and-bet-activities", (request,response)=
  
 });
 
+//API province-budget-and-investment-in-social-promotion
 var budgets = [];
 
 app.get(BASE_API_PATH+"/budgets", (request, response) => {
@@ -32,7 +33,7 @@ app.get(BASE_API_PATH+"/budgets", (request, response) => {
 })
 
 app.get(BASE_API_PATH+"/budgets/loadInitialData", (request, response) => {
-    budgets = [
+    budgets_ini = [
         {
             "province": 'SEVILLE',
             "year": 2018,
@@ -50,11 +51,16 @@ app.get(BASE_API_PATH+"/budgets/loadInitialData", (request, response) => {
             "percentage": 7.161,
         }
     ]
-    
+    for(var data of budgets_ini){
+        budgets.push(data)
+    }
+
+    console.log(`Loaded Initial Data: <${JSON.stringify(budgets_ini, null, 2)}>`);
+	return res.sendStatus(200);
 })
 
 
-
+//API suicide-records
 
 var suicide=[];
 
