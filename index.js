@@ -69,6 +69,7 @@ app.post(BASE_API_PATH+"/azar-games-and-bet-activities", (req,res)=>{
 app.get(BASE_API_PATH+"/azar-games-and-bet-activities/:province/:year", (request, response)=>{
     var activity = activities.filter(function(s){
         return s.province==String(req.params.province)&& s.year==String(req.params.year);
+        response.status(200).send(JSON.stringify(activities,null,2));
     })
 })     
 
