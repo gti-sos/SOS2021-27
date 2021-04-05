@@ -132,7 +132,7 @@ app.get(BASE_API_PATH+"/budgets", (request, response) => {
 app.get(BASE_API_PATH+"/province-budget-and-investment-in-social-promotion/loadInitialData", (request, response) => {
     budgets_ini = [
         {
-            "province": 'SEVILLE',
+            "province": "SEVILLE",
             "year": 2018,
             "budget": 30714715,
             "invest-promotion": 2322823,
@@ -140,7 +140,7 @@ app.get(BASE_API_PATH+"/province-budget-and-investment-in-social-promotion/loadI
             "percentage": 7.563,
         },
         {
-            "province": 'BARCELONA',
+            "province": "BARCELONA",
             "year": 2018,
             "budget": 29178828,
             "invest-promotion": 2089505,
