@@ -17,6 +17,7 @@ app.listen(port, () =>{ // Cuando el servidor está listo, ejecuta el código in
 });
 
 var path=require("path");
+const { runInNewContext } = require("vm");
  
 // Dirname obtiene la carpeta donde se ejecuto npm start (C:\\....).
 // Use hace que cuando se llame a lo que sea que esté dentro de /, lo busque en la carpeta public...
@@ -25,10 +26,7 @@ app.use("/",express.static(path.join(__dirname + "/public")));
 
 var activities=[];
 
-app.get(BASE_API_PATH+"/azar-games-and-bet-activities", (request,response)=>{ 
-    response.send(JSON.stringify(activities,null,2));
- 
-});
+
 
 app.get(BASE_API_PATH+"/azar-games-and-bet-activities/loadInitialData", (request, response) => {
     activities_initial = [
@@ -57,13 +55,21 @@ app.get(BASE_API_PATH+"/azar-games-and-bet-activities/loadInitialData", (request
 
 	return response.sendStatus(200);
 });
+app.get(BASE_API_PATH+"/azar-games-and-bet-activities", (request,response)=>{ 
+    response.send(JSON.stringify(activities,null,2));
+ 
+});
+
 app.post(BASE_API_PATH+"/azar-games-and-bet-activities", (req,res)=>{ 
 	var recurso = req.body;
-	suicide.push(recurso)
+	activities.push(recurso)
     console.log(`Stored Resource: <${JSON.stringify(recurso, null, 2)}>`);
     res.sendStatus(201)
 
-      
+app.get(BASE_API_PATH+"/azar-games-and-bet-activities/:country/:year", (request, response)=>{
+    var activity = req.params.country && req.params.year;
+    response.send(JSON.stringify(activity,null,2))
+})     
 
 });
 
