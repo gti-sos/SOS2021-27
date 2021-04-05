@@ -96,6 +96,8 @@ app.put(BASE_API_PATH+"/azar-games-and-bet-activities/:province/:year", function
 				break;
 		}
 	}
+    res.status(200).send("Se ha cambiado correctamente");
+
 });
 
 
