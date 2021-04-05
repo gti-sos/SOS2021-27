@@ -125,7 +125,7 @@ app.get("/info/province-budget-and-investment-in-social-promotion",(request,resp
 var budgets = [];
 
 app.get(BASE_API_PATH+"/budgets", (request, response) => {
-    response.sendStatus(JSON.stringify(budgets,null,2));
+    response.send(JSON.stringify(budgets,null,2));
 })
 
 app.get(BASE_API_PATH+"/budgets/loadInitialData", (request, response) => {
@@ -217,9 +217,9 @@ app.post(BASE_API_PATH+"/suicide-records", (req,res)=>{
 // 6.3 Get a un recurso
 
 app.get(BASE_API_PATH+"/suicide-records/:province/:year",(req,res)=>{
-    console.log(suicide)
+
     var registro=suicide.filter(a => a.province==req.params.province&&a.year==req.params.year);
-    console.log(registro)
+
 
     res.status(200).send(JSON.stringify(registro,null,2));
 
@@ -239,6 +239,46 @@ app.delete(BASE_API_PATH+"/suicide-records/:province/:year",(req,res)=>{
 
 // 6.5 Put a un recurso
 
+app.put(BASE_API_PATH+"/suicide-records/:province/:year",(req,res)=>{
+
+    var registro=suicide.filter(a => a.province==req.params.province&&a.year==req.params.year);
+
+    var index=0;
+
+    for(var reg of suicide){
+
+        if(reg==registro[0]){ // [0] porque nuestro objeto se ha guardado en un array
+            suicide[index]=req.body
+            break;
+        }
+        index++;
+    }
+
+    res.status(200).send("Se ha cambiado correctamente");
+
+})
+
+// 6.6 POST a un recurso 
+
+app.post(BASE_API_PATH+"/suicide-records/:province/:year", (req, res) =>{ 
+
+	res.status(405).send("Este metodo no  está permitido"); 
+});
+
+// 6.7 PUT a una lista de recursos
+
+app.put(BASE_API_PATH+"/suicide-records", (req, res) =>{ 
+
+	res.status(405).send("Este metodo no  está permitido"); 
+});
+
+// 6.8 DELETE a lista de recursos
+
+app.delete(BASE_API_PATH+"/suicide-records", (req, res) =>{
+    suicide=[]
+    res.status(200).send("Se ha borrado todo el contenido");
+
+})
 
 
 
