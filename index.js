@@ -124,12 +124,10 @@ app.get("/info/province-budget-and-investment-in-social-promotion",(request,resp
 
 var budgets = [];
 
-<<<<<<< HEAD
+
 app.get(BASE_API_PATH+"/budgets", (request, response) => {
     response.send(JSON.stringify(budgets,null,2));
 })
-=======
->>>>>>> 8c2b7cc491087a37ce017430ee4a5ab3f60b3eea
 
 app.get(BASE_API_PATH+"/province-budget-and-investment-in-social-promotion/loadInitialData", (request, response) => {
     budgets_ini = [
