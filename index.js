@@ -213,10 +213,17 @@ app.get(BASE_API_PATH+"/suicide-records/:province/:year",(req,res)=>{
 
 })
 
-// 6.4 Delete 
+// 6.4 Delete a un recurso
 
+app.delete(BASE_API_PATH+"/suicide-records/:province/:year",(req,res)=>{
+    
+    suicide=suicide.filter(a =>  !(a.province==req.params.province&&a.year==req.params.year)) 
 
+    res.status(200).send("Recurso eliminado correctamente")
 
+})
+
+// 6.5 Put a un recurso
 
 
 
