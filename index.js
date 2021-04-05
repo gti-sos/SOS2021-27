@@ -153,7 +153,7 @@ app.get(BASE_API_PATH+"/province-budget-and-investment-in-social-promotion/loadI
 })
 
 app.get(BASE_API_PATH+"/province-budget-and-investment-in-social-promotion", (request, response) => {
-    response.sendStatus(JSON.stringify(budgets,null,2));
+    response.send(JSON.stringify(budgets,null,2));
 })
 
 app.post(BASE_API_PATH+"/province-budget-and-investment-in-social-promotion", (request,response)=>{ 
