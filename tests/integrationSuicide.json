@@ -1,0 +1,165 @@
+{
+	"info": {
+		"_postman_id": "35ec3ea1-75b8-4ace-9731-2eb2a45501c6",
+		"name": "Tests API suicide-records",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "InitialData",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v1/suicide-records/loadInitialData",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-records",
+						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/suicide-records -> chk 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Existen 2 datos actualmente\", function(){\r",
+							"    var jsonData=pm.response.json()\r",
+							"    pm.expect(jsonData.length).to.eql(2);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v1/suicide-records",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-records"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/suicide-records",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n    \"province\":\"SEVILLE\",\r\n    \"year\":2001,\r\n    \"suic-man\":78,\r\n    \"suic-woman\":35,\r\n    \"suic-total\":113,\r\n    \"suic-rate-mw\":2\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v1/suicide-records",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-records"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/suicide-records -> chk 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Existen 3 datos actualmente.\", function(){\r",
+							"    var jsonData=pm.response.json()\r",
+							"    pm.expect(jsonData.length).to.eql(3);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v1/suicide-records",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-records"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/suicide-records",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v1/suicide-records",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"suicide-records"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
