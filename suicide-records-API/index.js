@@ -43,8 +43,10 @@ app.get(BASE_API_PATH+"/suicide-records/loadInitialData",(request,response)=>{
 
 // (5.1) y 6.1 GET a la lista de recursos.
 app.get(BASE_API_PATH+"/suicide-records", (request,response)=>{ 
+
     
-    response.send(JSON.stringify(suicide,null,2));
+    response.status(200).send(JSON.stringify(suicide,null,2));
+    
 });
 
 
