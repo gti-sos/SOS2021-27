@@ -15,6 +15,7 @@ var port= (process.env.PORT || 10000); // Obtiene el puerto que se le indique o 
 
 // -->      Bases de datos
 var suicideDB=new Datastore({filename: "suicide-records-API/suicide.db",autoload:true});
+var activitiesDB=new Datastore({filename: "activities-API/activities.db",autoload:true});
 
 
 
