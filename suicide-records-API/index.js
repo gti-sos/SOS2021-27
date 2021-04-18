@@ -257,8 +257,8 @@ app.get(BASE_API_PATH+"/suicide-records/:province/:year",(req,res)=>{
                 res.sendStatus(404);
             }else{
 
-                res.status(200).send(JSON.stringify(data, null, 2));
-			    console.log("Data sent:"+JSON.stringify(data, null, 2));
+                res.status(200).send(JSON.stringify(data[0], null, 2));
+			    console.log("Data sent:"+JSON.stringify(data[0], null, 2));
             }
             
         }
@@ -296,7 +296,7 @@ app.delete(BASE_API_PATH+"/suicide-records/:province/:year",(req,res)=>{
 app.put(BASE_API_PATH+"/suicide-records/:province/:year",(req,res)=>{
 
     if(req.params.province!=req.body.province || req.params.year!=req.body.year){
-        console.error("Specified URL keys does not match body keys");
+        console.error("Specified URL keys does not match body keys, cant change resource primary keys, delete it instead.");
         res.sendStatus(400)
 
     }else{
