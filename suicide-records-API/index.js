@@ -140,7 +140,8 @@ app.get(BASE_API_PATH+"/suicide-records/loadInitialData",(request,response)=>{
 app.get(BASE_API_PATH+"/suicide-records", (req,res)=>{ 
     var query=req.query;
     /*
-    No hace falta este cacho, el ultimo if es para crear una query con un operador, pero es opcional y no me sale.
+
+     ¡¡¡ No hace falta este cacho, el ultimo if es para crear una query con un operador, pero es opcional y no me sale !!!
 
     var querysParseadas={}
 
@@ -177,7 +178,16 @@ app.get(BASE_API_PATH+"/suicide-records", (req,res)=>{
     // 1º Busqueda en la BD con capacidad de introducir filtrado. P.E: name:"pablo". Si no ponemos nada devuelve todo.
     // 2º Funcion para usar el filtrado resultado.
 
-    db.find(query,(err,data)=>{
+
+
+    var limit=parseInt(query.limit);
+    var offset=parseInt(query.offset);
+
+    delete query.offset;
+    delete query.limit;
+
+
+    db.find(query).skip(offset).limit(limit).exec((err,data)=>{
         if(err){
             console.error("Error accessing resource data using GET");
             res.sendStatus(500);
@@ -190,7 +200,7 @@ app.get(BASE_API_PATH+"/suicide-records", (req,res)=>{
                 
                 console.log(`Sent Resources: <${JSON.stringify(data, null, 2)}>`);
                 res.status(200).send(JSON.stringify(data, null, 2));
-                //res.sendStatus(200);
+
             }
         }
     })
@@ -235,6 +245,7 @@ app.post(BASE_API_PATH+"/suicide-records", (req,res)=>{
 
 app.get(BASE_API_PATH+"/suicide-records/:province/:year",(req,res)=>{
 
+    
 
     db.find({"province":req.params.province,"year":req.params.year},(err,data)=>{
         if(err){
