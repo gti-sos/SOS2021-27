@@ -40,7 +40,7 @@ var budgetsAPI = require("./budgets-API");
 budgetsAPI.register(app,budgetsDB);
 
 var activitiesAPI = require("./activities-API");
-activitiesAPI.register(app);
+activitiesAPI.register(app,activitiesDB);
 
 
 
