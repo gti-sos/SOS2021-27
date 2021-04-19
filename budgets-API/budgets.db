@@ -1,7 +1,6 @@
 {"province":"VALENCIA","year":2016,"budget":17354885,"invest_promotion":965736,"liquid":16389149,"percentage":5.565,"_id":"00CdlF43ZAgpEGLD"}
 {"province":"MADRID","year":2017,"budget":20504094,"invest_promotion":1628027,"liquid":18876067,"percentage":7.94,"_id":"5Tll2xdMfNoKmtS5"}
 {"province":"SEVILLE","year":2018,"budget":30714715,"invest_promotion":2322823,"liquid":28391892,"percentage":7.563,"_id":"7suNd8U80bwRVbYj"}
-{"province":"MADRID","year":2019,"budget":1,"invest_promotion":1,"liquid":1,"percentage":1,"_id":"L6rMxfEVX9L1Jvve"}
 {"province":"MADRID","year":2016,"budget":20139609,"invest_promotion":1520787,"liquid":18618822,"percentage":7.551,"_id":"LVBpTWxEvlabkV3C"}
 {"province":"SEVILLE","year":2016,"budget":27037781,"invest_promotion":2145096,"liquid":24892685,"percentage":7.934,"_id":"Y2bEyixHrOuGzlYq"}
 {"province":"SEVILLE","year":2017,"budget":29194210,"invest_promotion":2201782,"liquid":26992428,"percentage":7.542,"_id":"ZVoki42gzlBa0i1J"}
@@ -11,4 +10,3 @@
 {"province":"VALENCIA","year":2017,"budget":17958855,"invest_promotion":1008985,"liquid":16949870,"percentage":5.618,"_id":"oH6iptcXsBbbYMzO"}
 {"province":"BARCELONA","year":2017,"budget":30620317,"invest_promotion":2079758,"liquid":28540559,"percentage":6.792,"_id":"sRFHjxUagWTQ4Oba"}
 {"province":"BARCELONA","year":2016,"budget":29449783,"invest_promotion":1937622,"liquid":27512161,"percentage":6.579,"_id":"yLvnUiFh7gaBec2M"}
-{"$$deleted":true,"_id":"L6rMxfEVX9L1Jvve"}

@@ -241,7 +241,7 @@ module.exports.register = (app,budgetsDB)=>{
     
     app.put(BASE_API_PATH+"/:province/:year", (request,response)=>{ 
 
-        budgetsDB.find({}, (error,data)=>{
+        budgetsDB.find({},(error,data)=>{
             if(error){
                 console.error("Cannot update the resource using PUT" + error);
                     response.sendStatus(500);
@@ -250,12 +250,12 @@ module.exports.register = (app,budgetsDB)=>{
                     console.log(`Database is empty`);
                         return response.sendStatus(404);
                 }else{
-                    if(!request.body.province ||
-                        !request.body.year ||
-                        !request.body['budget'] ||
-                        !request.body['invest_promotion'] ||
-                        !request.body['liquid'] ||
-                        !request.body['percentage']){
+                    if(!request.body.province &
+                        !request.body.year &
+                        !request.body.budget &
+                        !request.body.invest_promotion &
+                        !request.body.liquid &
+                        !request.body.percentage){
                         console.log(`Incorrect number of resources`);
                             return response.sendStatus(400);
                     }else{
