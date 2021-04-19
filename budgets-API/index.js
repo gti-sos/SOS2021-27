@@ -111,7 +111,7 @@ module.exports.register = (app,budgetsDB)=>{
                 response.sendStatus(500);
          }else{
              if(data.length==0){
-                 db.insert(budgets_ini);
+                budgetsDB.insert(budgets_ini);
                  console.log(`Initial data loaded: ${JSON.stringify(budgets_ini, null, 2)}`);
                      return response.sendStatus(200);
              }else{
@@ -122,7 +122,7 @@ module.exports.register = (app,budgetsDB)=>{
          })
     })
     
-    app.get(BASE_API_PATH, (request, response)=>{
+    app.get(BASE_API_PATH, (request,response)=>{
 
         var query = request.query;
 		var limit = parseInt(query.limit);
@@ -202,7 +202,7 @@ module.exports.register = (app,budgetsDB)=>{
         })
     })
     
-    app.get(BASE_API_PATH+"/:province/:year", (request, response)=>{
+    app.get(BASE_API_PATH+"/:province/:year", (request,response)=>{
 
         budgetsDB.find({province: request.params.province, year: request.params.year},(error,data)=>{
             if(error){
@@ -223,7 +223,7 @@ module.exports.register = (app,budgetsDB)=>{
         })
     });    
     
-    app.delete(BASE_API_PATH+"/:province/:year", (request, response)=>{ 
+    app.delete(BASE_API_PATH+"/:province/:year", (request,response)=>{ 
 
         budgetsDB.remove({province: request.params.province, year: request.params.year},(error,dataRemoved)=>{
             if(error){
@@ -241,7 +241,7 @@ module.exports.register = (app,budgetsDB)=>{
         })
     });
     
-    app.put(BASE_API_PATH+"/:province/:year", (request, response)=>{ 
+    app.put(BASE_API_PATH+"/:province/:year", (request,response)=>{ 
 
         budgetsDB.find({}, (error,data)=>{
             if(error){
@@ -297,7 +297,7 @@ module.exports.register = (app,budgetsDB)=>{
     });
 
 
-    app.post(BASE_API_PATH+"/:province/:year", (request, response)=>{ 
+    app.post(BASE_API_PATH+"/:province/:year", (request,response)=>{ 
 
         response.status(405).send("Method not allowed"); 
     });
