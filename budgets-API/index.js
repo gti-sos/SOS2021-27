@@ -158,7 +158,7 @@ module.exports.register = (app,budgetsDB)=>{
 				delete i._id;
 			});
 			if(data.length==0){
-				console.error("Cannot find the resource");
+				console.error("Database is empty");
                     response.sendStatus(400);
 			}else{
 				console.log(`Resources sended: <${JSON.stringify(data, null, 2)}>`);
