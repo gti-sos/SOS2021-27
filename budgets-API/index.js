@@ -204,20 +204,21 @@ module.exports.register = (app,budgetsDB)=>{
     
     app.get(BASE_API_PATH+"/:province/:year", (request,response)=>{
 
-        budgetsDB.find({$and: [{province: request.params.province}, {year: request.params.year},{_id:0},(error,data)=>{
+        budgetsDB.find({"province": request.params.province, "year": parseInt(request.params.year)},(error,data)=>{
             if(error){
                 console.error("Cannot access to the resource using GET" + error);
                     response.sendStatus(500);
             }else{
-                if(data.length==0){
+                if(data.length==1){
+                    delete data[0]._id;
+                    console.log("Resource requested: " + JSON.stringify(data[0]), null, 2)
+                        response.send(JSON.stringify(data[0], null, 2));
+                }else{
                     console.error("Cannot find the resource");
                         response.sendStatus(404);
-                }else{
-                    delete data[0]._id;
-                        response.status(200).send(JSON.stringify(data[0], null, 2));
                 }
             }
-        })
+        });
     });    
     
     app.delete(BASE_API_PATH+"/:province/:year", (request,response)=>{ 
