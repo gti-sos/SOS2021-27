@@ -134,6 +134,7 @@ module.exports.register= (app,db)=>{
 
     delete query.offset;
     delete query.limit;
+    
       db.find(query,{_id:0}).skip(offset).limit(limit).exec((err,data)=>{
         if(err){
             console.error("Error accessing resource data using GET");
