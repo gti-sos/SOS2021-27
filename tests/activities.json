@@ -1,0 +1,927 @@
+{
+	"info": {
+		"_postman_id": "7fb52f14-e16f-4940-945d-5994c0f816ef",
+		"name": "Test Api azar-activities(E1)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Clear Inicial",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"azar-games-and-bet-activities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Initial Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/loadInitialData",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"azar-games-and-bet-activities",
+						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Initial Data (ERR.409)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function(){\r",
+							"    pm.response.to.have.status(409);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/loadInitialData",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"azar-games-and-bet-activities",
+						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Lista Recursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Existen 12 datos actualmente.\", function(){\r",
+							"    var jsonData=pm.response.json()\r",
+							"    pm.expect(jsonData.length).to.eql(12);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"azar-games-and-bet-activities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Paginacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Se ha limitado al muestreo de 3 datos.\", function(){\r",
+							"    var jsonData=pm.response.json()\r",
+							"    pm.expect(jsonData.length).to.eql(3);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities?limit=3&offset=5",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"azar-games-and-bet-activities"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "3"
+						},
+						{
+							"key": "offset",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Se han devuelto 8 datos.\", function(){\r",
+							"    var jsonData=pm.response.json()\r",
+							"    pm.expect(jsonData.length).to.eql(8);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities?bingo_site=34",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"azar-games-and-bet-activities"
+					],
+					"query": [
+						{
+							"key": "bingo_site",
+							"value": "34"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Se ha devuelto 1 dato.\", function(){\r",
+							"    var jsonData=pm.response.json()\r",
+							"    pm.expect(jsonData.length).to.eql(1);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities?bingo_site=34&national_lottery_expend=487375563",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"azar-games-and-bet-activities"
+					],
+					"query": [
+						{
+							"key": "bingo_site",
+							"value": "34"
+						},
+						{
+							"key": "national_lottery_expend",
+							"value": "487375563"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get (Err.404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							";"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities?bingo-site=34&national-lottery-expend=999999999999999999999",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"azar-games-and-bet-activities"
+					],
+					"query": [
+						{
+							"key": "bingo-site",
+							"value": "34"
+						},
+						{
+							"key": "national-lottery-expend",
+							"value": "999999999999999999999"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Request body has json data.\",function(){\r",
+							"    pm.request.to.have.jsonBody;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"province\":\"Cordoba\",\r\n\"year\":\"2001\",\r\n\"catering_bingo_machine\":\"152\",\r\n\"lottery_engagement\":\"56\",\r\n\"bingo_site\":\"208\",\r\n\"national_lottery_expend\":\"3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"azar-games-and-bet-activities",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post (Err.409)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function(){\r",
+							"    pm.response.to.have.status(409);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"province\": \"Malaga\",\r\n\"year\": \"2001\",\r\n\"catering-bingo-machine\": \"152\",\r\n\"lottery-engagement \": \"56\",\r\n\"bingo-site\": \"208\",\r\n\"national-lottery-expend\": \"2341235\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"azar-games-and-bet-activities",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post (Err.400)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"province\": \"Malaga\",\r\n\"year\": \"2001\",\r\n\"catering-bingo-machine\": \"152\",\r\n\"lottery-engagement \": \"56\",\r\n\"bingo-site\": \"208\",\r\n\"national-lottery-expend\": \"2341235\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"azar-games-and-bet-activities",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Recurso (Url Keys)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"JSON object received.\", function(){\r",
+							"    \r",
+							"    pm.response.to.be.json;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/Seville/2018",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"azar-games-and-bet-activities",
+						"Seville",
+						"2018"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get recurso (Url Keys) (Err.404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/Murcia/2021",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"azar-games-and-bet-activities",
+						"Murcia",
+						"2021"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/Seville/2018",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"azar-games-and-bet-activities",
+						"Seville",
+						"2018"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Recurso (Err.404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/Murcia/2021",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"azar-games-and-bet-activities",
+						"Murcia",
+						"2021"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actualizar recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Request body has json data.\",function(){\r",
+							"    pm.request.to.have.jsonBody;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"province\": \"Malaga\",\r\n\"year\": \"2001\",\r\n\"catering-bingo-machine\": \"1572\",\r\n\"lottery-engagement \": \"56\",\r\n\"bingo-site\": \"208\",\r\n\"national-lottery-expend\": \"2341235\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/Malaga/2001",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"azar-games-and-bet-activities",
+						"Malaga",
+						"2001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actualizar recurso (err.404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"province\": \"Malaga\",\r\n\"year\": \"2001\",\r\n\"catering-bingo-machine\": \"1572\",\r\n\"lottery-engagement \": \"56\",\r\n\"bingo-site\": \"208\",\r\n\"national-lottery-expend\": \"2341235\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/Malaga/2001",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"azar-games-and-bet-activities",
+						"Malaga",
+						"2001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actualizar recurso (err.400)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"province\": \"Malaga\",\r\n\"year\": \"2001\",\r\n\"catering-bingo-machine\": \"1572\",\r\n\"lottery-engagement \": \"56\",\r\n\"bingo-site\": \"208\",\r\n\"national-lottery-expend\": \"2341235\"\r\n}"
+				},
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/Malaga/2001",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"azar-games-and-bet-activities",
+						"Malaga",
+						"2001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post prohibido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function(){\r",
+							"    pm.response.to.have.status(405);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/Seville/2018",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"azar-games-and-bet-activities",
+						"Seville",
+						"2018"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put prohibido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function(){\r",
+							"    pm.response.to.have.status(405);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"azar-games-and-bet-activities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete final",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"azar-games-and-bet-activities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "check delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"azar-games-and-bet-activities"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
