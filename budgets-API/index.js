@@ -110,7 +110,7 @@ module.exports.register= (app,db)=>{
      db.find({},(error,data)=>{
         if(error){
             console.error("Database cannot be accessed");
-                return request.sendStatus(500);
+                return response.sendStatus(500);
          }else{
              if(data.length==0){
                  db.insert(budgets_ini);
