@@ -101,7 +101,7 @@ var budgets_ini = [
     },
 ]
 
-module.exports.register = (app, budgetsDB)=>{
+module.exports.register = (app,budgetsDB)=>{
 
     app.get(BASE_API_PATH+"/loadInitialData", (request, response)=>{
 
