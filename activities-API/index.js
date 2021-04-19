@@ -47,7 +47,7 @@ module.exports.register= (app,db)=>{
                 "catering-bingo-machine":13389,
                 "lottery-engagement ": 62538100,
                 "bingo-site": 34,
-                "national-lottery-expend":487375563,
+                "in":487375563,
             },
             {
                 "province": 'Barcelona',
@@ -183,7 +183,7 @@ module.exports.register= (app,db)=>{
     
     });
     app.get(BASE_API_PATH+"/azar-games-and-bet-activities/:province/:year", (req, res)=>{
-        db.find({"province":req.params.province,"year":req.params.year},(err,data)=>{
+        db.find({"province":req.params.province,"year":req.params.year},{_id:0},(err,data)=>{
             if(err){
                 console.error("Error getting resource using GET");
                 res.sendStatus(500);
