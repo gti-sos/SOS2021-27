@@ -259,7 +259,7 @@ module.exports.register = (app,budgetsDB)=>{
                         console.log(`Incorrect number of resources`);
                             return response.sendStatus(400);
                     }else{
-                        budgetsDB.find({province: request.params.province, year: request.params.year}, (error,data)=>{
+                        budgetsDB.find({"province": request.params.province, "year": parseInt(request.params.year)},(error,data)=>{
                             if(error){
                                 console.error("Ops, something went wrong");
                                     response.sendStatus(404);
@@ -268,14 +268,14 @@ module.exports.register = (app,budgetsDB)=>{
                                 console.log("Cannot find the resource with that information");
                                     response.sendStatus(404);
                             }else{
-                                budgetsDB.update({province: request.params.province, year: request.params.year},
+                                budgetsDB.update({"province": request.params.province, "year": parseInt(request.params.year)},
                                     {
-                                        province: request.params.province,
-                                        year: request.params.year,
-                                        "budget": request.body.budget,
-                                        "invest_promotion": request.body.invest_promotion,
-                                        "liquid": request.body.liquid,
-                                        "percentage": request.body.percentage
+                                        "province": request.params.province,
+                                        "year": parseInt(request.params.year),
+                                        "budget": parseFloat(request.body.budget),
+                                        "invest_promotion": parseFloat(request.body.invest_promotion),
+                                        "liquid": parseFloat(request.body.liquid),
+                                        "percentage": parseFloat(request.body.percentage)
                                     }, 
                                     (error,dataUpdated)=>{
                                         if(error){
