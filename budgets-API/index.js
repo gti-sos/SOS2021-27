@@ -158,7 +158,7 @@ module.exports.register = (app,budgetsDB)=>{
 				delete i._id;
 			});
 			if(data.length==0){
-				console.error("Cannot find the resource");
+				console.error("Database is empty");
                     response.sendStatus(400);
 			}else{
 				console.log(`Resources sended: <${JSON.stringify(data, null, 2)}>`);
@@ -204,28 +204,26 @@ module.exports.register = (app,budgetsDB)=>{
     
     app.get(BASE_API_PATH+"/:province/:year", (request,response)=>{
 
-        budgetsDB.find({province: request.params.province, year: request.params.year},(error,data)=>{
+        budgetsDB.find({"province": request.params.province, "year": parseInt(request.params.year)},(error,data)=>{
             if(error){
                 console.error("Cannot access to the resource using GET" + error);
                     response.sendStatus(500);
             }else{
-                if(data.length==0){
+                if(data.length==1){
+                    delete data[0]._id;
+                    console.log("Resource requested: " + JSON.stringify(data[0]), null, 2);
+                        response.send(JSON.stringify(data[0], null, 2));
+                }else{
                     console.error("Cannot find the resource");
                         response.sendStatus(404);
-                }else{
-                    var newBudget = data.map((f)=>{
-                        return {province: f.province, year: f.year, "budget": f.budget, "invest_promotion": f.invest_promotion, "liquid": f.liquid, "percentage": f.percentage};
-                    });
-                    console.log(newBudget);
-                        response.status(200).send(JSON.stringify(newBudget, null, 2));
                 }
             }
-        })
+        });
     });    
     
     app.delete(BASE_API_PATH+"/:province/:year", (request,response)=>{ 
 
-        budgetsDB.remove({province: request.params.province, year: request.params.year},(error,dataRemoved)=>{
+        budgetsDB.remove({"province": request.params.province, "year": parseInt(request.params.year)},(error,dataRemoved)=>{
             if(error){
                 console.error("Cannot delete the resource using DELETE" + error);
                     response.sendStatus(500);
@@ -243,7 +241,7 @@ module.exports.register = (app,budgetsDB)=>{
     
     app.put(BASE_API_PATH+"/:province/:year", (request,response)=>{ 
 
-        budgetsDB.find({}, (error,data)=>{
+        budgetsDB.find({},(error,data)=>{
             if(error){
                 console.error("Cannot update the resource using PUT" + error);
                     response.sendStatus(500);
@@ -252,16 +250,16 @@ module.exports.register = (app,budgetsDB)=>{
                     console.log(`Database is empty`);
                         return response.sendStatus(404);
                 }else{
-                    if(!request.body.province ||
-                        !request.body.year ||
-                        !request.body['budget'] ||
-                        !request.body['invest_promotion'] ||
-                        !request.body['liquid'] ||
-                        !request.body['percentage']){
+                    if(!request.body.province &
+                        !request.body.year &
+                        !request.body.budget &
+                        !request.body.invest_promotion &
+                        !request.body.liquid &
+                        !request.body.percentage){
                         console.log(`Incorrect number of resources`);
                             return response.sendStatus(400);
                     }else{
-                        budgetsDB.find({province: request.params.province, year: request.params.year}, (error,data)=>{
+                        budgetsDB.find({"province": request.params.province, "year": parseInt(request.params.year)},(error,data)=>{
                             if(error){
                                 console.error("Ops, something went wrong");
                                     response.sendStatus(404);
@@ -270,14 +268,14 @@ module.exports.register = (app,budgetsDB)=>{
                                 console.log("Cannot find the resource with that information");
                                     response.sendStatus(404);
                             }else{
-                                budgetsDB.update({province: request.params.province, year: request.params.year},
+                                budgetsDB.update({"province": request.params.province, "year": parseInt(request.params.year)},
                                     {
-                                        province: request.params.province,
-                                        year: request.params.year,
-                                        "budget": request.body.budget,
-                                        "invest_promotion": request.body.invest_promotion,
-                                        "liquid": request.body.liquid,
-                                        "percentage": request.body.percentage
+                                        "province": request.params.province,
+                                        "year": parseInt(request.params.year),
+                                        "budget": parseFloat(request.body.budget),
+                                        "invest_promotion": parseFloat(request.body.invest_promotion),
+                                        "liquid": parseFloat(request.body.liquid),
+                                        "percentage": parseFloat(request.body.percentage)
                                     }, 
                                     (error,dataUpdated)=>{
                                         if(error){
