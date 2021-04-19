@@ -4,6 +4,7 @@ var express=require("express"); // Cargamos el modulo
 var bodyParser=require("body-parser");
 var path=require("path");
 var Datastore=require('nedb');
+var BASE_API_PATH = "/api/v1";
 
 
 // -->      Variables para el uso del servidor y módulos
@@ -16,7 +17,7 @@ var port= (process.env.PORT || 10000); // Obtiene el puerto que se le indique o 
 // -->      Bases de datos
 var suicideDB=new Datastore({filename: "suicide-records-API/suicide.db",autoload:true});
 var activitiesDB=new Datastore({filename: "activities-API/activities.db",autoload:true});
-var budgetsDB = new Datastore({filename: "budgets-API/budgets.db",autoload:true});
+
 
 
 
@@ -45,7 +46,7 @@ var suicideAPI=require("./suicide-records-API");
 suicideAPI.register(app,suicideDB);
 
 var budgetsAPI = require("./budgets-API");
-budgetsAPI.register(app,budgetsDB);
+budgetsAPI.register(app,BASE_API_PATH);
 
 var activitiesAPI = require("./activities-API");
 activitiesAPI.register(app);
