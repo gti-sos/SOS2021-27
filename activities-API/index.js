@@ -4,7 +4,7 @@ var activities=[];
 var BASE_API_PATH = "/api/v1";
 
 
-module.exports.register= (app)=>{
+module.exports.register= (app,db)=>{
 
 
     app.get(BASE_API_PATH+"/azar-games-and-bet-activities/loadInitialData", (request, response) => {
@@ -129,8 +129,12 @@ module.exports.register= (app)=>{
     })
     app.get(BASE_API_PATH+"/azar-games-and-bet-activities", (req,res)=>{ 
         var query=req.query;
+        var limit=parseInt(query.limit);
+        var offset=parseInt(query.offset);
 
-      db.find(query,(err,data)=>{
+    delete query.offset;
+    delete query.limit;
+      db.find(query,{_id:0}).skip(offset).limit(limit).exec((err,data)=>{
         if(err){
             console.error("Error accessing resource data using GET");
             res.sendStatus(500);
@@ -189,8 +193,8 @@ module.exports.register= (app)=>{
                     res.sendStatus(404);
                 }else{
     
-                    res.status(200).send(JSON.stringify(data, null, 2));
-                    console.log("Data sent:"+JSON.stringify(data, null, 2));
+                    res.status(200).send(JSON.stringify(data[0], null, 2));
+                    console.log("Data sent:"+JSON.stringify(data[0], null, 2));
                 }
                 
             }
