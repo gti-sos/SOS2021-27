@@ -110,15 +110,15 @@ module.exports.register= (app,db)=>{
      db.find({},(error,data)=>{
         if(error){
             console.error("Database cannot be accessed");
-                return response.sendStatus(500);
+                return request.sendStatus(500);
          }else{
              if(data.length==0){
                  db.insert(budgets_ini);
                  console.log(`Initial data loaded: <${JSON.stringify(budgets_ini, null, 2)}>`);
                      return response.sendStatus(200);
              }else{
-                console.error("Database already initialized")
-                    return response.sendStatus(409)
+                console.error("Database already initialized");
+                    return response.sendStatus(409);
                 }
             }
          })
@@ -139,7 +139,7 @@ module.exports.register= (app,db)=>{
                 response.sendStatus(500);
             }else{
                 if(data.length==0){
-                    console.error("Cannot find the resource")
+                    console.error("Cannot find the resource");
                     response.sendStatus(404);
                 }else{
                     console.log(`Resources sended: <${JSON.stringify(data, null, 2)}>`);
@@ -160,17 +160,17 @@ module.exports.register= (app,db)=>{
                 }else{
                     if(data.length!=0){
                         console.error("That resource already exists");
-                        response.sendStatus(409)
+                        response.sendStatus(409);
                     }else{
                         db.insert(request.body);
                         console.log(`Resource stored: <${JSON.stringify(request.body, null, 2)}>`);
-                        response.sendStatus(201)
+                        response.sendStatus(201);
                     }
                 } 
             })
         }else{
-            console.error("Resource format not valid")
-            return response.sendStatus(400)
+            console.error("Resource format not valid");
+            return response.sendStatus(400);
         }
     });
     
@@ -182,7 +182,7 @@ module.exports.register= (app,db)=>{
                 response.sendStatus(500);
             }else{
                 if(data.length==0){
-                    console.error("Cannot find the resource")
+                    console.error("Cannot find the resource");
                     response.sendStatus(404);
                 }else{
                     response.status(200).send(JSON.stringify(data[0], null, 2));
@@ -197,14 +197,14 @@ module.exports.register= (app,db)=>{
         db.remove({"province":request.params.province,"year":request.params.year},(error,remove)=>{
             if(error){
                 console.error("Cannot delete the resource using DELETE");
-                response.sendStatus(500)
+                response.sendStatus(500);
             }else{
                 if(remove==0){
                     console.log("Cannot find the resource with that information");
-                    response.sendStatus(404)
+                    response.sendStatus(404);
                 }else{
-                    console.log("Resource deleted")
-                    response.sendStatus(200)
+                    console.log("Resource deleted");
+                    response.sendStatus(200);
                 }
             }
         })
@@ -214,18 +214,18 @@ module.exports.register= (app,db)=>{
     
         if(request.params.province!=request.body.province || request.params.year!=request.body.year){
             console.error("Cannot modify the resource, keys are wrong");
-            response.sendStatus(400)
+            response.sendStatus(400);
         }else{
             db.update({"province":request.body.province,"year":request.body.year},request.body,(error,update)=>{
                 if(error){
-                    console.error("Cannot update the resource using PUT")
-                    response.sendStatus(500)
+                    console.error("Cannot update the resource using PUT");
+                    response.sendStatus(500);
                 }else{
                     if(update==0){
-                        console.log("Cannot find the resource with that information")
-                        response.sendStatus(404)
+                        console.log("Cannot find the resource with that information");
+                        response.sendStatus(404);
                     }else{
-                        console.log("Resource updated")
+                        console.log("Resource updated");
                         response.sendStatus(200);
                     }
                 }
