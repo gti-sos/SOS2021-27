@@ -111,7 +111,7 @@ module.exports.register = (app,budgetsDB)=>{
                 response.sendStatus(500);
          }else{
              if(data.length==0){
-                 db.insert(budgets_ini);
+                budgetsDB.insert(budgets_ini);
                  console.log(`Initial data loaded: ${JSON.stringify(budgets_ini, null, 2)}`);
                      return response.sendStatus(200);
              }else{
