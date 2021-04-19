@@ -1,6 +1,5 @@
 //API province-budget-and-investment-in-social-promotion
 
-var budgets = [];
 var BASE_API_PATH = "/api/v1/province-budget-and-investment-in-social-promotion";
 
 var budgets_ini = [
@@ -102,7 +101,7 @@ var budgets_ini = [
     },
 ]
 
-module.exports.register = (app)=>{
+module.exports.register = (app,budgetsDB)=>{
 
     app.get(BASE_API_PATH+"/loadInitialData", (request, response)=>{
 
