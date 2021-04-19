@@ -119,6 +119,7 @@ app.get(BASE_API_PATH+"/suicide-records/loadInitialData",(request,response)=>{
         } else{
 
             if(data.length==0){
+
                 db.insert(suicide_initial) // Metemos el array de objetos en la base de datos.
                 console.log(`Loaded Initial Data: <${JSON.stringify(suicide_initial, null, 2)}>`);
                 return response.sendStatus(200);
@@ -187,7 +188,7 @@ app.get(BASE_API_PATH+"/suicide-records", (req,res)=>{
     delete query.limit;
 
 
-    db.find(query).skip(offset).limit(limit).exec((err,data)=>{
+    db.find(query,{_id:0}).skip(offset).limit(limit).exec((err,data)=>{
         if(err){
             console.error("Error accessing resource data using GET");
             res.sendStatus(500);
@@ -247,7 +248,7 @@ app.get(BASE_API_PATH+"/suicide-records/:province/:year",(req,res)=>{
 
     
 
-    db.find({"province":req.params.province,"year":req.params.year},(err,data)=>{
+    db.find({"province":req.params.province,"year":req.params.year},{_id:0},(err,data)=>{
         if(err){
             console.error("Error getting resource using GET");
             res.sendStatus(500);
@@ -257,8 +258,8 @@ app.get(BASE_API_PATH+"/suicide-records/:province/:year",(req,res)=>{
                 res.sendStatus(404);
             }else{
 
-                res.status(200).send(JSON.stringify(data, null, 2));
-			    console.log("Data sent:"+JSON.stringify(data, null, 2));
+                res.status(200).send(JSON.stringify(data[0], null, 2));
+			    console.log("Data sent:"+JSON.stringify(data[0], null, 2));
             }
             
         }
@@ -296,12 +297,11 @@ app.delete(BASE_API_PATH+"/suicide-records/:province/:year",(req,res)=>{
 app.put(BASE_API_PATH+"/suicide-records/:province/:year",(req,res)=>{
 
     if(req.params.province!=req.body.province || req.params.year!=req.body.year){
-        console.error("Specified URL keys does not match body keys");
+        console.error("Specified URL keys does not match body keys, cant change resource primary keys, delete it instead.");
         res.sendStatus(400)
 
     }else{
         db.update({"province":req.body.province,"year":req.body.year},req.body,(err,dataReplaced)=>{
-            console.log(dataReplaced)
             if(err){
                 console.error("Error updating resource")
                 res.sendStatus(500)
@@ -327,14 +327,14 @@ app.put(BASE_API_PATH+"/suicide-records/:province/:year",(req,res)=>{
 
 app.post(BASE_API_PATH+"/suicide-records/:province/:year", (req, res) =>{ 
 
-	res.status(405).send("Este metodo no  está permitido"); 
+	return res.sendStatus(405); 
 });
 
 // 6.7 PUT a una lista de recursos
 
 app.put(BASE_API_PATH+"/suicide-records", (req, res) =>{ 
 
-	res.status(405).send("Este metodo no  está permitido"); 
+	return res.sendStatus(405); 
 });
 
 // 6.8 DELETE a lista de recursos

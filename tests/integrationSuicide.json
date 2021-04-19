@@ -1,23 +1,73 @@
 {
 	"info": {
-		"_postman_id": "35ec3ea1-75b8-4ace-9731-2eb2a45501c6",
-		"name": "Tests API suicide-records",
+		"_postman_id": "c2dc635b-cb20-460b-9135-4555a599d66c",
+		"name": "Tests API suicide-record (E1)  local",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
+			"name": "Clear Inicial",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:10000/api/v1/suicide-records",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"api",
+						"v1",
+						"suicide-records"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "InitialData",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://sos2021-27.herokuapp.com/api/v1/suicide-records/loadInitialData",
+					"raw": "http://localhost:10000/api/v1/suicide-records/loadInitialData",
 					"protocol": "http",
 					"host": [
-						"sos2021-27",
-						"herokuapp",
-						"com"
+						"localhost"
 					],
+					"port": "10000",
 					"path": [
 						"api",
 						"v1",
@@ -29,7 +79,44 @@
 			"response": []
 		},
 		{
-			"name": "/api/v1/suicide-records -> chk 2",
+			"name": "InitialData (Err.409)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function(){\r",
+							"    pm.response.to.have.status(409);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:10000/api/v1/suicide-records/loadInitialData",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"api",
+						"v1",
+						"suicide-records",
+						"loadInitialData"
+					]
+				},
+				"description": "Initial data was previously called, so calling it again will throw 409 error."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Lista Recursos",
 			"event": [
 				{
 					"listen": "test",
@@ -39,9 +126,9 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Existen 2 datos actualmente\", function(){\r",
+							"pm.test(\"Existen 12 datos actualmente.\", function(){\r",
 							"    var jsonData=pm.response.json()\r",
-							"    pm.expect(jsonData.length).to.eql(2);\r",
+							"    pm.expect(jsonData.length).to.eql(12);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -52,55 +139,24 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://sos2021-27.herokuapp.com/api/v1/suicide-records",
+					"raw": "http://localhost:10000/api/v1/suicide-records/",
 					"protocol": "http",
 					"host": [
-						"sos2021-27",
-						"herokuapp",
-						"com"
+						"localhost"
 					],
+					"port": "10000",
 					"path": [
 						"api",
 						"v1",
-						"suicide-records"
+						"suicide-records",
+						""
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "/api/v1/suicide-records",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "\r\n{\r\n    \"province\":\"SEVILLE\",\r\n    \"year\":2001,\r\n    \"suic-man\":78,\r\n    \"suic-woman\":35,\r\n    \"suic-total\":113,\r\n    \"suic-rate-mw\":2\r\n}\r\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://sos2021-27.herokuapp.com/api/v1/suicide-records",
-					"protocol": "http",
-					"host": [
-						"sos2021-27",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api",
-						"v1",
-						"suicide-records"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/api/v1/suicide-records -> chk 3",
+			"name": "Paginación",
 			"event": [
 				{
 					"listen": "test",
@@ -110,7 +166,7 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Existen 3 datos actualmente.\", function(){\r",
+							"pm.test(\"Se ha limitado al muestreo de 3 datos.\", function(){\r",
 							"    var jsonData=pm.response.json()\r",
 							"    pm.expect(jsonData.length).to.eql(3);\r",
 							"});"
@@ -123,13 +179,677 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://sos2021-27.herokuapp.com/api/v1/suicide-records",
+					"raw": "http://localhost:10000/api/v1/suicide-records?limit=3&offset=5",
 					"protocol": "http",
 					"host": [
-						"sos2021-27",
-						"herokuapp",
-						"com"
+						"localhost"
 					],
+					"port": "10000",
+					"path": [
+						"api",
+						"v1",
+						"suicide-records"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "3"
+						},
+						{
+							"key": "offset",
+							"value": "5"
+						}
+					]
+				},
+				"description": "This get will obtain 3 resources (limit=3)."
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Se han devuelto 8 datos.\", function(){\r",
+							"    var jsonData=pm.response.json()\r",
+							"    pm.expect(jsonData.length).to.eql(8);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:10000/api/v1/suicide-records?suic_rate_mw=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"api",
+						"v1",
+						"suicide-records"
+					],
+					"query": [
+						{
+							"key": "suic_rate_mw",
+							"value": "3"
+						}
+					]
+				},
+				"description": "This get will obtain 8 resources."
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Se ha devuelto 1 dato.\", function(){\r",
+							"    var jsonData=pm.response.json()\r",
+							"    pm.expect(jsonData.length).to.eql(1);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:10000/api/v1/suicide-records?suic_rate_mw=3&suic_man=218",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"api",
+						"v1",
+						"suicide-records"
+					],
+					"query": [
+						{
+							"key": "suic_rate_mw",
+							"value": "3"
+						},
+						{
+							"key": "suic_man",
+							"value": "218"
+						}
+					]
+				},
+				"description": "This get will obtain 1 resource."
+			},
+			"response": []
+		},
+		{
+			"name": "Get (Err.404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							";"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:10000/api/v1/suicide-records?suic_rate_mw=3&suic_man=999999999999999999999",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"api",
+						"v1",
+						"suicide-records"
+					],
+					"query": [
+						{
+							"key": "suic_rate_mw",
+							"value": "3"
+						},
+						{
+							"key": "suic_man",
+							"value": "999999999999999999999"
+						}
+					]
+				},
+				"description": "Error 404 due to a non-existent value search."
+			},
+			"response": []
+		},
+		{
+			"name": "Post Recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Request body has json data.\",function(){\r",
+							"    pm.request.to.have.jsonBody;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"province\": \"VALENCIA\",\r\n\"year\": \"2001\",\r\n\"suic_man\": \"152\",\r\n\"suic_woman\": \"56\",\r\n\"suic_total\": \"208\",\r\n\"suic_rate_mw\": \"3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:10000/api/v1/suicide-records/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"api",
+						"v1",
+						"suicide-records",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post (Err.409)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function(){\r",
+							"    pm.response.to.have.status(409);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"province\": \"VALENCIA\",\r\n\"year\": \"2001\",\r\n\"suic_man\": \"152\",\r\n\"suic_woman\": \"56\",\r\n\"suic_total\": \"208\",\r\n\"suic_rate_mw\": \"3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:10000/api/v1/suicide-records/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"api",
+						"v1",
+						"suicide-records",
+						""
+					]
+				},
+				"description": "Posting an existing object (like the previosly posted) will throw 409 error."
+			},
+			"response": []
+		},
+		{
+			"name": "Post (Err.400)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"province\": \"VALENCIA\",\r\n\"year\": \"2001\",\r\n\"suic_man\": \"152\",\r\n\"suic_woman\": \"56\",\r\n\"suic_total\": \"208\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:10000/api/v1/suicide-records/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"api",
+						"v1",
+						"suicide-records",
+						""
+					]
+				},
+				"description": "Posting object with invalid attributes will throw 400 error."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Recurso (URL Keys)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"JSON object received.\", function(){\r",
+							"    \r",
+							"    pm.response.to.be.json;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:10000/api/v1/suicide-records/SEVILLE/2018",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"api",
+						"v1",
+						"suicide-records",
+						"SEVILLE",
+						"2018"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Recurso (URL Keys) (Err.404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:10000/api/v1/suicide-records/MURCIA/2021",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"api",
+						"v1",
+						"suicide-records",
+						"MURCIA",
+						"2021"
+					]
+				},
+				"description": "Getting non-existing resource will throw 404 error."
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:10000/api/v1/suicide-records/MADRID/2016",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"api",
+						"v1",
+						"suicide-records",
+						"MADRID",
+						"2016"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Recurso (Err.404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:10000/api/v1/suicide-records/MURCIA/2021",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"api",
+						"v1",
+						"suicide-records",
+						"MURCIA",
+						"2021"
+					]
+				},
+				"description": "Deletting non-existing resource will throw 404 error."
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Request body has json data.\",function(){\r",
+							"    pm.request.to.have.jsonBody;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"province\": \"VALENCIA\",\r\n\"year\": \"2001\",\r\n\"suic_man\": \"300\",\r\n\"suic_woman\": \"100\",\r\n\"suic_total\": \"400\",\r\n\"suic_rate_mw\": \"3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:10000/api/v1/suicide-records/VALENCIA/2001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"api",
+						"v1",
+						"suicide-records",
+						"VALENCIA",
+						"2001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Recurso (Err.404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"province\": \"MURCIA\",\r\n\"year\": \"2021\",\r\n\"suic_man\": \"300\",\r\n\"suic_woman\": \"100\",\r\n\"suic_total\": \"400\",\r\n\"suic_rate_mw\": \"3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:10000/api/v1/suicide-records/MURCIA/2021",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"api",
+						"v1",
+						"suicide-records",
+						"MURCIA",
+						"2021"
+					]
+				},
+				"description": "Updating non-existing resource will throw 404 error."
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Recurso (Err.400)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"province\": \"MURCIA\",\r\n\"year\": \"1999\",\r\n\"suic_man\": \"300\",\r\n\"suic_woman\": \"100\",\r\n\"suic_total\": \"400\",\r\n\"suic_rate_mw\": \"3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:10000/api/v1/suicide-records/MURCIA/2021",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"api",
+						"v1",
+						"suicide-records",
+						"MURCIA",
+						"2021"
+					]
+				},
+				"description": "Updating non-existing resource will throw 404 error."
+			},
+			"response": []
+		},
+		{
+			"name": "Post Prohibido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function(){\r",
+							"    pm.response.to.have.status(405);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:10000/api/v1/suicide-records/SEVILLE/2018",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"api",
+						"v1",
+						"suicide-records",
+						"SEVILLE",
+						"2018"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Prohibido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function(){\r",
+							"    pm.response.to.have.status(405);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:10000/api/v1/suicide-records",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
 					"path": [
 						"api",
 						"v1",
@@ -140,18 +860,66 @@
 			"response": []
 		},
 		{
-			"name": "/api/v1/suicide-records",
+			"name": "Delete final",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://sos2021-27.herokuapp.com/api/v1/suicide-records",
+					"raw": "http://localhost:10000/api/v1/suicide-records",
 					"protocol": "http",
 					"host": [
-						"sos2021-27",
-						"herokuapp",
-						"com"
+						"localhost"
 					],
+					"port": "10000",
+					"path": [
+						"api",
+						"v1",
+						"suicide-records"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:10000/api/v1/suicide-records",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
 					"path": [
 						"api",
 						"v1",

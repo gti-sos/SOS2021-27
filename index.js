@@ -16,9 +16,7 @@ var port= (process.env.PORT || 10000); // Obtiene el puerto que se le indique o 
 // -->      Bases de datos
 var suicideDB=new Datastore({filename: "suicide-records-API/suicide.db",autoload:true});
 var activitiesDB=new Datastore({filename: "activities-API/activities.db",autoload:true});
-
-
-
+var budgetsDB = new Datastore({filename: __dirname + "budgets-API/budgets.db",autoload:true});
 
 
  
@@ -33,18 +31,13 @@ app.use("/",express.static(path.join(__dirname + "/public")));
 
     
 
-
-
-
-
-
 // -->      Modulación APIS
     
 var suicideAPI=require("./suicide-records-API");
 suicideAPI.register(app,suicideDB);
 
 var budgetsAPI = require("./budgets-API");
-budgetsAPI.register(app);
+budgetsAPI.register(app,budgetsDB);
 
 var activitiesAPI = require("./activities-API");
 activitiesAPI.register(app);
