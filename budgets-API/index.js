@@ -204,7 +204,7 @@ module.exports.register = (app,budgetsDB)=>{
     
     app.get(BASE_API_PATH+"/:province/:year", (request,response)=>{
 
-        budgetsDB.find({&and: [{province: request.params.province}, {year: request.params.year},{_id:0},(error,data)=>{
+        budgetsDB.find({$and: [{province: request.params.province}, {year: request.params.year},{_id:0},(error,data)=>{
             if(error){
                 console.error("Cannot access to the resource using GET" + error);
                     response.sendStatus(500);
