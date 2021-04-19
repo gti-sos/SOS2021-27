@@ -4,7 +4,6 @@ var express=require("express"); // Cargamos el modulo
 var bodyParser=require("body-parser");
 var path=require("path");
 var Datastore=require('nedb');
-var BASE_API_PATH = "/api/v1";
 
 
 // -->      Variables para el uso del servidor y módulos
@@ -20,10 +19,6 @@ var activitiesDB=new Datastore({filename: "activities-API/activities.db",autoloa
 var budgetsDB = new Datastore({filename: "budgets-API/budgets.db",autoload:true});
 
 
-
-
-
-
  
 // -->      Funciones del servidor
 
@@ -35,11 +30,6 @@ app.listen(port, () =>{ // Cuando el servidor está listo, ejecuta el código in
 app.use("/",express.static(path.join(__dirname + "/public")));  
 
     
-
-
-
-
-
 
 // -->      Modulación APIS
     
