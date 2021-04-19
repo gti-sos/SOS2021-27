@@ -128,26 +128,46 @@ module.exports.register = (app)=>{
     app.get(BASE_API_PATH, (request, response)=>{
 
         var query = request.query;
-        var limit = parseInt(query.limit);
-        var offset = parseInt(query.offset);
+		var limit = parseInt(query.limit);
+		var offset = parseInt(query.offset);
+        
+		delete query.offset;
+		delete query.limit;
 
-        delete query.offset;
-        delete query.limit;
-    
-        budgetsDB.find(query,{_id:0}).skip(offset).limit(limit).exec((error,data)=>{
-            if(error){
-                console.error("Cannot access to the resource using GET" + error);
-                    response.sendStatus(500);
-            }else{
-                if(data.length==0){
-                    console.error("Cannot find the resource");
-                        response.sendStatus(404);
-                }else{
-                    console.log(`Resources sended: <${JSON.stringify(data, null, 2)}>`);
-                        response.status(200).send(JSON.stringify(data, null, 2));
-                }
-            }
-        })
+		if(query.hasOwnProperty("year")){
+			query.year = parseInt(query.year);
+			console.log(query.year);
+		}
+		if(query.hasOwnProperty("budget")){
+			query.budget = parseFloat(query.budget);
+			console.log(query.budget);
+		}
+		if(query.hasOwnProperty("invest_promotion")){
+			query.invest_promotion = parseFloat(query.invest_promotion);
+			console.log(query.invest_promotion);
+		}
+		if(query.hasOwnProperty("liquid")){
+			query.liquid = parseFloat(query.liquid);
+			console.log(query.liquid);
+		}
+        if(query.hasOwnProperty("percentage")){
+			query.percentage = parseFloat(query.percentage);
+			console.log(query.percentage);
+		}
+		console.log(query);
+
+		budgetsDB.find(query).skip(offset).limit(limit).exec((error, data)=>{
+			data.forEach((i)=>{
+				delete i._id;
+			});
+			if(data.length==0){
+				console.error("Cannot find the resource");
+                    response.sendStatus(400);
+			}else{
+				console.log(`Resources sended: <${JSON.stringify(data, null, 2)}>`);
+                    response.status(200).send(JSON.stringify(data, null, 2));
+			}
+		});
     })
     
     app.post(BASE_API_PATH, (request,response)=>{ 
