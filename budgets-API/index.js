@@ -192,7 +192,7 @@ module.exports.register= (app,db)=>{
         })
     });    
     
-    app.delete(BASE_API_PATH+"/province-budget-and-investment-in-social-promotion/:province/:year", function(request, response) { 
+    app.delete(BASE_API_PATH+"/province-budget-and-investment-in-social-promotion/:province/:year", (request, response)=>{ 
 
         db.remove({"province":request.params.province,"year":request.params.year},(error,remove)=>{
             if(error){
@@ -210,7 +210,7 @@ module.exports.register= (app,db)=>{
         })
     });
     
-    app.put(BASE_API_PATH+"/province-budget-and-investment-in-social-promotion/:province/:year", function(request, response) { 
+    app.put(BASE_API_PATH+"/province-budget-and-investment-in-social-promotion/:province/:year", (request, response)=>{ 
     
         if(request.params.province!=request.body.province || request.params.year!=request.body.year){
             console.error("Cannot modify the resource, keys are wrong");
@@ -234,12 +234,12 @@ module.exports.register= (app,db)=>{
     });
 
 
-    app.post(BASE_API_PATH+"/province-budget-and-investment-in-social-promotion/:province/:year", function(request, response) { 
+    app.post(BASE_API_PATH+"/province-budget-and-investment-in-social-promotion/:province/:year", (request, response)=>{ 
 
         response.status(405).send("Method not allowed"); 
     });
 
-    app.put(BASE_API_PATH+"/province-budget-and-investment-in-social-promotion", function(request, response) { 
+    app.put(BASE_API_PATH+"/province-budget-and-investment-in-social-promotion", (request, response)=>{ 
 
         response.status(405).send("Method not allowed"); 
     });

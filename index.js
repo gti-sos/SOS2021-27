@@ -45,7 +45,7 @@ var suicideAPI=require("./suicide-records-API");
 suicideAPI.register(app,suicideDB);
 
 var budgetsAPI = require("./budgets-API");
-budgetsAPI.register(app, budgetsDB);
+budgetsAPI.register(app,budgetsDB);
 
 var activitiesAPI = require("./activities-API");
 activitiesAPI.register(app);
