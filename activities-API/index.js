@@ -12,98 +12,98 @@ module.exports.register= (app,db)=>{
             {
                 "province": 'Seville',
                 "year": 2018,
-                "catering-bingo-machine": 4965,
-                "lottery-engagement ": 24028820,
-                "bingo-site": 6,
-                "national-lottery-expend":141889249,
+                "catering_bingo_machine": 4965,
+                "lottery_engagement ": 24028820,
+                "bingo_site": 6,
+                "national_lottery_expend":141889249,
             },
             {
                 "province": 'Seville',
                 "year": 2017,
-                "catering-bingo-machine":4940,
-                "lottery-engagement ": 23339380,
-                "bingo-site": 6,
-                "national-lottery-expend":138160377,
+                "catering_bingo_machine":4940,
+                "lottery_engagement ": 23339380,
+                "bingo_site": 6,
+                "national_lottery_expend":138160377,
             },
             {
                 "province": 'Seville',
                 "year": 2016,
-                "catering-bingo-machine":4778,
-                "lottery-engagement ": 23302680,
-                "bingo-site": 6,
-                "national-lottery-expend":130959228,
+                "catering_bingo_machine":4778,
+                "lottery_engagement ": 23302680,
+                "bingo_site": 6,
+                "national_lottery_expend":130959228,
             },
             {
                 "province": 'Barcelona',
                 "year": 2018,
-                "catering-bingo-machine":13389,
-                "lottery-engagement ": 56425240,
-                "bingo-site": 34,
-                "national-lottery-expend":486535860,
+                "catering_bingo_machine":13389,
+                "lottery_engagement ": 56425240,
+                "bingo_site": 34,
+                "national_lottery-expend":486535860,
             },
             {
                 "province": 'Barcelona',
                 "year": 2017,
-                "catering-bingo-machine":13389,
-                "lottery-engagement ": 62538100,
-                "bingo-site": 34,
-                "in":487375563,
+                "catering_bingo_machine":13389,
+                "lottery_engagement ": 62538100,
+                "bingo_site": 34,
+                "national_lottery_expend":487375563,
             },
             {
                 "province": 'Barcelona',
                 "year": 2016,
-                "catering-bingo-machine":13389,
-                "lottery-engagement ": 59640040,
-                "bingo-site": 33,
-                "national-lottery-expend":498638230,
+                "catering_bingo_machine":13389,
+                "lottery_engagement ": 59640040,
+                "bingo_site": 33,
+                "national_lottery_expend":498638230,
             },
             {
                 "province": 'Madrid',
                 "year": 2018,
-                "catering-bingo-machine":17240,
-                "lottery-engagement ": 95951420,
-                "bingo-site": 45,
-                "national-lottery-expend":807501802,
+                "catering_bingo_machine":17240,
+                "lottery_engagement ": 95951420,
+                "bingo_site": 45,
+                "national_lottery_expend":807501802,
             },
             {
                 "province": 'Madrid',
                 "year": 2017,
-                "catering-bingo-machine":17988,
-                "lottery-engagement ": 99264960,
-                "bingo-site": 46,
-                "national-lottery-expend":802036255,
+                "catering_bingo_machine":17988,
+                "lottery_engagement ": 99264960,
+                "bingo_site": 46,
+                "national_lottery_expend":802036255,
             },
             {
                 "province": 'Madrid',
                 "year": 2016,
-                "catering-bingo-machine":17236,
-                "lottery-engagement ": 89332820,
-                "bingo-site": 43,
-                "national-lottery-expend":760015875,
+                "catering_bingo_machine":17236,
+                "lottery_engagement ": 89332820,
+                "bingo_site": 43,
+                "national_lottery_expend":760015875,
             },
             {
                 "province": 'Valencia',
                 "year": 2018,
-                "catering-bingo-machine":20525,
-                "lottery-engagement ": 52916920,
-                "bingo-site": 32,
-                "national-lottery-expend":355915035,
+                "catering_bingo_machine":20525,
+                "lottery_engagement ": 52916920,
+                "bingo_site": 32,
+                "national_lottery_expend":355915035,
             },
             {
                 "province": 'Valencia',
                 "year": 2017,
-                "catering-bingo-machine":20975,
-                "lottery-engagement ": 51134140,
-                "bingo-site": 30,
-                "national-lottery-expend":348995707,
+                "catering_bingo_machine":20975,
+                "lottery_engagement ": 51134140,
+                "bingo_site": 30,
+                "national_lottery_expend":348995707,
             },
             {
                 "province": 'Valencia',
                 "year": 2016,
-                "catering-bingo-machine":20975,
-                "lottery-engagement ": 48581940,
-                "bingo-site": 30,
-                "national-lottery-expend":334546253,
+                "catering_bingo_machine":20975,
+                "lottery_engagement ": 48581940,
+                "bingo_site": 30,
+                "national_lottery_expend":334546253,
             }
         ]
 
@@ -134,6 +134,7 @@ module.exports.register= (app,db)=>{
 
     delete query.offset;
     delete query.limit;
+
       db.find(query,{_id:0}).skip(offset).limit(limit).exec((err,data)=>{
         if(err){
             console.error("Error accessing resource data using GET");
@@ -155,7 +156,7 @@ module.exports.register= (app,db)=>{
 });  
     
     app.post(BASE_API_PATH+"/azar-games-and-bet-activities", (req,res)=>{ 
-        if(req.body.province && req.body.year && req.body.catering-bingo-machine && req.body.lottery-engagement  && req.body.bingo-site && req.body.national-lottery-expend){
+        if(req.body.province && req.body.year && req.body.catering_bingo_machine && req.body.lottery_engagement  && req.body.bingo_site && req.body.national_lottery-expend){
 
             db.find({"province":req.body.province,"year":req.body.year},(err,data)=>{
                 if(err){
