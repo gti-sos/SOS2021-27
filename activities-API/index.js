@@ -183,7 +183,7 @@ module.exports.register= (app,db)=>{
     
     });
     app.get(BASE_API_PATH+"/azar-games-and-bet-activities/:province/:year", (req, res)=>{
-        db.find({"province":req.params.province,"year":req.params.year},(err,data)=>{
+        db.find({"province":req.params.province,"year":req.params.year},{_id:0},(err,data)=>{
             if(err){
                 console.error("Error getting resource using GET");
                 res.sendStatus(500);
