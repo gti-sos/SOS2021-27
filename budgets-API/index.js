@@ -211,7 +211,7 @@ module.exports.register = (app,budgetsDB)=>{
             }else{
                 if(data.length==1){
                     delete data[0]._id;
-                    console.log("Resource requested: " + JSON.stringify(data[0]), null, 2)
+                    console.log("Resource requested: " + JSON.stringify(data[0]), null, 2);
                         response.send(JSON.stringify(data[0], null, 2));
                 }else{
                     console.error("Cannot find the resource");
@@ -223,7 +223,7 @@ module.exports.register = (app,budgetsDB)=>{
     
     app.delete(BASE_API_PATH+"/:province/:year", (request,response)=>{ 
 
-        budgetsDB.remove({province: request.params.province, year: request.params.year},(error,dataRemoved)=>{
+        budgetsDB.remove({"province": request.params.province, "year": parseInt(request.params.year)},(error,dataRemoved)=>{
             if(error){
                 console.error("Cannot delete the resource using DELETE" + error);
                     response.sendStatus(500);
