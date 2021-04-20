@@ -177,16 +177,16 @@ module.exports.register = (app,budgetsDB)=>{
                 if(data.length==0){
                     if(!request.body.province ||
                         !request.body.year ||
-                        !request.body['budget'] ||
-                        !request.body['invest_promotion'] ||
-                        !request.body['liquid'] ||
-                        !request.body['percentage']) {
+                        !request.body.budget ||
+                        !request.body.invest_promotion ||
+                        !request.body.liquid ||
+                        !request.body.percentage) {
                         console.log(`Incorrect number of resources`);
                             return response.sendStatus(400);
-                    }else if (!(/^([0-9])*$/.test(request.body['budget'])) ||
-                        !(/^([0-9])*$/.test(request.body['invest_promotion'])) ||
-                        !(/^([0-9])*$/.test(request.body['liquid'])) ||
-                        !(/^([0-9])*$/.test(request.body['percentage']))) {
+                    }else if (!(/^([0-9])*$/.test(request.body.budget)) ||
+                        !(/^([0-9])*$/.test(request.body.invest_promotion)) ||
+                        !(/^([0-9])*$/.test(request.body.liquid)) ||
+                        !(/^([0-9])*$/.test(request.body.percentage))) {
                         console.log(`Integers allowed only`);
                             return response.sendStatus(409);
                     }else{
