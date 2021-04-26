@@ -14,11 +14,13 @@
             console.log("Ok.");
             const json = await res.json();
             suicides = json;
+
             for(var x of suicides){ // Traducción realizada.
                 if(x.province=="SEVILLE"){
                     x.province="SEVILLA";
                 }
             }
+            
             console.log(`Received ${suicides.length} records.`);
         } else {
             console.log("Error");
