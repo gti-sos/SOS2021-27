@@ -153,7 +153,7 @@ module.exports.register = (app,budgetsDB)=>{
 		}
 		console.log(query);
 
-		budgetsDB.find(query).skip(offset).limit(limit).exec((error, data)=>{
+		budgetsDB.find(query).skip(offset).limit(limit).exec((error,data)=>{
 			data.forEach((i)=>{
 				delete i._id;
 			});
