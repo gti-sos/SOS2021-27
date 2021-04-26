@@ -22,7 +22,7 @@
                 <a href="https://github.com/Jota0Garcia"><p><b>GitHub:</b> https://github.com/Jota0Garcia</p></a>
                 <a href="http://sos2021-27.herokuapp.com/api/v1/suicide-records"><p><b>API URL:</b> http://sos2021-27.herokuapp.com/api/v1/suicide-records</p></a>
                 <a href="https://documenter.getpostman.com/view/14951327/TzJsfdhf"><p><b>API Documentation:</b> https://documenter.getpostman.com/view/14951327/TzJsfdhf</p></a>
-                <a href="http://sos2021-27.herokuapp.com/api/v1/suicide-records"><p><b>Front End URL:</b> http://sos2021-27.herokuapp.com/#/suicide-records</p></a>
+                <a href="http://sos2021-27.herokuapp.com/#/suicide-records"><p><b>Front End URL:</b> http://sos2021-27.herokuapp.com/#/suicide-records</p></a>
             </div>
             
 
