@@ -18,7 +18,9 @@
                 if(x.province=="SEVILLE"){
                     x.province="SEVILLA";
                 }
-                array_multisort(x.province, SORT_ASC, budgets);
+            }
+            for(var x of budgets){
+                 array_multisort(x.province, SORT_ASC, budgets);
             }
             console.log(`Received ${budgets.length} records.`);
         } else {
