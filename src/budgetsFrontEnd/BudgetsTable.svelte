@@ -20,6 +20,7 @@
                 }
             }
             budgets.sort((a,b) => new String(a.province) > new String(b.province));
+            budgets.sort((a,b) => new Integer(a.year) > new Integer(b.year));
             console.log(`Received ${budgets.length} records.`);
         } else {
             console.log("Error");
