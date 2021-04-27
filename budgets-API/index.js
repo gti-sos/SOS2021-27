@@ -162,7 +162,7 @@ module.exports.register = (app,budgetsDB)=>{
                     response.sendStatus(400);
 			}else{
 				console.log(`Resources sended: <${JSON.stringify(data, null, 2)}>`);
-                data.sort();
+                array_multisort(request.body.province, SORT_ASC, data);
                     response.status(200).send(JSON.stringify(data, null, 2));
 			}
 		});
