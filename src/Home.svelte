@@ -33,16 +33,16 @@
 
     <div class="box">
         <slot>
-            
+         <div>
             <h3><b>Fernando Nuevo Jiménez</b></h3>
-           
- 
-           
-         <p><a href="https://github.com/FerNueJim"><b>GitHub:</b> https://github.com/FerNueJim</a></p>
-         <p><a href="https://sos2021-27.herokuapp.com/api/v1/province-budget-and-investment-in-social-promotion"><b>API URL:</b> https://sos2021-27.herokuapp.com/api/v1/province-budget-and-investment-in-social-promotion</a></p>
-         <a href="https://documenter.getpostman.com/view/14982196/TzJu8cTr"><b>API Documentation:</b> https://documenter.getpostman.com/view/14982196/TzJu8cTr</a>
-         <a href="http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion"><p><b>Front End URL:</b> http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion</p></a>
-           
+        </div>
+        <br>
+        <div>
+            <a href="https://github.com/FerNueJim"><p><b>GitHub:</b> https://github.com/FerNueJim</p></a>
+            <a href="https://sos2021-27.herokuapp.com/api/v1/province-budget-and-investment-in-social-promotion"><p><b>API URL:</b> https://sos2021-27.herokuapp.com/api/v1/province-budget-and-investment-in-social-promotion</p></a>
+            <a href="https://documenter.getpostman.com/view/14982196/TzJu8cTr"><p><b>Documentación de la API:</b> https://documenter.getpostman.com/view/14982196/TzJu8cTr</p></a>
+            <a href="http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion"><p><p><b>Front End URL:</b> http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion</p></a>
+         </div>  
          
 
         </slot>
