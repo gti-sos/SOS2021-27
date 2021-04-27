@@ -14,7 +14,8 @@
             console.log("Ok.");
             const json = await res.json();
             budgets = json;
-            for(var x of budgets){ //
+            for(var x of budgets){
+                array_multisort(x.province, SORT_ASC, budgets);
                 if(x.province=="SEVILLE"){
                     x.province="SEVILLA";
                 }
