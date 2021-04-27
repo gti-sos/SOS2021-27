@@ -152,6 +152,7 @@ module.exports.register = (app,budgetsDB)=>{
 			console.log(query.percentage);
 		}
 		console.log(query);
+        query.sort();
 
 		budgetsDB.find(query).skip(offset).limit(limit).exec((error,data)=>{
 			data.forEach((i)=>{
