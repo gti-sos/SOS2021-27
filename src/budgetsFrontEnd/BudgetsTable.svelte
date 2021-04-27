@@ -4,7 +4,7 @@
     import Table from "sveltestrap/src/Table.svelte";
 
     let budgets = [];
- var BASE_API_PATH = "/api/v1/province-budget-and-investment-in-social-promotion";
+    var BASE_API_PATH = "/api/v1/province-budget-and-investment-in-social-promotion";
 
     async function getBudget() {
         console.log("Fetching contacts...");
@@ -14,12 +14,16 @@
             console.log("Ok.");
             const json = await res.json();
             budgets = json;
+            for(var x of budgets){ //
+                if(x.province=="SEVILLE"){
+                    x.province="SEVILLA";
+                }
+            }
             console.log(`Received ${budgets.length} records.`);
         } else {
             console.log("Error");
         }
     }
-
     onMount(getBudget);
 </script>
 
