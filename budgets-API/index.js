@@ -152,7 +152,6 @@ module.exports.register = (app,budgetsDB)=>{
 			console.log(query.percentage);
 		}
 		console.log(query);
-        query.sort();
 
 		budgetsDB.find(query).skip(offset).limit(limit).exec((error,data)=>{
 			data.forEach((i)=>{
@@ -163,6 +162,7 @@ module.exports.register = (app,budgetsDB)=>{
                     response.sendStatus(400);
 			}else{
 				console.log(`Resources sended: <${JSON.stringify(data, null, 2)}>`);
+                data.sort();
                     response.status(200).send(JSON.stringify(data, null, 2));
 			}
 		});
