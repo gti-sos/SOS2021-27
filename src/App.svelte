@@ -9,7 +9,7 @@
 	const routes={
 		'/':Home,
 		'/suicide-records':SuicideRecord,
-		'/province-budget-and-investment-in-social-promotion': Budgets,
+		'/province-budget-and-investment-in-social-promotion':Budgets,
 		'*':NotFound
 	};
 

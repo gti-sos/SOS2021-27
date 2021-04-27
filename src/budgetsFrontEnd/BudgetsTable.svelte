@@ -25,7 +25,7 @@
 
 <main>
     <br>
-    <h2>Presupuesto por provincia e inversión en promoción social.</h2>
+    <h2>Presupuesto por provincia e inversión en promoción social por provincia y año.</h2>
     <Table bordered>
         <thead>
 
@@ -39,14 +39,14 @@
             </tr>
         </thead>
         <tbody>
-            {#each budgets as budgets}
+            {#each budgets as budgetSvelte}
                 <tr>
-                    <td> {budgets.province}</td>
-                    <td> {budgets.year}</td>
-                    <td> {budgets.budget}</td>
-                    <td> {budgets.invest_promotion}</td>
-                    <td> {budgets.liquid}</td>
-                    <td> {budgets.percentage}</td>
+                    <td> {budgetSvelte.province}</td>
+                    <td> {budgetSvelte.year}</td>
+                    <td> {budgetSvelte.budget}</td>
+                    <td> {budgetSvelte.invest_promotion}</td>
+                    <td> {budgetSvelte.liquid}</td>
+                    <td> {budgetSvelte.percentage}</td>
                 </tr>
             {/each}
         </tbody>
