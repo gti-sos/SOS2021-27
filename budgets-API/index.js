@@ -136,19 +136,19 @@ module.exports.register = (app,budgetsDB)=>{
 			console.log(query.year);
 		}
 		if(query.hasOwnProperty("budget")){
-			query.budget = parseFloat(query.budget);
+			query.budget = parseFloat(query.budget).toFixed(2);
 			console.log(query.budget);
 		}
 		if(query.hasOwnProperty("invest_promotion")){
-			query.invest_promotion = parseFloat(query.invest_promotion);
+			query.invest_promotion = parseFloat(query.invest_promotion).toFixed(2);
 			console.log(query.invest_promotion);
 		}
 		if(query.hasOwnProperty("liquid")){
-			query.liquid = parseFloat(query.liquid);
+			query.liquid = parseFloat(query.liquid).toFixed(2);
 			console.log(query.liquid);
 		}
         if(query.hasOwnProperty("percentage")){
-			query.percentage = parseFloat(query.percentage);
+			query.percentage = parseFloat(query.percentage).toFixed(2);
 			console.log(query.percentage);
 		}
 		console.log(query);
