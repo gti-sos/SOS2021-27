@@ -7,7 +7,6 @@
       donde la participación en las apuestas puede ser un factor clave para estos.  </p>
 
     <p> <b class="color">Repository:</b><a href="https://github.com/gti-sos/SOS2021-27"> https://github.com/gti-sos/SOS2021-27</a> </p>
-    <br>
     <p> <b class="color">URL:</b><a href="http://sos2021-27.herokuapp.com"> http://sos2021-27.herokuapp.com</a> </p>
     </div>  
 
@@ -58,6 +57,7 @@
 		box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
 		padding: 1em;
 		margin: 0 0 1em 0;
+        justify-content: center;
 	}
 
     .mainDiv {
@@ -73,6 +73,7 @@
     .titulo {
         background-color: #FFB833;
         color: #FFFFFF;
+        text-align: center;
     }
 </style>
 
