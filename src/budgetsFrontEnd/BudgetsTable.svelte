@@ -55,7 +55,7 @@
             if (data.ok) {
                 console.log("OK");
                 getBudgets();
-                porcentaje = newBudget.budget/newBudget.invest_promotion;
+                porcentaje =  parseFloat(newBudget.budget/newBudget.invest_promotion);
             } else {
                 console.log("ERROR");
             }
