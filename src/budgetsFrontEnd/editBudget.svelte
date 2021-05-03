@@ -58,7 +58,7 @@
 
 
 <main>
-    <h3 class="titulo">Editar el registro de presupuestos de <strong>{params.province} en el año {params.year}</strong></h3>
+    <h3 class="titulo">Editar el registro de presupuestos de <strong>{params.province}</strong> en el año <strong>{params.year}</strong></h3>
         <Table bordered>
             <thead>
                 <tr>
@@ -93,5 +93,6 @@
     .titulo {
         background-color: #FFB833;
         color: #FFFFFF;
+        text-align: center;
     }
 </style>
