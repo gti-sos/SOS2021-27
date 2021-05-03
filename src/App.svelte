@@ -3,8 +3,8 @@
 	import NotFound from './notFound.svelte';
 	import SuicideRecord from './suicideFrontEnd/suicide.svelte';
 	import SuicideEdit from './suicideFrontEnd/editSuicide.svelte'
-	import Budgets from '.budgetsFrontEnd/budget.svelte';
-	import BudgetsEdit from '.budgetsFrontEnd/editBudget.svelte';
+	import Budgets from './budgetsFrontEnd/budget.svelte';
+	import BudgetsEdit from './budgetsFrontEnd/editBudget.svelte';
 	import Info from './info.svelte';
 	import Landing from './Landing.svelte';
 
