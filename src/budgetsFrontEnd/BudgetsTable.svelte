@@ -98,15 +98,14 @@
     <h2>Presupuesto por provincia e inversión en promoción social por provincia y año.</h2>
     <div>
         {#if iniData}
-            <Button style="background-color: yellow;" disabled> Cargar tabla </Button>
+            <td> <Button style="background-color: yellow;" disabled> Cargar tabla </Button> </td>
         {:else}
-            <Button style="background-color: yellow;" on:click={initialBudgets}> Cargar tabla </Button>
+            <td> <Button style="background-color: yellow;" on:click={initialBudgets}> Cargar tabla </Button> </td>
         {/if}
-        <Button style="background-color: danger" on:click={deleteBudgets}> Borrar tabla </Button>
+            <td> <Button style="background-color: danger" on:click={deleteBudgets}> Borrar tabla </Button> </td>
     </div>
 
-    {#if budgets.length != 0}
-        <Table bordered style="text-align: center;">
+    <Table bordered style="text-align: center;">
         <thead>
             <tr>
                 <td>Provincia</td>
