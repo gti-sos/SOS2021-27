@@ -87,6 +87,8 @@
         });
     }
 
+    onMount(getBudgets);
+
 </script>
 
 <main>

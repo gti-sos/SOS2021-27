@@ -9,7 +9,7 @@
     <p> <b class="color">Repository:</b><a href="https://github.com/gti-sos/SOS2021-27"> https://github.com/gti-sos/SOS2021-27</a> </p>
     <p> <b class="color">URL:</b><a href="http://sos2021-27.herokuapp.com"> http://sos2021-27.herokuapp.com</a> </p>
     </div>  
-
+    <br>
     <div class="box">
         <slot>
             <div>
@@ -25,7 +25,7 @@
             </div>
         </slot>
     </div>
-
+    <br><br>
     <div class="box">
         <slot> 
             <h3 class="titulo"><b>Fernando Nuevo Jiménez</b></h3>
@@ -36,7 +36,7 @@
             <p> <b class="color">Front End URL:</b> <a href="http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion"> http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion</a></p>
         </slot>
     </div>
-    
+    <br><br>
     <div class="box">
         <slot>
             <div>
