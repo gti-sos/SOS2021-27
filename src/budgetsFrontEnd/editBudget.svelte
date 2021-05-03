@@ -27,7 +27,7 @@
             updatedBudget = newBudget.budget;
             updatedInvest_promotion = newBudget.invest_promotion;
             updatedLiquid = newBudget.liquid;
-            updatedPercentage = newBudget.percentage;
+            updatedPercentage = ((newBudget.budget)/(newBudget.invest_promotion));
             console.log("New budget")
         }else{
             error = data.status + ": " + data.statusText;
