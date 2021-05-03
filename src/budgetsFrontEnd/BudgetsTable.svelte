@@ -52,9 +52,9 @@
         {#if iniData}
             <Button style="background-color: yellow;" disabled> Cargar tabla </Button>
         {:else}
-            <Button style="background-color: yellow;" on:click={loadStats}> Cargar tabla </Button>
+            <Button style="background-color: yellow;" on:click={getBudgets}> Cargar tabla </Button>
         {/if}
-        <Button style="background-color: red" on:click={deleteStats}> Borrar tabla </Button>
+        <Button style="background-color: red" on:click={deleteBudgets}> Borrar tabla </Button>
     </div>
 
     {#if budgets.length != 0}
