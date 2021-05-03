@@ -178,8 +178,7 @@ module.exports.register = (app,budgetsDB)=>{
                     if(!request.body.province ||
                         !request.body.year ||
                         !request.body.budget ||
-                        !request.body.invest_promotion ||
-                        !request.body.liquid) {
+                        !request.body.invest_promotion) {
                         console.log(`Incorrect number of resources`);
                             return response.sendStatus(400);
                     }else if (!(/^([0-9])*$/.test(request.body.budget)) ||
@@ -193,7 +192,7 @@ module.exports.register = (app,budgetsDB)=>{
                             "year": parseInt(request.params.year),
                             "budget": parseFloat(request.body.budget),
                             "invest_promotion": parseFloat(request.body.invest_promotion),
-                            "liquid": parseFloat(request.body.budget-request.body.invest_promotion),
+                            "liquid": parseFloat(request.body.budget-request.body.invest_promotion).toFixed(2),
                             "percentage": parseFloat(request.body.budget/request.body.invest_promotion).toFixed(2)
                         });
                             response.sendStatus(201);	
