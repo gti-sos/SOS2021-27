@@ -4,7 +4,7 @@ var BASE_API_PATH = "/api/v1/province-budget-and-investment-in-social-promotion"
 
 var budgets_ini = [
     {
-        "province": "SEVILLE",
+        "province": "SEVILLA",
         "year": 2018,
         "budget": 30714715,
         "invest_promotion": 2322823,
@@ -12,7 +12,7 @@ var budgets_ini = [
         "percentage": 7.563,
     },
     {
-        "province": "SEVILLE",
+        "province": "SEVILLA",
         "year": 2017,
         "budget": 29194210,
         "invest_promotion": 2201782,
@@ -20,7 +20,7 @@ var budgets_ini = [
         "percentage": 7.542,
     },
     {
-        "province": "SEVILLE",
+        "province": "SEVILLA",
         "year": 2016,
         "budget": 27037781,
         "invest_promotion": 2145096,

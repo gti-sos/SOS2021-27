@@ -35,11 +35,7 @@
             console.log("OK");
             const json = await data.json();
             budgets = json;
-            for(var x of budgets){
-                if(x.province=="SEVILLE"){
-                    x.province="SEVILLA";
-                }
-            }
+            
             budgets.sort((a,b) => new String(a.province) > new String(b.province));
             budgets.sort((a,b) => new Integer(a.year) > new Integer(b.year));
             console.log(`Received ${budgets.length} budgets.`);
