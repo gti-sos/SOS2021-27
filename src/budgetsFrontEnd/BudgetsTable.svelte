@@ -1,8 +1,6 @@
 <script>
     import { onMount } from "svelte";
-    import { Button, Table } from "sveltestrap";
-
-    import Table from "sveltestrap/src/Table.svelte";
+    import { Button, Table } from "sveltestrap"; 
 
     let budgets = [];
     let iniData = false;
