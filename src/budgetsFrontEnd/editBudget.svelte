@@ -6,7 +6,7 @@
 
     export let params={};
 
-    let budget={}
+    let newBudget={}
     let updatedBudget=0;
     let updatedInvest_promotion=0;
     let updatedLiquid=0;
@@ -78,7 +78,7 @@
                     <td><input bind:value="{updatedInvest_promotion}"></td>
                     <td><input bind:value="{updatedLiquid}"></td>
                     <td> - - - </td>
-                    <td><Button style="background-color: #FFB833" on:click={updateBudget}> Actualizar </Button></td> 
+                    <td><Button style="background-color: #FFB833" on:click="{updateBudget};{pop}"> Actualizar </Button></td> 
                 </tr>
             </tbody>
         </Table>

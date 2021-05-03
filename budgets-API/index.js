@@ -190,7 +190,14 @@ module.exports.register = (app,budgetsDB)=>{
                             return response.sendStatus(409);
                     }else{
                         console.log("Resource stored: "+JSON.stringify(request.body, null, 2));
-                        budgetsDB.insert(request.body);
+                        budgetsDB.insert({
+                            "province": request.params.province,
+                            "year": parseInt(request.params.year),
+                            "budget": parseFloat(request.body.budget),
+                            "invest_promotion": parseFloat(request.body.invest_promotion),
+                            "liquid": parseFloat(request.body.liquid),
+                            "percentage": parseFloat(request.body.budget/request.body.invest_promotion).toFixed(2)
+                        });
                             response.sendStatus(201);	
                     }
                 }else{
