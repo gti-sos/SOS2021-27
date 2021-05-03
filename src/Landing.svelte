@@ -1,6 +1,6 @@
 <main>
     <div class="mainDiv">
-    <h1><b>SOS2021-27</b></h1>
+    <h1 class="titulo"><b>SOS2021-27</b></h1>
     <br><br>
 
     <p>En nuestro grupo analizaremos la situación económica de los habitantes en diferentes provincias españolas con el objetivo de poder relacionar este factor con la evolución en la actividad de juegos de azar y apuestas 
@@ -30,5 +30,9 @@
         text-align: center;
         margin: 20px;
 
+    }
+    .titulo {
+        background-color: #FFB833;
+        color: #FFFFFF;
     }
 </style>

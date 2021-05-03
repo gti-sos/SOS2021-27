@@ -1,6 +1,6 @@
 <main>
     <div class="mainDiv">
-    <h1><b>SOS2021-27</b></h1>
+    <h1 class="titulo"><b>SOS2021-27</b></h1>
     <p>
       <br><br>
       En nuestro grupo analizaremos la situación económica de los habitantes en diferentes provincias españolas con el objetivo de poder relacionar este factor con la 		evolución en la actividad de juegos de azar y apuestas ¿aumentan o disminuyen según el nivel económico, se apuesta más cantidad o menos? y con el nivel de suicidios, 
@@ -14,7 +14,7 @@
     <div class="box">
         <slot>
             <div>
-                <h3><b>Javier García Herrera </b></h3>
+                <h3 class="titulo"><b>Javier García Herrera </b></h3>
                 <p><b>Fuente: </b><a href="http://sos2021-27.herokuapp.com/api/v1/suicide-records">suicide-records</a></p>
             </div>
             <br>
@@ -35,14 +35,14 @@
     <div class="box">
         <slot>
             
-            <h3><b>Fernandso Nuevo Jiménez</b></h3>
+            <h3 class="titulo"><b>Fernandso Nuevo Jiménez</b></h3>
            
  
            
-         <p><a href="https://github.com/FerNueJim"><b>GitHub:</b> https://github.com/FerNueJim</a></p>
-         <p><a href="https://sos2021-27.herokuapp.com/api/v1/province-budget-and-investment-in-social-promotion"><b>API URL:</b> https://sos2021-27.herokuapp.com/api/v1/province-budget-and-investment-in-social-promotion</a></p>
-         <a href="https://documenter.getpostman.com/view/14982196/TzJu8cTr"><p><b>API Documentation:</b> https://documenter.getpostman.com/view/14982196/TzJu8cTr</p></a>
-         <a href="http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion"><p><b>Front End URL:</b> http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion</p></a>
+         <p> <b class="color">GitHub:</b> <a href="https://github.com/FerNueJim"> https://github.com/FerNueJim</a></p>
+         <p> <b class="color">API URL:</b> <a href="https://sos2021-27.herokuapp.com/api/v1/province-budget-and-investment-in-social-promotion"> https://sos2021-27.herokuapp.com/api/v1/province-budget-and-investment-in-social-promotion</a></p>
+         <p> <b class="color">API Documentation:</b> <a href="https://documenter.getpostman.com/view/14982196/TzJu8cTr"> https://documenter.getpostman.com/view/14982196/TzJu8cTr</a></p>
+         <p> <b class="color">Front End URL:</b> <a href="http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion"> http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion</a></p>
            
          
 
@@ -53,13 +53,13 @@
     <div class="box">
         <slot>
             <div>
-                <h3><b>Humberto Garcia Martinez</b></h3>
+                <h3 class="titulo"><b>Humberto Garcia Martinez</b></h3>
     
 
-                <p><b>GitHub:</b> https://github.com/humgarmar</p>
-                <p><b>API URL:</b>href = "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities"</p>
-                <p><b>API Documentation:</b> https://documenter.getpostman.com/view/14949428/TzJu8cYA</p>
-                <a href="http://sos2021-27.herokuapp.com/#/azar-games-and-bet-activities"><p><b>Front End URL:</b> http://sos2021-27.herokuapp.com/#/azar-games-and-bet-activities</p></a>
+                <p><b class="color">GitHub:</b> https://github.com/humgarmar</p>
+                <p><b class="color">API URL:</b>href = "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities"</p>
+                <p><b class="color">API Documentation:</b> https://documenter.getpostman.com/view/14949428/TzJu8cYA</p>
+                <a href="http://sos2021-27.herokuapp.com/#/azar-games-and-bet-activities"><p><b class="color">Front End URL:</b> http://sos2021-27.herokuapp.com/#/azar-games-and-bet-activities</p></a>
                
 
     
@@ -88,16 +88,11 @@
 
     }
 
-    .b {
+    .color {
         color: #FFB833;
     }
 
-    .h3 {
-        background-color: #FFB833;
-        color: #FFFFFF;
-    }
-
-    .h1 {
+    .titulo {
         background-color: #FFB833;
         color: #FFFFFF;
     }
