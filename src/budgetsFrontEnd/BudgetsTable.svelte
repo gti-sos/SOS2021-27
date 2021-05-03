@@ -2,14 +2,34 @@
     import { Button, Table } from "sveltestrap"; 
 
     let budgets = [];
+    let newBudget = {
+        province: "",
+        year: "",
+        budget: "",
+        invest_promotion: "",
+        liquid: "",
+        percentage: "",
+    };
     let iniData = false;
     var BASE_API_PATH = "/api/v1/province-budget-and-investment-in-social-promotion";
 
-    async function getBudget() {
-        console.log("Loading data...");
-        const data = await fetch(BASE_API_PATH + "/loadInitialData");
+    async function initialBudgets() {
+        console.log("Loading initial data...");
+        const data = await fetch(BASE_API_PATH + "/loadInitialData").then(function (data) {
+            if(data.ok) {
+                console.log("Ok.);
+                getBudgets();
+            } else {
+                error = 404;
+                console.log("ERROR");
+            }
+        });
         iniData = true;
+    }
 
+    async function getBudgets() {
+        console.log("Fetching budgets...");
+        const data = await fetch(BASE_API_PATH);
         if (data.ok) {
             console.log("Ok.");
             const json = await data.json();
@@ -27,6 +47,22 @@
         }
     }
 
+    async function postBudget() {
+        console.log("Posting budget...");
+        const data = await fetch(BASE_API_PATH, {
+            method: "POST",
+            body: JSON.stringify(newBudget),
+            headers: { "Content-Type": "application/json" },
+        }).then(function (data) {
+            if (data.ok) {
+                console.log("OK");
+                getBudgets();
+            } else {
+                console.log("Error");
+            }
+        });
+    }
+
     async function deleteBudgets() {
         console.log("Deleting budgets...");
         iniData = false;
@@ -41,6 +77,19 @@
             }
         });
     }
+
+    async function deleteBudgets(province, year) {
+        console.log("Deleting budget from " + params.privince + params.year);
+        const data = await fetch(BASE_API_PATH + params.name + params.year, { method: "DELETE", }).then(function (data) {
+            if (data.ok) {
+                console.log("OK");
+                getBudgets();
+            } else {
+                console.log("Error");
+            }
+        });
+    }
+    
 </script>
 
 <main>
@@ -50,7 +99,7 @@
         {#if iniData}
             <Button style="background-color: yellow;" disabled> Cargar tabla </Button>
         {:else}
-            <Button style="background-color: yellow;" on:click={getBudgets}> Cargar tabla </Button>
+            <Button style="background-color: yellow;" on:click={initialBudgets}> Cargar tabla </Button>
         {/if}
         <Button style="background-color: red" on:click={deleteBudgets}> Borrar tabla </Button>
     </div>
