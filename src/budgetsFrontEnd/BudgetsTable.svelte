@@ -42,7 +42,7 @@
             } else {
                 console.log("Error deleting DB stats");
             }
-        });
+        });S
     }
     onMount(getBudget);
 </script>
