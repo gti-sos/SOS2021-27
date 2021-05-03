@@ -78,7 +78,7 @@
         });
     }
 
-    async function deleteBudgets(province, year) {
+    async function deleteBudget(province, year) {
         console.log("Deleting budget from " + params.privince + params.year);
         const data = await fetch(BASE_API_PATH + params.name + params.year, { method: "DELETE", }).then(function (data) {
             if (data.ok) {
