@@ -3,14 +3,13 @@
     import { Button, Table, } from "sveltestrap"; 
 
     let budgets = [];
-    let porcentaje = "";
     let newBudget = {
         province: "",
         year: "",
         budget: "",
         invest_promotion: "",
         liquid: "",
-        percentage: porcentaje,
+        percentage: "",
     };
     let iniData = false;
     var BASE_API_PATH = "/api/v1/province-budget-and-investment-in-social-promotion";
@@ -55,7 +54,6 @@
             if (data.ok) {
                 console.log("OK");
                 getBudgets();
-                porcentaje =  parseFloat(newBudget.budget/newBudget.invest_promotion);
             } else {
                 console.log("ERROR");
             }
@@ -122,7 +120,7 @@
                 <td><input bind:value="{newBudget.budget}"/></td>
                 <td><input bind:value="{newBudget.invest_promotion}"/></td>
                 <td><input bind:value="{newBudget.liquid}"/></td>
-                <td>- - -</td>
+                <td><input bind:value="{newBudget.percentage}"/></td>
                 <td><Button style="background-color: #FFB833" on:click={postBudget}> Guardar </Button></td>
             </tr>
             {#each budgets as budgetSvelte}
