@@ -24,6 +24,7 @@
         border-right: 1px solid #333333;
         border-bottom: 1px solid #333333;
         border-left: 1px solid #CCCCCC;
+        margin-right: 40px;
     }
     .mainDiv{
         text-align: center;

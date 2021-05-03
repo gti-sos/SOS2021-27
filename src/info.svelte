@@ -82,10 +82,24 @@
 		margin: 0 0 1em 0;
 	}
 
-    .mainDiv{
+    .mainDiv {
         text-align: center;
         margin: 20px;
 
+    }
+
+    .b {
+        color: #FFB833;
+    }
+
+    .h3 {
+        background-color: #FFB833;
+        color: #FFFFFF;
+    }
+
+    .h1 {
+        background-color: #FFB833;
+        color: #FFFFFF;
     }
 </style>
 
