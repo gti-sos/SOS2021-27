@@ -1,5 +1,4 @@
 <script>
-    import { onMount } from "svelte";
     import { Button, Table } from "sveltestrap"; 
 
     let budgets = [];
@@ -42,7 +41,6 @@
             }
         });
     }
-    onMount(getBudget);
 </script>
 
 <main>
