@@ -14,7 +14,8 @@
     <div class="box">
         <slot>
             <div>
-                <h3><b>Javier García Herrera</b></h3>
+                <h3><b>Javier García Herrera </b></h3>
+                <p><b>Fuente: </b><a href="http://sos2021-27.herokuapp.com/api/v1/suicide-records">suicide-records</a></p>
             </div>
             <br>
             <div>
@@ -34,7 +35,7 @@
     <div class="box">
         <slot>
             
-            <h3><b>Fernando Nuevo Jiménez</b></h3>
+            <h3><b>Fernandso Nuevo Jiménez</b></h3>
            
  
            
