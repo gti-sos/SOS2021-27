@@ -15,11 +15,11 @@
 </main>
 
 <style>
-    
     .fakeButton {
         font: bold 11px Arial;
+        text-align: center;
         text-decoration: none;
-        background-color: FFB833;
+        background-color: #FFB833;
         color: #FFFFFF;
         padding: 2px 6px 2px 6px;
         border-top: 1px solid #CCCCCC;
@@ -27,7 +27,6 @@
         border-bottom: 1px solid #333333;
         border-left: 1px solid #CCCCCC;
     }
-        
     .mainDiv{
         text-align: center;
         margin: 20px;
