@@ -67,7 +67,7 @@
     async function deleteBudgets() {
         console.log("Deleting budgets...");
         iniData = false;
-        const  data = await fetch(ABASE_API_PATH, { method: "DELETE", }).then(function (data) {
+        const  data = await fetch(BASE_API_PATH, { method: "DELETE", }).then(function (data) {
             if (data.ok) {
                 console.log("OK");
                 budgets = [];
@@ -95,14 +95,13 @@
 
 <main>
     <br/>
-    <h2>Presupuesto por provincia e inversión en promoción social por provincia y año.</h2>
     <div>
         {#if iniData}
-            <td> <Button style="background-color: yellow;" disabled> Cargar tabla </Button> </td>
+            <td> <Button style="background-color: #FFB833;" disabled> Cargar tabla </Button> </td>
         {:else}
-            <td> <Button style="background-color: yellow;" on:click={initialBudgets}> Cargar tabla </Button> </td>
+            <td> <Button style="background-color: #FFB833;" on:click={initialBudgets}> Cargar tabla </Button> </td>
         {/if}
-            <td> <Button style="background-color: danger" on:click={deleteBudgets}> Borrar tabla </Button> </td>
+            <td> <Button style="background-color: #CD1C1C" on:click={deleteBudgets}> Borrar tabla </Button> </td>
     </div>
 
     <Table bordered style="text-align: center;">
@@ -134,9 +133,20 @@
                     <td>{budgetSvelte.invest_promotion}</td>
                     <td>{budgetSvelte.liquid}</td>
                     <td>{budgetSvelte.percentage}</td>
-                    <td><Button style="background-color: danger" on:click={deleteBudget(budgetSvelte.province, budgetSvelte.year)}> Borrar </Button></td>
+                    <td><Button style="background-color: #CD1C1C" on:click={deleteBudget(budgetSvelte.province, budgetSvelte.year)}> Borrar </Button></td>
                 </tr>
             {/each}
         </tbody>
     </Table>
 </main>
+
+<style>
+    .color {
+        color: #FFB833;
+    }
+
+    .titulo {
+        background-color: #FFB833;
+        color: #FFFFFF;
+    }
+</style>
