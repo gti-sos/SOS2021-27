@@ -93,7 +93,6 @@
 </script>
 
 <main>
-    <br>
     <h2>Presupuesto por provincia e inversión en promoción social por provincia y año.</h2>
     <div>
         {#if iniData}
@@ -105,10 +104,8 @@
     </div>
 
     {#if budgets.length != 0}
-        <br />
         <Table bordered style="text-align: center;">
         <thead>
-
             <tr>
                 <td>Provincia</td>
                 <td>Año</td>
@@ -119,14 +116,25 @@
             </tr>
         </thead>
         <tbody>
+             <tr>
+                <td><input bind:value="{newBudget.province}"/></td>
+                <td><input bind:value="{newBudget.year}"/></td>
+                <td><input bind:value="{newBudget.budget}"/></td>
+                <td><input bind:value="{newBudget.invest_promotion}"/></td>
+                <td><input bind:value="{newBudget.liquid}"/></td>
+                <td><input bind:value="{newBudget.percentage}"/></td>
+                <td><Button style="background-color: orange" on:click={postBudget}> Guardar </Button></td>
+            </tr>
+            
             {#each budgets as budgetSvelte}
                 <tr>
-                    <td> {budgetSvelte.province}</td>
-                    <td> {budgetSvelte.year}</td>
+                    <td> {a href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}">{budgetSvelte.province}</a></td>
+                    <td> {a href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.year}">{budgetSvelte.year}</a></td>
                     <td> {budgetSvelte.budget}</td>
                     <td> {budgetSvelte.invest_promotion}</td>
                     <td> {budgetSvelte.liquid}</td>
                     <td> {budgetSvelte.percentage}</td>
+                    <td><Button style="background-color: red" on:click={deleteBudget(params.province, params.year)}> Borrar </Button></td>
                 </tr>
             {/each}
         </tbody>
