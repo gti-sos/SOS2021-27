@@ -81,7 +81,7 @@
                     <td>{params.year}</td>
                     <td><input bind:value="{updatedBudget}"></td>
                     <td><input bind:value="{updatedInvest_promotion}"></td>
-                    <td><input bind:value="{updatedLiquid}"></td>
+                    <td> - - - </td>
                     <td> - - - </td>
                     <td><Button style="background-color: #FFB833" on:click="{actualiza}"> Actualizar </Button></td> 
                 </tr>

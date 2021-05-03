@@ -8,8 +8,6 @@
         year: "",
         budget: "",
         invest_promotion: "",
-        liquid: "",
-        percentage: "",
     };
     let iniData = false;
     var BASE_API_PATH = "/api/v1/province-budget-and-investment-in-social-promotion";
@@ -119,7 +117,7 @@
                 <td><input bind:value="{newBudget.year}"/></td>
                 <td><input bind:value="{newBudget.budget}"/></td>
                 <td><input bind:value="{newBudget.invest_promotion}"/></td>
-                <td><input bind:value="{newBudget.liquid}"/></td>
+                <td> - - - </td>
                 <td> - - - </td>
                 <td><Button style="background-color: #FFB833" on:click={postBudget}> Guardar </Button></td>
             </tr>
