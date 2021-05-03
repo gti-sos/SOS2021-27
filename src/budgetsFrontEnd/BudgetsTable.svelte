@@ -100,7 +100,7 @@
         {:else}
             <Button style="background-color: yellow;" on:click={initialBudgets}> Cargar tabla </Button>
         {/if}
-        <Button style="background-color: red" on:click={deleteBudgets}> Borrar tabla </Button>
+        <Button style="background-color: danger" on:click={deleteBudgets}> Borrar tabla </Button>
     </div>
 
     {#if budgets.length != 0}
@@ -133,7 +133,7 @@
                     <td>{budgetSvelte.invest_promotion}</td>
                     <td>{budgetSvelte.liquid}</td>
                     <td>{budgetSvelte.percentage}</td>
-                    <td><Button style="background-color: red" on:click={deleteBudget(params.province, params.year)}> Borrar </Button></td>
+                    <td><Button style="background-color: danger" on:click={deleteBudget(params.province, params.year)}> Borrar </Button></td>
                 </tr>
             {/each}
         </tbody>
