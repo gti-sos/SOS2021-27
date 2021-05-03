@@ -274,7 +274,7 @@ module.exports.register = (app,budgetsDB)=>{
                                         "budget": parseFloat(request.body.budget),
                                         "invest_promotion": parseFloat(request.body.invest_promotion),
                                         "liquid": parseFloat(request.body.liquid),
-                                        "percentage": parseFloat(request.body.budget/request.body.invest_promotion)
+                                        "percentage": parseFloat(request.body.budget/request.body.invest_promotion).toFixed(2)
                                     }, 
                                     (error,dataUpdated)=>{
                                         if(error){
