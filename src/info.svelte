@@ -34,6 +34,7 @@
 
     <div class="box">
         <slot>
+<<<<<<< HEAD:src/info.svelte
             
             <h3><b>Fernandso Nuevo Jiménez</b></h3>
            
@@ -44,6 +45,18 @@
          <a href="https://documenter.getpostman.com/view/14982196/TzJu8cTr"><b>API Documentation:</b> https://documenter.getpostman.com/view/14982196/TzJu8cTr</a>
          <a href="http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion"><p><b>Front End URL:</b> http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion</p></a>
            
+=======
+         <div>
+            <h3><b>Fernando Nuevo Jiménez</b></h3>
+        </div>
+        <br>
+        <div>
+            <a href="https://github.com/FerNueJim"><p><b>GitHub:</b> https://github.com/FerNueJim</p></a>
+            <a href="https://sos2021-27.herokuapp.com/api/v1/province-budget-and-investment-in-social-promotion"><p><b>API URL:</b> https://sos2021-27.herokuapp.com/api/v1/province-budget-and-investment-in-social-promotion</p></a>
+            <a href="https://documenter.getpostman.com/view/14982196/TzJu8cTr"><p><b>Documentación de la API:</b> https://documenter.getpostman.com/view/14982196/TzJu8cTr</p></a>
+            <a href="http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion"><p><p><b>Front End URL:</b> http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion</p></a>
+         </div>  
+>>>>>>> 2acc19cfcc1bc3f8000b22505434cf6812903a33:src/Home.svelte
          
 
         </slot>
