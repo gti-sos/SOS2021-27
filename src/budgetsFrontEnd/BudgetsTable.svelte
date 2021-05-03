@@ -128,8 +128,8 @@
             
             {#each budgets as budgetSvelte}
                 <tr>
-                    <td> {a href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}">{budgetSvelte.province}</a></td>
-                    <td> {a href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.year}">{budgetSvelte.year}</a></td>
+                    <td> <a href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}">{budgetSvelte.province}</a></td>
+                    <td> <a href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.year}">{budgetSvelte.year}</a></td>
                     <td> {budgetSvelte.budget}</td>
                     <td> {budgetSvelte.invest_promotion}</td>
                     <td> {budgetSvelte.liquid}</td>
