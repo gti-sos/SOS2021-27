@@ -54,6 +54,11 @@
             getBudget()
         });
     }
+
+    async function actualiza(){
+        updateBudget();
+        pop();
+    }
 </script>
 
 
@@ -78,7 +83,7 @@
                     <td><input bind:value="{updatedInvest_promotion}"></td>
                     <td><input bind:value="{updatedLiquid}"></td>
                     <td> - - - </td>
-                    <td><Button style="background-color: #FFB833" on:click="{updateBudget};{pop}"> Actualizar </Button></td> 
+                    <td><Button style="background-color: #FFB833" on:click="{actualiza}"> Actualizar </Button></td> 
                 </tr>
             </tbody>
         </Table>
