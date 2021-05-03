@@ -23,11 +23,11 @@
         if(data.ok){
             console.log("OK: ");
             const json = await data.json();
-            budget = json;
-            updatedBudget = budget.budget;
-            updatedInvest_promotion = budget.invest_promotion;
-            updatedLiquid = budget.liquid;
-            updatedPercentage = budget.percentage;
+            newBudget = json;
+            updatedBudget = newBudget.budget;
+            updatedInvest_promotion = newBudget.invest_promotion;
+            updatedLiquid = newBudget.liquid;
+            updatedPercentage = newBudget.percentage;
             console.log("New budget")
         }else{
             error = data.status + ": " + data.statusText;
@@ -51,14 +51,14 @@
                 "Content-Type":"application/json"
             }
         }).then(function(data){
-            getSuicide()
+            getBudget()
         });
     }
 </script>
 
 
 <main>
-    <h3>Editar el registro de suicidio con claves: <strong>{params.province} , {params.year}</strong></h3>
+    <h3 class="titulo">Editar el registro de presupuestos de <strong>{params.province} en el año {params.year}</strong></h3>
         <Table bordered>
             <thead>
                 <tr>
@@ -88,3 +88,10 @@
         {/if}
         <Button outline color="primary" on:click="{pop}">Volver</Button>
 </main>
+
+<style>
+    .titulo {
+        background-color: #FFB833;
+        color: #FFFFFF;
+    }
+</style>

@@ -28,11 +28,12 @@
 
     <div class="box">
         <slot> 
-            <h3 class="titulo"><b>Fernandso Nuevo Jiménez</b></h3>
-         <p> <b class="color">GitHub:</b> <a href="https://github.com/FerNueJim"> https://github.com/FerNueJim</a></p>
-         <p> <b class="color">API URL:</b> <a href="https://sos2021-27.herokuapp.com/api/v1/province-budget-and-investment-in-social-promotion"> https://sos2021-27.herokuapp.com/api/v1/province-budget-and-investment-in-social-promotion</a></p>
-         <p> <b class="color">API Documentation:</b> <a href="https://documenter.getpostman.com/view/14982196/TzJu8cTr"> https://documenter.getpostman.com/view/14982196/TzJu8cTr</a></p>
-         <p> <b class="color">Front End URL:</b> <a href="http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion"> http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion</a></p>
+            h3 class="titulo"><b>Fernando Nuevo Jiménez</b></h3>
+        <br>
+            <p> <b class="color">GitHub:</b> <a href="https://github.com/FerNueJim"> https://github.com/FerNueJim</a></p>
+            <p> <b class="color">API URL:</b> <a href="https://sos2021-27.herokuapp.com/api/v1/province-budget-and-investment-in-social-promotion"> https://sos2021-27.herokuapp.com/api/v1/province-budget-and-investment-in-social-promotion</a></p>
+            <p> <b class="color">API Documentation:</b> <a href="https://documenter.getpostman.com/view/14982196/TzJu8cTr"> https://documenter.getpostman.com/view/14982196/TzJu8cTr</a></p>
+            <p> <b class="color">Front End URL:</b> <a href="http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion"> http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion</a></p>
         </slot>
     </div>
     
@@ -40,6 +41,7 @@
         <slot>
             <div>
                 <h3 class="titulo"><b>Humberto Garcia Martinez</b></h3>
+                <br>
                 <p><b class="color">GitHub:</b> https://github.com/humgarmar</p>
                 <p><b class="color">API URL:</b>href = "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities"</p>
                 <p><b class="color">API Documentation:</b> https://documenter.getpostman.com/view/14949428/TzJu8cYA</p>
@@ -56,8 +58,8 @@
 		border-radius: 2px;
 		box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
 		padding: 1em;
-		margin: 0 0 1em 0;
-        justify-content: center;
+		margin-left: auto;
+        margin-right: auto;
 	}
 
     .mainDiv {

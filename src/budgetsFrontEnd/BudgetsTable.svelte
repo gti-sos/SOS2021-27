@@ -14,20 +14,6 @@
     let iniData = false;
     var BASE_API_PATH = "/api/v1/province-budget-and-investment-in-social-promotion";
 
-    async function initialBudgets() {
-        console.log("Loading initial data...");
-        const data = await fetch(BASE_API_PATH + "/loadInitialData").then(function (data) {
-            if(data.ok) {
-                console.log("OK");
-                getBudgets();
-            } else {
-                error = 404;
-                console.log("ERROR");
-            }
-        });
-        iniData = true;
-    }
-
     async function getBudgets() {
         console.log("Fetching budgets...");
         const data = await fetch(BASE_API_PATH);
@@ -42,6 +28,20 @@
         } else {
             console.log("ERROR");
         }
+    }
+    
+    async function initialBudgets() {
+        console.log("Loading initial data...");
+        const data = await fetch(BASE_API_PATH + "/loadInitialData").then(function (data) {
+            if(data.ok) {
+                console.log("OK");
+                getBudgets();
+            } else {
+                error = 404;
+                console.log("ERROR");
+            }
+        });
+        iniData = true;
     }
 
     async function postBudget() {
