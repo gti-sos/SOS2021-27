@@ -179,14 +179,13 @@ module.exports.register = (app,budgetsDB)=>{
                         !request.body.year ||
                         !request.body.budget ||
                         !request.body.invest_promotion ||
-                        !request.body.liquid ||
-                        !request.body.percentage) {
+                        !request.body.liquid) {
                         console.log(`Incorrect number of resources`);
                             return response.sendStatus(400);
                     }else if (!(/^([0-9])*$/.test(request.body.budget)) ||
                         !(/^([0-9])*$/.test(request.body.invest_promotion)) ||
                         !(/^([0-9])*$/.test(request.body.liquid)) ||
-                        !(/^([0-9])*$/.test(request.body.percentage))) {
+                        !(/^[0-9]\d*(\.\d+)?$/.test(request.body.budget/request.body.invest_promotion))) {
                         console.log(`Integers allowed only`);
                             return response.sendStatus(409);
                     }else{
@@ -275,7 +274,7 @@ module.exports.register = (app,budgetsDB)=>{
                                         "budget": parseFloat(request.body.budget),
                                         "invest_promotion": parseFloat(request.body.invest_promotion),
                                         "liquid": parseFloat(request.body.liquid),
-                                        "percentage": parseFloat(request.body.percentage)
+                                        "percentage": parseFloat(request.body.budget/request.body.invest_promotion)
                                     }, 
                                     (error,dataUpdated)=>{
                                         if(error){
