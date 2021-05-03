@@ -19,12 +19,12 @@
         text-decoration: none;
         background-color: #FFB833;
         color: #FFFFFF;
-        padding: 4px 12px 4px 12px;
+        padding: 16px 36px 16px 36px;
         border-top: 1px solid #CCCCCC;
         border-right: 1px solid #333333;
         border-bottom: 1px solid #333333;
         border-left: 1px solid #CCCCCC;
-        margin-right: 40px;
+        margin-right: 60px;
     }
     .mainDiv{
         text-align: center;

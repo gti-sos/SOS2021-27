@@ -1,4 +1,5 @@
 <script>
+    import { onMount } from "svelte";
     import { Button, Table, } from "sveltestrap"; 
 
     let budgets = [];
@@ -78,9 +79,9 @@
         });
     }
 
-    async function deleteBudget(province, year) {
-        console.log("Deleting budget from " + params.privince + params.year);
-        const data = await fetch(BASE_API_PATH + params.name + params.year, { method: "DELETE", }).then(function (data) {
+    async function deleteBudget(provincia, anyo) {
+        console.log("Deleting budget from " + provincia + " " + anyo);
+        const data = await fetch(BASE_API_PATH + "/" + provincia + "/" + anyo, { method: "DELETE", }).then(function (data) {
             if (data.ok) {
                 console.log("OK");
                 getBudgets();
@@ -93,6 +94,7 @@
 </script>
 
 <main>
+    <br/>
     <h2>Presupuesto por provincia e inversión en promoción social por provincia y año.</h2>
     <div>
         {#if iniData}
@@ -123,17 +125,17 @@
                 <td><input bind:value="{newBudget.invest_promotion}"/></td>
                 <td><input bind:value="{newBudget.liquid}"/></td>
                 <td><input bind:value="{newBudget.percentage}"/></td>
-                <td><Button style="background-color: orange" on:click={postBudget}> Guardar </Button></td>
+                <td><Button style="background-color: #FFB833" on:click={postBudget}> Guardar </Button></td>
             </tr>
             {#each budgets as budgetSvelte}
                 <tr>
-                    <td><a href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}">{budgetSvelte.province}</a></td>
-                    <td><a href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.year}">{budgetSvelte.year}</a></td>
+                    <td><a href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}/{budgetSvelte.year}">{budgetSvelte.province}</a></td>
+                    <td><a href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}/{budgetSvelte.year}">{budgetSvelte.year}</a></td>
                     <td>{budgetSvelte.budget}</td>
                     <td>{budgetSvelte.invest_promotion}</td>
                     <td>{budgetSvelte.liquid}</td>
                     <td>{budgetSvelte.percentage}</td>
-                    <td><Button style="background-color: danger" on:click={deleteBudget(params.province, params.year)}> Borrar </Button></td>
+                    <td><Button style="background-color: danger" on:click={deleteBudget(budgetSvelte.province, budgetSvelte.year)}> Borrar </Button></td>
                 </tr>
             {/each}
         </tbody>
