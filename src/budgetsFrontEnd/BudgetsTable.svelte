@@ -120,7 +120,7 @@
                 <td><input bind:value="{newBudget.budget}"/></td>
                 <td><input bind:value="{newBudget.invest_promotion}"/></td>
                 <td><input bind:value="{newBudget.liquid}"/></td>
-                <td><input bind:value="{((newBudget.budget)/(newBudget.invest_promotion))}"/></td>
+                <td>{((newBudget.budget)/(newBudget.invest_promotion))</td>
                 <td><Button style="background-color: #FFB833" on:click={postBudget}> Guardar </Button></td>
             </tr>
             {#each budgets as budgetSvelte}
