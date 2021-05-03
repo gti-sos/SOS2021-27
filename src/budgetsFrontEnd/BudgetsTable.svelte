@@ -17,7 +17,7 @@
         console.log("Loading initial data...");
         const data = await fetch(BASE_API_PATH + "/loadInitialData").then(function (data) {
             if(data.ok) {
-                console.log("Ok.);
+                console.log("OK");
                 getBudgets();
             } else {
                 error = 404;
@@ -31,7 +31,7 @@
         console.log("Fetching budgets...");
         const data = await fetch(BASE_API_PATH);
         if (data.ok) {
-            console.log("Ok.");
+            console.log("OK");
             const json = await data.json();
             budgets = json;
             for(var x of budgets){
@@ -43,7 +43,7 @@
             budgets.sort((a,b) => new Integer(a.year) > new Integer(b.year));
             console.log(`Received ${budgets.length} budgets.`);
         } else {
-            console.log("Error");
+            console.log("ERROR");
         }
     }
 
@@ -58,7 +58,7 @@
                 console.log("OK");
                 getBudgets();
             } else {
-                console.log("Error");
+                console.log("ERROR");
             }
         });
     }
@@ -68,7 +68,7 @@
         iniData = false;
         const  data = await fetch(ABASE_API_PATH, { method: "DELETE", }).then(function (data) {
             if (data.ok) {
-                console.log("Ok.");
+                console.log("OK");
                 budgets = [];
             } else if (data.status == 404) {
                 console.log("DB is empty");
@@ -85,11 +85,11 @@
                 console.log("OK");
                 getBudgets();
             } else {
-                console.log("Error");
+                console.log("ERROR");
             }
         });
     }
-    
+
 </script>
 
 <main>
