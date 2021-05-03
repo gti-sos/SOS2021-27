@@ -1,5 +1,5 @@
 <script>
-    import { Button, Table } from "sveltestrap"; 
+    import { Button, Table, } from "sveltestrap"; 
 
     let budgets = [];
     let newBudget = {
@@ -125,15 +125,14 @@
                 <td><input bind:value="{newBudget.percentage}"/></td>
                 <td><Button style="background-color: orange" on:click={postBudget}> Guardar </Button></td>
             </tr>
-            
             {#each budgets as budgetSvelte}
                 <tr>
-                    <td> <a href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}">{budgetSvelte.province}</a></td>
-                    <td> <a href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.year}">{budgetSvelte.year}</a></td>
-                    <td> {budgetSvelte.budget}</td>
-                    <td> {budgetSvelte.invest_promotion}</td>
-                    <td> {budgetSvelte.liquid}</td>
-                    <td> {budgetSvelte.percentage}</td>
+                    <td><a href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}">{budgetSvelte.province}</a></td>
+                    <td><a href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.year}">{budgetSvelte.year}</a></td>
+                    <td>{budgetSvelte.budget}</td>
+                    <td>{budgetSvelte.invest_promotion}</td>
+                    <td>{budgetSvelte.liquid}</td>
+                    <td>{budgetSvelte.percentage}</td>
                     <td><Button style="background-color: red" on:click={deleteBudget(params.province, params.year)}> Borrar </Button></td>
                 </tr>
             {/each}
