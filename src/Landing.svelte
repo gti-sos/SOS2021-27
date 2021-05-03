@@ -10,12 +10,24 @@
     <br>
     <a href="http://sos2021-27.herokuapp.com"><b>URL:</b> http://sos2021-27.herokuapp.com</a>
     </div>  
-    <a href="#/info">Info Page</a>
-    <Button style="background-color: yellow;" href="#/info"> INFO </Button>
+    <a href="#/info" class="fakeButton">INFO</a>
 
 </main>
 
 <style>
+    
+    .fakeButton {
+        font: bold 11px Arial;
+        text-decoration: none;
+        background-color: FFB833;
+        color: #FFFFFF;
+        padding: 2px 6px 2px 6px;
+        border-top: 1px solid #CCCCCC;
+        border-right: 1px solid #333333;
+        border-bottom: 1px solid #333333;
+        border-left: 1px solid #CCCCCC;
+    }
+        
     .mainDiv{
         text-align: center;
         margin: 20px;
