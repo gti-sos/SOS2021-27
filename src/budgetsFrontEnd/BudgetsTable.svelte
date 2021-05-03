@@ -14,6 +14,8 @@
     let iniData = false;
     var BASE_API_PATH = "/api/v1/province-budget-and-investment-in-social-promotion";
 
+    onMount(getBudgets);
+
     async function getBudgets() {
         console.log("Fetching budgets...");
         const data = await fetch(BASE_API_PATH);
@@ -87,8 +89,6 @@
         });
     }
 
-    onMount(getBudgets);
-
 </script>
 
 <main>
@@ -120,7 +120,7 @@
                 <td><input bind:value="{newBudget.budget}"/></td>
                 <td><input bind:value="{newBudget.invest_promotion}"/></td>
                 <td><input bind:value="{newBudget.liquid}"/></td>
-                <td><input bind:value="{newBudget.percentage}"/></td>
+                <td> - - - </td>
                 <td><Button style="background-color: #FFB833" on:click={postBudget}> Guardar </Button></td>
             </tr>
             {#each budgets as budgetSvelte}

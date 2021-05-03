@@ -169,7 +169,7 @@ module.exports.register = (app,budgetsDB)=>{
     
     app.post(BASE_API_PATH, (request,response)=>{ 
 
-        budgetsDB.find({province: request.body.province, year: request.body.year}, (error,data)=>{
+        budgetsDB.find({"province": request.body.province, "year": parseInt(request.params.year)}, (error,data)=>{
             if(error){
                 console.error("Cannot post the resource using POST." + error);
                     response.sendStatus(500);
@@ -183,9 +183,7 @@ module.exports.register = (app,budgetsDB)=>{
                         console.log(`Incorrect number of resources`);
                             return response.sendStatus(400);
                     }else if (!(/^([0-9])*$/.test(request.body.budget)) ||
-                        !(/^([0-9])*$/.test(request.body.invest_promotion)) ||
-                        !(/^([0-9])*$/.test(request.body.liquid)) ||
-                        !(/^[0-9]\d*(\.\d+)?$/.test(request.body.budget/request.body.invest_promotion))) {
+                        !(/^([0-9])*$/.test(request.body.invest_promotion))) {
                         console.log(`Integers allowed only`);
                             return response.sendStatus(409);
                     }else{
@@ -195,7 +193,7 @@ module.exports.register = (app,budgetsDB)=>{
                             "year": parseInt(request.params.year),
                             "budget": parseFloat(request.body.budget),
                             "invest_promotion": parseFloat(request.body.invest_promotion),
-                            "liquid": parseFloat(request.body.liquid),
+                            "liquid": parseFloat(request.body.budget-request.body.invest_promotion),
                             "percentage": parseFloat(request.body.budget/request.body.invest_promotion).toFixed(2)
                         });
                             response.sendStatus(201);	
@@ -259,9 +257,7 @@ module.exports.register = (app,budgetsDB)=>{
                     if(!request.body.province &
                         !request.body.year &
                         !request.body.budget &
-                        !request.body.invest_promotion &
-                        !request.body.liquid &
-                        !request.body.percentage){
+                        !request.body.invest_promotion){
                         console.log(`Incorrect number of resources`);
                             return response.sendStatus(400);
                     }else{
@@ -280,7 +276,7 @@ module.exports.register = (app,budgetsDB)=>{
                                         "year": parseInt(request.params.year),
                                         "budget": parseFloat(request.body.budget),
                                         "invest_promotion": parseFloat(request.body.invest_promotion),
-                                        "liquid": parseFloat(request.body.liquid),
+                                        "liquid": parseFloat(request.body.budget-request.body.invest_promotion),
                                         "percentage": parseFloat(request.body.budget/request.body.invest_promotion).toFixed(2)
                                     }, 
                                     (error,dataUpdated)=>{
