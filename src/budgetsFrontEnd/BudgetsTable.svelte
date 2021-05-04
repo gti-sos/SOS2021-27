@@ -132,9 +132,7 @@
                         <td>
                             <Button outline color="primary" href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}/{budgetSvelte.year}"> Editar </Button>
                         </td>
-                        <td>
                             <Button outline color="danger" on:click={deleteBudget(budgetSvelte.province, budgetSvelte.year)}> Borrar </Button>
-                        </td>
                     </td>
                 </tr>
             {/each}
