@@ -96,7 +96,7 @@
         {:else}
             <td> <Button style="background-color: #FFB833;" on:click={initialBudgets}> Cargar tabla </Button> </td>
         {/if}
-            <td> <Button style="background-color: #CD1C1C" on:click={deleteBudgets}> Borrar tabla </Button> </td>
+            <td> <Button outline color="danger" on:click={deleteBudgets}> Borrar tabla </Button> </td>
     </div>
 
     <Table bordered style="text-align: center;">
@@ -133,7 +133,7 @@
                             <Button outline color="primary" href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}/{budgetSvelte.year}"> Editar </Button>
                         </a>
                         <a>
-                            <Button style="background-color: #CD1C1C" on:click={deleteBudget(budgetSvelte.province, budgetSvelte.year)}> Borrar </Button>
+                            <Button outline color="danger" on:click={deleteBudget(budgetSvelte.province, budgetSvelte.year)}> Borrar </Button>
                         </a>
                     </td>
                 </tr>
