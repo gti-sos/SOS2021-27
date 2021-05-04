@@ -5,6 +5,8 @@
 	import SuicideEdit from './suicideFrontEnd/editSuicide.svelte'
 	import Budgets from './budgetsFrontEnd/budget.svelte';
 	import BudgetsEdit from './budgetsFrontEnd/editBudget.svelte';
+	import Activities from './activitiesFrontEnd/activities.svelte';
+	import ActivitiesEdit from './activitiesFrontEnd/editactivities.svelte'
 	import Info from './info.svelte';
 	import Landing from './Landing.svelte';
 
@@ -15,6 +17,8 @@
 		'/suicide-records/:province/:year':SuicideEdit,
 		'/province-budget-and-investment-in-social-promotion':Budgets,
 		'/province-budget-and-investment-in-social-promotion/:province/:year':BudgetsEdit,
+		'/azar-games-and-bet-activities':Activities,
+		'/azar-games-and-bet-activities/:province/:year':ActivitiesEdit,
 		'/info':Info,
 		'*':NotFound
 		
