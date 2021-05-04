@@ -192,8 +192,8 @@ module.exports.register = (app,budgetsDB)=>{
                     }else{
                         console.log("Resource stored: "+JSON.stringify(request.body, null, 2));
                         budgetsDB.insert({
-                            "province": request.params.province,
-                            "year": parseInt(request.params.year),
+                            "province": request.body.province,
+                            "year": parseInt(request.body.year),
                             "budget": parseFloat(request.body.budget),
                             "invest_promotion": parseFloat(request.body.invest_promotion),
                             "liquid": parseFloat(request.body.budget-request.body.invest_promotion),
