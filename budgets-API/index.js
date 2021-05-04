@@ -173,7 +173,7 @@ module.exports.register = (app,budgetsDB)=>{
     
     app.post(BASE_API_PATH, (request,response)=>{ 
 
-        budgetsDB.find({"province": request.body.province, "year": parseInt(request.params.year)}, (error,data)=>{
+        budgetsDB.find({"province": request.body.province, "year": parseInt(request.body.year)}, (error,data)=>{
             if(error){
                 console.error("Cannot post the resource using POST." + error);
                     response.sendStatus(500);
