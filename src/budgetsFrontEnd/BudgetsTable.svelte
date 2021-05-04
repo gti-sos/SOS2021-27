@@ -129,12 +129,12 @@
                     <td>{budgetSvelte.liquid}</td>
                     <td>{budgetSvelte.percentage}</td>
                     <td> 
-                        <a>
+                        <td>
                             <Button outline color="primary" href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}/{budgetSvelte.year}"> Editar </Button>
-                        </a>
-                        <a>
+                        </td>
+                        <td>
                             <Button outline color="danger" on:click={deleteBudget(budgetSvelte.province, budgetSvelte.year)}> Borrar </Button>
-                        </a>
+                        </td>
                     </td>
                 </tr>
             {/each}
