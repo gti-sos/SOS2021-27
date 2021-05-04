@@ -128,7 +128,7 @@
                     <td>{budgetSvelte.invest_promotion}</td>
                     <td>{budgetSvelte.liquid}</td>
                     <td>{budgetSvelte.percentage}</td>
-                    <td> <a href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}/{budgetSvelte.year}" class="fakeButton"> Editar </a>
+                    <td> <a><Button outline color="primary" on:click={location.href = "#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}/{budgetSvelte.year}"}> Editar </Button></a>
                          <a><Button style="background-color: #CD1C1C" on:click={deleteBudget(budgetSvelte.province, budgetSvelte.year)}> Borrar </Button></a></td>
                 </tr>
             {/each}
@@ -158,12 +158,6 @@
         transition-duration: 0.4s;
         cursor: pointer;
         margin-right: 20px;
-    }
-
-    .hover {
-        background-color: white; 
-        color: black; 
-        border: 2px solid #FFB833;
         border-radius: 12px;
     }
 </style>
