@@ -8,7 +8,7 @@
         province: "",
         year: "",
         catering_bingo_machine: "",
-        lottery_engagement: "",
+        lottery_engagement : "",
         bingo_site: "",
         national_lottery_expend: "",
     };
@@ -115,7 +115,7 @@
                 <td><input bind:value={newActivity.province} /></td>
                 <td><input bind:value={newActivity.year} /></td>
                 <td><input bind:value={newActivity.catering_bingo_machine} /></td>
-                <td><input bind:value={newActivity.lottery_engagement} /></td>
+                <td><input bind:value={newActivity.lottery_engagement } /></td>
                 <td><input bind:value={newActivity.bingo_site} /></td>
                 <td><input bind:value={newActivity.national_lottery_expend} /></td>
                 <td
@@ -140,7 +140,7 @@
                         ></td
                     >
                     <td> {activitie.catering_bingo_machine}</td>
-                    <td> {activitie.lottery_engagement}</td>
+                    <td> {activitie.lottery_engagement }</td>
                     <td> {activitie.bingo_site}</td>
                     <td> {activitie.national_lottery_expend}</td>
 
