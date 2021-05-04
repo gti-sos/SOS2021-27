@@ -2,8 +2,17 @@
     import { onMount } from "svelte";
 
     import Table from "sveltestrap/src/Table.svelte";
+    import Button from "sveltestrap/src/Button.svelte";
 
     let activities = [];
+    let newActivity = {
+        province: "",
+        year: "",
+        catering_bingo_machine: "",
+        lottery_engagement: "",
+        bingo_site: "",
+        national_lottery_expend: "",
+    };
     var BASE_API_PATH = "/api/v1";
 
     async function getActivity() {
