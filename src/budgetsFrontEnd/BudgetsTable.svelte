@@ -118,7 +118,7 @@
                 <td><input bind:value="{newBudget.invest_promotion}"/></td>
                 <td> - - - </td>
                 <td> - - - </td>
-                <td><Button style="background-color: #FFB833" on:click={postBudget}> Guardar </Button></td>
+                <td colspan="2"><Button style="background-color: #FFB833" on:click={postBudget}> Guardar </Button></td>
             </tr>
             {#each budgets as budgetSvelte}
                 <tr>
@@ -128,12 +128,8 @@
                     <td>{budgetSvelte.invest_promotion}</td>
                     <td>{budgetSvelte.liquid}</td>
                     <td>{budgetSvelte.percentage}</td>
-                    <td> 
-                        <td>
-                            <Button outline color="primary" href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}/{budgetSvelte.year}"> Editar </Button>
-                        </td>
-                            <Button outline color="danger" on:click={deleteBudget(budgetSvelte.province, budgetSvelte.year)}> Borrar </Button>
-                    </td>
+                    <td><Button outline color="primary" href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}/{budgetSvelte.year}"> Editar </Button></td>
+                    <td><Button outline color="danger" on:click={deleteBudget(budgetSvelte.province, budgetSvelte.year)}> Borrar </Button></td>
                 </tr>
             {/each}
         </tbody>
