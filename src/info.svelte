@@ -41,6 +41,8 @@
         <slot>
             <div>
                 <h3 class="titulo"><b>Humberto Garcia Martinez</b></h3>
+                <p><b>Fuente: </b><a href="http://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities">azar-games-and-bet-activities</a></p>
+
                 <br>
                 <p><b class="color">GitHub:</b> <a href ="https://github.com/humgarmar"> https://github.com/humgarmar</a></p>
                 <p><b class="color">API URL:</b><a href = "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities"> https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities </a></p>
