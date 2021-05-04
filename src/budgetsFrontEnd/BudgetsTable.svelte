@@ -92,9 +92,9 @@
     <br/>
     <div>
         {#if iniData}
-            <td> <Button style="background-color: #FFB833;" disabled> Cargar tabla </Button> </td>
+            <td> <Button color="warning" style="color:white;" disabled> Cargar tabla </Button> </td>
         {:else}
-            <td> <Button style="background-color: #FFB833;" on:click={initialBudgets}> Cargar tabla </Button> </td>
+            <td> <Button color="warning" style="color:white;" on:click={initialBudgets}> Cargar tabla </Button> </td>
         {/if}
             <td> <Button outline color="danger" on:click={deleteBudgets}> Borrar tabla </Button> </td>
     </div>
@@ -118,7 +118,7 @@
                 <td><input bind:value="{newBudget.invest_promotion}"/></td>
                 <td> - - - </td>
                 <td> - - - </td>
-                <td colspan="2"><Button style="background-color: #FFB833" on:click={postBudget}> Guardar </Button></td>
+                <td colspan="2"><Button color="warning" style="color:white;" on:click={postBudget}> Guardar </Button></td>
             </tr>
             {#each budgets as budgetSvelte}
                 <tr>
