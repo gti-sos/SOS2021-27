@@ -128,7 +128,7 @@
                     <td>{budgetSvelte.invest_promotion}</td>
                     <td>{budgetSvelte.liquid}</td>
                     <td>{budgetSvelte.percentage}</td>
-                    <td> <a><Button style="background-color: #FFB833" on:click={location.href = "#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}/{budgetSvelte.year}"}> Editar </Button></a>
+                    <td> <a href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}/{budgetSvelte.year}" class="fakeButton hover"> Editar </a>
                          <a><Button style="background-color: #CD1C1C" on:click={deleteBudget(budgetSvelte.province, budgetSvelte.year)}> Borrar </Button></a></td>
                 </tr>
             {/each}
@@ -144,5 +144,25 @@
     .titulo {
         background-color: #FFB833;
         color: #FFFFFF;
+    }
+
+    .fakeButton {
+        background-color: #FFB833;
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+
+    .hover {
+        background-color: white; 
+        color: black; 
+        border: 2px solid #FFB833;
     }
 </style>

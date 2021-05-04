@@ -7,31 +7,39 @@
     ¿aumentan o disminuyen según el nivel económico, se apuesta más cantidad o menos? y con el nivel de suicidios, donde la participación en las apuestas puede ser un factor clave para estos.</p>
     
     <br><br>
-    <a href="https://github.com/gti-sos/SOS2021-27" class="fakeButton">REPOSITORIO</a>
-    <a href="http://sos2021-27.herokuapp.com" class="fakeButton">URL</a>
-    <a href="#/info" class="fakeButton">INFO</a>
+    <a href="https://github.com/gti-sos/SOS2021-27" class="fakeButton hover">REPOSITORIO</a>
+    <a href="http://sos2021-27.herokuapp.com" class="fakeButton hover">URL</a>
+    <a href="#/info" class="fakeButton hover">INFO</a>
     </div>  
 </main>
 
 <style>
     .fakeButton {
-        font: bold 11px Arial;
+        background-color: #FFB833;
+        border: none;
+        color: white;
+        padding: 16px 32px;
         text-align: center;
         text-decoration: none;
-        background-color: #FFB833;
-        color: #FFFFFF;
-        padding: 16px 36px 16px 36px;
-        border-top: 1px solid #CCCCCC;
-        border-right: 1px solid #333333;
-        border-bottom: 1px solid #333333;
-        border-left: 1px solid #CCCCCC;
-        margin-right: 60px;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
     }
+
+    .hover {
+        background-color: white; 
+        color: black; 
+        border: 2px solid #FFB833;
+    }
+
     .mainDiv{
         text-align: center;
         margin: 20px;
 
     }
+    
     .titulo {
         background-color: #FFB833;
         color: #FFFFFF;
