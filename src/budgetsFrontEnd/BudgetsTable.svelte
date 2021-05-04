@@ -134,6 +134,10 @@
             {/each}
         </tbody>
     </Table>
+    <br/>
+    <div>
+    <Button outline color="info" href="https://sos2021-27.herokuapp.com/#/info"> Página principal </Button>
+    </div>
 </main>
 
 <style>
