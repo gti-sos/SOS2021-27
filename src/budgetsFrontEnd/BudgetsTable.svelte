@@ -154,11 +154,10 @@
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
+        font-size: 14px;
         transition-duration: 0.4s;
         cursor: pointer;
-        margin-right: 60px;
+        margin-right: 20px;
     }
 
     .hover {
