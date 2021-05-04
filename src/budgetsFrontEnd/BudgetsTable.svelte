@@ -122,13 +122,13 @@
             </tr>
             {#each budgets as budgetSvelte}
                 <tr>
-                    <td><a href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}/{budgetSvelte.year}">{budgetSvelte.province}</a></td>
-                    <td><a href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}/{budgetSvelte.year}">{budgetSvelte.year}</a></td>
+                    <td>{budgetSvelte.province}</td>
+                    <td>{budgetSvelte.year}</td>
                     <td>{budgetSvelte.budget}</td>
                     <td>{budgetSvelte.invest_promotion}</td>
                     <td>{budgetSvelte.liquid}</td>
                     <td>{budgetSvelte.percentage}</td>
-                    <td> <button href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}/{budgetSvelte.year}" class="fakeButton hover"> Editar </button>
+                    <td> <a href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}/{budgetSvelte.year}" class="fakeButton"> Editar </a>
                          <a><Button style="background-color: #CD1C1C" on:click={deleteBudget(budgetSvelte.province, budgetSvelte.year)}> Borrar </Button></a></td>
                 </tr>
             {/each}
