@@ -4,7 +4,7 @@ var BASE_API_PATH = "/api/v1/province-budget-and-investment-in-social-promotion"
 
 var budgets_ini = [
     {
-        "province": "SEVILLE",
+        "province": "SEVILLA",
         "year": 2018,
         "budget": 30714715,
         "invest_promotion": 2322823,
@@ -12,7 +12,7 @@ var budgets_ini = [
         "percentage": 7.563,
     },
     {
-        "province": "SEVILLE",
+        "province": "SEVILLA",
         "year": 2017,
         "budget": 29194210,
         "invest_promotion": 2201782,
@@ -20,7 +20,7 @@ var budgets_ini = [
         "percentage": 7.542,
     },
     {
-        "province": "SEVILLE",
+        "province": "SEVILLA",
         "year": 2016,
         "budget": 27037781,
         "invest_promotion": 2145096,
@@ -131,24 +131,28 @@ module.exports.register = (app,budgetsDB)=>{
 		delete query.offset;
 		delete query.limit;
 
+        if(query.hasOwnProperty("province")){
+			query.province = toString(query.province);
+			console.log(query.province);
+		}
 		if(query.hasOwnProperty("year")){
 			query.year = parseInt(query.year);
 			console.log(query.year);
 		}
 		if(query.hasOwnProperty("budget")){
-			query.budget = parseFloat(query.budget);
+			query.budget = parseFloat(query.budget).toFixed(2);
 			console.log(query.budget);
 		}
 		if(query.hasOwnProperty("invest_promotion")){
-			query.invest_promotion = parseFloat(query.invest_promotion);
+			query.invest_promotion = parseFloat(query.invest_promotion).toFixed(2);
 			console.log(query.invest_promotion);
 		}
 		if(query.hasOwnProperty("liquid")){
-			query.liquid = parseFloat(query.liquid);
+			query.liquid = parseFloat(query.liquid).toFixed(2);
 			console.log(query.liquid);
 		}
         if(query.hasOwnProperty("percentage")){
-			query.percentage = parseFloat(query.percentage);
+			query.percentage = parseFloat(query.percentage).toFixed(3);
 			console.log(query.percentage);
 		}
 		console.log(query);
@@ -169,7 +173,7 @@ module.exports.register = (app,budgetsDB)=>{
     
     app.post(BASE_API_PATH, (request,response)=>{ 
 
-        budgetsDB.find({province: request.body.province, year: request.body.year}, (error,data)=>{
+        budgetsDB.find({"province": request.body.province, "year": parseInt(request.body.year)}, (error,data)=>{
             if(error){
                 console.error("Cannot post the resource using POST." + error);
                     response.sendStatus(500);
@@ -178,20 +182,23 @@ module.exports.register = (app,budgetsDB)=>{
                     if(!request.body.province ||
                         !request.body.year ||
                         !request.body.budget ||
-                        !request.body.invest_promotion ||
-                        !request.body.liquid ||
-                        !request.body.percentage) {
+                        !request.body.invest_promotion) {
                         console.log(`Incorrect number of resources`);
                             return response.sendStatus(400);
                     }else if (!(/^([0-9])*$/.test(request.body.budget)) ||
-                        !(/^([0-9])*$/.test(request.body.invest_promotion)) ||
-                        !(/^([0-9])*$/.test(request.body.liquid)) ||
-                        !(/^([0-9])*$/.test(request.body.percentage))) {
+                        !(/^([0-9])*$/.test(request.body.invest_promotion))) {
                         console.log(`Integers allowed only`);
                             return response.sendStatus(409);
                     }else{
                         console.log("Resource stored: "+JSON.stringify(request.body, null, 2));
-                        budgetsDB.insert(request.body);
+                        budgetsDB.insert({
+                            "province": request.body.province,
+                            "year": parseInt(request.body.year),
+                            "budget": parseFloat(request.body.budget),
+                            "invest_promotion": parseFloat(request.body.invest_promotion),
+                            "liquid": parseFloat(request.body.budget-request.body.invest_promotion),
+                            "percentage": parseFloat(request.body.budget/request.body.invest_promotion).toFixed(3)
+                        });
                             response.sendStatus(201);	
                     }
                 }else{
@@ -253,9 +260,7 @@ module.exports.register = (app,budgetsDB)=>{
                     if(!request.body.province &
                         !request.body.year &
                         !request.body.budget &
-                        !request.body.invest_promotion &
-                        !request.body.liquid &
-                        !request.body.percentage){
+                        !request.body.invest_promotion){
                         console.log(`Incorrect number of resources`);
                             return response.sendStatus(400);
                     }else{
@@ -274,8 +279,8 @@ module.exports.register = (app,budgetsDB)=>{
                                         "year": parseInt(request.params.year),
                                         "budget": parseFloat(request.body.budget),
                                         "invest_promotion": parseFloat(request.body.invest_promotion),
-                                        "liquid": parseFloat(request.body.liquid),
-                                        "percentage": parseFloat(request.body.percentage)
+                                        "liquid": parseFloat(request.body.budget-request.body.invest_promotion),
+                                        "percentage": parseFloat(request.body.budget/request.body.invest_promotion).toFixed(3)
                                     }, 
                                     (error,dataUpdated)=>{
                                         if(error){
