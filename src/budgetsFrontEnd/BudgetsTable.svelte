@@ -86,7 +86,6 @@
             }
         });
     }
-
 </script>
 
 <main>
@@ -129,7 +128,7 @@
                     <td>{budgetSvelte.invest_promotion}</td>
                     <td>{budgetSvelte.liquid}</td>
                     <td>{budgetSvelte.percentage}</td>
-                    <td> <Button style="background-color: #FFB833" on:click={location.href = "http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion/" + params.province +"/"+ params.year}> Editar </Button>
+                    <td> <Button style="background-color: #FFB833" on:click={href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}/{budgetSvelte.year}"}> Editar </Button>
                          <Button style="background-color: #CD1C1C" on:click={deleteBudget(budgetSvelte.province, budgetSvelte.year)}> Borrar </Button></td>
                 </tr>
             {/each}
