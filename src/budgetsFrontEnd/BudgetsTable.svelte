@@ -128,8 +128,8 @@
                     <td>{budgetSvelte.invest_promotion}</td>
                     <td>{budgetSvelte.liquid}</td>
                     <td>{budgetSvelte.percentage}</td>
-                    <td> <Button style="background-color: #FFB833" on:click={href="#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}/{budgetSvelte.year}"}> Editar </Button>
-                         <Button style="background-color: #CD1C1C" on:click={deleteBudget(budgetSvelte.province, budgetSvelte.year)}> Borrar </Button></td>
+                    <td> <a><Button style="background-color: #FFB833" on:click={location.href = "#/province-budget-and-investment-in-social-promotion/{budgetSvelte.province}/{budgetSvelte.year}"}> Editar </Button></a>
+                         <a><Button style="background-color: #CD1C1C" on:click={deleteBudget(budgetSvelte.province, budgetSvelte.year)}> Borrar </Button></a></td>
                 </tr>
             {/each}
         </tbody>
