@@ -42,9 +42,9 @@
             <div>
                 <h3 class="titulo"><b>Humberto Garcia Martinez</b></h3>
                 <br>
-                <p><b class="color">GitHub:</b> https://github.com/humgarmar</p>
+                <p><b class="color">GitHub:</b> href = "https://github.com/humgarmar"</p>
                 <p><b class="color">API URL:</b>href = "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities"</p>
-                <p><b class="color">API Documentation:</b> https://documenter.getpostman.com/view/14949428/TzJu8cYA</p>
+                <p><b class="color">API Documentation:</b> href = "https://documenter.getpostman.com/view/14949428/TzJu8cYA"</p>
                 <a href="http://sos2021-27.herokuapp.com/#/azar-games-and-bet-activities"><p><b class="color">Front End URL:</b> http://sos2021-27.herokuapp.com/#/azar-games-and-bet-activities</p></a>
             </div>
         </slot>
