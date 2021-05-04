@@ -152,7 +152,7 @@ module.exports.register = (app,budgetsDB)=>{
 			console.log(query.liquid);
 		}
         if(query.hasOwnProperty("percentage")){
-			query.percentage = parseFloat(query.percentage).toFixed(2);
+			query.percentage = parseFloat(query.percentage).toFixed(3);
 			console.log(query.percentage);
 		}
 		console.log(query);
@@ -197,7 +197,7 @@ module.exports.register = (app,budgetsDB)=>{
                             "budget": parseFloat(request.body.budget),
                             "invest_promotion": parseFloat(request.body.invest_promotion),
                             "liquid": parseFloat(request.body.budget-request.body.invest_promotion),
-                            "percentage": parseFloat(request.body.budget/request.body.invest_promotion).toFixed(2)
+                            "percentage": parseFloat(request.body.budget/request.body.invest_promotion).toFixed(3)
                         });
                             response.sendStatus(201);	
                     }
@@ -280,7 +280,7 @@ module.exports.register = (app,budgetsDB)=>{
                                         "budget": parseFloat(request.body.budget),
                                         "invest_promotion": parseFloat(request.body.invest_promotion),
                                         "liquid": parseFloat(request.body.budget-request.body.invest_promotion),
-                                        "percentage": parseFloat(request.body.budget/request.body.invest_promotion).toFixed(2)
+                                        "percentage": parseFloat(request.body.budget/request.body.invest_promotion).toFixed(3)
                                     }, 
                                     (error,dataUpdated)=>{
                                         if(error){
