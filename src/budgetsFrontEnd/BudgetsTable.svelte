@@ -55,7 +55,7 @@
             const json = await data.json();
             budgets = json;
             pagination();
-            for (x of budgets){
+            for (x in budgets){
                     provincias.push(x.province);
                 }
             for(var i = 0; i < provincias.length; i++) {
