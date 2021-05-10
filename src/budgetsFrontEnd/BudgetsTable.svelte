@@ -18,11 +18,7 @@
     let searchedYear = "";
 
     let listaProvincias = document.getElementById('listadoProvincias');
-    listaProvincias.length = 0;
-    let defOption = document.createElement('option');
-    defOption.text = 'Provincias';
-    listaProvincias.add(defOption);
-    listaProvincias.selectedIndex = 0;
+    let provincias = [];
     
     let errorPrint = "";
     let okPrint = "";
@@ -59,7 +55,16 @@
             const json = await data.json();
             budgets = json;
             pagination();
-            
+            for(var i = 0; i < budgets.length; i++) {
+                for (x of budgets){
+                    provincias.push(x.province);
+                }
+                var opt = provincias[i];
+                var el = document.createElement("option");
+                el.textContent = opt;
+                el.value = opt;
+                listaProvincias.add(el);
+            }
             console.log(`Received ${budgets.length} budgets.`);
         } else {
             console.log("ERROR");
@@ -196,7 +201,9 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> Búsqueda por provincia: </span>
                     </div>
-                    <select id="listadoProvincias" bind:value={searchedProvince}></select>
+                    <select id="listadoProvincias" value.bind="searchedProvince">
+                        <option>Provincias</option>
+                    </select>
                     <div class="input-group-prepend" style="padding-left:30px">
                         <span class="input-group-text"> Búsqueda por año: </span>
                     </div>
