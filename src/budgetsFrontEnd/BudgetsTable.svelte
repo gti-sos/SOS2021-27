@@ -173,7 +173,7 @@
       }
     }
 
-    function listarProvincias(provincias) {
+    async function listarProvincias(provincias) {
         provincias = budgets;
         for (var i = 0; i < provincias.length; i++) {
         var opt = provincias[i].params.province;
@@ -207,7 +207,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> Búsqueda por provincia: </span>
                     </div>
-                    <select bind:value={searchedProvince} class="w3-select" name="option" id="listaProvincias">
+                    <select bind:value={searchedProvince} id="listaProvincias">
                     </select>
                     <div class="input-group-prepend" style="padding-left:30px">
                         <span class="input-group-text"> Búsqueda por año: </span>
