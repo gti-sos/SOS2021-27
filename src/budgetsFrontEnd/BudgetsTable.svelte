@@ -14,6 +14,8 @@
     };
 
     let iniData = false;
+    let searchedProvince = "";
+    let searchedYear = "";
 
     let errorPrint = "";
     let okPrint = "";
