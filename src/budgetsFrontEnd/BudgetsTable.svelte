@@ -192,8 +192,6 @@
                         <span class="input-group-text"> Búsqueda por provincia: </span>
                     </div>
                     <input type="text" class="form-control" placeholder="Provincia" bind:value="{searchedProvince}">
-                </div>
-                <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> Búsqueda por año: </span>
                     </div>
