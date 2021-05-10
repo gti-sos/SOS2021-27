@@ -18,11 +18,6 @@
     let searchedYear = "";
 
     let listaProvincias = document.getElementById("listadoProvincias");
-    listaProvincias.length = 0;
-    let defOption = document.createElement('option');
-    defOption.text = 'Provincias';
-    listaProvincias.add(defOption);
-    listaProvincias.selectedIndex = 0;
     let provincias = [];
     
     let errorPrint = "";
