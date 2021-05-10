@@ -175,17 +175,6 @@
         postBudget();
         location.reload();
     }
-
-    function print(){
-        let mensaje = "";
-        if (okPrint) {
-           mensaje = "<p align="center" style="color: green">{okPrint}</p>";
-        } else if(errorPrint){
-           mensaje = "<p align="center" style="color: red">ERROR: {errorPrint}</p>";
-        } else if(infoPrint){
-            mensaje = "<p align="center" style="color: blue">{infoPrint}</p>";
-        }
-    }
 </script>
 
 <main>
@@ -260,9 +249,18 @@
     </Table>
     <br/>
     <div>
-      
-            <p>{print}</p>
-        
+        <div class = "alertOK">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <strong>OK! </strong> {okPrint}
+        </div>
+        <div class = "alertERROR">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <strong>ERROR! </strong> {errorPrint}
+        </div>
+        <div class = "alertINFO">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <strong>INFO! </strong> {infoPrint}
+        </div>
     </div>
     <br/>
     <div>
@@ -308,5 +306,38 @@
         cursor: pointer;
         margin-right: 20px;
         border-radius: 12px;
+    }
+
+    .alertOK {
+        padding: 20px;
+        background-color: #4ab984;
+        color: white;
+    }
+
+    .alertERROR {
+        padding: 20px;
+        background-color: #f44336;
+        color: white;
+    }
+    
+    .alertINFO {
+        padding: 20px;
+        background-color: #59a9f8;
+        color: white;
+    }
+
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .closebtn:hover {
+    color: black;
     }
 </style>
