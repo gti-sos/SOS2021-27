@@ -31,6 +31,8 @@
     let lastPage = 1;
     let total = 0;
 
+    onMount(getBudgets);
+
     async function initialBudgets() {
         console.log("Loading initial data...");
         const data = await fetch(BASE_API_PATH + "/loadInitialData").then(function (data) {
@@ -49,22 +51,20 @@
     
     async function getBudgets() {
         console.log("Fetching budgets...");
-        const data = await fetch(BASE_API_PATH + "?limit=" + limit + "&offset=" + c_offset);
+        const data = await fetch(BASE_API_PATH + "?offset=" + c_offset + "&limit=" + limit);
         if (data.status == 200) {
             console.log("OK");
             const json = await data.json();
             budgets = json;
             pagination();
-            for (x of budgets){
-                provincias.push(x.province);
+            for(x of budgets){
+                option = document.createElement('option');
+                option.text = x.province;
+                option.value = x.province;
+                listaProvincias.add(option);
             }
-            for(let i = 0; i < provincias.length; i++){
-                var opt = provincias[i];
-                var el = document.createElement("option");
-                el.textContent = opt;
-                el.value = opt;
-                listaProvincias.add(el);
-            }
+            budgets.sort((a,b) => (a.year < b.year) ? 1 : ((b.year < a.year) ? -1 : 0))
+            budgets.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0))
             console.log(`Received ${budgets.length} budgets.`);
         } else {
             console.log("ERROR");
@@ -178,8 +178,6 @@
         getBudgets();
       }
     }
-
-    onMount(getBudgets);
 </script>
 
 <main>
@@ -280,7 +278,7 @@
 
     <div>
     <td  style="float: right;">
-      <Pagination ariaLabel="Web pagination">
+      <Pagination>
         <PaginationItem class = {c_page === 1 ? "disabled" : ""}>
           <PaginationLink previous href="#/province-budget-and-investment-in-social-promotion" on:click={() => changePage(c_page - 1, c_offset - 10)}/>
         </PaginationItem>
