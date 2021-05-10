@@ -52,14 +52,13 @@
             console.log("OK");
             const json = await data.json();
             budgets = json;
-            
-            budgets.sort((a,b) => new String(a.province) > new String(b.province));
-            budgets.sort((a,b) => new Integer(a.year) > new Integer(b.year));
             console.log(`Received ${budgets.length} budgets.`);
             pagination();
         } else {
             console.log("ERROR");
         }
+        budgets.sort((a,b) => new String(a.province) > new String(b.province));
+        budgets.sort((a,b) => new Integer(a.year) > new Integer(b.year));
     }
 
     async function postBudget() {
@@ -208,8 +207,8 @@
                 </td>
                 <td>
                     <div>
-                    <p><Button color="info" on:click="{searchBudgets(searchedProvince,searchedYear)}"> Buscar </Button></p>
-                    <p style="padding-left:30px"><Button outline color="success" href="javascript:location.reload()"> Refrescar </Button></p>
+                    <a><Button color="info" on:click="{searchBudgets(searchedProvince,searchedYear)}"> Buscar </Button></a>
+                    <a style="padding-left:30px"><Button outline color="success" href="javascript:location.reload()"> Refrescar </Button></a>
                     </div>
                 </td>
             </tr>
@@ -253,18 +252,24 @@
     <br/>
     <div>
         {#if okPrint}
-        <div class = "alertOK" id="hideMe">
-            <strong style="text-alig:center">OK! </strong><p></p> {okPrint}
+        <div class = "hideMe">
+            <span class = "alertOK">
+            <strong style="text-align:center">OK! </strong><p></p> {okPrint}
+            </span>
         </div>
         {/if}
         {#if errorPrint}
-        <div class = "alertERROR" id="hideMe">
-            <strong style="text-alig:center">ERROR! </strong><p></p> {errorPrint}
+        <div class = "hideMe">
+            <span class = "alertERROR">
+            <strong style="text-align:center">ERROR! </strong><p></p> {errorPrint}
+            </span>
         </div>
         {/if}
         {#if infoPrint}
-        <div class = "alertINFO" id="hideMe">
-            <strong style="text-alig:center">INFO! </strong><p></p> {infoPrint}
+        <div class = "hideMe">
+            <span class = "alertINFO">
+            <strong style="text-align:center">INFO! </strong><p></p> {infoPrint}
+            </span>
         </div>
         {/if}
     </div>
@@ -319,7 +324,7 @@
     }
 
     .alertOK {
-        align: center;
+        margin: 0 auto;
         display: table;
         padding: 20px;
         background-color: #4ab984;
@@ -327,7 +332,7 @@
     }
 
     .alertERROR {
-        align: center;
+        margin: 0 auto;
         display: table;
         padding: 20px;
         background-color: #f44336;
@@ -335,11 +340,18 @@
     }
     
     .alertINFO {
-        align: center;
+        margin: 0 auto;
         display: table;
         padding: 20px;
         background-color: #59a9f8;
         color: white;
+    }
+
+    html, body {
+        height:100%;
+        width:100%;
+        margin:0;
+        padding:0;
     }
 
     #hideMe {
