@@ -17,7 +17,7 @@
     let searchedProvince = "";
     let searchedYear = "";
 
-    let listaProvincias = document.getElementById('listadoProvincias');
+    let listaProvincias = document.getElementById("listadoProvincias");
     let provincias = [];
     
     let errorPrint = "";
@@ -55,10 +55,10 @@
             const json = await data.json();
             budgets = json;
             pagination();
-            for(var i = 0; i < budgets.length; i++) {
-                for (x of budgets){
+            for (x of budgets){
                     provincias.push(x.province);
                 }
+            for(var i = 0; i < provincias.length; i++) {
                 var opt = provincias[i];
                 var el = document.createElement("option");
                 el.textContent = opt;
