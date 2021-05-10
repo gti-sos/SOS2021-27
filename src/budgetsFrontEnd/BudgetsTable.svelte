@@ -187,15 +187,15 @@
         <thead>
             <tr>
                 <td>
-                <div class="input-group mb-3">
+                <div class="input-group input-group-lg">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> Búsqueda por provincia: </span>
                     </div>
                     <input type="text" class="form-control" placeholder="Provincia" bind:value="{searchedProvince}">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"> Búsqueda por año: </span>
+                        <span class="input-group-text" style="padding-left:10px"> Búsqueda por año: </span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Año" bind:value="{searchedYear}">
+                    <input type="number" class="form-control" placeholder="Año" bind:value="{searchedYear}">
                 </div>
                 </td>
                 <td>
