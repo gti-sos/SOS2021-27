@@ -204,7 +204,9 @@
                 <td>
                     <div>
                     <Button color="info" on:click="{searchBudgets(searchedProvince,searchedYear)}"> Buscar </Button>
-                    <Button outline color="success" style="align:right" href="javascript:location.reload()"> Refrescar </Button>
+                    </div>
+                    <div style="padding-left:30px">
+                    <Button outline color="success" href="javascript:location.reload()"> Refrescar </Button>
                     </div>
                 </td>
             </tr>
@@ -247,24 +249,18 @@
     </Table>
     <br/>
     <div>
-        {#if okPrint}
-        <div class = "alertOK">
+        <div v-if="okPrint "class = "alertOK">
             <span class="closebtn" role="alert" data-dismiss="alert" onclick="this.parentElement.style.display='none';">&times;</span> 
             <strong>OK! </strong> {okPrint}
         </div>
-        {/if}
-        {#if errorPrint}
-        <div class = "alertERROR">
+        <div v-else-if="errorPrint" class = "alertERROR">
             <span class="closebtn" role="alert" data-dismiss="alert" onclick="this.parentElement.style.display='none';">&times;</span> 
             <strong>ERROR! </strong> {errorPrint}
         </div>
-        {/if}
-        {#if infoPrint}
-        <div class = "alertINFO">
+        <div v-else-if="infoPrint" class = "alertINFO">
             <span class="closebtn" role="alert" data-dismiss="alert" onclick="this.parentElement.style.display='none';">&times;</span> 
             <strong>INFO! </strong> {infoPrint}
         </div>
-        {/if}
     </div>
     <br/>
     <div>
@@ -313,18 +309,21 @@
     }
 
     .alertOK {
+        display: table;
         padding: 20px;
         background-color: #4ab984;
         color: white;
     }
 
     .alertERROR {
+        display: table;
         padding: 20px;
         background-color: #f44336;
         color: white;
     }
     
     .alertINFO {
+        display: table;
         padding: 20px;
         background-color: #59a9f8;
         color: white;
