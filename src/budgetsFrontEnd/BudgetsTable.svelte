@@ -24,23 +24,14 @@
     listaProvincias.add(defOption);
     listaProvincias.selectedIndex = 0;
 
-    fetch(BASE_API_PATH).then(function(response) {  
-      if (response.status !== 200) {  
-        console.warn('Looks like there was a problem. Status Code: ' + 
-          response.status);  
-        return;  
-      } 
-      response.json().then(function(data) {  
-        let option;
-    	for (let i = 0; i < data.length; i++) {
-          option = document.createElement('option');
-      	  option.text = data[i].province;
-      	  option.value = data[i].province;
-      	  listaProvincias.add(option);
-    	}    
-      });  
-    }).catch(function(err) { console.error('Fetch Error -', err);});
-
+    for(var i = 0; i < budgets.length; i++) {
+    var opt = options[i].province;
+    var el = document.createElement("option");
+    el.textContent = opt;
+    el.value = opt;
+    select.appendChild(el);
+    }​
+    
     let errorPrint = "";
     let okPrint = "";
     let infoPrint = "";
