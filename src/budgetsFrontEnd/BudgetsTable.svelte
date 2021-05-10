@@ -21,30 +21,12 @@
     let okPrint = "";
     let infoPrint = "";
 
+    let c_offset = 0;
     let offset = 0;
     let limit = 10;
-    let page = 1;
+    let c_page = 1;
     let lastPage = 1;
     let total = 0;
-
-    onMount(getBudgets);
-    
-    async function getBudgets() {
-        console.log("Fetching budgets...");
-        const data = await fetch(BASE_API_PATH + "?limit=" + limit + "&offset=" + offset);
-        if (data.status == 200) {
-            console.log("OK");
-            const json = await data.json();
-            budgets = json;
-            
-            budgets.sort((a,b) => new String(a.province) > new String(b.province));
-            budgets.sort((a,b) => new Integer(a.year) > new Integer(b.year));
-            console.log(`Received ${budgets.length} budgets.`);
-        } else {
-            console.log("ERROR");
-        }
-        pagination();
-    }
 
     async function initialBudgets() {
         console.log("Loading initial data...");
@@ -60,6 +42,23 @@
             }
         });
         iniData = true;
+    }
+    
+    async function getBudgets() {
+        console.log("Fetching budgets...");
+        const data = await fetch(BASE_API_PATH + "?limit=" + limit + "&offset=" + c_offset);
+        if (data.status == 200) {
+            console.log("OK");
+            const json = await data.json();
+            budgets = json;
+            
+            budgets.sort((a,b) => new String(a.province) > new String(b.province));
+            budgets.sort((a,b) => new Integer(a.year) > new Integer(b.year));
+            console.log(`Received ${budgets.length} budgets.`);
+            pagination();
+        } else {
+            console.log("ERROR");
+        }
     }
 
     async function postBudget() {
@@ -148,7 +147,7 @@
       if (data.status == 200) {
         const json = await data.json();
         total = json.length;
-        changePage(page, offset);
+        changePage(c_page, c_offset);
       } else {
         errorPrint = "Base de datos vacía.";
       }
@@ -158,13 +157,13 @@
       return [...Array(size).keys()].map((i) => i + start);
     }
 
-    function changePage(pageX, offsetX) {
-      console.log("Changing page to " + pageX + " with " + offsetX + " offset.");
+    function changePage(page, offset) {
+      console.log("Changing page to " + page + " with " + offset + " offset.");
       lastPage = Math.ceil(total / 10);
       console.log("Last page = " + lastPage);
-      if (pageX !== page) {
-        offset = offsetX;
-        page = pageX;
+      if (page !== c_page) {
+        c_offset = offset;
+        c_page = page;
         getBudgets();
       }
     }
@@ -173,6 +172,8 @@
         postBudget();
         location.reload();
     }
+
+    onMount(getBudgets);
 </script>
 
 <main>
@@ -205,7 +206,7 @@
                     <div>
                     <Button color="info" on:click="{searchBudgets(searchedProvince,searchedYear)}"> Buscar </Button>
                     </div>
-                    <div style="padding-left:30px">
+                    <div style="padding-left:100px">
                     <Button outline color="success" href="javascript:location.reload()"> Refrescar </Button>
                     </div>
                 </td>
@@ -249,38 +250,48 @@
     </Table>
     <br/>
     <div>
-        <div v-if="okPrint "class = "alertOK">
+        {#if okPrint}
+        <div class = "alertOK">
             <span class="closebtn" role="alert" data-dismiss="alert" onclick="this.parentElement.style.display='none';">&times;</span> 
             <strong>OK! </strong> {okPrint}
         </div>
-        <div v-else-if="errorPrint" class = "alertERROR">
+        {/if}
+        {#if errorPrint}
+        <div class = "alertERROR">
             <span class="closebtn" role="alert" data-dismiss="alert" onclick="this.parentElement.style.display='none';">&times;</span> 
             <strong>ERROR! </strong> {errorPrint}
         </div>
-        <div v-else-if="infoPrint" class = "alertINFO">
+        {/if}
+        {#if infoPrint}
+        <div class = "alertINFO">
             <span class="closebtn" role="alert" data-dismiss="alert" onclick="this.parentElement.style.display='none';">&times;</span> 
             <strong>INFO! </strong> {infoPrint}
         </div>
+        {/if}
     </div>
+
     <br/>
     <div>
     <td align="left"> <Button outline color="info" href="https://sos2021-27.herokuapp.com/#/info"> Página principal </Button> </td>
     <td  style="float: right;">
       <Pagination ariaLabel="Web pagination">
-        <PaginationItem class = {page === 1 ? "disabled" : ""}>
-          <PaginationLink previous href="#/province-budget-and-investment-in-social-promotion" on:click={() => changePage(page - 1, offset - 10)}/>
+        <PaginationItem class = {c_page === 1 ? "disabled" : ""}>
+          <PaginationLink previous href="#/province-budget-and-investment-in-social-promotion" on:click={() => changePage(c_page - 1, c_offset - 10)}/>
         </PaginationItem>
-        {#each range(lastPage, 1) as pages}
-          <PaginationItem class = {page === pages ? "active" : ""}>
-            <PaginationLink previous href="#/province-budget-and-investment-in-social-promotion" on:click={() => changePage(pages, (pages - 1) * 10)}>{pages}</PaginationLink>
+        {#each range(lastPage, 1) as page}
+          <PaginationItem class = {c_page === page ? "active" : ""}>
+            <PaginationLink previous href="#/province-budget-and-investment-in-social-promotion" on:click={() => changePage(page, (page - 1) * 10)}>
+            {page}
+            </PaginationLink>
           </PaginationItem>
         {/each}
-        <PaginationItem class = {page === lastPage ? "disabled" : ""}>
-          <PaginationLink next href="#/province-budget-and-investment-in-social-promotion" on:click={() => changePage(page + 1, offset + 10)}/>
+        <PaginationItem class = {c_page === lastPage ? "disabled" : ""}>
+          <PaginationLink next href="#/province-budget-and-investment-in-social-promotion" on:click={() => changePage(c_page + 1, c_offset + 10)}/>
         </PaginationItem>
       </Pagination>
     </td>
     </div>
+
 </main>
 
 <style>
@@ -313,6 +324,7 @@
         padding: 20px;
         background-color: #4ab984;
         color: white;
+        animation: autoHide 0s ease-in 4s forwards;
     }
 
     .alertERROR {
@@ -320,6 +332,7 @@
         padding: 20px;
         background-color: #f44336;
         color: white;
+        animation: autoHide 0s ease-in 4s forwards;
     }
     
     .alertINFO {
@@ -327,6 +340,7 @@
         padding: 20px;
         background-color: #59a9f8;
         color: white;
+        animation: autoHide 0s ease-in 4s forwards;
     }
 
     .alert {
