@@ -28,7 +28,10 @@
     <br><br>
     <div class="box">
         <slot> 
+            <div>
             <h3 class="titulo"><b>Fernando Nuevo Jiménez</b></h3>
+            <p><b>Fuente: </b><a href="https://datosmacro.expansion.com/estado/presupuestos/espana-comunidades-autonomas?sc=PR-G-F-23">province-budget-and-investment-in-social-promotion</a></p>
+            </div>
         <br>
             <p> <b class="color">GitHub:</b> <a href="https://github.com/FerNueJim"> https://github.com/FerNueJim</a></p>
             <p> <b class="color">API URL:</b> <a href="https://sos2021-27.herokuapp.com/api/v1/province-budget-and-investment-in-social-promotion"> https://sos2021-27.herokuapp.com/api/v1/province-budget-and-investment-in-social-promotion</a></p>
