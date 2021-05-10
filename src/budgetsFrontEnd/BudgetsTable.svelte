@@ -17,6 +17,30 @@
     let searchedProvince = "";
     let searchedYear = "";
 
+    let listaProvincias = document.getElementById('listaProvincias');
+    listaProvincias.length = 0;
+    let defOption = document.createElement('option');
+    defOption.text = 'Provincias';
+    listaProvincias.add(defOption);
+    listaProvincias.selectedIndex = 0;
+
+    fetch(BASE_API_PATH).then(function(response) {  
+      if (response.status !== 200) {  
+        console.warn('Looks like there was a problem. Status Code: ' + 
+          response.status);  
+        return;  
+      } 
+      response.json().then(function(data) {  
+        let option;
+    	for (let i = 0; i < data.length; i++) {
+          option = document.createElement('option');
+      	  option.text = data[i].province;
+      	  option.value = data[i].province;
+      	  listaProvincias.add(option);
+    	}    
+      });  
+    }).catch(function(err) { console.error('Fetch Error -', err);});
+
     let errorPrint = "";
     let okPrint = "";
     let infoPrint = "";
@@ -187,7 +211,8 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> Búsqueda por provincia: </span>
                     </div>
-                    <input bind:value={searchedProvince} type="text" class="form-control" id="provincia" placeholder="Provincia">
+                    <select bind:value={searchedProvince} class="w3-select" name="option" id="listaProvincias">
+                    </select>
                     <div class="input-group-prepend" style="padding-left:30px">
                         <span class="input-group-text"> Búsqueda por año: </span>
                     </div>
@@ -264,7 +289,6 @@
     </div>
 
     <div>
-    <td align="left"> <Button outline color="info" href="https://sos2021-27.herokuapp.com/#/info"> Página principal </Button> </td>
     <td  style="float: right;">
       <Pagination ariaLabel="Web pagination">
         <PaginationItem class = {c_page === 1 ? "disabled" : ""}>
@@ -282,6 +306,7 @@
         </PaginationItem>
       </Pagination>
     </td>
+    <td align="left"> <Button outline color="info" href="https://sos2021-27.herokuapp.com/#/info"> Página principal </Button> </td>
     </div>
 
 </main>
