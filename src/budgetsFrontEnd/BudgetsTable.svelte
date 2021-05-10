@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
     import { Button, Table, Pagination, PaginationItem, PaginationLink, } from "sveltestrap";
 
-    var BASE_API_PATH = "/api/v1/province-budget-and-investment-in-social-promotion";
+    var BASE_API_PATH = "/api/v2/province-budget-and-investment-in-social-promotion";
     var url = BASE_API_PATH;
 
     let budgets = [];
@@ -120,11 +120,11 @@
         console.log("Searching budget: " + province + ", "+ year);
 	
 		if (province != "" && year != "") {
-			url = url + "?province=" + province + "&year=" + year; 
+			url = url + "/" + province + "/" + year; 
 		} else if (province != "" && year == "") {
-			url = url + "?province=" + province;
+			url = url + "/" + province;
 		} else if (province == "" && year != "") {
-			url = url + "?year=" + year;
+			url = url + "/" + year;
 		}
 		const data = await fetch(url);
 		if (data.ok) {
@@ -186,17 +186,19 @@
      <Table bordered>
         <thead>
             <tr>
-                <td class="input-group mb-3">
+                <td>
+                <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> Búsqueda por provincia: </span>
                     </div>
                     <input type="text" class="form-control" placeholder="Provincia" bind:value="{searchedProvince}">
-                </td>
-                <td class="input-group mb-3">
+                </div>
+                <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> Búsqueda por año: </span>
                     </div>
                     <input type="text" class="form-control" placeholder="Año" bind:value="{searchedYear}">
+                </div>
                 </td>
                 <td>
                     <div>
@@ -257,7 +259,7 @@
     <br/>
     <div>
     <td align="left"> <Button outline color="info" href="https://sos2021-27.herokuapp.com/#/info"> Página principal </Button> </td>
-    <td  align="right">
+    <td  style="float: right;">
       <Pagination>
         <PaginationItem class = {page === 1 ? "disabled" : ""}>
           <PaginationLink previous href="#/province-budget-and-investment-in-social-promotion" on:click={() => changePage(page - 1, offset - 10)}/>
