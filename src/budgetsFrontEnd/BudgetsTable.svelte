@@ -175,6 +175,17 @@
         postBudget();
         location.reload();
     }
+
+    function print(){
+        let mensaje = "";
+        if (okPrint) {
+           mensaje = "<p align="center" style="color: green">{okPrint}</p>";
+        } else if(errorPrint){
+           mensaje = "<p align="center" style="color: red">ERROR: {errorPrint}</p>";
+        } else if(infoPrint){
+            mensaje = "<p align="center" style="color: blue">{infoPrint}</p>";
+        }
+    }
 </script>
 
 <main>
@@ -250,23 +261,19 @@
     <br/>
     <div>
       
-            <p v-if="errorPrint" align="center" style="color: red">ERROR: {errorPrint}</p>
-        
-            <p v-else-if="okPrint" align="center" style="color: green">{okPrint}</p>
-       
-            <p v-else-if="infoPrint" align="center" style="color: blue">{infoPrint}</p>
+            <p>{print}</p>
         
     </div>
     <br/>
     <div>
     <td align="left"> <Button outline color="info" href="https://sos2021-27.herokuapp.com/#/info"> Página principal </Button> </td>
     <td  style="float: right;">
-      <Pagination>
+      <Pagination ariaLabel="Web pagination">
         <PaginationItem class = {page === 1 ? "disabled" : ""}>
           <PaginationLink previous href="#/province-budget-and-investment-in-social-promotion" on:click={() => changePage(page - 1, offset - 10)}/>
         </PaginationItem>
         {#each range(lastPage, 1) as pages}
-          <PaginationItem class={page === pages ? "active" : ""}>
+          <PaginationItem class = {page === pages ? "active" : ""}>
             <PaginationLink previous href="#/province-budget-and-investment-in-social-promotion" on:click={() => changePage(pages, (pages - 1) * 10)}>{pages}</PaginationLink>
           </PaginationItem>
         {/each}
