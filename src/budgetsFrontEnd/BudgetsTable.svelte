@@ -52,13 +52,11 @@
             console.log("OK");
             const json = await data.json();
             budgets = json;
-            console.log(`Received ${budgets.length} budgets.`);
             pagination();
+            console.log(`Received ${budgets.length} budgets.`);
         } else {
             console.log("ERROR");
         }
-        budgets.sort((a,b) => new String(a.province) > new String(b.province));
-        budgets.sort((a,b) => new Integer(a.year) > new Integer(b.year));
     }
 
     async function postBudget() {
@@ -70,7 +68,7 @@
         }).then(function (data) {
             if (data.status == 201) {
                 console.log("OK");
-                okPrint = "Nuevo dato introducido correctamente;"
+                okPrint = "Nuevo dato introducido correctamente."
                 budgets.push(newBudget);
                 guardado = true;
                 getBudgets();
@@ -173,6 +171,7 @@
         postBudget();
         if(guardado == true){
         location.reload();
+        guardado = false;
         }
     }
 
@@ -254,21 +253,21 @@
         {#if okPrint}
         <div class = "hideMe">
             <span class = "alertOK">
-            <strong style="text-align:center">OK! </strong><p></p> {okPrint}
+            <strong style="align:center">OK! </strong><p></p> {okPrint}
             </span>
         </div>
         {/if}
         {#if errorPrint}
         <div class = "hideMe">
             <span class = "alertERROR">
-            <strong style="text-align:center">ERROR! </strong><p></p> {errorPrint}
+            <strong style="align:center">ERROR! </strong><p></p> {errorPrint}
             </span>
         </div>
         {/if}
         {#if infoPrint}
         <div class = "hideMe">
             <span class = "alertINFO">
-            <strong style="text-align:center">INFO! </strong><p></p> {infoPrint}
+            <strong style="align:center">INFO! </strong><p></p> {infoPrint}
             </span>
         </div>
         {/if}
@@ -366,18 +365,20 @@
         animation-fill-mode: forwards;
     }
     @keyframes cssAnimation {
-        to {
-            width:0;
-            height:0;
-            overflow:hidden;
+        0% {
+            opacity:1;
+        }
+        100% {
+            opacity:0;
         }
     }
 
     @-webkit-keyframes cssAnimation {
-        to {
-            width:0;
-            height:0;
-            visibility:hidden;
+        0% {
+            opacity:1;
+        }
+        100% {
+            opacity:0;
         }
     }
 
