@@ -51,12 +51,12 @@
         const data = await fetch(BASE_API_PATH + "/loadInitialData").then(function (data) {
             if(data.ok) {
                 console.log("OK");
-                okPrint = "Base de datos inicial cargada";
+                okPrint = "Base de datos inicial cargada.";
                 getBudgets();
             } else {
                 error = 404;
                 console.log("ERROR");
-                errorPrint = "La base de datos incial no ha podido cargarse";
+                errorPrint = "La base de datos incial no ha podido cargarse.";
             }
         });
         iniData = true;
@@ -74,12 +74,13 @@
                 budgets.push(newBudget);
                 okPrint = "Nuevo dato introducido correctamente;"
                 getBudgets();
+                location.reload();
             } else if (data.status == 400) {
                 console.log("Body is wrong");
-                errorPrint = "Algún dato debe estar mal introducido";
+                errorPrint = "Algún dato debe estar mal introducido.";
             } else if (data.status == 409) {
                 console.log("This budget already exists");
-                infoPrint = "Estos datos ya existen en la base de datos";
+                infoPrint = "Estos datos ya existen en la base de datos.";
             }
         });
     }
@@ -90,14 +91,14 @@
         const  data = await fetch(BASE_API_PATH, { method: "DELETE", }).then(function (data) {
             if (data.ok) {
                 console.log("OK");
-                okPrint = "Base de datos borrada con éxito";
+                okPrint = "Base de datos borrada con éxito.";
                 budgets = [];
             } else if (data.status == 404) {
                 console.log("DB is empty");
-                infoPrint = "La base de datos está vacía";
+                infoPrint = "La base de datos está vacía.";
             } else {
                 console.log("Error deleting DB stats");
-                errorPrint = "La base de datos no ha podido ser borrada";
+                errorPrint = "La base de datos no ha podido ser borrada.";
             }
         });
     }
@@ -107,11 +108,11 @@
         const data = await fetch(BASE_API_PATH + "/" + provincia + "/" + anyo, { method: "DELETE", }).then(function (data) {
             if (data.ok) {
                 console.log("OK");
-                okPrint = "Dato borrado correctamente";
+                okPrint = "Dato borrado correctamente.";
                 getBudgets();
             } else {
                 console.log("ERROR");
-                errorPrint = "El dato no ha sido borrado";
+                errorPrint = "El dato no ha sido borrado.";
             }
         });
     }
@@ -244,15 +245,13 @@
     </Table>
     <br/>
     <div>
-        {#if errorPrint}
-            <p align="center" style="color: red">ERROR: {errorPrint}</p>
-        {/if}
-        {#if okPrint}
-            <p align="center" style="color: green">{okPrint}</p>
-        {/if}
-        {#if infoPrint}
-            <p align="center" style="color: blue">{infoPrint}</p>
-        {/if}
+      
+            <p v-if="errorPrint" align="center" style="color: red">ERROR: {errorPrint}</p>
+        
+            <p v-else-if="okPrint" align="center" style="color: green">{okPrint}</p>
+       
+            <p v-else-if="infoPrint" align="center" style="color: blue">{infoPrint}</p>
+        
     </div>
     <br/>
     <div>
