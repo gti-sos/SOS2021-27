@@ -140,11 +140,11 @@ module.exports.register = (app,budgetsDB)=>{
 			console.log(query.year);
 		}
 		if(query.hasOwnProperty("budget")){
-			query.budget = parseFloat(query.budget);
+			query.budget = parseInt(query.budget);
 			console.log(query.budget);
 		}
 		if(query.hasOwnProperty("invest_promotion")){
-			query.invest_promotion = parseFloat(query.invest_promotion);
+			query.invest_promotion = parseInt(query.invest_promotion);
 			console.log(query.invest_promotion);
 		}
 		if(query.hasOwnProperty("liquid")){

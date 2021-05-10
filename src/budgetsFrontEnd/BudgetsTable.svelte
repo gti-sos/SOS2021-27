@@ -74,7 +74,6 @@
                 budgets.push(newBudget);
                 okPrint = "Nuevo dato introducido correctamente;"
                 getBudgets();
-                location.reload();
             } else if (data.status == 400) {
                 console.log("Body is wrong");
                 errorPrint = "Algún dato debe estar mal introducido.";
@@ -171,6 +170,11 @@
         getBudgets();
       }
     }
+
+    function guardar(){
+        postBudget();
+        location.reload();
+    }
 </script>
 
 <main>
@@ -188,15 +192,15 @@
         <thead>
             <tr>
                 <td>
-                <div class="input-group input-group-lg">
+                <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> Búsqueda por provincia: </span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Provincia" bind:value="{searchedProvince}">
+                    <input bind:value={searchedProvince} type="text" class="form-control" id="provincia" placeholder="Provincia">
                     <div class="input-group-prepend">
                         <span class="input-group-text" style="padding-left:10px"> Búsqueda por año: </span>
                     </div>
-                    <input type="number" class="form-control" placeholder="Año" bind:value="{searchedYear}">
+                    <input bind:value={searchedYear} type="number" min="1900" max="2099" step="1" class="form-control" id="anyo" placeholder="Año">
                 </div>
                 </td>
                 <td>
@@ -227,7 +231,7 @@
                 <td><input bind:value="{newBudget.invest_promotion}"/></td>
                 <td> - - - </td>
                 <td> - - - </td>
-                <td colspan="2"><Button color="warning" style="color:white;" on:click={postBudget}> Guardar </Button></td>
+                <td colspan="2"><Button color="warning" style="color:white;" on:click={guardar}> Guardar </Button></td>
             </tr>
             {#each budgets as budgetSvelte}
                 <tr>
