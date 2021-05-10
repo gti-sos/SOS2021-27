@@ -22,28 +22,11 @@
     let infoPrint = "";
 
     let offset = 0;
-    let limit = 9;
+    let limit = 10;
     let page = 1;
     let lastPage = 1;
     let total = 0;
     
-
-    async function initialBudgets() {
-        console.log("Loading initial data...");
-        const data = await fetch(BASE_API_PATH + "/loadInitialData").then(function (data) {
-            if(data.ok) {
-                console.log("OK");
-                okPrint = "Base de datos inicial cargada";
-                getBudgets();
-            } else {
-                error = 404;
-                console.log("ERROR");
-                errorPrint = "La base de datos incial no ha podido cargarse";
-            }
-        });
-        iniData = true;
-    }
-
     async function getBudgets() {
         console.log("Fetching budgets...");
         const data = await fetch(BASE_API_PATH + "?offset=" + offset + "&limit" + limit);
@@ -62,6 +45,22 @@
     }
     
     onMount(getBudgets);
+
+    async function initialBudgets() {
+        console.log("Loading initial data...");
+        const data = await fetch(BASE_API_PATH + "/loadInitialData").then(function (data) {
+            if(data.ok) {
+                console.log("OK");
+                okPrint = "Base de datos inicial cargada";
+                getBudgets();
+            } else {
+                error = 404;
+                console.log("ERROR");
+                errorPrint = "La base de datos incial no ha podido cargarse";
+            }
+        });
+        iniData = true;
+    }
 
     async function postBudget() {
         console.log("Posting budget...");
@@ -176,39 +175,27 @@
 <main>
     <br/>
     <div>
-        {#if errorPrint}
-            <p style="color: red">ERROR: {errorPrint}</p>
-        {/if}
-        {#if okPrint}
-            <p style="color: green">{okPrint}</p>
-        {/if}
-        {#if infoPrint}
-            <p style="color: blue">{infoPrint}</p>
-        {/if}
-    </div>
-    <br/>
-    <div>
         {#if iniData}
             <td> <Button color="warning" style="color:white;" disabled> Cargar tabla </Button> </td>
         {:else}
             <td> <Button color="warning" style="color:white;" on:click={initialBudgets}> Cargar tabla </Button> </td>
         {/if}
-            <td style="padding-right:20px"> <Button outline color="danger" on:click={deleteBudgets}> Borrar tabla </Button> </td>
+            <td style="padding-left:20px"> <Button outline color="danger" on:click={deleteBudgets}> Borrar tabla </Button> </td>
     </div>
      <Table bordered>
         <thead>
             <tr>
                 <td>
                     Búsqueda por provincia:
-                    <input bind:value="{searchedProvince}">
+                    <input style="padding-left:20px" bind:value="{searchedProvince}">
                 </td>
                 <td>
                     Búsqueda por año:
-                    <input bind:value="{searchedYear}">
+                    <input style="padding-left:20px" bind:value="{searchedYear}">
                 </td>
                 <td>
                     <Button color="info" on:click="{searchBudgets(searchedProvince,searchedYear)}">Buscar</Button>
-                    <Button outline color="success" href="javascript:location.reload()">Refrescar</Button>
+                    <Button outline color="success" style="padding-left:20px" href="javascript:location.reload()">Refrescar</Button>
                 </td>
             </tr>
         </thead>
@@ -250,9 +237,21 @@
     </Table>
     <br/>
     <div>
+        {#if errorPrint}
+            <p align="center" style="color: red">ERROR: {errorPrint}</p>
+        {/if}
+        {#if okPrint}
+            <p align="center" style="color: green">{okPrint}</p>
+        {/if}
+        {#if infoPrint}
+            <p align="center" style="color: blue">{infoPrint}</p>
+        {/if}
+    </div>
+    <br/>
+    <div>
     <Button outline color="info" href="https://sos2021-27.herokuapp.com/#/info"> Página principal </Button>
-    <Pagination>
-        <PaginationItem class={page === 1 ? "disabled" : ""}>
+    <Pagination align="right">
+        <PaginationItem class = {page === 1 ? "disabled" : ""}>
           <PaginationLink previous href="#/province-budget-and-investment-in-social-promotion" on:click={() => changePage(page - 1, offset - 10)}/>
         </PaginationItem>
         {#each range(lastPage, 1) as pages}
@@ -260,7 +259,7 @@
             <PaginationLink previous href="#/province-budget-and-investment-in-social-promotion" on:click={() => changePage(pages, (pages - 1) * 10)}>{pages}</PaginationLink>
           </PaginationItem>
         {/each}
-        <PaginationItem class={page === lastPage ? "disabled" : ""}>
+        <PaginationItem class = {page === lastPage ? "disabled" : ""}>
           <PaginationLink next href="#/province-budget-and-investment-in-social-promotion" on:click={() => changePage(page + 1, offset + 10)}/>
         </PaginationItem>
       </Pagination>
