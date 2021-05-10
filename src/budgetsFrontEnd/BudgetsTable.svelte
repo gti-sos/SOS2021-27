@@ -68,7 +68,7 @@
             body: JSON.stringify(newBudget),
             headers: { "Content-Type": "application/json" },
         }).then(function (data) {
-            if (data.stats == 201) {
+            if (data.status == 201) {
                 console.log("OK");
                 okPrint = "Nuevo dato introducido correctamente;"
                 budgets.push(newBudget);
@@ -207,7 +207,7 @@
                 </td>
                 <td>
                     <div>
-                    <a><Button color="info" on:click="{searchBudgets(searchedProvince,searchedYear)}"> Buscar </Button></a>
+                    <astyle="padding-left:20px"><Button color="info" on:click="{searchBudgets(searchedProvince,searchedYear)}"> Buscar </Button></a>
                     <a style="padding-left:30px"><Button outline color="success" href="javascript:location.reload()"> Refrescar </Button></a>
                     </div>
                 </td>
@@ -354,7 +354,7 @@
         padding:0;
     }
 
-    #hideMe {
+    .hideMe {
         -moz-animation: cssAnimation 0s ease-in 5s forwards;
     /* Firefox */
         -webkit-animation: cssAnimation 0s ease-in 5s forwards;
