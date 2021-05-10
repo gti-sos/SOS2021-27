@@ -249,7 +249,7 @@ module.exports.register = (app,budgetsDB)=>{
     
     app.get(BASE_API_PATH+"/:year", (request,response)=>{
 
-        budgetsDB.find({G"year": parseInt(request.params.year)},(error,data)=>{
+        budgetsDB.find({"year": parseInt(request.params.year)},(error,data)=>{
             if(error){
                 console.error("Cannot access to the resource using GET" + error);
                     response.sendStatus(500);
