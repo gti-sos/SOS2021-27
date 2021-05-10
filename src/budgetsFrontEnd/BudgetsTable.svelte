@@ -31,8 +31,8 @@
     
     async function getBudgets() {
         console.log("Fetching budgets...");
-        const data = await fetch(BASE_API_PATH + "?offset=" + offset + "&limit=" + limit);
-        if (data.ok) {
+        const data = await fetch(BASE_API_PATH + "?limit=" + limit + "&offset=" + offset);
+        if (data.status == 200) {
             console.log("OK");
             const json = await data.json();
             budgets = json;
@@ -117,8 +117,6 @@
     }
 
     async function searchBudgets(province, year){
-        console.log("Searching budget: " + province + ", "+ year);
-	
 		if (province != "" && year != "") {
 			url = url + "?province=" + province + "?year=" + year; 
 		} else if (province != "" && year == "") {
@@ -127,7 +125,7 @@
 			url = url + "?year=" + year;
 		}
 		const data = await fetch(url);
-		if (data.ok) {
+		if (data.status == 200) {
 			console.log("OK");
 			const json = await data.json();
 			budgets = json;
@@ -147,7 +145,7 @@
 
     async function pagination() {
       const data = await fetch(BASE_API_PATH);
-      if (data.ok) {
+      if (data.status == 200) {
         const json = await data.json();
         total = json.length;
         changePage(page, offset);
@@ -197,8 +195,8 @@
                         <span class="input-group-text"> Búsqueda por provincia: </span>
                     </div>
                     <input bind:value={searchedProvince} type="text" class="form-control" id="provincia" placeholder="Provincia">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" style="padding-left:30px"> Búsqueda por año: </span>
+                    <div class="input-group-prepend" style="padding-left:30px">
+                        <span class="input-group-text"> Búsqueda por año: </span>
                     </div>
                     <input bind:value={searchedYear} type="number" min="1900" max="2099" step="1" class="form-control" id="anyo" placeholder="Año">
                 </div>
@@ -206,7 +204,7 @@
                 <td>
                     <div>
                     <Button color="info" on:click="{searchBudgets(searchedProvince,searchedYear)}"> Buscar </Button>
-                    <Button outline color="success" style="padding-left:20px" href="javascript:location.reload()"> Refrescar </Button>
+                    <Button outline color="success" style="align:right" href="javascript:location.reload()"> Refrescar </Button>
                     </div>
                 </td>
             </tr>
