@@ -173,7 +173,7 @@
       }
     }
 
-    fuction listarProvincias(provincias){
+    function listarProvincias(provincias){
         let provincias = getBudgets().province;
         for(var i = 0; i < provincias.length; i++) {
         var opt = options[i].province;
