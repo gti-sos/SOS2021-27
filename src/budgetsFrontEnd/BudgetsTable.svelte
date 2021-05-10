@@ -263,7 +263,6 @@
         {/if}
     </div>
 
-    <br/>
     <div>
     <td align="left"> <Button outline color="info" href="https://sos2021-27.herokuapp.com/#/info"> Página principal </Button> </td>
     <td  style="float: right;">
