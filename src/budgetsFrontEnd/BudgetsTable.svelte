@@ -56,10 +56,7 @@
             budgets = json;
             pagination();
             for (x of budgets){
-                    provincias.push(x.province);
-                }
-            for(var i = 0; i < provincias.length; i++) {
-                var opt = provincias[i];
+                var opt = provincias.push(x.province);
                 var el = document.createElement("option");
                 el.textContent = opt;
                 el.value = opt;
