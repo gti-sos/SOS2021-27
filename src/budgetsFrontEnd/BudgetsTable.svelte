@@ -17,6 +17,9 @@
     let searchedProvince = "";
     let searchedYear = "";
 
+    let listaProvincias = document.getElementById("listadoProvincias");
+    let provincias = [];
+    
     let errorPrint = "";
     let okPrint = "";
     let infoPrint = "";
@@ -52,6 +55,16 @@
             const json = await data.json();
             budgets = json;
             pagination();
+            for (x of budgets){
+                provincias.push(x.province);
+            }
+            for(let i = 0; i < provincias.length; i++){
+                var opt = provincias[i];
+                var el = document.createElement("option");
+                el.textContent = opt;
+                el.value = opt;
+                listaProvincias.add(el);
+            }
             console.log(`Received ${budgets.length} budgets.`);
         } else {
             console.log("ERROR");
@@ -165,6 +178,7 @@
         getBudgets();
       }
     }
+
     onMount(getBudgets);
 </script>
 
@@ -187,7 +201,8 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> Búsqueda por provincia: </span>
                     </div>
-                    <input bind:value={searchedProvince} type="text" class="form-control" id="provincia" placeholder="Provincia">
+                    <select id="listadoProvincias" value.bind="searchedProvince">
+                    </select>
                     <div class="input-group-prepend" style="padding-left:30px">
                         <span class="input-group-text"> Búsqueda por año: </span>
                     </div>
@@ -264,7 +279,6 @@
     </div>
 
     <div>
-    <td align="left"> <Button outline color="info" href="https://sos2021-27.herokuapp.com/#/info"> Página principal </Button> </td>
     <td  style="float: right;">
       <Pagination ariaLabel="Web pagination">
         <PaginationItem class = {c_page === 1 ? "disabled" : ""}>
@@ -282,6 +296,7 @@
         </PaginationItem>
       </Pagination>
     </td>
+    <td align="left"> <Button outline color="info" href="https://sos2021-27.herokuapp.com/#/info"> Página principal </Button> </td>
     </div>
 
 </main>
