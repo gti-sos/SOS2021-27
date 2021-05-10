@@ -198,15 +198,15 @@
                     </div>
                     <input bind:value={searchedProvince} type="text" class="form-control" id="provincia" placeholder="Provincia">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" style="padding-left:10px"> Búsqueda por año: </span>
+                        <span class="input-group-text" style="padding-left:30px"> Búsqueda por año: </span>
                     </div>
                     <input bind:value={searchedYear} type="number" min="1900" max="2099" step="1" class="form-control" id="anyo" placeholder="Año">
                 </div>
                 </td>
                 <td>
                     <div>
-                    <td> <Button color="info" on:click="{searchBudgets(searchedProvince,searchedYear)}"> Buscar </Button> </td>
-                    <td style="padding-left:20px"> <Button outline color="success" style="padding-left:20px" href="javascript:location.reload()"> Refrescar </Button> </td>
+                    <Button color="info" on:click="{searchBudgets(searchedProvince,searchedYear)}"> Buscar </Button>
+                    <Button outline color="success" style="padding-left:20px" href="javascript:location.reload()"> Refrescar </Button>
                     </div>
                 </td>
             </tr>
@@ -251,19 +251,19 @@
     <div>
         {#if okPrint}
         <div class = "alertOK">
-            <span class="closebtn" role="alert" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <span class="closebtn" role="alert" data-dismiss="alert" onclick="this.parentElement.style.display='none';">&times;</span> 
             <strong>OK! </strong> {okPrint}
         </div>
         {/if}
         {#if errorPrint}
         <div class = "alertERROR">
-            <span class="closebtn" role="alert" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <span class="closebtn" role="alert" data-dismiss="alert" onclick="this.parentElement.style.display='none';">&times;</span> 
             <strong>ERROR! </strong> {errorPrint}
         </div>
         {/if}
         {#if infoPrint}
         <div class = "alertINFO">
-            <span class="closebtn" role="alert" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <span class="closebtn" role="alert" data-dismiss="alert" onclick="this.parentElement.style.display='none';">&times;</span> 
             <strong>INFO! </strong> {infoPrint}
         </div>
         {/if}
