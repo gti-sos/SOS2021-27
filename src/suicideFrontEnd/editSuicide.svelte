@@ -20,7 +20,11 @@
     let updatedTotal=0;
     let updated_ratio=0;
 
-    let errorMsg="";
+
+
+    let errorPrint = "";
+    let okPrint = "";
+    let infoPrint = "";
 
     onMount(getSuicide);
 
@@ -64,7 +68,24 @@
             }
 
         }).then(function(res){
-            getSuicide()
+            if (res.status == 200) {
+
+                okPrint = "El recurso se ha actualizado correctamente."
+                errorPrint = "";
+                infoPrint="";
+                getSuicide();
+
+            } else if (res.status == 404) {
+
+                errorPrint = "No hay ningún registro a eliminar con dichas claves";
+                okPrint="";
+                infoPrint="";
+            } else if (res.status == 500) {
+
+                errorPrint = "Error interno del servidor al actualizar recurso.";
+                okPrint="";
+                infoPrint="";
+            }
         });
     }
 
@@ -98,8 +119,69 @@
             </tbody>
         </Table>
 
-        {#if errorMsg}
-            <p style="color: red">ERROR: {errorMsg}</p>
-        {/if}
+
+        <div>
+            {#if okPrint}
+            <div class = "alertOK" id="hideMe" style="background-color:darkseagreen">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                <strong>OK! </strong><p> </p> {okPrint}
+            </div>
+            {/if}
+            {#if errorPrint}
+            <div class = "alertERROR" id="hideMe" style="background-color:salmon">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                <strong>ERROR! </strong><p> </p> {errorPrint}
+            </div>
+            {/if}
+            {#if infoPrint}
+            <div class = "alertINFO" id="hideMe" style="background-color:cyan">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                <strong>INFO! </strong><p> </p> {infoPrint}
+            </div>
+            {/if}
+        </div>
         <Button outline color="primary" on:click="{pop}">Volver</Button>
+
+
+        
+        
 </main>
+
+
+
+
+
+
+
+
+
+
+
+<style>
+
+    .alertOK {
+            margin: 0 auto;
+            display: table;
+            padding: 20px;
+            background-color: #4ab984;
+            color: white;
+        }
+    
+        .alertERROR {
+            margin: 0 auto;
+            display: table;
+            padding: 20px;
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .alertINFO {
+            margin: 0 auto;
+            display: table;
+            padding: 20px;
+            background-color: #59a9f8;
+            color: white;
+        }
+    
+    
+    </style>

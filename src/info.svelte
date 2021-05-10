@@ -6,7 +6,7 @@
       En nuestro grupo analizaremos la situación económica de los habitantes en diferentes provincias españolas con el objetivo de poder relacionar este factor con la 		evolución en la actividad de juegos de azar y apuestas ¿aumentan o disminuyen según el nivel económico, se apuesta más cantidad o menos? y con el nivel de suicidios, 
       donde la participación en las apuestas puede ser un factor clave para estos.  </p>
 
-    <p> <b class="color">Repository:</b><a href="https://github.com/gti-sos/SOS2021-27"> https://github.com/gti-sos/SOS2021-27</a> </p>
+    <p> <b class="color">Repositorio:</b><a href="https://github.com/gti-sos/SOS2021-27"> https://github.com/gti-sos/SOS2021-27</a> </p>
     <p> <b class="color">URL:</b><a href="http://sos2021-27.herokuapp.com"> http://sos2021-27.herokuapp.com</a> </p>
     </div>  
     <br>
@@ -19,8 +19,9 @@
             <br>
             <div>
             <p> <b class="color">GitHub:</b> <a href="https://github.com/Jota0Garcia"> https://github.com/Jota0Garcia</a></p>
-            <p> <b class="color">API URL:</b> <a href="http://sos2021-27.herokuapp.com/api/v1/suicide-records"> http://sos2021-27.herokuapp.com/api/v1/suicide-records</a></p>
-            <p> <b class="color">API Documentation:</b> <a href="https://documenter.getpostman.com/view/14951327/TzJsfdhf"> https://documenter.getpostman.com/view/14951327/TzJsfdhf</a></p>
+            <p> <b class="color">API URL:</b> <a href="http://sos2021-27.herokuapp.com/api/v2/suicide-records"> http://sos2021-27.herokuapp.com/api/v1/suicide-records</a></p>
+            <p> <b class="color">Documentación API v1:</b> <a href="https://documenter.getpostman.com/view/14951327/TzJsfdhf"> https://documenter.getpostman.com/view/14951327/TzJsfdhf</a></p>
+            <p> <b class="color">Documentación API v2:</b> <a href="https://documenter.getpostman.com/view/14951327/TzRSh81n"> https://documenter.getpostman.com/view/14951327/TzRSh81n</a></p>
             <p> <b class="color">Front End URL:</b> <a href="http://sos2021-27.herokuapp.com/#/suicide-records"> http://sos2021-27.herokuapp.com/#/suicide-records</a></p>
             </div>
         </slot>
