@@ -181,9 +181,6 @@
         el.value = opt;
         listaProvincias.add(el);
     }​
-    
-
-    
     onMount(getBudgets);
 </script>
 
