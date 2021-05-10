@@ -26,10 +26,12 @@
     let page = 1;
     let lastPage = 1;
     let total = 0;
+
+    onMount(getBudgets);
     
     async function getBudgets() {
         console.log("Fetching budgets...");
-        const data = await fetch(BASE_API_PATH + "?offset=" + offset + "&limit" + limit);
+        const data = await fetch(BASE_API_PATH + "?offset=" + offset + "&limit=" + limit);
         if (data.ok) {
             console.log("OK");
             const json = await data.json();
@@ -43,8 +45,6 @@
         }
         pagination();
     }
-    
-    onMount(getBudgets);
 
     async function initialBudgets() {
         console.log("Loading initial data...");
@@ -182,20 +182,27 @@
         {/if}
             <td style="padding-left:20px"> <Button outline color="danger" on:click={deleteBudgets}> Borrar tabla </Button> </td>
     </div>
+    <br/>
      <Table bordered>
         <thead>
             <tr>
-                <td>
-                    Búsqueda por provincia:
-                    <input style="padding-left:20px" bind:value="{searchedProvince}">
+                <td class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> Búsqueda por provincia: </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Provincia" bind:value="{searchedProvince}">
+                </td>
+                <td class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> Búsqueda por año: </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Año" bind:value="{searchedYear}">
                 </td>
                 <td>
-                    Búsqueda por año:
-                    <input style="padding-left:20px" bind:value="{searchedYear}">
-                </td>
-                <td>
-                    <Button color="info" on:click="{searchBudgets(searchedProvince,searchedYear)}">Buscar</Button>
-                    <Button outline color="success" style="padding-left:20px" href="javascript:location.reload()">Refrescar</Button>
+                    <div>
+                    <td> <Button color="info" on:click="{searchBudgets(searchedProvince,searchedYear)}"> Buscar </Button> </td>
+                    <td style="padding-left:20px"> <Button outline color="success" style="padding-left:20px" href="javascript:location.reload()"> Refrescar </Button> </td>
+                    </div>
                 </td>
             </tr>
         </thead>
@@ -249,8 +256,9 @@
     </div>
     <br/>
     <div>
-    <Button outline color="info" href="https://sos2021-27.herokuapp.com/#/info"> Página principal </Button>
-    <Pagination align="right">
+    <td align="left"> <Button outline color="info" href="https://sos2021-27.herokuapp.com/#/info"> Página principal </Button> </td>
+    <td  align="right">
+      <Pagination>
         <PaginationItem class = {page === 1 ? "disabled" : ""}>
           <PaginationLink previous href="#/province-budget-and-investment-in-social-promotion" on:click={() => changePage(page - 1, offset - 10)}/>
         </PaginationItem>
@@ -263,6 +271,7 @@
           <PaginationLink next href="#/province-budget-and-investment-in-social-promotion" on:click={() => changePage(page + 1, offset + 10)}/>
         </PaginationItem>
       </Pagination>
+    </td>
     </div>
 </main>
 
