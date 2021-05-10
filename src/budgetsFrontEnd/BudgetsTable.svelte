@@ -17,7 +17,7 @@
     let searchedProvince = "";
     let searchedYear = "";
 
-    let listaProvincias = document.getElementById('listaProvincias');
+    let listaProvincias = document.getElementById('listadoProvincias');
     listaProvincias.length = 0;
     let defOption = document.createElement('option');
     defOption.text = 'Provincias';
@@ -60,7 +60,7 @@
             budgets = json;
             pagination();
             for (var i = 0; i < budgets.length; i++) {
-                var opt = budgets[i].params.province;
+                var opt = budgets[i].province;
                 var el = document.createElement("option");
                 el.textContent = opt;
                 el.value = opt;
@@ -202,8 +202,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> Búsqueda por provincia: </span>
                     </div>
-                    <select bind:value={searchedProvince} id="listaProvincias">
-                    </select>
+                    <select id="listadoProvincias" bind:value={searchedProvince}></select>
                     <div class="input-group-prepend" style="padding-left:30px">
                         <span class="input-group-text"> Búsqueda por año: </span>
                     </div>
