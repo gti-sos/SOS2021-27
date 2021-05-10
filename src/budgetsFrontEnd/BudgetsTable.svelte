@@ -82,7 +82,7 @@
                 console.log("OK");
                 okPrint = "Nuevo dato introducido correctamente."
                 budgets.push(newBudget);
-                getBudgets();
+                setTimeout(getBudgets(),10000);
             } else if (data.status == 400) {
                 console.log("Body is wrong");
                 errorPrint = "Algún dato debe estar mal introducido.";
