@@ -176,11 +176,11 @@
     function listarProvincias(provincias){
         provincias = budgets;
         for(var i = 0; i < provincias.length; i++) {
-        var opt = options[i].province;
+        var opt = provincias[i].params.province;
         var el = document.createElement("option");
         el.textContent = opt;
         el.value = opt;
-        select.appendChild(el);
+        listaProvincias.add(el);
         }​
     }
 
