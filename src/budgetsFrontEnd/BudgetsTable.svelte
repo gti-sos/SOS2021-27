@@ -1,6 +1,6 @@
 <script>
     import { onMount } from "svelte";
-    import { Button, Table, Pagination, PaginationItem, PaginationLink,3 } from "sveltestrap";
+    import { Button, Table, Pagination, PaginationItem, PaginationLink, } from "sveltestrap";
 
     var BASE_API_PATH = "/api/v1/province-budget-and-investment-in-social-promotion";
     var url = BASE_API_PATH;
