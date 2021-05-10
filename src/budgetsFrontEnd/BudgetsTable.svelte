@@ -23,14 +23,6 @@
     defOption.text = 'Provincias';
     listaProvincias.add(defOption);
     listaProvincias.selectedIndex = 0;
-
-    for(var i = 0; i < budgets.length; i++) {
-    var opt = options[i].province;
-    var el = document.createElement("option");
-    el.textContent = opt;
-    el.value = opt;
-    select.appendChild(el);
-    }​
     
     let errorPrint = "";
     let okPrint = "";
@@ -180,6 +172,19 @@
         getBudgets();
       }
     }
+
+    fuction listarProvincias(provincias){
+        let provincias = getBudgets().province;
+        for(var i = 0; i < provincias.length; i++) {
+        var opt = options[i].province;
+        var el = document.createElement("option");
+        el.textContent = opt;
+        el.value = opt;
+        select.appendChild(el);
+        }​
+    }
+
+    listarProvincias();
     onMount(getBudgets);
 </script>
 
