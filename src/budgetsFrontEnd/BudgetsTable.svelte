@@ -3,7 +3,7 @@
     import { Button, Table, Pagination, PaginationItem, PaginationLink, } from "sveltestrap";
 
     var BASE_API_PATH = "/api/v2/province-budget-and-investment-in-social-promotion";
-    var url = BASE_API_PATH;
+    var url = "";
 
     let budgets = [];
     let newBudget = {
@@ -14,7 +14,6 @@
     };
 
     let iniData = false;
-    let guardado = false;
     let searchedProvince = "";
     let searchedYear = "";
 
@@ -70,7 +69,6 @@
                 console.log("OK");
                 okPrint = "Nuevo dato introducido correctamente."
                 budgets.push(newBudget);
-                guardado = true;
                 getBudgets();
             } else if (data.status == 400) {
                 console.log("Body is wrong");
@@ -115,6 +113,7 @@
     }
 
     async function searchBudgets(province, year){
+        url = BASE_API_PATH;
 		if (province != "" && year != "") {
 			url = url + "?province=" + province + "?year=" + year; 
 		} else if (province != "" && year == "") {
@@ -166,15 +165,6 @@
         getBudgets();
       }
     }
-
-     function guardar(){
-        postBudget();
-        if(guardado == true){
-        location.reload();
-        guardado = false;
-        }
-    }
-
     onMount(getBudgets);
 </script>
 
@@ -232,7 +222,7 @@
                 <td><input bind:value="{newBudget.invest_promotion}"/></td>
                 <td> - - - </td>
                 <td> - - - </td>
-                <td colspan="2"><Button color="warning" style="color:white;" on:click={guardar}> Guardar </Button></td>
+                <td colspan="2"><Button color="warning" style="color:white;" on:click={postBudget}> Guardar </Button></td>
             </tr>
             {#each budgets as budgetSvelte}
                 <tr>
@@ -366,19 +356,23 @@
     }
     @keyframes cssAnimation {
         0% {
-            opacity:1;
+            opacity: 1;
         }
         100% {
-            opacity:0;
+            opacity: 0;
+            left: -9999px; 
+            position: absolute;   
         }
     }
 
     @-webkit-keyframes cssAnimation {
         0% {
-            opacity:1;
+            opacity: 1;
         }
         100% {
-            opacity:0;
+            opacity: 0;
+            left: -9999px; 
+            position: absolute;   
         }
     }
 
