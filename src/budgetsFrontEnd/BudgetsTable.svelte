@@ -70,9 +70,10 @@
         }).then(function (data) {
             if (data.stats == 201) {
                 console.log("OK");
-                budgets.push(newBudget);
                 okPrint = "Nuevo dato introducido correctamente;"
+                budgets.push(newBudget);
                 getBudgets();
+                location.reload();
             } else if (data.status == 400) {
                 console.log("Body is wrong");
                 errorPrint = "Algún dato debe estar mal introducido.";
@@ -167,12 +168,6 @@
         getBudgets();
       }
     }
-
-    function guardar(){
-        postBudget();
-        location.reload();
-    }
-
     onMount(getBudgets);
 </script>
 
@@ -204,10 +199,8 @@
                 </td>
                 <td>
                     <div>
-                    <Button color="info" on:click="{searchBudgets(searchedProvince,searchedYear)}"> Buscar </Button>
-                    </div>
-                    <div style="padding-left:100px">
-                    <Button outline color="success" href="javascript:location.reload()"> Refrescar </Button>
+                    <p><Button color="info" on:click="{searchBudgets(searchedProvince,searchedYear)}"> Buscar </Button></p>
+                    <p style="padding-left:30px"><Button outline color="success" href="javascript:location.reload()"> Refrescar </Button></p>
                     </div>
                 </td>
             </tr>
@@ -232,7 +225,7 @@
                 <td><input bind:value="{newBudget.invest_promotion}"/></td>
                 <td> - - - </td>
                 <td> - - - </td>
-                <td colspan="2"><Button color="warning" style="color:white;" on:click={guardar}> Guardar </Button></td>
+                <td colspan="2"><Button color="warning" style="color:white;" on:click={postBudget}> Guardar </Button></td>
             </tr>
             {#each budgets as budgetSvelte}
                 <tr>
@@ -251,21 +244,21 @@
     <br/>
     <div>
         {#if okPrint}
-        <div class = "alertOK">
-            <span class="closebtn" role="alert" data-dismiss="alert" onclick="this.parentElement.style.display='none';">&times;</span> 
-            <strong>OK! </strong> {okPrint}
+        <div class = "alertOK" id="hideMe">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <strong>OK! </strong><p> </p> {okPrint}
         </div>
         {/if}
         {#if errorPrint}
-        <div class = "alertERROR">
-            <span class="closebtn" role="alert" data-dismiss="alert" onclick="this.parentElement.style.display='none';">&times;</span> 
-            <strong>ERROR! </strong> {errorPrint}
+        <div class = "alertERROR" id="hideMe">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <strong>ERROR! </strong><p> </p> {errorPrint}
         </div>
         {/if}
         {#if infoPrint}
-        <div class = "alertINFO">
-            <span class="closebtn" role="alert" data-dismiss="alert" onclick="this.parentElement.style.display='none';">&times;</span> 
-            <strong>INFO! </strong> {infoPrint}
+        <div class = "alertINFO" id="hideMe">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <strong>INFO! </strong><p> </p> {infoPrint}
         </div>
         {/if}
     </div>
@@ -320,38 +313,53 @@
     }
 
     .alertOK {
+        align: center;
         display: table;
         padding: 20px;
         background-color: #4ab984;
         color: white;
-        animation: autoHide 0s ease-in 4s forwards;
     }
 
     .alertERROR {
+        align: center;
         display: table;
         padding: 20px;
         background-color: #f44336;
         color: white;
-        animation: autoHide 0s ease-in 4s forwards;
     }
     
     .alertINFO {
+        align: center;
         display: table;
         padding: 20px;
         background-color: #59a9f8;
         color: white;
-        animation: autoHide 0s ease-in 4s forwards;
     }
 
-    .alert {
-        animation: autoHide 0s ease-in 4s forwards;
+    #hideMe {
+        -moz-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Firefox */
+        -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Safari and Chrome */
+        -o-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Opera */
+        animation: cssAnimation 0s ease-in 5s forwards;
+        -webkit-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
     }
-
-    @keyframes autoHide {
+    @keyframes cssAnimation {
         to {
             width:0;
             height:0;
             overflow:hidden;
+        }
+    }
+
+    @-webkit-keyframes cssAnimation {
+        to {
+            width:0;
+            height:0;
+            visibility:hidden;
         }
     }
 
