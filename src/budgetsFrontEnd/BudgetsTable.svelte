@@ -59,6 +59,13 @@
             const json = await data.json();
             budgets = json;
             pagination();
+            for (var i = 0; i < budgets.length; i++) {
+                var opt = budgets[i].params.province;
+                var el = document.createElement("option");
+                el.textContent = opt;
+                el.value = opt;
+                listaProvincias.add(el);
+            }
             console.log(`Received ${budgets.length} budgets.`);
         } else {
             console.log("ERROR");
@@ -172,13 +179,6 @@
         getBudgets();
       }
     }
-
-    for (var i = 0; i < budgets.length; i++) {
-        var opt = budgets[i].params.province;
-        var el = document.createElement("option");
-        el.textContent = opt;
-        el.value = opt;
-        listaProvincias.add(el);}
 
     onMount(getBudgets);
 </script>
