@@ -33,10 +33,12 @@
             <p><b>Fuente: </b><a href="https://datosmacro.expansion.com/estado/presupuestos/espana-comunidades-autonomas?sc=PR-G-F-23">province-budget-and-investment-in-social-promotion</a></p>
             </div>
         <br>
-            <p> <b class="color">GitHub:</b> <a href="https://github.com/FerNueJim"> https://github.com/FerNueJim</a></p>
-            <p> <b class="color">API URL:</b> <a href="https://sos2021-27.herokuapp.com/api/v1/province-budget-and-investment-in-social-promotion"> https://sos2021-27.herokuapp.com/api/v1/province-budget-and-investment-in-social-promotion</a></p>
-            <p> <b class="color">API Documentation:</b> <a href="https://documenter.getpostman.com/view/14982196/TzJu8cTr"> https://documenter.getpostman.com/view/14982196/TzJu8cTr</a></p>
-            <p> <b class="color">Front End URL:</b> <a href="http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion"> http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion</a></p>
+            <p> <b class="color">GitHub personal:</b> <a href="https://github.com/FerNueJim"> https://github.com/FerNueJim</a></p>
+            <p> <b class="color">Back End V1:</b> <a href="https://sos2021-27.herokuapp.com/api/v1/province-budget-and-investment-in-social-promotion"> https://sos2021-27.herokuapp.com/api/v1/province-budget-and-investment-in-social-promotion</a></p>
+            <p> <b class="color">Back End V2:</b> <a href="https://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion"> https://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion</a></p>
+            <p> <b class="color">Documentación Postman V1:</b> <a href="https://documenter.getpostman.com/view/14982196/TzJu8cTr"> https://documenter.getpostman.com/view/14982196/TzJu8cTr</a></p>
+            <p> <b class="color">Documentación Postman V2:</b> <a href="https://documenter.getpostman.com/view/14982196/TzRSgn9j"> https://documenter.getpostman.com/view/14982196/TzRSgn9j</a></p>
+            <p> <b class="color">Front End:</b> <a href="http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion"> http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion</a></p>
         </slot>
     </div>
     <br><br>

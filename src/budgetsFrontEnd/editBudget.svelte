@@ -18,7 +18,7 @@
 
     async function getBudget(){
         console.log("Fetching budget...")
-        const data = await fetch("api/v1/province-budget-and-investment-in-social-promotion/"+ params.province + "/" + params.year);
+        const data = await fetch("api/v2/province-budget-and-investment-in-social-promotion/"+ params.province + "/" + params.year);
 
         if(data.ok){
             console.log("OK: ");
@@ -37,7 +37,7 @@
 
     async function updateBudget(){
         console.log("Updating budget... " + JSON.stringify(params.province + "," + params.year));
-        const data = await fetch("/api/v1/province-budget-and-investment-in-social-promotion/" + params.province + "/" + params.year,{
+        const data = await fetch("/api/v2/province-budget-and-investment-in-social-promotion/" + params.province + "/" + params.year,{
             method: "PUT",
             body: JSON.stringify({
                 province:params.province,
@@ -57,7 +57,7 @@
 
     async function actualiza(){
         updateBudget();
-        location.href = "http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion";
+        setTimeout(location.href = "http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion",3000);
     }
 </script>
 

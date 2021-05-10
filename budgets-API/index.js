@@ -1,6 +1,6 @@
 //API province-budget-and-investment-in-social-promotion
 
-var BASE_API_PATH = "/api/v1/province-budget-and-investment-in-social-promotion";
+var BASE_API_PATH = "/api/v2/province-budget-and-investment-in-social-promotion";
 
 var budgets_ini = [
     {
@@ -226,7 +226,45 @@ module.exports.register = (app,budgetsDB)=>{
                 }
             }
         });
-    });    
+    });
+
+    app.get(BASE_API_PATH+"/:province", (request,response)=>{
+
+        budgetsDB.find({"province": request.params.province},(error,data)=>{
+            if(error){
+                console.error("Cannot access to the resource using GET" + error);
+                    response.sendStatus(500);
+            }else{
+                if(data.length==1){
+                    delete data[0]._id;
+                    console.log("Resource requested: " + JSON.stringify(data[0]), null, 2);
+                        response.send(JSON.stringify(data[0], null, 2));
+                }else{
+                    console.error("Cannot find the resource");
+                        response.sendStatus(404);
+                }
+            }
+        });
+    });
+    
+    app.get(BASE_API_PATH+"/:year", (request,response)=>{
+
+        budgetsDB.find({G"year": parseInt(request.params.year)},(error,data)=>{
+            if(error){
+                console.error("Cannot access to the resource using GET" + error);
+                    response.sendStatus(500);
+            }else{
+                if(data.length==1){
+                    delete data[0]._id;
+                    console.log("Resource requested: " + JSON.stringify(data[0]), null, 2);
+                        response.send(JSON.stringify(data[0], null, 2));
+                }else{
+                    console.error("Cannot find the resource");
+                        response.sendStatus(404);
+                }
+            }
+        });
+    });   
     
     app.delete(BASE_API_PATH+"/:province/:year", (request,response)=>{ 
 
