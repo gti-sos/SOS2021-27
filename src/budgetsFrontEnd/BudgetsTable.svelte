@@ -207,7 +207,7 @@
                 </td>
                 <td>
                     <div>
-                    <astyle="padding-left:20px"><Button color="info" on:click="{searchBudgets(searchedProvince,searchedYear)}"> Buscar </Button></a>
+                    <a style="padding-left:20px"><Button color="info" on:click="{searchBudgets(searchedProvince,searchedYear)}"> Buscar </Button></a>
                     <a style="padding-left:30px"><Button outline color="success" href="javascript:location.reload()"> Refrescar </Button></a>
                     </div>
                 </td>
