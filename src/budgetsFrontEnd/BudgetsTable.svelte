@@ -120,11 +120,11 @@
         console.log("Searching budget: " + province + ", "+ year);
 	
 		if (province != "" && year != "") {
-			url = url + "/" + province + "/" + year; 
+			url = url + "?province=" + province + "?year=" + year; 
 		} else if (province != "" && year == "") {
-			url = url + "/" + province;
+			url = url + "?province=" + province;
 		} else if (province == "" && year != "") {
-			url = url + "/" + year;
+			url = url + "?year=" + year;
 		}
 		const data = await fetch(url);
 		if (data.ok) {
@@ -249,18 +249,24 @@
     </Table>
     <br/>
     <div>
+        {#if okPrint}
         <div class = "alertOK">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <span class="closebtn" role="alert" onclick="this.parentElement.style.display='none';">&times;</span> 
             <strong>OK! </strong> {okPrint}
         </div>
+        {/if}
+        {#if errorPrint}
         <div class = "alertERROR">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <span class="closebtn" role="alert" onclick="this.parentElement.style.display='none';">&times;</span> 
             <strong>ERROR! </strong> {errorPrint}
         </div>
+        {/if}
+        {#if infoPrint}
         <div class = "alertINFO">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <span class="closebtn" role="alert" onclick="this.parentElement.style.display='none';">&times;</span> 
             <strong>INFO! </strong> {infoPrint}
         </div>
+        {/if}
     </div>
     <br/>
     <div>
@@ -324,6 +330,18 @@
         padding: 20px;
         background-color: #59a9f8;
         color: white;
+    }
+
+    .alert {
+        animation: autoHide 0s ease-in 4s forwards;
+    }
+
+    @keyframes autoHide {
+        to {
+            width:0;
+            height:0;
+            overflow:hidden;
+        }
     }
 
     .closebtn {
