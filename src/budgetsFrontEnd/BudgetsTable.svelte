@@ -14,6 +14,7 @@
     };
 
     let iniData = false;
+    let guardado = false;
     let searchedProvince = "";
     let searchedYear = "";
 
@@ -72,8 +73,8 @@
                 console.log("OK");
                 okPrint = "Nuevo dato introducido correctamente;"
                 budgets.push(newBudget);
+                guardado = true;
                 getBudgets();
-                location.reload();
             } else if (data.status == 400) {
                 console.log("Body is wrong");
                 errorPrint = "Algún dato debe estar mal introducido.";
@@ -168,6 +169,14 @@
         getBudgets();
       }
     }
+
+     function guardar(){
+        postBudget();
+        if(guardado == true){
+        location.reload();
+        }
+    }
+
     onMount(getBudgets);
 </script>
 
@@ -225,7 +234,7 @@
                 <td><input bind:value="{newBudget.invest_promotion}"/></td>
                 <td> - - - </td>
                 <td> - - - </td>
-                <td colspan="2"><Button color="warning" style="color:white;" on:click={postBudget}> Guardar </Button></td>
+                <td colspan="2"><Button color="warning" style="color:white;" on:click={guardar}> Guardar </Button></td>
             </tr>
             {#each budgets as budgetSvelte}
                 <tr>
@@ -245,20 +254,17 @@
     <div>
         {#if okPrint}
         <div class = "alertOK" id="hideMe">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-            <strong>OK! </strong><p> </p> {okPrint}
+            <strong style="text-alig:center">OK! </strong><p></p> {okPrint}
         </div>
         {/if}
         {#if errorPrint}
         <div class = "alertERROR" id="hideMe">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-            <strong>ERROR! </strong><p> </p> {errorPrint}
+            <strong style="text-alig:center">ERROR! </strong><p></p> {errorPrint}
         </div>
         {/if}
         {#if infoPrint}
         <div class = "alertINFO" id="hideMe">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-            <strong>INFO! </strong><p> </p> {infoPrint}
+            <strong style="text-alig:center">INFO! </strong><p></p> {infoPrint}
         </div>
         {/if}
     </div>
