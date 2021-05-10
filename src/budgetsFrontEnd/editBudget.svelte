@@ -4,15 +4,15 @@
     import {pop} from "svelte-spa-router";
     import {Button, Table} from "sveltestrap";
 
-    export let params={};
+    export let params = {};
 
-    let newBudget={}
-    let updatedBudget=0;
-    let updatedInvest_promotion=0;
-    let updatedLiquid=0;
-    let updatedPercentage=0;
+    let newBudget = {};
+    let updatedBudget = 0;
+    let updatedInvest_promotion = 0;
+    let updatedLiquid = 0;
+    let updatedPercentage = 0;
 
-    let error="";
+    let error = "";
 
     onMount(getBudget);
 
