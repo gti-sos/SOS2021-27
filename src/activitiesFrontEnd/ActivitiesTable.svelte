@@ -191,9 +191,10 @@
         getActivity();
       }
     }
+
     const creaParametros=()=>{
 
-if(estructuraBusqueda.province.length!=0){
+        if(estructuraBusqueda.province.length!=0){
     console.log("TIENE0")
     paramsBusqueda=paramsBusqueda+"&province="+estructuraBusqueda.province;
 }
@@ -250,15 +251,16 @@ paramsBusqueda="";
         <tbody>
             <tr>
 
-                <td><input bind:value={newActivity.province} /></td>
-                <td><input bind:value={newActivity.year} /></td>
-                <td><input bind:value={newActivity.catering_bingo_machine} /></td>
-                <td><input bind:value={newActivity.lottery_engagement } /></td>
-                <td><input bind:value={newActivity.bingo_site} /></td>
-                <td><input bind:value={newActivity.national_lottery_expend} /></td>
-                <td
-                    ><Button on:click={insertActivity}>Insertar Registro</Button
-                    ></td
+                <td><input bind:value={estructuraBusqueda.province} /></td>
+                <td><input bind:value={estructuraBusqueda.year} /></td>
+                <td><input bind:value={estructuraBusqueda.catering_bingo_machine} /></td>
+                <td><input bind:value={estructuraBusqueda.lottery_engagement } /></td>
+                <td><input bind:value={estructuraBusqueda.bingo_site} /></td>
+                <td><input bind:value={estructuraBusqueda.national_lottery_expend} /></td>
+                
+                <Button color="primary" on:click={creaParametros} style="margin:10px;">Buscar</Button>
+
+                   
                 >
             </tr>
             {#each activities as activitie}

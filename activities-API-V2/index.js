@@ -13,7 +13,7 @@ module.exports.register= (app,db)=>{
                 "province": 'Seville',
                 "year": "2018",
                 "catering_bingo_machine": "4965",
-                "lottery_engagement ": "24028820",
+                "lottery_engagement": "24028820",
                 "bingo_site": "6",
                 "national_lottery_expend":"141889249"
             },
@@ -21,7 +21,7 @@ module.exports.register= (app,db)=>{
                 "province": 'Seville',
                 "year": "2017",
                 "catering_bingo_machine": "4940",
-                "lottery_engagement ": "23339380",
+                "lottery_engagement": "23339380",
                 "bingo_site": "6",
                 "national_lottery_expend":"138160377"
             },
@@ -29,7 +29,7 @@ module.exports.register= (app,db)=>{
                 "province": 'Seville',
                 "year": "2016",
                 "catering_bingo_machine":"4778",
-                "lottery_engagement ": "23302680",
+                "lottery_engagement": "23302680",
                 "bingo_site": "6",
                 "national_lottery_expend":"130959228"
             },
@@ -37,7 +37,7 @@ module.exports.register= (app,db)=>{
                 "province": 'Barcelona',
                 "year": "2018",
                 "catering_bingo_machine":"13389",
-                "lottery_engagement ": "56425240",
+                "lottery_engagement": "56425240",
                 "bingo_site": "34",
                 "national_lottery-expend":"486535860"
             },
@@ -45,7 +45,7 @@ module.exports.register= (app,db)=>{
                 "province": 'Barcelona',
                 "year": "2017",
                 "catering_bingo_machine":"13389",
-                "lottery_engagement ": "62538100",
+                "lottery_engagement": "62538100",
                 "bingo_site": "34",
                 "national_lottery_expend":"487375563"
                         },
@@ -53,7 +53,7 @@ module.exports.register= (app,db)=>{
                 "province": 'Barcelona',
                 "year": "2016",
                 "catering_bingo_machine":"13389",
-                "lottery_engagement ": "59640040",
+                "lottery_engagement": "59640040",
                 "bingo_site": "33",
                 "national_lottery_expend":"498638230"
             },
@@ -61,7 +61,7 @@ module.exports.register= (app,db)=>{
                 "province": 'Madrid',
                 "year": "2018",
                 "catering_bingo_machine":"17240",
-                "lottery_engagement ": "95951420",
+                "lottery_engagement": "95951420",
                 "bingo_site": "45",
                 "national_lottery_expend":"807501802"
             },
@@ -69,7 +69,7 @@ module.exports.register= (app,db)=>{
                 "province": 'Madrid',
                 "year": "2017",
                 "catering_bingo_machine":"17988",
-                "lottery_engagement ": "99264960",
+                "lottery_engagement": "99264960",
                 "bingo_site": "46",
                 "national_lottery_expend":"802036255"
             },
@@ -77,7 +77,7 @@ module.exports.register= (app,db)=>{
                 "province": 'Madrid',
                 "year": "2016",
                 "catering_bingo_machine":"17236",
-                "lottery_engagement ": "89332820",
+                "lottery_engagement": "89332820",
                 "bingo_site": "43",
                 "national_lottery_expend":"760015875"
             },
@@ -85,7 +85,7 @@ module.exports.register= (app,db)=>{
                 "province": 'Valencia',
                 "year": "2018",
                 "catering_bingo_machine":"20525",
-                "lottery_engagement ": "52916920",
+                "lottery_engagement": "52916920",
                 "bingo_site": "32",
                 "national_lottery_expend":"355915035"
             },
@@ -93,7 +93,7 @@ module.exports.register= (app,db)=>{
                 "province": 'Valencia',
                 "year": "2017",
                 "catering_bingo_machine":"20975",
-                "lottery_engagement ": "51134140",
+                "lottery_engagement": "51134140",
                 "bingo_site": "30",
                 "national_lottery_expend":"348995707"
             },
@@ -101,7 +101,7 @@ module.exports.register= (app,db)=>{
                 "province": 'Valencia',
                 "year": "2016",
                 "catering_bingo_machine":"20975",
-                "lottery_engagement ": "48581940",
+                "lottery_engagement": "48581940",
                 "bingo_site": "30",
                 "national_lottery_expend":"334546253"
             }
@@ -141,8 +141,8 @@ module.exports.register= (app,db)=>{
         if(query.hasOwnProperty("catering_bingo_machine")){
             querysParseadas["catering_bingo_machine"]=query["catering_bingo_machine"]
         }
-        if(query.hasOwnProperty("lottery_engagement ")){
-            querysParseadas["lottery_engagement "]=query["lottery_engagement "]
+        if(query.hasOwnProperty("lottery_engagement")){
+            querysParseadas["lottery_engagement"]=query["lottery_engagement"]
         }
         if(query.hasOwnProperty("bingo_site")){
             querysParseadas["bingo_site"]=query["bingo_site"]
