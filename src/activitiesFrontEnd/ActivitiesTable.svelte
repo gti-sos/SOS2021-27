@@ -118,7 +118,7 @@
             "Deleting activity with keys: " + provincia + "," + anyo + "."
         );
         const res = await fetch(
-            BASE_API_PATH + provincia + "/" + anyo,
+            BASE_API_PATH + "/" + provincia + "/" + anyo,
             {
                 method: "DELETE",
             }
