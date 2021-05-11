@@ -82,6 +82,7 @@
             } else if (data.status == 400) {
                 console.log("Incorrect number of resources");
                 infoPrint = "Se debe cumplimentar todos los campos del recurso.";
+            }
         });
     }
 
