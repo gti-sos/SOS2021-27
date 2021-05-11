@@ -118,21 +118,32 @@
     }
 
     async function searchBudgets(){
-        if(searched.province.length!=0){
-            paramSearch = paramSearch + "&province=" + provincia;
+         if(searched.province.length != 0 && searched.year.length != 0){
+            paramSearch = paramSearch + "/" + searched.province + "/" + searched.year;
+            okPrint = `Se han encontrado ${budgets.length} datos`;
+        } else if(searched.province.length == 0 && searched.year.length == 0){
+            infoPrint = "Debe introducir una provincia o un año.";
+        } else if(searched.province.length!=0){
+            paramSearch = paramSearch + "/" + searched.province;
+            okPrint = `Se han encontrado ${budgets.length} datos`;
+        } else if(searched.year.length!=0){
+            paramSearch = paramSearch + "/" + searched.year;
             okPrint = `Se han encontrado ${budgets.length} datos`;
         }
-        if(searched.year.length!=0){
-            paramSearch = paramSearch + "&year=" + searched.year;
-            okPrint = `Se han encontrado ${budgets.length} datos`;
-        }
-
-        if (searched.province == "" && searched.year == ""){
-                infoPrint = "Debe introducir una provincia o un año.";
-        } else if (budgets.length == 0){
-                infoPrint = "No se ha encontrado ningún dato con esos parámetros de búsqueda.";
-        }
-        getBudgets();
+        const data = await fetch(BASE_API_PATH + paramSearch);
+        if (data.ok) {
+            console.log("OK");
+            const json = await data.json();
+            budgets = json;
+            budgets.sort((a,b) => (a.year < b.year) ? 1 : ((b.year < a.year) ? -1 : 0));
+            budgets.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
+            console.log(`Received ${budgets.length} budgets.`);
+            pagination();
+			console.log("Showing " + budgets.length + " data");
+		} else {
+			console.log("ERROR");
+            errorPrint = "No se ha encontrado ningún dato con esos parámetros de búsqueda.";
+		}
         paramSearch = "";
     }
 
