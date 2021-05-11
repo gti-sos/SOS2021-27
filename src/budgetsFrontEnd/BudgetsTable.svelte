@@ -73,7 +73,7 @@
                 console.log("OK");
                 okPrint = "Nuevo dato introducido correctamente."
                 budgets.push(newBudget);
-                await sleep(3000);
+                sleep(3000);
                 getBudgets();
             } else if (data.status == 400) {
                 console.log("Body is wrong");
