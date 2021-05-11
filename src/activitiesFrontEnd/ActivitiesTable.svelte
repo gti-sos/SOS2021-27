@@ -224,6 +224,31 @@ paramsBusqueda="";
 
 <main>
     <br>
+    <Table bordered>
+        <thead>
+            <tr>
+                <td>Provincia</td>
+                <td>Año</td>
+                <td>Maquinas de bingo activas</td>
+                <td>Usuarios en la loteria</td>
+                <td>locales de bingo</td>
+                <td>Gastos en la loteria nacional</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input bind:value={estructuraBusqueda.province} /></td>
+                <td><input bind:value={estructuraBusqueda.year} /></td>
+                <td><input bind:value={estructuraBusqueda.catering_bingo_machine} /></td>
+                <td><input bind:value={estructuraBusqueda.lottery_engagement} /></td>
+                <td><input bind:value={estructuraBusqueda.bingo_site} /></td>
+                <td><input bind:value={estructuraBusqueda.national_lottery_expend} /></td>
+                
+                <Button color="primary" on:click={creaParametros} style="margin:10px;">Buscar</Button>
+            </tr>
+
+        </tbody>
+    </Table>
     <h2>Registro de juegos de azar por año y provincia.</h2>
     <td
     ><Button on:click={initialActivity} color="primary">Generar Lista</Button
@@ -251,16 +276,15 @@ paramsBusqueda="";
         <tbody>
             <tr>
 
-                <td><input bind:value={estructuraBusqueda.province} /></td>
-                <td><input bind:value={estructuraBusqueda.year} /></td>
-                <td><input bind:value={estructuraBusqueda.catering_bingo_machine} /></td>
-                <td><input bind:value={estructuraBusqueda.lottery_engagement } /></td>
-                <td><input bind:value={estructuraBusqueda.bingo_site} /></td>
-                <td><input bind:value={estructuraBusqueda.national_lottery_expend} /></td>
-                
-                <Button color="primary" on:click={creaParametros} style="margin:10px;">Buscar</Button>
-
-                   
+                <td><input bind:value={newActivity.province} /></td>
+                <td><input bind:value={newActivity.year} /></td>
+                <td><input bind:value={newActivity.catering_bingo_machine} /></td>
+                <td><input bind:value={newActivity.lottery_engagement } /></td>
+                <td><input bind:value={newActivity.bingo_site} /></td>
+                <td><input bind:value={newActivity.national_lottery_expend} /></td>
+                <td
+                ><Button style="background-color:#32D524;" on:click={insertActivity}>Insertar Registro</Button
+                    ></td
                 >
             </tr>
             {#each activities as activitie}
