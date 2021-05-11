@@ -30,7 +30,7 @@
 
     async function getBudgets() {
         console.log("Fetching budgets...");
-        const data = await fetch(BASE_API_PATH + "?offset=" + c_offset + "&limit=" + limit + paramSearch);
+        const data = await fetch(BASE_API_PATH + "?offset=" + c_offset + "&limit=" + limit);
         if (data.status == 200) {
             console.log("OK");
             const json = await data.json();
@@ -39,7 +39,6 @@
             budgets.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
             console.log(`Received ${budgets.length} budgets.`);
             pagination();
-			console.log("Showing " + budgets.length + " data");
 		} else {
 			console.log("ERROR");
             errorPrint = "No se ha encontrado ningún dato con esos parámetros de búsqueda.";
@@ -118,18 +117,28 @@
 
     async function searchBudgets(){
          if(searched.province.length != 0 && searched.year.length != 0){
-            paramSearch = paramSearch + "?province=" + searched.province + "?year=" + searched.year;
-            okPrint = `Se han encontrado ${budgets.length} datos`;
+            paramSearch = paramSearch + "?province=" + searched.province + "&year=" + searched.year;
         } else if(searched.province.length == 0 && searched.year.length == 0){
             infoPrint = "Debe introducir una provincia o un año.";
         } else if(searched.province.length != 0 && searched.year.length == 0){
             paramSearch = paramSearch + "?province=" + searched.province;
-            okPrint = `Se han encontrado ${budgets.length} datos`;
         } else {
             paramSearch = paramSearch + "?year=" + searched.year;
-            okPrint = `Se han encontrado ${budgets.length} datos`;
         }
-        getBudgets();
+        const data = await fetch(BASE_API_PATH + paramSearch);
+        if (data.status == 200) {
+            console.log("OK");
+            const json = await data.json();
+            budgets = json;
+            budgets.sort((a,b) => (a.year < b.year) ? 1 : ((b.year < a.year) ? -1 : 0));
+            budgets.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
+            okPrint = `Se han encontrado ${budgets.length} datos`;
+            console.log("Showing " + budgets.length + " data");
+            pagination();
+		} else {
+			console.log("ERROR");
+            errorPrint = "No se ha encontrado ningún dato con esos parámetros de búsqueda.";
+		}
         paramSearch = "";
     }
 
