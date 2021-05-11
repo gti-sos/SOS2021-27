@@ -18,6 +18,7 @@ var suicideDB=new Datastore({filename: "suicide-records-API2/suicide.db",autoloa
 var activitiesDB=new Datastore({filename: "activities-API/activities.db",autoload:true});
 var budgetsDB = new Datastore({filename: "budgets-API/budgets.db",autoload:true});
 var budgetsDBV2 = new Datastore({filename: "budgets-API-V2/budgets.db",autoload:true});
+var activitiesDBV2=new Datastore({filename: "activities-API-V2/activities.db",autoload:true});
 
 
  
@@ -45,7 +46,8 @@ budgetsAPIV2.register(app,budgetsDBV2);
 
 var activitiesAPI = require("./activities-API");
 activitiesAPI.register(app,activitiesDB);
-
+var activitiesAPIV2 = require("./activities-API-V2");
+activitiesAPIV2.register(app,activitiesDBV2);
 
 
 
