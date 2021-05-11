@@ -73,13 +73,15 @@
                 getBudgets();
                 console.log("OK");
                 okPrint = "Nuevo dato introducido correctamente."
-            } else if (data.status == 400) {
+            } else if (data.status == 409) {
                 console.log("Body is wrong");
                 errorPrint = "Algún dato debe estar mal introducido.";
-            } else if (data.status == 409) {
+            } else if (data.status == 404) {
                 console.log("This budget already exists");
                 infoPrint = "Estos datos ya existen en la base de datos.";
-            }
+            } else if (data.status == 400) {
+                console.log("Incorrect number of resources");
+                infoPrint = "Se debe cumplimentar todos los campos del recurso.";
         });
     }
 

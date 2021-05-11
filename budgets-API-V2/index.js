@@ -185,8 +185,10 @@ module.exports.register = (app,budgetsDB)=>{
                         !request.body.invest_promotion) {
                         console.log(`Incorrect number of resources`);
                             return response.sendStatus(400);
-                    }else if (!(/^([0-9])*$/.test(request.body.budget)) ||
-                        !(/^([0-9])*$/.test(request.body.invest_promotion))) {
+                    }else if (!(/^([A-Z])*$/.test(request.body.province)) ||
+                            !(/^([0-9])*$/.test(request.body.year)) ||
+                            !(/^([0-9])*$/.test(request.body.budget)) ||
+                            !(/^([0-9])*$/.test(request.body.invest_promotion))) {
                         console.log(`Integers allowed only`);
                             return response.sendStatus(409);
                     }else{
@@ -203,7 +205,7 @@ module.exports.register = (app,budgetsDB)=>{
                     }
                 }else{
                     console.log("That resource already exists");
-                        response.sendStatus(409);
+                        response.sendStatus(404);
                 }
             }
         })
