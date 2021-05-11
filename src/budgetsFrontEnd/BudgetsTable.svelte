@@ -63,6 +63,12 @@
             for(x of budgets){
                 provincias = x.province;
             }
+            for(var i = 0; i < provincias.length; i++) {
+                var option = document.createElement("option");
+                option.setAttribute("value", provincias[i]);
+                option.text = provincias[i];
+                list.appendChild(option);
+            }
             budgets.sort((a,b) => (a.year < b.year) ? 1 : ((b.year < a.year) ? -1 : 0))
             budgets.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0))
             console.log(`Received ${budgets.length} budgets.`);
@@ -177,13 +183,6 @@
         c_page = page;
         getBudgets();
       }
-    }
-
-    for(var i = 0; i < provincias.length; i++) {
-    var option = document.createElement("option");
-    option.setAttribute("value", provincias[i]);
-    option.text = provincias[i];
-    list.appendChild(option);
     }
 </script>
 
