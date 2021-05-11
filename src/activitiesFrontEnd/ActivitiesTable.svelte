@@ -8,7 +8,7 @@
         province: "",
         year: "",
         catering_bingo_machine: "",
-        lottery_engagement : "",
+        lottery_engagement: "",
         bingo_site: "",
         national_lottery_expend: "",
     };
@@ -205,8 +205,8 @@ if(estructuraBusqueda.year.length!=0){
 if(estructuraBusqueda.catering_bingo_machine.length!=0){
     paramsBusqueda=paramsBusqueda+"&catering_bingo_machine="+estructuraBusqueda.catering_bingo_machine;
 }
-if(estructuraBusqueda.lottery_engagement .length!=0){
-    paramsBusqueda=paramsBusqueda+"&lottery_engagement ="+estructuraBusqueda.lottery_engagement ;
+if(estructuraBusqueda.lottery_engagement.length!=0){
+    paramsBusqueda=paramsBusqueda+"&lottery_engagement="+estructuraBusqueda.lottery_engagement;
 }
 if(estructuraBusqueda.bingo_site.length!=0){
     paramsBusqueda=paramsBusqueda+"&bingo_site="+estructuraBusqueda.bingo_site;
@@ -279,7 +279,7 @@ paramsBusqueda="";
                 <td><input bind:value={newActivity.province} /></td>
                 <td><input bind:value={newActivity.year} /></td>
                 <td><input bind:value={newActivity.catering_bingo_machine} /></td>
-                <td><input bind:value={newActivity.lottery_engagement } /></td>
+                <td><input bind:value={newActivity.lottery_engagement} /></td>
                 <td><input bind:value={newActivity.bingo_site} /></td>
                 <td><input bind:value={newActivity.national_lottery_expend} /></td>
                 <td
@@ -304,7 +304,7 @@ paramsBusqueda="";
                         ></td
                     >
                     <td> {activitie.catering_bingo_machine}</td>
-                    <td> {activitie.lottery_engagement }</td>
+                    <td> {activitie.lottery_engagement}</td>
                     <td> {activitie.bingo_site}</td>
                     <td> {activitie.national_lottery_expend}</td>
 

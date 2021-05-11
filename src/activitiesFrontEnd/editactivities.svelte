@@ -37,7 +37,7 @@
             const json=await res.json();
             actividad=json;
             updatedBingoMachine=actividad.catering_bingo_machine;
-            updatedLottery=actividad.lottery_engagement ;
+            updatedLottery=actividad.lottery_engagement;
             updatedBingosite=actividad.bingo_site;
             updatedLotteryExpend=actividad.national_lottery_expend;
             console.log("Received Record")
@@ -57,7 +57,7 @@
                 province:params.province,
                 year:params.year,
                 catering_bingo_machine:updatedBingoMachine,
-                lottery_engagement :updatedLottery,
+                lottery_engagement:updatedLottery,
                 bingo_site:updatedBingosite,
                 national_lottery_expend:updatedLotteryExpend
 

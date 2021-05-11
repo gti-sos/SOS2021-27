@@ -178,7 +178,7 @@ module.exports.register= (app,db)=>{
 });  
     
     app.post(BASE_API_PATH+"/azar-games-and-bet-activities", (req,res)=>{ 
-        if(req.body.province && req.body.year && req.body.catering_bingo_machine && req.body.lottery_engagement && req.body.bingo_site && req.body.national_lottery_expend){
+        if(req.body.province && req.body.year && req.body.catering_bingo_machine && req.body.lottery_engagement&& req.body.bingo_site && req.body.national_lottery_expend){
 
             db.find({"province":req.body.province,"year":req.body.year},(err,data)=>{
                 if(err){
