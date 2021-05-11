@@ -3,7 +3,6 @@
     import { Button, Table, Pagination, PaginationItem, PaginationLink, } from "sveltestrap";
 
     var BASE_API_PATH = "/api/v2/province-budget-and-investment-in-social-promotion";
-    var url = "";
 
     let budgets = [];
     let newBudget = {
@@ -22,7 +21,6 @@
     let infoPrint = "";
 
     let c_offset = 0;
-    let offset = 0;
     let limit = 10;
     let c_page = 1;
     let lastPage = 1;
@@ -39,11 +37,20 @@
             budgets = json;
             budgets.sort((a,b) => (a.year < b.year) ? 1 : ((b.year < a.year) ? -1 : 0));
             budgets.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
-            pagination();
             console.log(`Received ${budgets.length} budgets.`);
-        } else {
-            console.log("ERROR");
-        }
+            if (province == "" && year == ""){
+                infoPrint = "Debe introducir una provincia o un año.";
+            } else if (budgets.length == 0){
+                infoPrint = "No se ha encontrado ningún dato con esos parámetros de búsqueda.";
+            } else {
+                okPrint = `Se han encontrado ${budgets.length} datos`;
+            }	
+			console.log("Showing " + budgets.length + " data");
+		} else {
+			console.log("ERROR");
+            errorPrint = "No se ha encontrado ningún dato con esos parámetros de búsqueda.";
+		}
+        pagination();
     }
 
     async function initialBudgets() {
@@ -70,11 +77,10 @@
             headers: { "Content-Type": "application/json" },
         }).then(function (data) {
             if (data.status == 201) {
+                budgets.push(newBudget);
+                setTimeout(getBudgets, 3000);
                 console.log("OK");
                 okPrint = "Nuevo dato introducido correctamente."
-                budgets.push(newBudget);
-                sleep(3000);
-                getBudgets();
             } else if (data.status == 400) {
                 console.log("Body is wrong");
                 errorPrint = "Algún dato debe estar mal introducido.";
@@ -126,28 +132,11 @@
         }
         getBudgets();
         paramSearch = "";
-		const data = await fetch(BASE_API_PATH + paramSearch);
-		if (data.status == 200) {
-			console.log("OK");
-			const json = await data.json();
-			budgets = json;
-            if (province == "" && year == ""){
-                infoPrint = "Debe introducir una provincia o un año.";
-            } else if (budgets.length == 0){
-                infoPrint = "No se ha encontrado ningún dato con esos parámetros de búsqueda.";
-            } else {
-                okPrint = `Se han encontrado ${budgets.length} datos`;
-            }	
-			console.log("Showing " + budgets.length + " data");
-		} else {
-			console.log("ERROR");
-            errorPrint = "No se ha encontrado ningún dato con esos parámetros de búsqueda.";
-		}
     }
 
     async function pagination() {
       const data = await fetch(BASE_API_PATH);
-      if (data.status == 200) {
+      if (data.ok) {
         const json = await data.json();
         total = json.length;
         changePage(c_page, c_offset);
