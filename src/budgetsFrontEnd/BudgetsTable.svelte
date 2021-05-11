@@ -17,8 +17,11 @@
     let searchedProvince = "";
     let searchedYear = "";
 
-    let listaProvincias = document.getElementById("listadoProvincias");
-    let provincias = [];
+    var listaProvincias = document.getElementById("listadoProvincias");
+    var list = document.createElement("select");
+    list.setAttribute("id", "mySelect");
+    listaProvincias.appendChild(list);
+    var provincias = [];
     
     let errorPrint = "";
     let okPrint = "";
@@ -58,10 +61,7 @@
             budgets = json;
             pagination();
             for(x of budgets){
-                option = document.createElement('option');
-                option.text = x.province;
-                option.value = x.province;
-                listaProvincias.add(option);
+                provincias = x.province;
             }
             budgets.sort((a,b) => (a.year < b.year) ? 1 : ((b.year < a.year) ? -1 : 0))
             budgets.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0))
@@ -177,6 +177,13 @@
         c_page = page;
         getBudgets();
       }
+    }
+
+    for(var i = 0; i < provincias.length; i++) {
+    var option = document.createElement("option");
+    option.setAttribute("value", provincias[i]);
+    option.text = provincias[i];
+    list.appendChild(option);
     }
 </script>
 
