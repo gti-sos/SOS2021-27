@@ -57,7 +57,7 @@
 
     async function actualiza(){
         updateBudget();
-        setTimeout(window.location.href = "http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion",10000);
+        sleep(5000).then(() => {window.location.href = "http://sos2021-27.herokuapp.com/#/province-budget-and-investment-in-social-promotion"});
     }
 </script>
 

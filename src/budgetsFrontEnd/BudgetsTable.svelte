@@ -14,8 +14,8 @@
     };
 
     let iniData = false;
-    let searchedProvince = "";
-    let searchedYear = "";
+    let paramSearch = "";
+    let searched = newBudget;
     
     let errorPrint = "";
     let okPrint = "";
@@ -29,6 +29,22 @@
     let total = 0;
 
     onMount(getBudgets);
+
+    async function getBudgets() {
+        console.log("Fetching budgets...");
+        const data = await fetch(BASE_API_PATH + "?offset=" + c_offset + "&limit=" + limit + paramSearch);
+        if (data.status == 200) {
+            console.log("OK");
+            const json = await data.json();
+            budgets = json;
+            budgets.sort((a,b) => (a.year < b.year) ? 1 : ((b.year < a.year) ? -1 : 0));
+            budgets.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
+            pagination();
+            console.log(`Received ${budgets.length} budgets.`);
+        } else {
+            console.log("ERROR");
+        }
+    }
 
     async function initialBudgets() {
         console.log("Loading initial data...");
@@ -45,22 +61,6 @@
         });
         iniData = true;
     }
-    
-    async function getBudgets() {
-        console.log("Fetching budgets...");
-        const data = await fetch(BASE_API_PATH + "?offset=" + c_offset + "&limit=" + limit);
-        if (data.status == 200) {
-            console.log("OK");
-            const json = await data.json();
-            budgets = json;
-            pagination();
-            budgets.sort((a,b) => (a.year < b.year) ? 1 : ((b.year < a.year) ? -1 : 0))
-            budgets.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0))
-            console.log(`Received ${budgets.length} budgets.`);
-        } else {
-            console.log("ERROR");
-        }
-    }
 
     async function postBudget() {
         console.log("Posting budget...");
@@ -73,7 +73,7 @@
                 console.log("OK");
                 okPrint = "Nuevo dato introducido correctamente."
                 budgets.push(newBudget);
-                setTimeout(getBudgets(),10000);
+                sleep(5000).then(() => {getBudgets});
             } else if (data.status == 400) {
                 console.log("Body is wrong");
                 errorPrint = "Algún dato debe estar mal introducido.";
@@ -116,34 +116,6 @@
         });
     }
 
-    async function searchBudgets(province, year){
-        url = BASE_API_PATH;
-		if (province != "" && year != "") {
-			url = url + "?province=" + province + "?year=" + year; 
-		} else if (province != "" && year == "") {
-			url = url + "?province=" + province;
-		} else if (province == "" && year != "") {
-			url = url + "?year=" + year;
-		}
-		const data = await fetch(url);
-		if (data.status == 200) {
-			console.log("OK");
-			const json = await data.json();
-			budgets = json;
-            if (province == "" && year == ""){
-                infoPrint = "Debe introducir una provincia o un año.";
-            } else if (budgets.length == 0){
-                infoPrint = "No se ha encontrado ningún dato con esos parámetros de búsqueda.";
-            } else {
-                okPrint = `Se han encontrado ${budgets.length} datos`;
-            }	
-			console.log("Showing " + budgets.length + " data");
-		} else {
-			console.log("ERROR");
-            errorPrint = "No se ha encontrado ningún dato con esos parámetros de búsqueda.";
-		}
-    }
-
     async function pagination() {
       const data = await fetch(BASE_API_PATH);
       if (data.status == 200) {
@@ -169,6 +141,18 @@
         getBudgets();
       }
     }
+
+    const parameters = () => { 
+        if(searched.province.length!=0){
+            paramSearch = paramSearch + "&province=" + searched.province;
+        }
+        if(searched.year.length!=0){
+            paramSearch = paramSearch + "&year=" + searched.year;
+        }
+        console.log(paramSearch);
+        getBudgets();
+        paramSearch = "";
+    }
 </script>
 
 <main>
@@ -190,16 +174,16 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> Búsqueda por provincia: </span>
                     </div>
-                    <input bind:value={searchedProvince} type="text" class="form-control" id="Provincia" placeholder="Provincia">
+                    <input bind:value={searched.province} type="text" class="form-control" id="Provincia" placeholder="Provincia">
                     <div class="input-group-prepend" style="padding-left:30px">
                         <span class="input-group-text"> Búsqueda por año: </span>
                     </div>
-                    <input bind:value={searchedYear} type="number" min="1900" max="2099" step="1" class="form-control" id="anyo" placeholder="Año">
+                    <input bind:value={searched.year} type="number" min="1900" max="2099" step="1" class="form-control" id="anyo" placeholder="Año">
                 </div>
                 </td>
                 <td>
                     <div>
-                    <a style="padding-left:20px"><Button color="info" on:click="{searchBudgets(searchedProvince,searchedYear)}"> Buscar </Button></a>
+                    <a style="padding-left:20px"><Button color="info" on:click="{parameters}"> Buscar </Button></a>
                     <a style="padding-left:30px"><Button outline color="success" href="javascript:location.reload()"> Refrescar </Button></a>
                     </div>
                 </td>
