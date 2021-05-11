@@ -125,9 +125,11 @@
 
     async function searchBudgets(){
         if(searched.province.length!=0){
+            searched.province = toString(searched.province);
             paramSearch = paramSearch + "&province=" + searched.province;
         }
         if(searched.year.length!=0){
+            searched.year = toInt(searched.year);
             paramSearch = paramSearch + "&year=" + searched.year;
         }
         getBudgets();
@@ -184,7 +186,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> Búsqueda por provincia: </span>
                     </div>
-                    <input bind:value={"searched.province"} type="text" class="form-control" id="Provincia" placeholder="Provincia">
+                    <input bind:value={searched.province} type="text" class="form-control" id="Provincia" placeholder="Provincia">
                     <div class="input-group-prepend" style="padding-left:30px">
                         <span class="input-group-text"> Búsqueda por año: </span>
                     </div>
