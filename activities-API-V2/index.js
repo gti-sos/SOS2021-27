@@ -141,8 +141,8 @@ module.exports.register= (app,db)=>{
         if(query.hasOwnProperty("catering_bingo_machine")){
             querysParseadas["catering_bingo_machine"]=query["catering_bingo_machine"]
         }
-        if(query.hasOwnProperty("lottery_engagement")){
-            querysParseadas["lottery_engagement"]=query["lottery_engagement"]
+        if(query.hasOwnProperty("lottery_engagement ")){
+            querysParseadas["lottery_engagement "]=query["lottery_engagement "]
         }
         if(query.hasOwnProperty("bingo_site")){
             querysParseadas["bingo_site"]=query["bingo_site"]

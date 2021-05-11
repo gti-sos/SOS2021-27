@@ -52,7 +52,7 @@
                 <br>
                 <p><b class="color">GitHub:</b> <a href ="https://github.com/humgarmar"> https://github.com/humgarmar</a></p>
                 <p><b class="color">Back End v1:</b><a href = "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities"> https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities </a></p>
-                <p><b class="color">Back End v2:</b><a href = "https://sos2021-27.herokuapp.com/api/v2/azar-games-and-bet-activities"> https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities </a></p>
+                <p><b class="color">Back End v2:</b><a href = "https://sos2021-27.herokuapp.com/api/v2/azar-games-and-bet-activities"> https://sos2021-27.herokuapp.com/api/v2/azar-games-and-bet-activities </a></p>
                 <p> <b class="color">Documentación Postman V1:</b> <a href="https://documenter.getpostman.com/view/14949428/TzJu8cYA" > https://documenter.getpostman.com/view/14949428/TzJu8cYA </a></p>
                 <p> <b class="color">Documentación Postman V2:</b> <a href="https://documenter.getpostman.com/view/14949428/TzRSiTnf" > https://documenter.getpostman.com/view/14949428/TzRSiTnf</a></p>
                 <a href="http://sos2021-27.herokuapp.com/#/azar-games-and-bet-activities"><p><b class="color">Front End URL:</b> http://sos2021-27.herokuapp.com/#/azar-games-and-bet-activities</p></a>

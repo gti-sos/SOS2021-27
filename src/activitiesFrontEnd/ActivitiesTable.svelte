@@ -14,21 +14,16 @@
     };
     let paramsBusqueda="";
 
+    
     let iniData = false;
-    let searchedProvince = "";
-    let searchedYear = "";
-
-    let listaProvincias = document.getElementById("listadoProvincias");
-    let provincias = [];
     
     let errorPrint = "";
     let okPrint = "";
     let infoPrint = "";
 
-    let c_offset = 0;
     let offset = 0;
     let limit = 10;
-    let c_page = 1;
+    let page = 1;
     let lastPage = 1;
     let total = 0;
 
@@ -230,7 +225,7 @@ paramsBusqueda="";
     <br>
     <h2>Registro de juegos de azar por año y provincia.</h2>
     <td
-    ><Button on:click={generateAll} color="primary">Generar Lista</Button
+    ><Button on:click={initialActivity} color="primary">Generar Lista</Button
     ></td
 >
 
