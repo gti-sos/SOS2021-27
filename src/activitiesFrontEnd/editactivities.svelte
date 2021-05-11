@@ -143,6 +143,11 @@
 
 
         
+
+        
+</main>
+
+
 <style>
 
     .alertOK {
@@ -171,16 +176,6 @@
     
     
     </style>
-        {#if errorMsg}
-            <p style="color: red">ERROR: {errorMsg}</p>
-        {/if}
-        <Button outline color="primary" on:click="{pop}">Volver</Button>
-
-        
-</main>
-
-
-
 
 
 
