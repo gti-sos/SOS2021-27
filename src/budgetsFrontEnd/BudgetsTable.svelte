@@ -124,10 +124,9 @@
         if(searched.year.length!=0){
             paramSearch = paramSearch + "&year=" + searched.year;
         }
-        console.log(paramSearch);
         getBudgets();
         paramSearch = "";
-		const data = await fetch(BASE_API_PATH + "?offset=" + c_offset + "&limit=" + limit + paramSearch);
+		const data = await fetch(BASE_API_PATH + paramSearch);
 		if (data.status == 200) {
 			console.log("OK");
 			const json = await data.json();
