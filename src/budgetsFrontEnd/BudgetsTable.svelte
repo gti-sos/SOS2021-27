@@ -31,7 +31,7 @@
 
     async function getBudgets() {
         console.log("Fetching budgets...");
-        const data = await fetch(BASE_API_PATH + "?offset=" + c_offset + "&limit=" + limit + paramSearch);
+        const data = await fetch(BASE_API_PATH + paramSearch + "?offset=" + c_offset + "&limit=" + limit);
         if (data.status == 200) {
             console.log("OK");
             const json = await data.json();
@@ -40,13 +40,6 @@
             budgets.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
             console.log(`Received ${budgets.length} budgets.`);
             pagination();
-            if (searched.province == "" && searched.year == ""){
-                infoPrint = "Debe introducir una provincia o un año.";
-            } else if (budgets.length == 0){
-                infoPrint = "No se ha encontrado ningún dato con esos parámetros de búsqueda.";
-            } else {
-                okPrint = `Se han encontrado ${budgets.length} datos`;
-            }	
 			console.log("Showing " + budgets.length + " data");
 		} else {
 			console.log("ERROR");
@@ -126,11 +119,18 @@
 
     async function searchBudgets(){
         if(searched.province.length!=0){
-            provincia = toString(searched.province);
             paramSearch = paramSearch + "&province=" + provincia;
+            okPrint = `Se han encontrado ${budgets.length} datos`;
         }
         if(searched.year.length!=0){
             paramSearch = paramSearch + "&year=" + searched.year;
+            okPrint = `Se han encontrado ${budgets.length} datos`;
+        }
+
+        if (searched.province == "" && searched.year == ""){
+                infoPrint = "Debe introducir una provincia o un año.";
+        } else if (budgets.length == 0){
+                infoPrint = "No se ha encontrado ningún dato con esos parámetros de búsqueda.";
         }
         getBudgets();
         paramSearch = "";
