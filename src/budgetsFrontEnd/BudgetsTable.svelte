@@ -17,10 +17,12 @@
     let searchedProvince = "";
     let searchedYear = "";
 
-    var listaProvincias = document.getElementById("listadoProvincias");
     var list = document.createElement("select");
-    list.setAttribute("id", "mySelect");
-    listaProvincias.appendChild(list);
+    list.name = "provincias";
+    list.id = "provincias";
+    val label = document.createElement("label");
+    label.htmlFor = "Provincias";
+    var listaProvincias = document.getElementById("listadoProvincias").appendChild(label).appendChild(list);
     var provincias = [];
     
     let errorPrint = "";
@@ -60,13 +62,10 @@
             const json = await data.json();
             budgets = json;
             pagination();
-            for(x of budgets){
-                provincias = x.province;
-            }
-            for(var i = 0; i < provincias.length; i++) {
+            for(var x of budgets){
                 var option = document.createElement("option");
-                option.setAttribute("value", provincias[i]);
-                option.text = provincias[i];
+                option.value = x.province;
+                option.text = x.province;
                 list.appendChild(option);
             }
             budgets.sort((a,b) => (a.year < b.year) ? 1 : ((b.year < a.year) ? -1 : 0))
