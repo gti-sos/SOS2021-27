@@ -13,6 +13,7 @@
     };
 
     let iniData = false;
+    let provincia = "";
     let paramSearch = "";
     let searched = newBudget;
     
@@ -125,11 +126,10 @@
 
     async function searchBudgets(){
         if(searched.province.length!=0){
-            searched.province = toString(searched.province);
+            provincia = toString(searched.province);
             paramSearch = paramSearch + "&province=" + searched.province;
         }
         if(searched.year.length!=0){
-            searched.year = toInt(searched.year);
             paramSearch = paramSearch + "&year=" + searched.year;
         }
         getBudgets();
