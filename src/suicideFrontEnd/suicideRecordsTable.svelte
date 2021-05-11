@@ -77,7 +77,7 @@
                 getSuicide();
             } else if(data.status==409){
                 console.log("status mal")
-                errorPrint="La base de datos inicial ya ha sido cargada.";
+                errorPrint="Limpie la base de datos antes de cargarla de nuevo.";
                 okPrint = "";
                 infoPrint="";
 
@@ -139,6 +139,7 @@
             if (res.status == 200) {
                 suicides.push(newSuicide);
 
+                alert("Registro Borrado Correctamente");
                 okPrint = "Registro eliminado correctamente;"
                 errorPrint = "";
                 infoPrint="";
