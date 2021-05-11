@@ -209,7 +209,7 @@ if(estructuraBusqueda.lottery_engagement .length!=0){
     paramsBusqueda=paramsBusqueda+"&lottery_engagement ="+estructuraBusqueda.lottery_engagement ;
 }
 if(estructuraBusqueda.bingo_site.length!=0){
-    paramsBusqueda=paramsBusqueda+"bingo_site="+estructuraBusqueda.bingo_site;
+    paramsBusqueda=paramsBusqueda+"&bingo_site="+estructuraBusqueda.bingo_site;
 }
 if(estructuraBusqueda.national_lottery_expend.length!=0){
     paramsBusqueda=paramsBusqueda+"&national_lottery_expend="+estructuraBusqueda.national_lottery_expend;
