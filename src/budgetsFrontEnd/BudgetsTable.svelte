@@ -13,8 +13,6 @@
     };
 
     let iniData = false;
-    let provincia = "";
-    let anyo = 0;
     let paramSearch = "";
     let searched = newBudget;
     
@@ -120,34 +118,19 @@
 
     async function searchBudgets(){
          if(searched.province.length != 0 && searched.year.length != 0){
-            provincia = toString(searched.province);
-            anyo = parseInt(searched.year);
-            paramSearch = "/" + provincia + "/" + anyo;
+            paramSearch = paramSearch + "?province=" + searched.province + "?year=" + searched.year;
             okPrint = `Se han encontrado ${budgets.length} datos`;
         } else if(searched.province.length == 0 && searched.year.length == 0){
             infoPrint = "Debe introducir una provincia o un año.";
         } else if(searched.province.length != 0 && searched.year.length == 0){
-            provincia = toString(searched.province);
-            paramSearch = "/" + provincia;
+            paramSearch = paramSearch + "?province=" + searched.province;
             okPrint = `Se han encontrado ${budgets.length} datos`;
         } else {
-            anyo = parseInt(searched.year);
-            paramSearch = "/" + anyo;
+            paramSearch = paramSearch + "?year=" + searched.year;
             okPrint = `Se han encontrado ${budgets.length} datos`;
         }
-        const data = await fetch(BASE_API_PATH + paramSearch);
-        if (data.ok) {
-            console.log("OK");
-            const json = await data.json();
-            budgets = json;
-			console.log("Showing " + budgets.length + " data");
-		} else {
-			console.log("ERROR");
-            errorPrint = "No se ha encontrado ningún dato con esos parámetros de búsqueda.";
-		}
+        getBudgets();
         paramSearch = "";
-        provincia = "";
-        anyo = 0;
     }
 
     async function pagination() {
