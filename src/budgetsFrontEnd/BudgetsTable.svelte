@@ -16,14 +16,6 @@
     let iniData = false;
     let searchedProvince = "";
     let searchedYear = "";
-
-    var list = document.createElement("select");
-    list.name = "provincias";
-    list.id = "provincias";
-    var label = document.createElement("label");
-    label.htmlFor = "Provincias";
-    var listaProvincias = document.getElementById("listadoProvincias").appendChild(label).appendChild(list);
-    var provincias = [];
     
     let errorPrint = "";
     let okPrint = "";
@@ -62,12 +54,6 @@
             const json = await data.json();
             budgets = json;
             pagination();
-            for(var x of budgets){
-                var option = document.createElement("option");
-                option.value = x.province;
-                option.text = x.province;
-                list.appendChild(option);
-            }
             budgets.sort((a,b) => (a.year < b.year) ? 1 : ((b.year < a.year) ? -1 : 0))
             budgets.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0))
             console.log(`Received ${budgets.length} budgets.`);
@@ -204,8 +190,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> Búsqueda por provincia: </span>
                     </div>
-                    <div id="listadoProvincias" value.bind="searchedProvince">
-                    </div>
+                    <input bind:value={searchedProvince} type="text" class="form-control" id="Provincia" placeholder="Provincia">
                     <div class="input-group-prepend" style="padding-left:30px">
                         <span class="input-group-text"> Búsqueda por año: </span>
                     </div>
