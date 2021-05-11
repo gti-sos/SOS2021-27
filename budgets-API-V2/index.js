@@ -131,10 +131,10 @@ module.exports.register = (app,budgetsDB)=>{
 		delete query.offset;
 		delete query.limit;
 
-        if(query.hasOwnProperty("province")){
+       /* if(query.hasOwnProperty("province")){
 			query.province = toString(query.province);
 			console.log(query.province);
-		}
+		}*/
 		if(query.hasOwnProperty("year")){
 			query.year = parseInt(query.year);
 			console.log(query.year);

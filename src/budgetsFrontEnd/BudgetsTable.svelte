@@ -121,7 +121,7 @@
     async function searchBudgets(){
          if(searched.province.length != 0 && searched.year.length != 0){
             provincia = toString(searched.province);
-            anyo = toInt(searched.year);
+            anyo = parseInt(searched.year);
             paramSearch = "/" + provincia + "/" + anyo;
             okPrint = `Se han encontrado ${budgets.length} datos`;
         } else if(searched.province.length == 0 && searched.year.length == 0){
@@ -131,7 +131,7 @@
             paramSearch = "/" + provincia;
             okPrint = `Se han encontrado ${budgets.length} datos`;
         } else {
-            anyo = toInt(searched.year);
+            anyo = parseInt(searched.year);
             paramSearch = "/" + anyo;
             okPrint = `Se han encontrado ${budgets.length} datos`;
         }
@@ -140,10 +140,6 @@
             console.log("OK");
             const json = await data.json();
             budgets = json;
-            budgets.sort((a,b) => (a.year < b.year) ? 1 : ((b.year < a.year) ? -1 : 0));
-            budgets.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
-            console.log(`Received ${budgets.length} budgets.`);
-            pagination();
 			console.log("Showing " + budgets.length + " data");
 		} else {
 			console.log("ERROR");
