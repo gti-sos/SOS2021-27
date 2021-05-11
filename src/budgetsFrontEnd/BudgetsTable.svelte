@@ -73,7 +73,8 @@
                 console.log("OK");
                 okPrint = "Nuevo dato introducido correctamente."
                 budgets.push(newBudget);
-                sleep(5000).then(() => {getBudgets});
+                await sleep(3000);
+                getBudgets();
             } else if (data.status == 400) {
                 console.log("Body is wrong");
                 errorPrint = "Algún dato debe estar mal introducido.";
@@ -116,6 +117,35 @@
         });
     }
 
+    async function searchBudgets(){
+        if(searched.province.length!=0){
+            paramSearch = paramSearch + "&province=" + searched.province;
+        }
+        if(searched.year.length!=0){
+            paramSearch = paramSearch + "&year=" + searched.year;
+        }
+        console.log(paramSearch);
+        getBudgets();
+        paramSearch = "";
+		const data = await fetch(BASE_API_PATH + "?offset=" + c_offset + "&limit=" + limit + paramSearch);
+		if (data.status == 200) {
+			console.log("OK");
+			const json = await data.json();
+			budgets = json;
+            if (province == "" && year == ""){
+                infoPrint = "Debe introducir una provincia o un año.";
+            } else if (budgets.length == 0){
+                infoPrint = "No se ha encontrado ningún dato con esos parámetros de búsqueda.";
+            } else {
+                okPrint = `Se han encontrado ${budgets.length} datos`;
+            }	
+			console.log("Showing " + budgets.length + " data");
+		} else {
+			console.log("ERROR");
+            errorPrint = "No se ha encontrado ningún dato con esos parámetros de búsqueda.";
+		}
+    }
+
     async function pagination() {
       const data = await fetch(BASE_API_PATH);
       if (data.status == 200) {
@@ -140,18 +170,6 @@
         c_page = page;
         getBudgets();
       }
-    }
-
-    const parameters = () => { 
-        if(searched.province.length!=0){
-            paramSearch = paramSearch + "&province=" + searched.province;
-        }
-        if(searched.year.length!=0){
-            paramSearch = paramSearch + "&year=" + searched.year;
-        }
-        console.log(paramSearch);
-        getBudgets();
-        paramSearch = "";
     }
 </script>
 
@@ -183,7 +201,7 @@
                 </td>
                 <td>
                     <div>
-                    <a style="padding-left:20px"><Button color="info" on:click="{parameters}"> Buscar </Button></a>
+                    <a style="padding-left:20px"><Button color="info" on:click="{searchBudgets}"> Buscar </Button></a>
                     <a style="padding-left:30px"><Button outline color="success" href="javascript:location.reload()"> Refrescar </Button></a>
                     </div>
                 </td>
