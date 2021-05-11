@@ -20,7 +20,7 @@
     var list = document.createElement("select");
     list.name = "provincias";
     list.id = "provincias";
-    val label = document.createElement("label");
+    var label = document.createElement("label");
     label.htmlFor = "Provincias";
     var listaProvincias = document.getElementById("listadoProvincias").appendChild(label).appendChild(list);
     var provincias = [];
@@ -204,8 +204,8 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> Búsqueda por provincia: </span>
                     </div>
-                    <select id="listadoProvincias" value.bind="searchedProvince">
-                    </select>
+                    <div id="listadoProvincias" value.bind="searchedProvince">
+                    </div>
                     <div class="input-group-prepend" style="padding-left:30px">
                         <span class="input-group-text"> Búsqueda por año: </span>
                     </div>
