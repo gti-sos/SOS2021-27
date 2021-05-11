@@ -31,7 +31,7 @@
 
     async function getBudgets() {
         console.log("Fetching budgets...");
-        const data = await fetch(BASE_API_PATH + paramSearch + "?offset=" + c_offset + "&limit=" + limit);
+        const data = await fetch(BASE_API_PATH + "?offset=" + c_offset + "&limit=" + limit + paramSearch);
         if (data.status == 200) {
             console.log("OK");
             const json = await data.json();
