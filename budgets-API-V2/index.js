@@ -199,7 +199,7 @@ module.exports.register = (app,budgetsDB)=>{
                             "liquid": parseFloat(request.body.budget-request.body.invest_promotion),
                             "percentage": parseFloat((request.body.invest_promotion/request.body.budget)*100).toFixed(3)
                         });
-                            response.sendStatus(201);	
+                            return response.sendStatus(201);	
                     }
                 }else{
                     console.log("That resource already exists");

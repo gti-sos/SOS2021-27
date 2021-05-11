@@ -38,6 +38,7 @@
             budgets.sort((a,b) => (a.year < b.year) ? 1 : ((b.year < a.year) ? -1 : 0));
             budgets.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
             console.log(`Received ${budgets.length} budgets.`);
+            pagination();
             if (province == "" && year == ""){
                 infoPrint = "Debe introducir una provincia o un año.";
             } else if (budgets.length == 0){
@@ -50,7 +51,6 @@
 			console.log("ERROR");
             errorPrint = "No se ha encontrado ningún dato con esos parámetros de búsqueda.";
 		}
-        pagination();
     }
 
     async function initialBudgets() {
@@ -78,7 +78,7 @@
         }).then(function (data) {
             if (data.status == 201) {
                 budgets.push(newBudget);
-                setTimeout(getBudgets, 3000);
+                getBudgets();
                 console.log("OK");
                 okPrint = "Nuevo dato introducido correctamente."
             } else if (data.status == 400) {
@@ -184,7 +184,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> Búsqueda por provincia: </span>
                     </div>
-                    <input bind:value={searched.province} type="text" class="form-control" id="Provincia" placeholder="Provincia">
+                    <input bind:value={"searched.province"} type="text" class="form-control" id="Provincia" placeholder="Provincia">
                     <div class="input-group-prepend" style="padding-left:30px">
                         <span class="input-group-text"> Búsqueda por año: </span>
                     </div>
