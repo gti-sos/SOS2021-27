@@ -14,6 +14,7 @@
 
     let iniData = false;
     let provincia = "";
+    let anyo = 0;
     let paramSearch = "";
     let searched = newBudget;
     
@@ -119,15 +120,19 @@
 
     async function searchBudgets(){
          if(searched.province.length != 0 && searched.year.length != 0){
-            paramSearch = paramSearch + "/" + searched.province + "/" + searched.year;
+            provincia = toString(searched.province);
+            anyo = toInt(searched.year);
+            paramSearch = "/" + provincia + "/" + anyo;
             okPrint = `Se han encontrado ${budgets.length} datos`;
         } else if(searched.province.length == 0 && searched.year.length == 0){
             infoPrint = "Debe introducir una provincia o un año.";
-        } else if(searched.province.length!=0){
-            paramSearch = paramSearch + "/" + searched.province;
+        } else if(searched.province.length != 0 && searched.year.length == 0){
+            provincia = toString(searched.province);
+            paramSearch = "/" + provincia;
             okPrint = `Se han encontrado ${budgets.length} datos`;
-        } else if(searched.year.length!=0){
-            paramSearch = paramSearch + "/" + searched.year;
+        } else {
+            anyo = toInt(searched.year);
+            paramSearch = "/" + anyo;
             okPrint = `Se han encontrado ${budgets.length} datos`;
         }
         const data = await fetch(BASE_API_PATH + paramSearch);
@@ -145,6 +150,8 @@
             errorPrint = "No se ha encontrado ningún dato con esos parámetros de búsqueda.";
 		}
         paramSearch = "";
+        provincia = "";
+        anyo = 0;
     }
 
     async function pagination() {
