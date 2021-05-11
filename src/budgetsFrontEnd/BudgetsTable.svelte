@@ -3,7 +3,6 @@
     import { Button, Table, Pagination, PaginationItem, PaginationLink, } from "sveltestrap";
 
     var BASE_API_PATH = "/api/v2/province-budget-and-investment-in-social-promotion";
-    var url = "";
 
     let budgets = [];
     let newBudget = {
@@ -14,22 +13,37 @@
     };
 
     let iniData = false;
-    let searchedProvince = "";
-    let searchedYear = "";
-
-    let listaProvincias = document.getElementById("listadoProvincias");
-    let provincias = [];
+    let paramSearch = "";
+    let searched = newBudget;
     
     let errorPrint = "";
     let okPrint = "";
     let infoPrint = "";
 
     let c_offset = 0;
-    let offset = 0;
     let limit = 10;
     let c_page = 1;
     let lastPage = 1;
     let total = 0;
+
+    onMount(getBudgets);
+
+    async function getBudgets() {
+        console.log("Fetching budgets...");
+        const data = await fetch(BASE_API_PATH + "?offset=" + c_offset + "&limit=" + limit);
+        if (data.status == 200) {
+            console.log("OK");
+            const json = await data.json();
+            budgets = json;
+            budgets.sort((a,b) => (a.year < b.year) ? 1 : ((b.year < a.year) ? -1 : 0));
+            budgets.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
+            console.log(`Received ${budgets.length} budgets.`);
+            pagination();
+		} else {
+			console.log("ERROR");
+            errorPrint = "No se ha encontrado ningún dato con esos parámetros de búsqueda.";
+		}
+    }
 
     async function initialBudgets() {
         console.log("Loading initial data...");
@@ -46,30 +60,6 @@
         });
         iniData = true;
     }
-    
-    async function getBudgets() {
-        console.log("Fetching budgets...");
-        const data = await fetch(BASE_API_PATH + "?limit=" + limit + "&offset=" + c_offset);
-        if (data.status == 200) {
-            console.log("OK");
-            const json = await data.json();
-            budgets = json;
-            pagination();
-            for (x of budgets){
-                provincias.push(x.province);
-            }
-            for(let i = 0; i < provincias.length; i++){
-                var opt = provincias[i];
-                var el = document.createElement("option");
-                el.textContent = opt;
-                el.value = opt;
-                listaProvincias.add(el);
-            }
-            console.log(`Received ${budgets.length} budgets.`);
-        } else {
-            console.log("ERROR");
-        }
-    }
 
     async function postBudget() {
         console.log("Posting budget...");
@@ -79,10 +69,10 @@
             headers: { "Content-Type": "application/json" },
         }).then(function (data) {
             if (data.status == 201) {
+                budgets.push(newBudget);
+                getBudgets();
                 console.log("OK");
                 okPrint = "Nuevo dato introducido correctamente."
-                budgets.push(newBudget);
-                setTimeout(getBudgets(),10000);
             } else if (data.status == 400) {
                 console.log("Body is wrong");
                 errorPrint = "Algún dato debe estar mal introducido.";
@@ -125,37 +115,36 @@
         });
     }
 
-    async function searchBudgets(province, year){
-        url = BASE_API_PATH;
-		if (province != "" && year != "") {
-			url = url + "?province=" + province + "?year=" + year; 
-		} else if (province != "" && year == "") {
-			url = url + "?province=" + province;
-		} else if (province == "" && year != "") {
-			url = url + "?year=" + year;
-		}
-		const data = await fetch(url);
-		if (data.status == 200) {
-			console.log("OK");
-			const json = await data.json();
-			budgets = json;
-            if (province == "" && year == ""){
-                infoPrint = "Debe introducir una provincia o un año.";
-            } else if (budgets.length == 0){
-                infoPrint = "No se ha encontrado ningún dato con esos parámetros de búsqueda.";
-            } else {
-                okPrint = `Se han encontrado ${budgets.length} datos`;
-            }	
-			console.log("Showing " + budgets.length + " data");
+    async function searchBudgets(){
+         if(searched.province.length != 0 && searched.year.length != 0){
+            paramSearch = paramSearch + "?province=" + searched.province + "&year=" + searched.year;
+        } else if(searched.province.length == 0 && searched.year.length == 0){
+            infoPrint = "Debe introducir una provincia o un año.";
+        } else if(searched.province.length != 0 && searched.year.length == 0){
+            paramSearch = paramSearch + "?province=" + searched.province;
+        } else {
+            paramSearch = paramSearch + "?year=" + searched.year;
+        }
+        const data = await fetch(BASE_API_PATH + paramSearch);
+        if (data.status == 200) {
+            console.log("OK");
+            const json = await data.json();
+            budgets = json;
+            budgets.sort((a,b) => (a.year < b.year) ? 1 : ((b.year < a.year) ? -1 : 0));
+            budgets.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
+            okPrint = `Se han encontrado ${budgets.length} datos`;
+            console.log("Showing " + budgets.length + " data");
+            pagination();
 		} else {
 			console.log("ERROR");
             errorPrint = "No se ha encontrado ningún dato con esos parámetros de búsqueda.";
 		}
+        paramSearch = "";
     }
 
     async function pagination() {
       const data = await fetch(BASE_API_PATH);
-      if (data.status == 200) {
+      if (data.ok) {
         const json = await data.json();
         total = json.length;
         changePage(c_page, c_offset);
@@ -179,7 +168,9 @@
       }
     }
 
-    onMount(getBudgets);
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
 </script>
 
 <main>
@@ -201,17 +192,16 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> Búsqueda por provincia: </span>
                     </div>
-                    <select id="listadoProvincias" value.bind="searchedProvince">
-                    </select>
+                    <input bind:value={searched.province} class="form-control" id="provincia" placeholder="Provincia">
                     <div class="input-group-prepend" style="padding-left:30px">
                         <span class="input-group-text"> Búsqueda por año: </span>
                     </div>
-                    <input bind:value={searchedYear} type="number" min="1900" max="2099" step="1" class="form-control" id="anyo" placeholder="Año">
+                    <input bind:value={searched.year} type="number" min="1900" max="2099" step="1" class="form-control" id="anyo" placeholder="Año">
                 </div>
                 </td>
                 <td>
                     <div>
-                    <a style="padding-left:20px"><Button color="info" on:click="{searchBudgets(searchedProvince,searchedYear)}"> Buscar </Button></a>
+                    <a style="padding-left:20px"><Button color="info" on:click="{searchBudgets}"> Buscar </Button></a>
                     <a style="padding-left:30px"><Button outline color="success" href="javascript:location.reload()"> Refrescar </Button></a>
                     </div>
                 </td>
@@ -280,7 +270,7 @@
 
     <div>
     <td  style="float: right;">
-      <Pagination ariaLabel="Web pagination">
+      <Pagination>
         <PaginationItem class = {c_page === 1 ? "disabled" : ""}>
           <PaginationLink previous href="#/province-budget-and-investment-in-social-promotion" on:click={() => changePage(c_page - 1, c_offset - 10)}/>
         </PaginationItem>

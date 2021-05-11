@@ -30,7 +30,7 @@
 
     async function getSuicide(){
         console.log("Fetching contact...")
-        const res=await fetch("api/v1/suicide-records/"+params.province+"/"+params.year);
+        const res=await fetch("api/v2/suicide-records/"+params.province+"/"+params.year);
 
         if(res.ok){
             console.log("Ok: ");
@@ -51,7 +51,7 @@
 
     async function updateSuicide(){
         console.log("Updating record... " + JSON.stringify(params.province + ","+params.year));
-        const res=await fetch("/api/v1/suicide-records/"+params.province+"/"+params.year,{
+        const res=await fetch("/api/v2/suicide-records/"+params.province+"/"+params.year,{
             method: "PUT",
             body: JSON.stringify({
                 province:params.province,

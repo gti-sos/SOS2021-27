@@ -44,14 +44,21 @@
             console.log("Ok.");
             const json = await res.json();
             suicides = json;
-
-
+            okPrint = "Se han encontrado " + suicides.length +" recursos.";
+            errorPrint = "";
+            infoPrint="";
             suicides.sort((a,b) => (a.year < b.year) ? 1 : ((b.year < a.year) ? -1 : 0))
             suicides.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0))
             
             console.log(`Received ${suicides.length} records.`);
-        } else {
-            console.log("Error");
+        } else if (res.status==404){
+            okPrint = "";
+            errorPrint = "No se han encontrado registros con dichos parámetros.";
+            infoPrint="";
+        } else{
+            okPrint = "";
+            errorPrint = "Error interno del servidor al buscar el recurso.";
+            infoPrint="";
         }
         pagination();
     }
@@ -337,19 +344,19 @@
 
     <div>
         {#if okPrint}
-        <div class = "alertOK" id="hideMe" style="background-color:darkseagreen">
+        <div class = "bocadilloOk"  style="background-color:darkseagreen">
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
             <strong>OK! </strong><p> </p> {okPrint}
         </div>
         {/if}
         {#if errorPrint}
-        <div class = "alertERROR" id="hideMe" style="background-color:salmon">
+        <div class = "bocadilloError" style="background-color:salmon">
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
             <strong>ERROR! </strong><p> </p> {errorPrint}
         </div>
         {/if}
         {#if infoPrint}
-        <div class = "alertINFO" id="hideMe" style="background-color:cyan">
+        <div class = "bocadilloInfo" style="background-color:cyan">
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
             <strong>INFO! </strong><p> </p> {infoPrint}
         </div>
@@ -380,7 +387,7 @@
 
 <style>
 
-.alertOK {
+.bocadilloOk {
         margin: 0 auto;
         display: table;
         padding: 20px;
@@ -388,7 +395,7 @@
         color: white;
     }
 
-    .alertERROR {
+    .bocadilloError {
         margin: 0 auto;
         display: table;
         padding: 20px;
@@ -396,7 +403,7 @@
         color: white;
     }
     
-    .alertINFO {
+    .bocadilloInfo {
         margin: 0 auto;
         display: table;
         padding: 20px;
