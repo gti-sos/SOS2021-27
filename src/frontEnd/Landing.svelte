@@ -1,6 +1,41 @@
+import {Collapse, Jumbotron, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Dropdown, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'sveltestrap';
+
+let list = false;
+
 <main>
-    <div class="mainDiv">
-    <h1 class="titulo"><b>SOS2021-27</b></h1>
+    <body>
+      <Jumbotron class="p-3; mainDiv">
+        <h1 class="titulo">SOS2021-27</h1>
+      </Jumbotron>
+        <Navbar color="#FFB833" dark expand = "md" >
+            <NavbarBrand href="#/">INICIO</NavbarBrand>
+            <Nav navbar >
+              <NavItem>
+                <NavLink href="#/info">INFO</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="#/suicide-records">Registro de suicidios</NavLink>
+              </NavItem>
+              <NavItem >
+                <NavLink href="#/province-budget-and-investment-in-social-promotion">Presupuesto/Inversión</NavLink>
+              </NavItem>
+              <NavItem >
+                <NavLink href="#/azar-games-and-bet-activities">Actividad en loteria</NavLink>
+              </NavItem>
+              <Dropdown  nav {list} toggle="{() => list = !list}" >
+                <DropdownToggle nav caret> Gráficas </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem href="#/analytics/suicide-records">Registro de suicidios</DropdownItem>
+                  <DropdownItem href="#/analytics/province-budget-and-investment-in-social-promotion">Presupuesto/Inversión</DropdownItem>
+                  <DropdownItem href="#/analytics/azar-games-and-bet-activities">Actividad en loteria</DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem href="#/analytics">Conjunto</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </Nav>
+        </Navbar>
+    </body>
+
     <br><br>
 
     <p>En nuestro grupo analizaremos la situación económica de los habitantes en diferentes provincias españolas con el objetivo de poder relacionar este factor con la evolución en la actividad de juegos de azar y apuestas 
@@ -10,7 +45,8 @@
     <a href="https://github.com/gti-sos/SOS2021-27" class="fakeButton">REPOSITORIO</a>
     <a href="http://sos2021-27.herokuapp.com" class="fakeButton">URL</a>
     <a href="#/info" class="fakeButton">INFO</a>
-    </div>  
+    </div> 
+
 </main>
 
 <style>
