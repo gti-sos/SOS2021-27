@@ -2,6 +2,8 @@
     import { onMount } from "svelte";
     import {Jumbotron, Navbar, Nav, NavItem, NavLink, NavbarBrand, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from 'sveltestrap';
 
+    let isOpen = false;
+
     var BASE_API_PATH = "/api/v2/province-budget-and-investment-in-social-promotion";
 
     let budgetGraph = [];
@@ -123,7 +125,7 @@
               <NavItem>
                 <NavLink href="#/azar-games-and-bet-activities">Actividad en loteria</NavLink>
               </NavItem>
-              <Dropdown>
+              <Dropdown nav {isOpen} toggle="{() => isOpen = !isOpen}">
                 <DropdownToggle nav caret> Gráficas </DropdownToggle>
                 <DropdownMenu end>
                   <DropdownItem href="#/graphics/suicide-records">Registro de suicidios</DropdownItem>
@@ -141,7 +143,7 @@
     <div style="margin-bottom: 15px">
         <figure class="highcharts-figure">
           <div id="container" />
-          <p style="display: inline; text-align:center;" class="highcharts-description"> Gráfica que relaciona el presupuesto de cada provincia y año con la inversión que realiza cada una de estas en promoción social. </p>
+          <p style="display: inline; margin: auto;" class="highcharts-description"> Gráfica que relaciona el presupuesto de cada provincia y año con la inversión que realiza cada una de estas en promoción social. </p>
         </figure>
       </div>
 </main>
