@@ -16,7 +16,7 @@
 
   
     var xAxis = [];
-    vat int = 0;
+    var int = 0;
 
     let errorPrint = "";
 
