@@ -2,7 +2,7 @@
 
     import {onMount} from "svelte";
     import {pop} from "svelte-spa-router";
-    import {Button, Table, Jumbotron, Navbar, Nav, NavItem, NavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from "sveltestrap";
+    import {Button, Table, Jumbotron, Navbar, Nav, NavItem, NavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from "sveltestrap";
 
     export let params = {};
 
@@ -86,7 +86,7 @@
               <NavItem>
                 <NavLink href="#/azar-games-and-bet-activities">Actividad en loteria</NavLink>
               </NavItem>
-              <Dropdown  nav {list} toggle="{() => list = !list}" >
+              <Dropdown>
                 <DropdownToggle nav caret> Gráficas </DropdownToggle>
                 <DropdownMenu>
                   <DropdownItem href="#/graphics/suicide-records">Registro de suicidios</DropdownItem>

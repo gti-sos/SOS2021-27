@@ -1,6 +1,6 @@
 <script>
     import BudgetsTable from './BudgetsTable.svelte'
-    import {Jumbotron, Navbar, Nav, NavItem, NavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'sveltestrap';
+    import {Jumbotron, Navbar, Nav, NavItem, NavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from 'sveltestrap';
 </script>
 
 <main>
@@ -20,7 +20,7 @@
               <NavItem>
                 <NavLink href="#/azar-games-and-bet-activities">Actividad en loteria</NavLink>
               </NavItem>
-              <Dropdown  nav {list} toggle="{() => list = !list}" >
+              <Dropdown>
                 <DropdownToggle nav caret> Gráficas </DropdownToggle>
                 <DropdownMenu>
                   <DropdownItem href="#/graphics/suicide-records">Registro de suicidios</DropdownItem>
