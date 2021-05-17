@@ -11,9 +11,6 @@
             <NavbarBrand href="#/">INICIO</NavbarBrand>
             <Nav navbar>
               <NavItem>
-                <NavLink href="#/info">INFO</NavLink>
-              </NavItem>
-              <NavItem>
                 <NavLink href="#/suicide-records">Registro de suicidios</NavLink>
               </NavItem>
               <NavItem>
@@ -24,7 +21,7 @@
               </NavItem>
               <Dropdown>
                 <DropdownToggle nav caret> Gráficas </DropdownToggle>
-                <DropdownMenu>
+                <DropdownMenu end>
                   <DropdownItem href="#/graphics/suicide-records">Registro de suicidios</DropdownItem>
                   <DropdownItem href="#/graphics/province-budget-and-investment-in-social-promotion">Presupuesto/Inversión</DropdownItem>
                   <DropdownItem href="#/graphics/azar-games-and-bet-activities">Actividad en loteria</DropdownItem>
