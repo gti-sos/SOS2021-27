@@ -51,7 +51,7 @@
         }
 
         if (dataA.ok) {
-          suicides = await dataB.json();
+          suicides = await dataA.json();
           console.log("OK");
         
           var anyos = ordenaAnyo(suicides, "year");
@@ -98,7 +98,7 @@
 
       Highcharts.chart("container", {
         title: {
-          text: "Registro de suicidios | Inversion promoción social | Actividad en loteria",
+          text: "",
         },
         yAxis: {
           title: {
@@ -165,13 +165,13 @@
     }
   </script>
   
-  <svelte:head>
+<svelte:head>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js" on:load={loadGraph}></script>
-    </svelte:head>
+</svelte:head>
   
   <main>
   <body>
@@ -219,10 +219,10 @@
         <figure class="highcharts-figure">
         <div id="container"/>
         <p class="centrado">
-          Gráfica en la que se muestran:<br> 
-          - EL ratio de suicidios entre hombres y mujeres<br>
-          - El porcentage de presupuesto que se invierte en promoción social<br> 
-          - Los gastos totales en loteria nacional
+          <strong>Gráfica en la que se muestran:</strong><br> 
+          · EL ratio de suicidios entre hombres y mujeres<br>
+          · El porcentage de presupuesto que se invierte en promoción social<br> 
+          · Los gastos totales en loteria nacional
         </p>
         </figure>
         </div>
@@ -271,6 +271,24 @@
             left: -9999px; 
             position: absolute;   
         }
+    }
+
+    .titulo {
+        background-color: #FFB833;
+        color: #FFFFFF;
+        text-align: center;
+    }
+    
+    .titulo2 {
+        color: #000000;
+        text-align: center;
+        font-size: 150%;
+    }
+
+    .mainDiv{
+        text-align: center;
+        margin: 20px;
+
     }
 
     .centrado {
