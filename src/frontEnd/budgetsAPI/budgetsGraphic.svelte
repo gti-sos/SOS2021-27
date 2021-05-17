@@ -130,7 +130,7 @@
             </Nav>
         </Navbar>
     </body>
-    </br>
+    <br>
     <h1 class="titulo2"> Gráfica de datos </h1>
     <div style="margin-bottom: 15px">
         <figure class="highcharts-figure">
