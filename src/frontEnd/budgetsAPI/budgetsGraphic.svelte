@@ -120,7 +120,7 @@
                 <NavLink href="#/suicide-records">Registro de suicidios</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#/province-budget-and-investment-in-social-promotion">Presupuesto/Inversión</NavLink>
+                <NavLink href="#/province-budget-and-investment-in-social-promotion">Inversion promoción social</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="#/azar-games-and-bet-activities">Actividad en loteria</NavLink>
@@ -129,7 +129,7 @@
                 <DropdownToggle nav caret> Gráficas </DropdownToggle>
                 <DropdownMenu end>
                   <DropdownItem href="#/graphics/suicide-records">Registro de suicidios</DropdownItem>
-                  <DropdownItem href="#/graphics/province-budget-and-investment-in-social-promotion">Presupuesto/Inversión</DropdownItem>
+                  <DropdownItem href="#/graphics/province-budget-and-investment-in-social-promotion">Inversion promoción social</DropdownItem>
                   <DropdownItem href="#/graphics/azar-games-and-bet-activities">Actividad en loteria</DropdownItem>
                   <DropdownItem divider/>
                   <DropdownItem href="#/graphics">Conjunto</DropdownItem>
@@ -143,7 +143,7 @@
     <div style="margin-bottom: 15px">
         <figure class="highcharts-figure">
           <div id="container" />
-          <p style="display: inline; margin: auto;" class="highcharts-description"> Gráfica que relaciona el presupuesto de cada provincia y año con la inversión que realiza cada una de estas en promoción social. </p>
+          <p class="centrado"> Gráfica que relaciona el presupuesto de cada provincia y año con la inversión que realiza cada una de estas en promoción social. </p>
         </figure>
       </div>
 </main>
