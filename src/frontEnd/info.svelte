@@ -18,8 +18,9 @@
             </div>
             <br>
             <div>
-            <p> <b class="color">GitHub:</b> <a href="https://github.com/Jota0Garcia"> https://github.com/Jota0Garcia</a></p>
-            <p> <b class="color">API URL:</b> <a href="http://sos2021-27.herokuapp.com/api/v2/suicide-records"> http://sos2021-27.herokuapp.com/api/v1/suicide-records</a></p>
+            <p> <b class="color">GitHub:</b> <a href="https://github.com/Jota0Garcia"> https://github.com/Jota0Garcia</a></p>        
+            <p> <b class="color">Back End V1:</b> <a href="http://sos2021-27.herokuapp.com/api/v1/suicide-records"> http://sos2021-27.herokuapp.com/api/v1/suicide-records</a></p>
+            <p> <b class="color">Back End V2:</b><a href="http://sos2021-27.herokuapp.com/api/v2/suicide-records"> http://sos2021-27.herokuapp.com/api/v2/suicide-records</a></p>
             <p> <b class="color">Documentación API v1:</b> <a href="https://documenter.getpostman.com/view/14951327/TzJsfdhf"> https://documenter.getpostman.com/view/14951327/TzJsfdhf</a></p>
             <p> <b class="color">Documentación API v2:</b> <a href="https://documenter.getpostman.com/view/14951327/TzRSh81n"> https://documenter.getpostman.com/view/14951327/TzRSh81n</a></p>
             <p> <b class="color">Front End URL:</b> <a href="http://sos2021-27.herokuapp.com/#/suicide-records"> http://sos2021-27.herokuapp.com/#/suicide-records</a></p>

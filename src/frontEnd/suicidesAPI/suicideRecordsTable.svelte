@@ -271,16 +271,24 @@
         </tbody>
     </Table>
 
-    <td
-        ><Button on:click={initialSuicide} color="primary">Generar Lista</Button
-        ></td
-    >
 
-    <td
-        ><Button on:click={deleteAll} color="secondary">Limpiar Lista</Button
-        ></td
-    >
+    <tr>
+        <td
+            ><Button on:click={initialSuicide} color="primary" style="margin:5px">Generar Lista</Button
+            ></td
+        >
 
+        <td
+            ><Button on:click={deleteAll} style="background-color:red; margin:5px">Limpiar Lista</Button
+            ></td
+        >
+
+        <td
+            ><Button style="background-color:orange"><a href="https://localhost:10000/#/suicide-records/suicideGraph">Gráfico</a></Button
+            ></td
+        >
+        
+    </tr>
 
 
     <Table bordered>
