@@ -8,7 +8,7 @@
         <h1 class="titulo; mainDiv" style="color: white">SOS2021-27</h1>
       </Jumbotron>
         <Navbar style="background-color: #FFB833; color:white;" light expand="lg" >
-            <NavbarBrand href="#/">INICIO</NavbarBrand>
+            <NavItem href="#/">INICIO</NavItem>
             <Nav navbar>
               <NavItem>
                 <NavLink href="#/info">INFO</NavLink>
