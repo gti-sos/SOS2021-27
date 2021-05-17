@@ -185,7 +185,7 @@
             <td> <Button color="warning" style="color:white;" on:click={initialBudgets}> Cargar tabla </Button> </td>
         {/if}
             <td style="padding-left:20px"> <Button outline color="danger" on:click={deleteBudgets}> Borrar tabla </Button> </td>
-            <td style="padding-left:20px"> <Button color="secondary" on:click={window.location.href = "http://sos2021-27.herokuapp.com/#/graphics/province-budget-and-investment-in-social-promotion";}> Gráfica </Button> </td>
+            <td style="padding-left:20px"> <Button color="secondary" style="color:white;" href="http://sos2021-27.herokuapp.com/#/graphics/province-budget-and-investment-in-social-promotion"> Gráfica </Button> </td>
     </div>
     <br/>
      <Table bordered>
