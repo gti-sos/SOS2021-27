@@ -1,6 +1,6 @@
 <script>
     import BudgetsTable from './BudgetsTable.svelte'
-    import {Jumbotron, Navbar, Nav, NavItem, NavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from 'sveltestrap';
+    import {Jumbotron, Navbar, Nav, NavItem, NavLink, NavbarBrand, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from 'sveltestrap';
 </script>
 
 <main>

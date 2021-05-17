@@ -1,6 +1,6 @@
 <script>
     import { onMount } from "svelte";
-    import {Jumbotron, Navbar, Nav, NavItem, NavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from 'sveltestrap';
+    import {Jumbotron, Navbar, Nav, NavItem, NavLink, NavbarBrand, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from 'sveltestrap';
 
     var BASE_API_PATH = "/api/v2/province-budget-and-investment-in-social-promotion";
 
