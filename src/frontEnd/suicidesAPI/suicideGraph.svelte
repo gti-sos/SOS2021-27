@@ -19,17 +19,22 @@
         if(res.ok){
             console.log("Ok.");
             suicides = await res.json();
+
             
+            suicides.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
+            suicides.sort((a,b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : 0));
+
             suicides.forEach(element => {
                 suicKeys.push(element.province+","+element.year);
-                suicMan.push(element.suic_man);
-                suicWoman.push(element.suic_woman);
-                suicTotal.push(element.suic_total);
-                suicRate.push(element.suic_rate_mw);
+                suicMan.push(parseInt(element.suic_man));
+                suicWoman.push(parseInt(element.suic_woman));
+                suicTotal.push(parseInt(element.suic_total));
+                suicRate.push(parseInt(element.suic_rate_mw));
 
                 
             });
 
+            console.log(suicWoman);
 
 
             console.log(`We have received ${suicides.length} data points.`);
@@ -44,33 +49,40 @@
 
     
     Highcharts.chart('container', {
+      title: {
+        text: "Gráfica de Suicidios",
+      },
+      yAxis: {
         title: {
-            text: 'My data'
+          text: "Número de Personas",
         },
-        yAxis: {
-            title: {
-                text: 'Quantity'
-            }
-        },
+      },
       xAxis: {
         title: {
           text: "Provincia,Año",
         },
         categories: suicKeys,
       },
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle'
+      legend: {
+        layout: "vertical",
+        align: "right",
+        verticalAlign: "middle",
+      },
+      annotations: [
+        {
+          labels: [
+            {
+              point: "date",
+              text: "",
+            },
+            {
+              point: "min",
+              text: "Min",
+              backgroundColor: "white",
+            },
+          ],
         },
-        plotOptions: {
-            series: {
-                label: {
-                    connectorAllowed: false
-                },
-                pointStart: 2010
-            }
-        },
+      ],
         series: [
         {
           name: "Hombres",
