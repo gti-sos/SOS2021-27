@@ -142,8 +142,8 @@
     <h1 class="titulo2"> Gráfica de datos </h1>
     <div style="margin-bottom: 15px">
         <figure class="highcharts-figure">
-          <div id="container" />
-          <p style="centrado"> Gráfica que relaciona el presupuesto de cada provincia y año con la inversión que realiza cada una de estas en promoción social. </p>
+          <div id="container"/>
+          <p class="centrado"> Gráfica que relaciona el presupuesto de cada provincia y año con la inversión que realiza cada una de estas en promoción social. </p>
         </figure>
       </div>
 </main>
