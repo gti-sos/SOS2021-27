@@ -8,6 +8,7 @@
     let budgetGraphX = [];
     let budgetGraphBudget = [];
     let budgetGraphInvest = [];
+    let budgetGraphLiquid = [];
     let budgetGraphPercentage = [];
 
     async function loadGraph() {
@@ -15,9 +16,10 @@
         budgetGraph = await data.json();
         if (data.ok) {
             budgetGraph.forEach(budgetSvelte => {
-            budgetGraphX.push(budgetSvelte.percentage);
+            budgetGraphX.push(budgetSvelte.province + "/" + budgetSvelte.year);
             budgetGraphBudget.push(budgetSvelte.budget);
             budgetGraphInvest.push(budgetSvelte.invest_promotion);
+            budgetGraphLiquid.push(budgetSvelte.liquid);
             budgetGraphPercentage.push(budgetSvelte.percentage);   
         });
     }
@@ -28,12 +30,12 @@
       },
       yAxis: {
         title: {
-          text: "Euros",
+          text: "Presupuesto en euros",
         },
       },
       xAxis: {
         title: {
-          text: "Inversión en promoción social",
+          text: "Provincia/Año",
         },
         categories: budgetGraphX,
       },
@@ -65,6 +67,10 @@
         {
           name: "Inversión",
           data: budgetGraphInvest,
+        },
+        {
+          name: "Líquido",
+          data: budgetGraphLiquid,
         },
         {
           name: "Porcentage",
@@ -135,7 +141,7 @@
     <div style="margin-bottom: 15px">
         <figure class="highcharts-figure">
           <div id="container" />
-          <p style="display: inline; align:center;" class="highcharts-description"> Gráfica que relaciona el presupuesto de cada provincia y año con la inversión que realiza cada una de estas en promoción social. </p>
+          <p style="display: inline; text-align:center;" class="highcharts-description"> Gráfica que relaciona el presupuesto de cada provincia y año con la inversión que realiza cada una de estas en promoción social. </p>
         </figure>
       </div>
 </main>
