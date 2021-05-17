@@ -171,13 +171,6 @@
         color: white;
     }
 
-    html, body {
-        height:100%;
-        width:100%;
-        margin:0;
-        padding:0;
-    }
-
     .hideMe {
         -moz-animation: cssAnimation 0s ease-in 5s forwards;
     /* Firefox */

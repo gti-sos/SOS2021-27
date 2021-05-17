@@ -18,7 +18,7 @@
             budgetGraphX.push(budgetSvelte.province +"/"+ budgetSvelte.year);
             budgetGraphBudget.push(budgetSvelte.budget);
             budgetGraphInvest.push(budgetSvelte.invest_promotion);
-            budgetGraphPercentage.push(budgetSvelte.percentage;   
+            budgetGraphPercentage.push(budgetSvelte.percentage);   
         });
     }
     
