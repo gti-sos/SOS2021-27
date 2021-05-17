@@ -14,11 +14,12 @@ var port= (process.env.PORT || 10000); // Obtiene el puerto que se le indique o 
 
 
 // -->      Bases de datos
-var suicideDB=new Datastore({filename: "suicide-records-API2/suicide.db",autoload:true});
-var activitiesDB=new Datastore({filename: "activities-API/activities.db",autoload:true});
-var budgetsDB = new Datastore({filename: "budgets-API/budgets.db",autoload:true});
-var budgetsDBV2 = new Datastore({filename: "budgets-API-V2/budgets.db",autoload:true});
-var activitiesDBV2=new Datastore({filename: "activities-API-V2/activities.db",autoload:true});
+var suicideDB=new Datastore({filename: "src/backEnd/suicidesAPI/suicidesV2/suicide.db",autoload:true});
+var activitiesDB=new Datastore({filename: "src/backEnd/activitiesAPI/activitiesV1/activities.db",autoload:true});
+var activitiesDBV2=new Datastore({filename: "src/backEnd/activitiesAPI/activitiesV2/activities.db",autoload:true});
+var budgetsDB = new Datastore({filename: "src/backEnd/budgetsAPI/budgetsV1/budgets.db",autoload:true});
+var budgetsDBV2 = new Datastore({filename: "src/backEnd/budgetsAPI/budgetsV2/budgets.db",autoload:true});
+
 
 
  
@@ -35,18 +36,19 @@ app.use("/",express.static(path.join(__dirname + "/public")));
 
 // -->      Modulación APIS
     
-var suicideAPI=require("./suicide-records-API2");
+var suicideAPI=require("./src/backEnd/suicidesAPI/suicidesV2");
 suicideAPI.register(app,suicideDB);
 
-var budgetsAPI = require("./budgets-API");
+var budgetsAPI = require("./src/backEnd/budgetsAPI/budgetsV1");
 budgetsAPI.register(app,budgetsDB);
 
-var budgetsAPIV2 = require("./budgets-API-V2");
+var budgetsAPIV2 = require("./src/backEnd/budgetsAPI/budgetsV2");
 budgetsAPIV2.register(app,budgetsDBV2);
 
-var activitiesAPI = require("./activities-API");
+var activitiesAPI = require("./src/backEnd/activitiesAPI/activitiesV1");
 activitiesAPI.register(app,activitiesDB);
-var activitiesAPIV2 = require("./activities-API-V2");
+
+var activitiesAPIV2 = require("./src/backEnd/activitiesAPI/activitiesV2");
 activitiesAPIV2.register(app,activitiesDBV2);
 
 

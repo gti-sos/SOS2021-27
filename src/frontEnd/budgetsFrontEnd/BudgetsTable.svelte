@@ -211,9 +211,9 @@
             </tr>
         </thead>
     </Table>
-    <Table bordered style="text-align: center;">
+    <Table hover bordered style="text-align: center;">
         <thead>
-            <tr>
+            <tr style="background-color: #FFB833; color: #FFFFFF; font-weight: bold;">
                 <td>Provincia</td>
                 <td>Año</td>
                 <td>Presupuesto</td>
