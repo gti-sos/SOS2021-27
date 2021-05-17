@@ -90,23 +90,23 @@
 </script>
 
 <svelte:head>
-  <script src="https://code.highcharts.com/highcharts.js" on:load={loadChart}></script>
+  <script src="https://code.highcharts.com/highcharts.js" on:load={loadGraph}></script>
   <script src="https://code.highcharts.com/modules/series-label.js"></script>
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
   <script src="https://code.highcharts.com/modules/export-data.js"></script>
   <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 </svelte:head>
 
-<main>
+<main class="centrado">
     <Jumbotron class="p-3" style="background-color: #FFB833">
         <h1 class="titulo; mainDiv" style="color: white">Presupuesto por provincia y año, e inversión en promoción social.</h1>
     </Jumbotron>
     <h1 class="titulo2"> Gráfica de datos </h1>
  
-    <div>
+    <div style="margin-bottom: 15px">
         <figure class="highcharts-figure">
           <div id="container" />
-          <p class="highcharts-description"> Gráfica que relaciona el presupuesto de cada provincia y año con la inversión que realiza cada una de estas en promoción social. </p>
+          <p style="display: inline" class="highcharts-description"> Gráfica que relaciona el presupuesto de cada provincia y año con la inversión que realiza cada una de estas en promoción social. </p>
         </figure>
       </div>
 </main>
@@ -128,5 +128,11 @@
         text-align: center;
         margin: 20px;
 
+    }
+
+    .centrado {
+        text-align: center;
+        padding: 1em;
+        margin: 0 auto;
     }
 </style>
