@@ -28,7 +28,7 @@
                   <DropdownItem href="#/graphics/suicide-records">Registro de suicidios</DropdownItem>
                   <DropdownItem href="#/graphics/province-budget-and-investment-in-social-promotion">Presupuesto/Inversión</DropdownItem>
                   <DropdownItem href="#/graphics/azar-games-and-bet-activities">Actividad en loteria</DropdownItem>
-                  <DropdownItem divider />
+                  <DropdownItem divider/>
                   <DropdownItem href="#/graphics">Conjunto</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
@@ -99,6 +99,7 @@
 </main>
 
 <style>
+
 	.box {
 		width: 50%;
 		border: 1px solid #aaa;
