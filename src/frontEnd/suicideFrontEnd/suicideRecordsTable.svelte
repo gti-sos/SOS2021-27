@@ -77,7 +77,7 @@
                 getSuicide();
             } else if(data.status==409){
                 console.log("status mal")
-                errorPrint="La base de datos inicial ya ha sido cargada.";
+                errorPrint="Limpie la base de datos antes de cargarla de nuevo.";
                 okPrint = "";
                 infoPrint="";
 
@@ -131,7 +131,7 @@
             "Deleting suicide with keys: " + provincia + "," + anyo + "."
         );
         const res = await fetch(
-            BASE_API_PATH + "/suicide-records/" + provincia + "/" + anyo,
+            BASE_API_PATH+"/"+ provincia + "/" + anyo,
             {
                 method: "DELETE",
             }
@@ -139,6 +139,7 @@
             if (res.status == 200) {
                 suicides.push(newSuicide);
 
+                alert("Registro Borrado Correctamente");
                 okPrint = "Registro eliminado correctamente;"
                 errorPrint = "";
                 infoPrint="";
