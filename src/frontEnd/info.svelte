@@ -1,9 +1,14 @@
+<script>
+  import {Collapse, Jumbotron, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Dropdown, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'sveltestrap';
+  let list = false;
+</script>
+
 <main>
  <body>
       <Jumbotron class="p-3" style="background-color: #FFB833">
-        <h1 class="titulo; mainDiv">SOS2021-27</h1>
+        <h1 class="titulo; mainDiv" style="color: white">SOS2021-27</h1>
       </Jumbotron>
-        <Navbar style="background-color: #FFB833; color:white;" dark expand = "md" >
+        <Navbar style="background-color: #FFB833; color:white;" light expand = "md" >
             <NavbarBrand href="#/">INICIO</NavbarBrand>
             <Nav navbar >
               <NavItem>
