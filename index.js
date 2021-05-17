@@ -36,19 +36,19 @@ app.use("/",express.static(path.join(__dirname + "/public")));
 
 // -->      Modulación APIS
     
-var suicideAPI=require("/src/backEnd/suicidesAPI/suicidesV2");
+var suicideAPI=require("./src/backEnd/suicidesAPI/suicidesV2");
 suicideAPI.register(app,suicideDB);
 
-var budgetsAPI = require("/src/backEnd/budgetsAPI/budgetsV1");
+var budgetsAPI = require("./src/backEnd/budgetsAPI/budgetsV1");
 budgetsAPI.register(app,budgetsDB);
 
-var budgetsAPIV2 = require("/src/backEnd/budgetsAPI/budgetsV2");
+var budgetsAPIV2 = require("./src/backEnd/budgetsAPI/budgetsV2");
 budgetsAPIV2.register(app,budgetsDBV2);
 
-var activitiesAPI = require("/src/backEnd/activitiesAPI/activitiesV1");
+var activitiesAPI = require("./src/backEnd/activitiesAPI/activitiesV1");
 activitiesAPI.register(app,activitiesDB);
 
-var activitiesAPIV2 = require("/src/backEnd/activitiesAPI/activitiesV2");
+var activitiesAPIV2 = require("./src/backEnd/activitiesAPI/activitiesV2");
 activitiesAPIV2.register(app,activitiesDBV2);
 
 
