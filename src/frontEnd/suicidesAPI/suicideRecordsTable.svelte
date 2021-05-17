@@ -284,7 +284,7 @@
         >
 
         <td
-            ><Button style="background-color:orange"><a href="https://localhost:10000/#/suicide-records/suicideGraph">Gráfico</a></Button
+            ><Button style="background-color:orange"><a href="https://localhost:10000/#/graphics/suicide-records">Gráfico</a></Button
             ></td
         >
         
