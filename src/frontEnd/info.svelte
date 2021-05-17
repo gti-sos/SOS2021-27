@@ -1,5 +1,7 @@
 <script>
   import {Jumbotron, Navbar, Nav, NavItem, NavLink, NavbarBrand, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from 'sveltestrap';
+
+  let isOpen = false;
 </script>
 
 <main>
@@ -11,9 +13,6 @@
             <NavItem href="#/">INICIO</NavItem>
             <Nav navbar>
               <NavItem>
-                <NavLink href="#/info">INFO</NavLink>
-              </NavItem>
-              <NavItem>
                 <NavLink href="#/suicide-records">Registro de suicidios</NavLink>
               </NavItem>
               <NavItem>
@@ -22,9 +21,9 @@
               <NavItem>
                 <NavLink href="#/azar-games-and-bet-activities">Actividad en loteria</NavLink>
               </NavItem>
-              <Dropdown>
+              <Dropdown nav {isOpen} toggle="{() => isOpen = !isOpen}">
                 <DropdownToggle nav caret> Gráficas </DropdownToggle>
-                <DropdownMenu>
+                <DropdownMenu end>
                   <DropdownItem href="#/graphics/suicide-records">Registro de suicidios</DropdownItem>
                   <DropdownItem href="#/graphics/province-budget-and-investment-in-social-promotion">Presupuesto/Inversión</DropdownItem>
                   <DropdownItem href="#/graphics/azar-games-and-bet-activities">Actividad en loteria</DropdownItem>
