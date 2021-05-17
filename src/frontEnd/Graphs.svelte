@@ -51,7 +51,7 @@
         }
 
         if (dataA.ok) {
-          suicides = await dataB.json();
+          suicides = await dataA.json();
           console.log("OK");
         
           var anyos = ordenaAnyo(suicides, "year");
