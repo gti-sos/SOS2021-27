@@ -5,10 +5,10 @@
 
 <main>
     <body>
-      <Jumbotron class="p-3; mainDiv">
-        <h1 class="titulo">SOS2021-27</h1>
+      <Jumbotron class="p-3" style="background-color: #FFB833">
+        <h1 class="titulo; mainDiv">SOS2021-27</h1>
       </Jumbotron>
-        <Navbar color="dark" dark expand = "md" >
+        <Navbar style="background-color: #FFB833; color:white;" dark expand = "md" >
             <NavbarBrand href="#/">INICIO</NavbarBrand>
             <Nav navbar >
               <NavItem>
