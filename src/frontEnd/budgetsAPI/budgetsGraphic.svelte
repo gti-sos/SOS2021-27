@@ -97,7 +97,7 @@
   <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 </svelte:head>
 
-<main class="centrado">
+<main>
     <body>
     <Jumbotron class="p-3" style="background-color: #FFB833">
         <h1 class="titulo; mainDiv" style="color: white">Presupuesto por provincia y año, e inversión en promoción social.</h1>
