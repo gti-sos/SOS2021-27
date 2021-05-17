@@ -1,13 +1,13 @@
 <script>
 	import Router from 'svelte-spa-router';
 	import NotFound from './notFound.svelte';
-	import SuicideRecord from './frontEnd/suicidesAPI/suicide.svelte';
-	import SuicideEdit from './frontEnd/suicidesAPI/editSuicide.svelte';
-	import Budgets from './frontEnd/budgetsAPI/budget.svelte';
-	import BudgetsEdit from './frontEnd/budgetsAPI/editBudget.svelte';
-	import BudgetsGraphics from './frontEnd/budgetsAPI/budgetsGraphic.svelte';
-	import Activities from './frontEnd/activitiesAPI/activities.svelte';
-	import ActivitiesEdit from './frontEnd/activitiesAPI/editactivities.svelte';
+	import SuicideRecord from './suicidesAPI/suicide.svelte';
+	import SuicideEdit from './suicidesAPI/editSuicide.svelte';
+	import Budgets from './budgetsAPI/budget.svelte';
+	import BudgetsEdit from './budgetsAPI/editBudget.svelte';
+	import BudgetsGraphics from './budgetsAPI/budgetsGraphic.svelte';
+	import Activities from './activitiesAPI/activities.svelte';
+	import ActivitiesEdit from './activitiesAPI/editactivities.svelte';
 
 	import Info from './info.svelte';
 	import Landing from './Landing.svelte';
