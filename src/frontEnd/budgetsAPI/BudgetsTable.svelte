@@ -185,7 +185,7 @@
             <td> <Button color="warning" style="color:white;" on:click={initialBudgets}> Cargar tabla </Button> </td>
         {/if}
             <td style="padding-left:20px"> <Button outline color="danger" on:click={deleteBudgets}> Borrar tabla </Button> </td>
-            <td style="padding-left:20px"> <Button color="info" href='#/graphics/province-budget-and-investment-in-social-promotion> Gráfica </Button> </td>
+            <td style="padding-left:20px"> <Button color="info" href="#/graphics/province-budget-and-investment-in-social-promotion"> Gráfica </Button> </td>
     </div>
     <br/>
      <Table bordered>
