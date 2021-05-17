@@ -1,15 +1,52 @@
-<main>
-    <div class="mainDiv">
-    <h1 class="titulo"><b>SOS2021-27</b></h1>
-    <p>
-      <br><br>
-      En nuestro grupo analizaremos la situación económica de los habitantes en diferentes provincias españolas con el objetivo de poder relacionar este factor con la 		evolución en la actividad de juegos de azar y apuestas ¿aumentan o disminuyen según el nivel económico, se apuesta más cantidad o menos? y con el nivel de suicidios, 
-      donde la participación en las apuestas puede ser un factor clave para estos.  </p>
+<script>
+  import {Jumbotron, Navbar, Nav, NavItem, NavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from 'sveltestrap';
+</script>
 
+<main>
+ <body>
+      <Jumbotron class="p-3" style="background-color: #FFB833">
+        <h1 class="titulo; mainDiv" style="color: white">SOS2021-27</h1>
+      </Jumbotron>
+        <Navbar style="background-color: #FFB833; color:white;" light expand="lg" >
+            <NavbarBrand href="#/">INICIO</NavbarBrand>
+            <Nav navbar>
+              <NavItem>
+                <NavLink href="#/info">INFO</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="#/suicide-records">Registro de suicidios</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="#/province-budget-and-investment-in-social-promotion">Presupuesto/Inversión</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="#/azar-games-and-bet-activities">Actividad en loteria</NavLink>
+              </NavItem>
+              <Dropdown>
+                <DropdownToggle nav caret> Gráficas </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem href="#/graphics/suicide-records">Registro de suicidios</DropdownItem>
+                  <DropdownItem href="#/graphics/province-budget-and-investment-in-social-promotion">Presupuesto/Inversión</DropdownItem>
+                  <DropdownItem href="#/graphics/azar-games-and-bet-activities">Actividad en loteria</DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem href="#/graphics">Conjunto</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </Nav>
+        </Navbar>
+    </body>
+
+    <br>
+
+    <div class="mainDiv">
+    <p> En nuestro grupo analizaremos la situación económica de los habitantes en diferentes provincias españolas con el objetivo de poder relacionar este factor con la 		evolución en la actividad de juegos de azar y apuestas ¿aumentan o disminuyen según el nivel económico, se apuesta más cantidad o menos? y con el nivel de suicidios, 
+      donde la participación en las apuestas puede ser un factor clave para estos. </p>
     <p> <b class="color">Repositorio:</b><a href="https://github.com/gti-sos/SOS2021-27"> https://github.com/gti-sos/SOS2021-27</a> </p>
     <p> <b class="color">URL:</b><a href="http://sos2021-27.herokuapp.com"> http://sos2021-27.herokuapp.com</a> </p>
-    </div>  
+    </div> 
+
     <br>
+
     <div class="box">
         <slot>
             <div>

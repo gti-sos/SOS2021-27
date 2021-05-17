@@ -1,29 +1,25 @@
 <script>
-  import {Collapse, Jumbotron, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Dropdown, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'sveltestrap';
-  let list = false;
+  import {Jumbotron, Navbar, Nav, NavItem, NavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from 'sveltestrap';
 </script>
 
 <main>
     <body>
-      <Jumbotron class="p-3; mainDiv">
-        <h1 class="titulo">SOS2021-27</h1>
+      <Jumbotron class="p-3" style="background-color: #FFB833">
+        <h1 class="titulo; mainDiv" style="color: white">SOS2021-27</h1>
       </Jumbotron>
-        <Navbar color="#FFB833" dark expand = "md" >
+        <Navbar style="background-color: #FFB833; color:white;" light expand="lg" >
             <NavbarBrand href="#/">INICIO</NavbarBrand>
-            <Nav navbar >
-              <NavItem>
-                <NavLink href="#/info">INFO</NavLink>
-              </NavItem>
+            <Nav navbar>
               <NavItem>
                 <NavLink href="#/suicide-records">Registro de suicidios</NavLink>
               </NavItem>
-              <NavItem >
+              <NavItem>
                 <NavLink href="#/province-budget-and-investment-in-social-promotion">Presupuesto/Inversión</NavLink>
               </NavItem>
-              <NavItem >
+              <NavItem>
                 <NavLink href="#/azar-games-and-bet-activities">Actividad en loteria</NavLink>
               </NavItem>
-              <Dropdown  nav {list} toggle="{() => list = !list}" >
+              <Dropdown>
                 <DropdownToggle nav caret> Gráficas </DropdownToggle>
                 <DropdownMenu>
                   <DropdownItem href="#/graphics/suicide-records">Registro de suicidios</DropdownItem>
@@ -37,7 +33,8 @@
         </Navbar>
     </body>
 
-    <br><br>
+    <br>
+
     <div class="mainDiv">
     <p>En nuestro grupo analizaremos la situación económica de los habitantes en diferentes provincias españolas con el objetivo de poder relacionar este factor con la evolución en la actividad de juegos de azar y apuestas 
     ¿aumentan o disminuyen según el nivel económico, se apuesta más cantidad o menos? y con el nivel de suicidios, donde la participación en las apuestas puede ser un factor clave para estos.</p>
