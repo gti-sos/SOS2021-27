@@ -15,10 +15,10 @@
         budgetGraph = await data.json();
         if (data.ok) {
             budgetGraph.forEach(budgetSvelte => {
-            budgetGraphX.push(budgetSvelte.province+"/"+budgetSvelte.year);
-            budgetGraphBudget.push(budgetSvelte["budget"]);
-            budgetGraphInvest.push(budgetSvelte["invest_promotion"]);
-            budgetGraphPercentage.push(budgetSvelte["percentage"]);   
+            budgetGraphX.push(budgetSvelte.province +"/"+ budgetSvelte.year);
+            budgetGraphBudget.push(budgetSvelte.budget);
+            budgetGraphInvest.push(budgetSvelte.invest_promotion);
+            budgetGraphPercentage.push(budgetSvelte.percentage;   
         });
     }
     
