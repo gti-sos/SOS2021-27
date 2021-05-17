@@ -15,7 +15,8 @@
     let activitiesGraph = [];
 
   
-    var years = [];
+    var xAxis = [];
+    vat int = 0;
 
     let errorPrint = "";
 
@@ -34,16 +35,16 @@
           budgets = await dataB.json();
           console.log("OK");
         
-          var anyos = ordenaAnyo(budgets, "year");
+          var anyos = ordenaAnyo(budgets, year);
           anyos.sort(function (a, b) {
             return a.year - b.year;
           });
 
           anyos.forEach((x) => {
-            years.push(x.year);
+            xAxis.push(x.province + "/" + x.year);
           });
          
-          years.forEach((x) => {
+          xAxis.forEach((x) => {
             var yAxis = budgets.filter((f) => f.year === x).map((y) => y.percentage).reduce((sum, y) => y + sum);
             budgetsGraph.push(Math.round(yAxis));
           });
@@ -54,17 +55,17 @@
           suicides = await dataA.json();
           console.log("OK");
         
-          var anyos = ordenaAnyo(suicides, "year");
+          var anyos = ordenaAnyo(suicides, year);
           anyos.sort(function (a, b) {
             return a.year - b.year;
           });
 
           anyos.forEach((x) => {
-            years.push(x.year);
+            xAxis.push(x.province + "/" + x.year);
           });
          
-          years.forEach((x) => {
-            var yAxis = suicides.filter((f) => f.year === x).map((y) => y["suic_rate_mw"]).reduce((sum, y) => y + sum);
+          xAxis.forEach((x) => {
+            var yAxis = suicides.filter((f) => f.year === x).map((y) => int = parseInt(y["suic_rate_mw"])).reduce((sum, int) => int + sum);
             suicidesGraph.push(Math.round(yAxis));
           });
           errorPrint = "";
@@ -74,17 +75,17 @@
           activities = await dataC.json();
           console.log("OK");
         
-          var anyos = ordenaAnyo(activities, "year");
+          var anyos = ordenaAnyo(activities, year);
           anyos.sort(function (a, b) {
             return a.year - b.year;
           });
 
           anyos.forEach((x) => {
-            years.push(x.year);
+            xAxis.push(x.province + "/" + x.year);
           });
          
-          years.forEach((x) => {
-            var yAxis = activities.filter((f) => f.year === x).map((y) => y["national_lottery_expend"]).reduce((sum, y) => y + sum);
+          xAxis.forEach((x) => {
+            var yAxis = activities.filter((f) => f.year === x).map((y) => int = parseInt(y["national_lottery_expend"])).reduce((sum, int) => int + sum);
             activitiesGraph.push(Math.round(yAxis));
           });
           errorPrint = "";
@@ -107,9 +108,9 @@
         },
         xAxis: {
           title: {
-            text: "Años",
+            text: "Provincias/Años",
           },
-          categories: years,
+          categories: xAxis,
         },
         legend: {
           layout: "vertical",
