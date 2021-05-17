@@ -2,7 +2,7 @@
 
     import {onMount} from "svelte";
     import {pop} from "svelte-spa-router";
-    import {Button, Table} from "sveltestrap";
+    import {Button, Table, Jumbotron} from "sveltestrap";
 
     export let params = {};
 
@@ -70,10 +70,12 @@
 
 
 <main>
-    <h3 class="titulo">Editar el registro de presupuestos de <strong>{params.province}</strong> en el año <strong>{params.year}</strong></h3>
-        <Table bordered>
+     <Jumbotron class="p-3" style="background-color: #FFB833">
+        <h1 class="titulo; mainDiv" style="color: white">Editar el registro de presupuestos de <strong>{params.province}</strong> en el año <strong>{params.year}</strong></h1>
+      </Jumbotron>
+        <Table hover bordered style="text-align: center;">
             <thead>
-                <tr>
+                <tr style="background-color: #FFB833; color: #FFFFFF; font-weight: bold;">
                     <td>Provincia</td>
                     <td>Año</td>
                     <td>Presupuesto</td>
@@ -119,6 +121,12 @@
         background-color: #FFB833;
         color: #FFFFFF;
         text-align: center;
+    }
+
+    .mainDiv{
+        text-align: center;
+        margin: 20px;
+
     }
 
     .alertOK {
