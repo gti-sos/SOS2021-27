@@ -8,7 +8,7 @@
       <Jumbotron class="p-3; mainDiv">
         <h1 class="titulo">SOS2021-27</h1>
       </Jumbotron>
-        <Navbar color="#FFB833" dark expand = "md" >
+        <Navbar color="dark" dark expand = "md" >
             <NavbarBrand href="#/">INICIO</NavbarBrand>
             <Nav navbar >
               <NavItem>
