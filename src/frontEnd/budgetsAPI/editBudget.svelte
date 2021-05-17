@@ -2,7 +2,7 @@
 
     import {onMount} from "svelte";
     import {pop} from "svelte-spa-router";
-    import {Button, Table, Jumbotron, Navbar, Nav, NavItem, NavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from "sveltestrap";
+    import {Button, Table, Jumbotron, Navbar, Nav, NavItem, NavLink, NavbarBrand, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from "sveltestrap";
 
     export let params = {};
 
@@ -169,13 +169,6 @@
         padding: 20px;
         background-color: #f44336;
         color: white;
-    }
-
-    html, body {
-        height:100%;
-        width:100%;
-        margin:0;
-        padding:0;
     }
 
     .hideMe {
