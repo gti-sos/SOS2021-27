@@ -12,9 +12,6 @@
             <NavbarBrand href="#/">INICIO</NavbarBrand>
             <Nav navbar>
               <NavItem>
-                <NavLink href="#/info">INFO</NavLink>
-              </NavItem>
-              <NavItem>
                 <NavLink href="#/suicide-records">Registro de suicidios</NavLink>
               </NavItem>
               <NavItem>
