@@ -10,7 +10,7 @@
         <h1 class="titulo; mainDiv" style="color: white">SOS2021-27</h1>
       </Jumbotron>
         <Navbar style="background-color: #FFB833; color:white;" light expand="lg" >
-            <NavItem href="#/">INICIO</NavItem>
+            <NavbarBrand href="#/">INICIO</NavbarBrand>
             <Nav navbar>
               <NavItem>
                 <NavLink href="#/suicide-records">Registro de suicidios</NavLink>

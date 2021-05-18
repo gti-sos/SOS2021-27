@@ -1,116 +1,126 @@
 <script>
-    import {Button, Jumbotron, Navbar, Nav, NavItem, NavLink, NavbarBrand, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from "sveltestrap";
+  import {
+    Button,
+    Jumbotron,
+    Navbar,
+    Nav,
+    NavItem,
+    NavLink,
+    NavbarBrand,
+    Dropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem,
+  } from "sveltestrap";
+
+  let isOpen = false;
+
+  var BASE_API_PATH = "/api/v2";
+
+  // Array de Datos
+  var suicides=[];
+  var budgets=[];
+  var activities=[];
+
+  // Valores que se van a mostrar en la grafica
+  var xKeys = [];
+  var suicidesGraph=[];
+  var budgetsGraph=[];
+  var activitiesGraph=[];
 
 
-    let isOpen = false;
-
-    var BASE_API_PATH = "/api/v2";
-
-
-    let budgets = [];
-    let budgetsGraph = [];
-    let suicides = [];
-    let suicidesGraph = [];
-    let activities = [];
-    let activitiesGraph = [];
 
   
-    var xAxis = [];
-    var int = 0;
+  var int = 0;
 
-    let errorPrint = "";
+  let errorPrint = "";
 
-    function ordenaAnyo(x, y) {
-      return x.filter((object, position, array) => {
-        return array.map((mapObj) => mapObj[y]).indexOf(object[y]) === position;
+  async function getData() {
+    const dataA = await fetch(BASE_API_PATH + "/suicide-records");
+    const dataB = await fetch(BASE_API_PATH + "/province-budget-and-investment-in-social-promotion");
+    //const dataC = await fetch(BASE_API_PATH + "/azar-games-and-bet-activities");
+
+    if (dataA.ok && dataB.ok) { // añadir dataC cuando esté
+      suicides = await dataA.json();
+      budgets = await dataB.json();
+      //activities= await dataC.json();
+
+
+
+      // Se añaden las claves de cada banco de datos
+      suicides.forEach(element=>{
+        xKeys.push(element.province+","+parseInt(element.year));
       });
+
+      budgets.forEach(element=>{
+        xKeys.push(element.province+","+parseInt(element.year));
+      });
+
+      activities.forEach(element=>{
+        xKeys.push(element.province+","+parseInt(element.year));
+      })
+
+
+      // Se añaden los valores de cada banco de datos que se van a mostrar
+
+      // Suicidios
+      suicides.sort((a,b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : 0));
+      suicides.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
+
+
+      suicides.forEach(element=>{
+        suicidesGraph.push(parseInt(element.suic_total));
+      });
+
+      // Budgets
+
+      budgets.sort((a,b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : 0));
+      budgets.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
+
+      budgets.forEach(element=>{
+        budgetsGraph.push(element.percentage);
+      });
+
+      /* Activities
+
+      activities.sort((a,b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : 0));
+      activities.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
+
+      activities.forEach(element=>{
+        activitiesGraph.push(element.bingo_site);
+      });
+
+      
+      */
+
+      // Eliminamos repetidos y ordenamos por provincia y año
+      xKeys=new Set(xKeys);
+      xKeys=Array.from(xKeys);
+      xKeys.sort();
+      
+
+      
+    } else {
+      console.log("Error!");
     }
+  }
 
-    async function loadGraph() {
-      const dataA = await fetch(BASE_API_PATH + "/suicide-records");
-      const dataB = await fetch(BASE_API_PATH + "/province-budget-and-investment-in-social-promotion");
-      const dataC = await fetch(BASE_API_PATH + "/azar-games-and-bet-activities");
-      if (dataA.ok || dataB.ok || dataC.ok) {
-        if (dataB.ok) {
-          budgets = await dataB.json();
-          console.log("OK");
-        
-          var anyos = ordenaAnyo(budgets, year);
-          anyos.sort(function (a, b) {
-            return a.year - b.year;
-          });
-
-          anyos.forEach((x) => {
-            xAxis.push(x.province + "/" + x.year);
-          });
-         
-          xAxis.forEach((x) => {
-            var yAxis = budgets.filter((f) => f.year === x).map((y) => y.percentage).reduce((sum, y) => y + sum);
-            budgetsGraph.push(Math.round(yAxis));
-          });
-          errorPrint = "";
-        }
-
-        if (dataA.ok) {
-          suicides = await dataA.json();
-          console.log("OK");
-        
-          var anyos = ordenaAnyo(suicides, year);
-          anyos.sort(function (a, b) {
-            return a.year - b.year;
-          });
-
-          anyos.forEach((x) => {
-            xAxis.push(x.province + "/" + x.year);
-          });
-         
-          xAxis.forEach((x) => {
-            var yAxis = suicides.filter((f) => f.year === x).map((y) => int = parseInt(y["suic_rate_mw"])).reduce((sum, int) => int + sum);
-            suicidesGraph.push(Math.round(yAxis));
-          });
-          errorPrint = "";
-        }
-
-        if (dataC.ok) {
-          activities = await dataC.json();
-          console.log("OK");
-        
-          var anyos = ordenaAnyo(activities, year);
-          anyos.sort(function (a, b) {
-            return a.year - b.year;
-          });
-
-          anyos.forEach((x) => {
-            xAxis.push(x.province + "/" + x.year);
-          });
-         
-          xAxis.forEach((x) => {
-            var yAxis = activities.filter((f) => f.year === x).map((y) => int = parseInt(y["national_lottery_expend"])).reduce((sum, int) => int + sum);
-            activitiesGraph.push(Math.round(yAxis));
-          });
-          errorPrint = "";
-        }
-
-      } else {
-        console.log("ERROR");
-        errorPrint = "Todas las bases de datos están vacías.";
-      }
-     
-
+  async function loadGraph() {
+    getData().then(() => {
       Highcharts.chart("container", {
         title: {
           text: "",
         },
         yAxis: {
           title: {
-            text: "Ratios",
+            text: "Unidades",
           },
         },
         xAxis: {
           title: {
-            text: "Provincias/Años",
+            text: "Provincia,Año",
           },
-          categories: xAxis,
+          categories: xKeys,
         },
         legend: {
           layout: "vertical",
@@ -121,7 +131,7 @@
           {
             labels: [
               {
-                point: "year",
+                point: "date",
                 text: "",
               },
               {
@@ -134,15 +144,16 @@
         ],
         series: [
           {
-            name: "Ratio suicidios Hombre/Mujer",
+            name: "Total Suicidios",
             data: suicidesGraph,
           },
           {
-            name: "Porcentage sobre presupuesto/inversión",
+            name: "Porcentaje presupuesto/inversion",
             data: budgetsGraph,
           },
+          
           {
-            name: "Gastos en la loteria nacional",
+            name: "Espacios de Juego",
             data: activitiesGraph,
           }
         ],
@@ -163,138 +174,149 @@
           ],
         },
       });
-    }
-  </script>
-  
+    });
+  }
+</script>
+
 <svelte:head>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/series-label.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js" on:load={loadGraph}></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/series-label.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script
+    src="https://code.highcharts.com/modules/accessibility.js"
+    on:load={loadGraph}></script>
 </svelte:head>
-  
-  <main>
+
+<main>
   <body>
     <Jumbotron class="p-3" style="background-color: #FFB833">
-        <h1 class="titulo; mainDiv" style="color: white">SOS2021-27</h1>
+      <h1 class="titulo; mainDiv" style="color: white">SOS2021-27</h1>
     </Jumbotron>
-        <Navbar style="background-color: #FFB833; color:white;" light expand="lg" >
-            <NavbarBrand href="#/">INICIO</NavbarBrand>
-            <Nav navbar>
-              <NavItem>
-                <NavLink href="#/suicide-records">Registro de suicidios</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="#/province-budget-and-investment-in-social-promotion">Inversion promoción social</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="#/azar-games-and-bet-activities">Actividad en loteria</NavLink>
-              </NavItem>
-              <Dropdown nav {isOpen} toggle="{() => isOpen = !isOpen}">
-                <DropdownToggle nav caret> Gráficas </DropdownToggle>
-                <DropdownMenu end>
-                  <DropdownItem href="#/graphics/suicide-records">Registro de suicidios</DropdownItem>
-                  <DropdownItem href="#/graphics/province-budget-and-investment-in-social-promotion">Inversion promoción social</DropdownItem>
-                  <DropdownItem href="#/graphics/azar-games-and-bet-activities">Actividad en loteria</DropdownItem>
-                  <DropdownItem divider/>
-                  <DropdownItem href="#/graphics">Conjunto</DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            </Nav>
-        </Navbar>
-    </body>
-    <br>
-    <div>
-       <h1 class="titulo2"> Gráfica de datos </h1>
+    <Navbar style="background-color: #FFB833; color:white;" light expand="lg">
+      <NavbarBrand href="#/">INICIO</NavbarBrand>
+      <Nav navbar>
+        <NavItem>
+          <NavLink href="#/suicide-records">Registro de suicidios</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="#/province-budget-and-investment-in-social-promotion"
+            >Inversion promoción social</NavLink
+          >
+        </NavItem>
+        <NavItem>
+          <NavLink href="#/azar-games-and-bet-activities"
+            >Actividad en loteria</NavLink
+          >
+        </NavItem>
+        <Dropdown nav {isOpen} toggle={() => (isOpen = !isOpen)}>
+          <DropdownToggle nav caret>Gráficas</DropdownToggle>
+          <DropdownMenu end>
+            <DropdownItem href="#/graphics/suicide-records"
+              >Registro de suicidios</DropdownItem
+            >
+            <DropdownItem
+              href="#/graphics/province-budget-and-investment-in-social-promotion"
+              >Inversion promoción social</DropdownItem
+            >
+            <DropdownItem href="#/graphics/azar-games-and-bet-activities"
+              >Actividad en loteria</DropdownItem
+            >
+            <DropdownItem divider />
+            <DropdownItem href="#/graphics">Conjunto</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      </Nav>
+    </Navbar>
+  </body>
+  <br />
+  <div>
+    <h1 class="titulo2">Gráfica de datos</h1>
+  </div>
+
+  {#if errorPrint}
+    <div class="hideMe">
+      <span class="alertERROR">
+        <strong style="align:center">ERROR! </strong>
+        <p />
+        {errorPrint}
+      </span>
     </div>
-
-    {#if errorPrint}
-        <div class = "hideMe">
-            <span class = "alertERROR">
-            <strong style="align:center">ERROR! </strong><p></p> {errorPrint}
-            </span>
-        </div>
-    {:else}
-        <div style="margin-bottom: 15px">
-        <figure class="highcharts-figure">
-        <div id="container"/>
+  {:else}
+    <div style="margin-bottom: 15px">
+      <figure class="highcharts-figure">
+        <div id="container" />
         <p class="centrado">
-          <strong>Gráfica en la que se muestran:</strong><br> 
-          · EL ratio de suicidios entre hombres y mujeres<br>
-          · El porcentage de presupuesto que se invierte en promoción social<br> 
-          · Los gastos totales en loteria nacional
+          <strong>Gráfica en la que se muestran:</strong><br />
+          · EL total de suicidios<br />
+          · El porcentage de presupuesto que se invierte en promoción social<br
+          />
+
         </p>
-        </figure>
-        </div>
-    {/if}
-  </main>
-  
-  <style>
+      </figure>
+    </div>
+  {/if}
+</main>
 
-    .alertERROR {
-        margin: 0 auto;
-        display: table;
-        padding: 20px;
-        background-color: #f44336;
-        color: white;
-    }
+<style>
+  .alertERROR {
+    margin: 0 auto;
+    display: table;
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+  }
 
-    .hideMe {
-        -moz-animation: cssAnimation 0s ease-in 5s forwards;
+  .hideMe {
+    -moz-animation: cssAnimation 0s ease-in 5s forwards;
     /* Firefox */
-        -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+    -webkit-animation: cssAnimation 0s ease-in 5s forwards;
     /* Safari and Chrome */
-        -o-animation: cssAnimation 0s ease-in 5s forwards;
+    -o-animation: cssAnimation 0s ease-in 5s forwards;
     /* Opera */
-        animation: cssAnimation 0s ease-in 5s forwards;
-        -webkit-animation-fill-mode: forwards;
-        animation-fill-mode: forwards;
-    }
+    animation: cssAnimation 0s ease-in 5s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+  }
 
-    @keyframes cssAnimation {
-        0% {
-            opacity: 1;
-        }
-        100% {
-            opacity: 0;
-            left: -9999px; 
-            position: absolute;   
-        }
+  @keyframes cssAnimation {
+    0% {
+      opacity: 1;
     }
+    100% {
+      opacity: 0;
+      left: -9999px;
+      position: absolute;
+    }
+  }
 
-    @-webkit-keyframes cssAnimation {
-        0% {
-            opacity: 1;
-        }
-        100% {
-            opacity: 0;
-            left: -9999px; 
-            position: absolute;   
-        }
+  @-webkit-keyframes cssAnimation {
+    0% {
+      opacity: 1;
     }
+    100% {
+      opacity: 0;
+      left: -9999px;
+      position: absolute;
+    }
+  }
 
-    .titulo {
-        background-color: #FFB833;
-        color: #FFFFFF;
-        text-align: center;
-    }
-    
-    .titulo2 {
-        color: #000000;
-        text-align: center;
-        font-size: 150%;
-    }
 
-    .mainDiv{
-        text-align: center;
-        margin: 20px;
 
-    }
+  .titulo2 {
+    color: #000000;
+    text-align: center;
+    font-size: 150%;
+  }
 
-    .centrado {
-        text-align: center;
-        padding: 1em;
-        margin: 0 auto;
-    }
-  </style>
+  .mainDiv {
+    text-align: center;
+    margin: 20px;
+  }
+
+  .centrado {
+    text-align: center;
+    padding: 1em;
+    margin: 0 auto;
+  }
+</style>
