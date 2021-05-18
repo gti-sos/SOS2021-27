@@ -1,0 +1,995 @@
+{
+	"info": {
+		"_postman_id": "5f1a5bca-120a-4296-9317-1fa812a36a1f",
+		"name": "Test Api azar-games V2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Restart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/azar-games-and-bet-activities",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"azar-games-and-bet-activities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LoadInitialData",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion/loadInitialData",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"province-budget-and-investment-in-social-promotion",
+						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LoadInitialData (ERROR 409)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function(){\r",
+							"    pm.response.to.have.status(409);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion/loadInitialData",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"province-budget-and-investment-in-social-promotion",
+						"loadInitialData"
+					]
+				},
+				"description": "Error 409"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Resources",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Existen 12 datos actualmente.\", function(){\r",
+							"    var jsonData=pm.response.json()\r",
+							"    pm.expect(jsonData.length).to.eql(12);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"province-budget-and-investment-in-social-promotion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pager",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Se ha limitado al muestreo de 3 datos.\", function(){\r",
+							"    var jsonData=pm.response.json()\r",
+							"    pm.expect(jsonData.length).to.eql(3);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion?limit=3&offset=5",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"province-budget-and-investment-in-social-promotion"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "3"
+						},
+						{
+							"key": "offset",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Se han devuelto 8 datos.\", function(){\r",
+							"    var jsonData=pm.response.json()\r",
+							"    pm.expect(jsonData.length).to.eql(8);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion?budget=29194210",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"province-budget-and-investment-in-social-promotion"
+					],
+					"query": [
+						{
+							"key": "budget",
+							"value": "29194210"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Se ha devuelto 1 dato.\", function(){\r",
+							"    var jsonData=pm.response.json()\r",
+							"    pm.expect(jsonData.length).to.eql(1);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion?budget=29194210&invest_promotion=2201782",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"province-budget-and-investment-in-social-promotion"
+					],
+					"query": [
+						{
+							"key": "budget",
+							"value": "29194210"
+						},
+						{
+							"key": "invest_promotion",
+							"value": "2201782"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Se ha devuelto 1 dato.\", function(){\r",
+							"    var jsonData=pm.response.json()\r",
+							"    pm.expect(jsonData.length).to.eql(1);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion?province=VALENCIA",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"province-budget-and-investment-in-social-promotion"
+					],
+					"query": [
+						{
+							"key": "province",
+							"value": "VALENCIA"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search 2 (ERROR 404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							";"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion?budget=29194210&liquid=999999999",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"province-budget-and-investment-in-social-promotion"
+					],
+					"query": [
+						{
+							"key": "budget",
+							"value": "29194210"
+						},
+						{
+							"key": "liquid",
+							"value": "999999999"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Resource",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Request body has json data.\",function(){\r",
+							"    pm.request.to.have.jsonBody;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n            \"province\": \"MADRID\",\r\n            \"year\": 2019,\r\n            \"budget\": 1,\r\n            \"invest_promotion\": 1\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"province-budget-and-investment-in-social-promotion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Resource (ERROR 409)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function(){\r",
+							"    pm.response.to.have.status(409);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n            \"province\": \"MADRID\",\r\n            \"year\": 2019,\r\n            \"budget\": 1,\r\n            \"invest_promotion\": 1,\r\n            \"liquid\": 1,\r\n            \"percentage\": 1\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"province-budget-and-investment-in-social-promotion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Resource (ERROR 400)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n            \"province\": \"MADRID\",\r\n            \"year\": 2019,\r\n            \"budget\": 1\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"province-budget-and-investment-in-social-promotion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Resource with keys",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"JSON object received.\", function(){\r",
+							"    \r",
+							"    pm.response.to.be.json;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion/SEVILLA/2018",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"province-budget-and-investment-in-social-promotion",
+						"SEVILLA",
+						"2018"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Resource with keys (ERROR 404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion/HUESCA/2015",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"province-budget-and-investment-in-social-promotion",
+						"HUESCA",
+						"2015"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Resource",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion/MADRID/2019",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"province-budget-and-investment-in-social-promotion",
+						"MADRID",
+						"2019"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Resource (ERROR 404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion/HUESCA/2015",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"province-budget-and-investment-in-social-promotion",
+						"HUESCA",
+						"2015"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Update Resource",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Request body has json data.\",function(){\r",
+							"    pm.request.to.have.jsonBody;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "   {\r\n            \"province\": \"SEVILLE\",\r\n            \"year\": 2018,\r\n            \"budget\": 0,\r\n            \"invest-promotion\": 2322823\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion/SEVILLA/2018",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"province-budget-and-investment-in-social-promotion",
+						"SEVILLA",
+						"2018"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Update Resource (ERROR 404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "   {\r\n            \"province\": \"HUESCA\",\r\n            \"year\": 2015,\r\n            \"budget\": 0,\r\n            \"invest-promotion\": 2322823\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion/HUESCA/2015",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"province-budget-and-investment-in-social-promotion",
+						"HUESCA",
+						"2015"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Update Resource (ERROR 400)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "   {\r\n            \"province\": \"HUESCA\",\r\n            \"year\": 2013,\r\n            \"budget\": 0,\r\n            \"invest-promotion\": 2322823\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion/HUESCA/2015",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"province-budget-and-investment-in-social-promotion",
+						"HUESCA",
+						"2015"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Not Allowed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function(){\r",
+							"    pm.response.to.have.status(405);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion/SEVILLA/2018",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"province-budget-and-investment-in-social-promotion",
+						"SEVILLA",
+						"2018"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Not Allowed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function(){\r",
+							"    pm.response.to.have.status(405);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion/",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"province-budget-and-investment-in-social-promotion",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE All",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"province-budget-and-investment-in-social-promotion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CHECK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion",
+					"protocol": "https",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"province-budget-and-investment-in-social-promotion"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
