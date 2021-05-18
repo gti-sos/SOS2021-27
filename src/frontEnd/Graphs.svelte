@@ -38,12 +38,13 @@
   async function getData() {
     const dataA = await fetch(BASE_API_PATH + "/suicide-records");
     const dataB = await fetch(BASE_API_PATH + "/province-budget-and-investment-in-social-promotion");
-    //const dataC = await fetch(BASE_API_PATH + "/azar-games-and-bet-activities");
+    const dataC = await fetch(BASE_API_PATH + "/azar-games-and-bet-activities");
 
-    if (dataA.ok && dataB.ok) { // añadir dataC cuando esté
+
+    if (dataA.ok && dataB.ok && dataC.ok) { 
       suicides = await dataA.json();
       budgets = await dataB.json();
-      //activities= await dataC.json();
+      activities= await dataC.json();
 
 
 
@@ -81,7 +82,7 @@
         budgetsGraph.push(element.percentage);
       });
 
-      /* Activities
+      // Activities
 
       activities.sort((a,b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : 0));
       activities.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
@@ -91,7 +92,7 @@
       });
 
       
-      */
+      
 
       // Eliminamos repetidos y ordenamos por provincia y año
       xKeys=new Set(xKeys);
@@ -249,8 +250,9 @@
         <p class="centrado">
           <strong>Gráfica en la que se muestran:</strong><br />
           · EL total de suicidios<br />
-          · El porcentage de presupuesto que se invierte en promoción social<br
-          />
+          · El porcentage de presupuesto que se invierte en promoción social<br />
+          . Locales de bingo activos <br />
+         
 
         </p>
       </figure>
