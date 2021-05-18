@@ -1,12 +1,12 @@
 {
 	"info": {
-		"_postman_id": "7fb52f14-e16f-4940-945d-5994c0f816ef",
-		"name": "Test Api azar-activitiesV2",
+		"_postman_id": "5f1a5bca-120a-4296-9317-1fa812a36a1f",
+		"name": "Test Api azar-games V2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Clear Inicial",
+			"name": "Restart",
 			"event": [
 				{
 					"listen": "test",
@@ -16,7 +16,6 @@
 							"    \r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							"\r",
 							""
 						],
 						"type": "text/javascript"
@@ -27,8 +26,8 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities",
-					"protocol": "https",
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/azar-games-and-bet-activities",
+					"protocol": "http",
 					"host": [
 						"sos2021-27",
 						"herokuapp",
@@ -36,7 +35,7 @@
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"azar-games-and-bet-activities"
 					]
 				}
@@ -44,13 +43,27 @@
 			"response": []
 		},
 		{
-			"name": "Initial Data",
+			"name": "LoadInitialData",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/loadInitialData",
-					"protocol": "https",
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion/loadInitialData",
+					"protocol": "http",
 					"host": [
 						"sos2021-27",
 						"herokuapp",
@@ -58,8 +71,8 @@
 					],
 					"path": [
 						"api",
-						"v1",
-						"azar-games-and-bet-activities",
+						"v2",
+						"province-budget-and-investment-in-social-promotion",
 						"loadInitialData"
 					]
 				}
@@ -67,7 +80,7 @@
 			"response": []
 		},
 		{
-			"name": "Initial Data (ERR.409)",
+			"name": "LoadInitialData (ERROR 409)",
 			"event": [
 				{
 					"listen": "test",
@@ -86,8 +99,8 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/loadInitialData",
-					"protocol": "https",
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion/loadInitialData",
+					"protocol": "http",
 					"host": [
 						"sos2021-27",
 						"herokuapp",
@@ -95,16 +108,17 @@
 					],
 					"path": [
 						"api",
-						"v1",
-						"azar-games-and-bet-activities",
+						"v2",
+						"province-budget-and-investment-in-social-promotion",
 						"loadInitialData"
 					]
-				}
+				},
+				"description": "Error 409"
 			},
 			"response": []
 		},
 		{
-			"name": "Get Lista Recursos",
+			"name": "GET Resources",
 			"event": [
 				{
 					"listen": "test",
@@ -127,8 +141,8 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities",
-					"protocol": "https",
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion",
+					"protocol": "http",
 					"host": [
 						"sos2021-27",
 						"herokuapp",
@@ -136,15 +150,15 @@
 					],
 					"path": [
 						"api",
-						"v1",
-						"azar-games-and-bet-activities"
+						"v2",
+						"province-budget-and-investment-in-social-promotion"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Paginacion",
+			"name": "Pager",
 			"event": [
 				{
 					"listen": "test",
@@ -167,8 +181,8 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities?limit=3&offset=5",
-					"protocol": "https",
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion?limit=3&offset=5",
+					"protocol": "http",
 					"host": [
 						"sos2021-27",
 						"herokuapp",
@@ -176,8 +190,8 @@
 					],
 					"path": [
 						"api",
-						"v1",
-						"azar-games-and-bet-activities"
+						"v2",
+						"province-budget-and-investment-in-social-promotion"
 					],
 					"query": [
 						{
@@ -194,7 +208,7 @@
 			"response": []
 		},
 		{
-			"name": "Busqueda 1",
+			"name": "Search 1",
 			"event": [
 				{
 					"listen": "test",
@@ -217,8 +231,8 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities?bingo_site=34",
-					"protocol": "https",
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion?budget=29194210",
+					"protocol": "http",
 					"host": [
 						"sos2021-27",
 						"herokuapp",
@@ -226,13 +240,13 @@
 					],
 					"path": [
 						"api",
-						"v1",
-						"azar-games-and-bet-activities"
+						"v2",
+						"province-budget-and-investment-in-social-promotion"
 					],
 					"query": [
 						{
-							"key": "bingo_site",
-							"value": "34"
+							"key": "budget",
+							"value": "29194210"
 						}
 					]
 				}
@@ -240,7 +254,7 @@
 			"response": []
 		},
 		{
-			"name": "Busqueda 2",
+			"name": "Search 2",
 			"event": [
 				{
 					"listen": "test",
@@ -263,8 +277,8 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities?bingo_site=34&national_lottery_expend=487375563",
-					"protocol": "https",
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion?budget=29194210&invest_promotion=2201782",
+					"protocol": "http",
 					"host": [
 						"sos2021-27",
 						"herokuapp",
@@ -272,17 +286,17 @@
 					],
 					"path": [
 						"api",
-						"v1",
-						"azar-games-and-bet-activities"
+						"v2",
+						"province-budget-and-investment-in-social-promotion"
 					],
 					"query": [
 						{
-							"key": "bingo_site",
-							"value": "34"
+							"key": "budget",
+							"value": "29194210"
 						},
 						{
-							"key": "national_lottery_expend",
-							"value": "487375563"
+							"key": "invest_promotion",
+							"value": "2201782"
 						}
 					]
 				}
@@ -290,7 +304,53 @@
 			"response": []
 		},
 		{
-			"name": "Get (Err.404)",
+			"name": "Search 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Se ha devuelto 1 dato.\", function(){\r",
+							"    var jsonData=pm.response.json()\r",
+							"    pm.expect(jsonData.length).to.eql(1);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion?province=VALENCIA",
+					"protocol": "http",
+					"host": [
+						"sos2021-27",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"province-budget-and-investment-in-social-promotion"
+					],
+					"query": [
+						{
+							"key": "province",
+							"value": "VALENCIA"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search 2 (ERROR 404)",
 			"event": [
 				{
 					"listen": "test",
@@ -299,7 +359,6 @@
 							"pm.test(\"Status code is 404\", function(){\r",
 							"    pm.response.to.have.status(404);\r",
 							"});\r",
-							"\r",
 							";"
 						],
 						"type": "text/javascript"
@@ -310,8 +369,8 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities?bingo-site=34&national-lottery-expend=999999999999999999999",
-					"protocol": "https",
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion?budget=29194210&liquid=999999999",
+					"protocol": "http",
 					"host": [
 						"sos2021-27",
 						"herokuapp",
@@ -319,17 +378,17 @@
 					],
 					"path": [
 						"api",
-						"v1",
-						"azar-games-and-bet-activities"
+						"v2",
+						"province-budget-and-investment-in-social-promotion"
 					],
 					"query": [
 						{
-							"key": "bingo-site",
-							"value": "34"
+							"key": "budget",
+							"value": "29194210"
 						},
 						{
-							"key": "national-lottery-expend",
-							"value": "999999999999999999999"
+							"key": "liquid",
+							"value": "999999999"
 						}
 					]
 				}
@@ -337,7 +396,7 @@
 			"response": []
 		},
 		{
-			"name": "Post Recurso",
+			"name": "POST Resource",
 			"event": [
 				{
 					"listen": "test",
@@ -360,7 +419,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"province\":\"Cordoba\",\r\n\"year\":\"2001\",\r\n\"catering_bingo_machine\":\"152\",\r\n\"lottery_engagement\":\"56\",\r\n\"bingo_site\":\"208\",\r\n\"national_lottery_expend\":\"3\"\r\n}",
+					"raw": "{\r\n            \"province\": \"MADRID\",\r\n            \"year\": 2019,\r\n            \"budget\": 1,\r\n            \"invest_promotion\": 1\r\n        }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -368,8 +427,8 @@
 					}
 				},
 				"url": {
-					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/",
-					"protocol": "https",
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion",
+					"protocol": "http",
 					"host": [
 						"sos2021-27",
 						"herokuapp",
@@ -377,16 +436,15 @@
 					],
 					"path": [
 						"api",
-						"v1",
-						"azar-games-and-bet-activities",
-						""
+						"v2",
+						"province-budget-and-investment-in-social-promotion"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Post (Err.409)",
+			"name": "POST Resource (ERROR 409)",
 			"event": [
 				{
 					"listen": "test",
@@ -407,7 +465,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"province\": \"Malaga\",\r\n\"year\": \"2001\",\r\n\"catering-bingo-machine\": \"152\",\r\n\"lottery-engagement \": \"56\",\r\n\"bingo-site\": \"208\",\r\n\"national-lottery-expend\": \"2341235\"\r\n}",
+					"raw": "{\r\n            \"province\": \"MADRID\",\r\n            \"year\": 2019,\r\n            \"budget\": 1,\r\n            \"invest_promotion\": 1,\r\n            \"liquid\": 1,\r\n            \"percentage\": 1\r\n        }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -415,8 +473,8 @@
 					}
 				},
 				"url": {
-					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/",
-					"protocol": "https",
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion",
+					"protocol": "http",
 					"host": [
 						"sos2021-27",
 						"herokuapp",
@@ -424,16 +482,15 @@
 					],
 					"path": [
 						"api",
-						"v1",
-						"azar-games-and-bet-activities",
-						""
+						"v2",
+						"province-budget-and-investment-in-social-promotion"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Post (Err.400)",
+			"name": "POST Resource (ERROR 400)",
 			"event": [
 				{
 					"listen": "test",
@@ -441,7 +498,8 @@
 						"exec": [
 							"pm.test(\"Status code is 400\", function(){\r",
 							"    pm.response.to.have.status(400);\r",
-							"});"
+							"});\r",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -452,7 +510,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"province\": \"Malaga\",\r\n\"year\": \"2001\",\r\n\"catering-bingo-machine\": \"152\",\r\n\"lottery-engagement \": \"56\",\r\n\"bingo-site\": \"208\",\r\n\"national-lottery-expend\": \"2341235\"\r\n}",
+					"raw": "{\r\n            \"province\": \"MADRID\",\r\n            \"year\": 2019,\r\n            \"budget\": 1\r\n        }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -460,8 +518,8 @@
 					}
 				},
 				"url": {
-					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/",
-					"protocol": "https",
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion",
+					"protocol": "http",
 					"host": [
 						"sos2021-27",
 						"herokuapp",
@@ -469,16 +527,15 @@
 					],
 					"path": [
 						"api",
-						"v1",
-						"azar-games-and-bet-activities",
-						""
+						"v2",
+						"province-budget-and-investment-in-social-promotion"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Get Recurso (Url Keys)",
+			"name": "GET Resource with keys",
 			"event": [
 				{
 					"listen": "test",
@@ -501,8 +558,8 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/Seville/2018",
-					"protocol": "https",
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion/SEVILLA/2018",
+					"protocol": "http",
 					"host": [
 						"sos2021-27",
 						"herokuapp",
@@ -510,9 +567,9 @@
 					],
 					"path": [
 						"api",
-						"v1",
-						"azar-games-and-bet-activities",
-						"Seville",
+						"v2",
+						"province-budget-and-investment-in-social-promotion",
+						"SEVILLA",
 						"2018"
 					]
 				}
@@ -520,7 +577,7 @@
 			"response": []
 		},
 		{
-			"name": "Get recurso (Url Keys) (Err.404)",
+			"name": "GET Resource with keys (ERROR 404)",
 			"event": [
 				{
 					"listen": "test",
@@ -540,8 +597,8 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/Murcia/2021",
-					"protocol": "https",
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion/HUESCA/2015",
+					"protocol": "http",
 					"host": [
 						"sos2021-27",
 						"herokuapp",
@@ -549,17 +606,17 @@
 					],
 					"path": [
 						"api",
-						"v1",
-						"azar-games-and-bet-activities",
-						"Murcia",
-						"2021"
+						"v2",
+						"province-budget-and-investment-in-social-promotion",
+						"HUESCA",
+						"2015"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Borrar recurso",
+			"name": "DELETE Resource",
 			"event": [
 				{
 					"listen": "test",
@@ -578,8 +635,8 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/Seville/2018",
-					"protocol": "https",
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion/MADRID/2019",
+					"protocol": "http",
 					"host": [
 						"sos2021-27",
 						"herokuapp",
@@ -587,17 +644,17 @@
 					],
 					"path": [
 						"api",
-						"v1",
-						"azar-games-and-bet-activities",
-						"Seville",
-						"2018"
+						"v2",
+						"province-budget-and-investment-in-social-promotion",
+						"MADRID",
+						"2019"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Borrar Recurso (Err.404)",
+			"name": "DELETE Resource (ERROR 404)",
 			"event": [
 				{
 					"listen": "test",
@@ -616,8 +673,8 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/Murcia/2021",
-					"protocol": "https",
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion/HUESCA/2015",
+					"protocol": "http",
 					"host": [
 						"sos2021-27",
 						"herokuapp",
@@ -625,17 +682,17 @@
 					],
 					"path": [
 						"api",
-						"v1",
-						"azar-games-and-bet-activities",
-						"Murcia",
-						"2021"
+						"v2",
+						"province-budget-and-investment-in-social-promotion",
+						"HUESCA",
+						"2015"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "actualizar recurso",
+			"name": "PUT Update Resource",
 			"event": [
 				{
 					"listen": "test",
@@ -658,7 +715,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"province\": \"Malaga\",\r\n\"year\": \"2001\",\r\n\"catering-bingo-machine\": \"1572\",\r\n\"lottery-engagement \": \"56\",\r\n\"bingo-site\": \"208\",\r\n\"national-lottery-expend\": \"2341235\"\r\n}",
+					"raw": "   {\r\n            \"province\": \"SEVILLE\",\r\n            \"year\": 2018,\r\n            \"budget\": 0,\r\n            \"invest-promotion\": 2322823\r\n        }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -666,8 +723,8 @@
 					}
 				},
 				"url": {
-					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/Malaga/2001",
-					"protocol": "https",
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion/SEVILLA/2018",
+					"protocol": "http",
 					"host": [
 						"sos2021-27",
 						"herokuapp",
@@ -675,17 +732,17 @@
 					],
 					"path": [
 						"api",
-						"v1",
-						"azar-games-and-bet-activities",
-						"Malaga",
-						"2001"
+						"v2",
+						"province-budget-and-investment-in-social-promotion",
+						"SEVILLA",
+						"2018"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "actualizar recurso (err.404)",
+			"name": "PUT Update Resource (ERROR 404)",
 			"event": [
 				{
 					"listen": "test",
@@ -705,7 +762,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"province\": \"Malaga\",\r\n\"year\": \"2001\",\r\n\"catering-bingo-machine\": \"1572\",\r\n\"lottery-engagement \": \"56\",\r\n\"bingo-site\": \"208\",\r\n\"national-lottery-expend\": \"2341235\"\r\n}",
+					"raw": "   {\r\n            \"province\": \"HUESCA\",\r\n            \"year\": 2015,\r\n            \"budget\": 0,\r\n            \"invest-promotion\": 2322823\r\n        }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -713,8 +770,8 @@
 					}
 				},
 				"url": {
-					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/Malaga/2001",
-					"protocol": "https",
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion/HUESCA/2015",
+					"protocol": "http",
 					"host": [
 						"sos2021-27",
 						"herokuapp",
@@ -722,17 +779,17 @@
 					],
 					"path": [
 						"api",
-						"v1",
-						"azar-games-and-bet-activities",
-						"Malaga",
-						"2001"
+						"v2",
+						"province-budget-and-investment-in-social-promotion",
+						"HUESCA",
+						"2015"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "actualizar recurso (err.400)",
+			"name": "PUT Update Resource (ERROR 400)",
 			"event": [
 				{
 					"listen": "test",
@@ -752,11 +809,16 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"province\": \"Malaga\",\r\n\"year\": \"2001\",\r\n\"catering-bingo-machine\": \"1572\",\r\n\"lottery-engagement \": \"56\",\r\n\"bingo-site\": \"208\",\r\n\"national-lottery-expend\": \"2341235\"\r\n}"
+					"raw": "   {\r\n            \"province\": \"HUESCA\",\r\n            \"year\": 2013,\r\n            \"budget\": 0,\r\n            \"invest-promotion\": 2322823\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
-					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/Malaga/2001",
-					"protocol": "https",
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion/HUESCA/2015",
+					"protocol": "http",
 					"host": [
 						"sos2021-27",
 						"herokuapp",
@@ -764,17 +826,17 @@
 					],
 					"path": [
 						"api",
-						"v1",
-						"azar-games-and-bet-activities",
-						"Malaga",
-						"2001"
+						"v2",
+						"province-budget-and-investment-in-social-promotion",
+						"HUESCA",
+						"2015"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "post prohibido",
+			"name": "POST Not Allowed",
 			"event": [
 				{
 					"listen": "test",
@@ -794,11 +856,16 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
-					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities/Seville/2018",
-					"protocol": "https",
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion/SEVILLA/2018",
+					"protocol": "http",
 					"host": [
 						"sos2021-27",
 						"herokuapp",
@@ -806,9 +873,9 @@
 					],
 					"path": [
 						"api",
-						"v1",
-						"azar-games-and-bet-activities",
-						"Seville",
+						"v2",
+						"province-budget-and-investment-in-social-promotion",
+						"SEVILLA",
 						"2018"
 					]
 				}
@@ -816,7 +883,7 @@
 			"response": []
 		},
 		{
-			"name": "put prohibido",
+			"name": "PUT Not Allowed",
 			"event": [
 				{
 					"listen": "test",
@@ -835,8 +902,8 @@
 				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities",
-					"protocol": "https",
+					"raw": "http://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion/",
+					"protocol": "http",
 					"host": [
 						"sos2021-27",
 						"herokuapp",
@@ -844,15 +911,16 @@
 					],
 					"path": [
 						"api",
-						"v1",
-						"azar-games-and-bet-activities"
+						"v2",
+						"province-budget-and-investment-in-social-promotion",
+						""
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "delete final",
+			"name": "DELETE All",
 			"event": [
 				{
 					"listen": "test",
@@ -871,7 +939,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities",
+					"raw": "https://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion",
 					"protocol": "https",
 					"host": [
 						"sos2021-27",
@@ -880,15 +948,15 @@
 					],
 					"path": [
 						"api",
-						"v1",
-						"azar-games-and-bet-activities"
+						"v2",
+						"province-budget-and-investment-in-social-promotion"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "check delete",
+			"name": "CHECK",
 			"event": [
 				{
 					"listen": "test",
@@ -907,7 +975,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos2021-27.herokuapp.com/api/v1/azar-games-and-bet-activities",
+					"raw": "https://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion",
 					"protocol": "https",
 					"host": [
 						"sos2021-27",
@@ -916,8 +984,8 @@
 					],
 					"path": [
 						"api",
-						"v1",
-						"azar-games-and-bet-activities"
+						"v2",
+						"province-budget-and-investment-in-social-promotion"
 					]
 				}
 			},
