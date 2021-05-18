@@ -9,7 +9,7 @@
 	import BudgetsGraphics from './budgetsAPI/budgetsGraphic.svelte';
 	import Activities from './activitiesAPI/activities.svelte';
 	import ActivitiesEdit from './activitiesAPI/editactivities.svelte';
-	import ActivitiesGraph from './activitiesApi/activitiesGraph.svelte';
+	import ActivitiesGraph from './activitiesAPI/activitiesGraph.svelte';
 
 	import Info from './info.svelte';
 	import Landing from './Landing.svelte';
