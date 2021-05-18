@@ -24,6 +24,8 @@
             budgetGraphLiquid.push(budgetSvelte.liquid);
             budgetGraphPercentage.push(budgetSvelte.percentage);   
         });
+        budgetGraphX.sort((a,b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : 0));
+        budgetGraphX.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
     }
     
     Highcharts.chart("container", {
