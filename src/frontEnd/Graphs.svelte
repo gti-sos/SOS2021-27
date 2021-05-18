@@ -88,7 +88,7 @@
       activities.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
 
       activities.forEach(element=>{
-        activitiesGraph.push(parseint(element.catering_bingo_machine));
+        activitiesGraph.push(element.catering_bingo_machine);
       });
 
       
