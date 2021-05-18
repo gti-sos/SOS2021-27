@@ -88,7 +88,7 @@
       activities.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
 
       activities.forEach(element=>{
-        activitiesGraph.push(element.catering_bingo_machine);
+        activitiesGraph.push(element.national_lottery_expend);
       });
 
       
@@ -154,7 +154,7 @@
           },
           
           {
-            name: "Espacios de Juego",
+            name: "Gasto anual en loteria",
             data: activitiesGraph,
           }
         ],
@@ -251,7 +251,7 @@
           <strong>Gráfica en la que se muestran:</strong><br />
           · EL total de suicidios<br />
           · El porcentage de presupuesto que se invierte en promoción social<br />
-          . Locales de bingo activos <br />
+          . Gasto anual en loteria <br />
          
 
         </p>
