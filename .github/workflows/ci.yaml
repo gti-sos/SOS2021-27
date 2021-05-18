@@ -14,7 +14,7 @@ jobs:
       - run: npm start &
       - run: npx newman run tests/integrationBudgetsV1.json
       - run: npx newman run tests/integrationSuicide.json
-      - run: npx newman run tests/integrationActivitiesV1.json
+      - run: npx newman run tests/integrationActivitiesV2.json
 
       
 
