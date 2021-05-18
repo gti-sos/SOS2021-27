@@ -167,6 +167,6 @@
     .centrado {
         text-align: center;
         padding: 1em;
-        margin: 0 auto;
+        margin: 0;
     }
 </style>

@@ -184,9 +184,7 @@
   <script src="https://code.highcharts.com/modules/series-label.js"></script>
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
   <script src="https://code.highcharts.com/modules/export-data.js"></script>
-  <script
-    src="https://code.highcharts.com/modules/accessibility.js"
-    on:load={loadGraph}></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js" on:load={loadGraph}></script>
 </svelte:head>
 
 <main>
@@ -232,7 +230,7 @@
   </body>
   <br />
   <div>
-    <h1 class="titulo2">Gráfica de datos</h1>
+    <h1 class="titulo2">Gráfica conjunta</h1>
   </div>
 
   {#if errorPrint}
