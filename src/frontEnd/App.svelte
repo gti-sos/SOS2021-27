@@ -9,6 +9,7 @@
 	import BudgetsGraphics from './budgetsAPI/budgetsGraphic.svelte';
 	import Activities from './activitiesAPI/activities.svelte';
 	import ActivitiesEdit from './activitiesAPI/editactivities.svelte';
+	import ActivitiesGraph from './activitiesAPI/activitiesGraph.svelte';
 
 	import Info from './info.svelte';
 	import Landing from './Landing.svelte';
@@ -24,6 +25,9 @@
 		'/graphics/province-budget-and-investment-in-social-promotion':BudgetsGraphics,
 		'/azar-games-and-bet-activities':Activities,
 		'/azar-games-and-bet-activities/:province/:year':ActivitiesEdit,
+		'/graphics/azar-games-and-bet-activities':ActivitiesGraph,
+
+
 		'/info':Info,
 		'/graphics':Graphics,
 		'*':NotFound

@@ -284,7 +284,7 @@
         >
 
         <td
-            ><Button style="background-color:orange"><a href="https://localhost:10000/#/graphics/suicide-records">Gráfico</a></Button
+            ><Button style="background-color:orange"><a href="http://sos2021-27.herokuapp.com/#/graphics/suicide-records">Gráfico</a></Button
             ></td
         >
         

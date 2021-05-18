@@ -6,14 +6,14 @@
     import {Jumbotron, Navbar, Nav, NavItem, NavLink, NavbarBrand, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from 'sveltestrap';
     let isOpen = false;
 
-    var BASE_API_PATH = "/api/v2/suicide-records";
+    var BASE_API_PATH = "/api/v2/azar-games-and-bet-activities";
     
-    let suicides=[];
-    let suicKeys=[];
-    let suicMan=[];
-    let suicWoman=[];
-    let suicTotal=[];
-    let suicRate=[];
+    let activities=[];
+    let activitieskeys=[];
+    let catering_bingo_machine=[];
+    let lottery_engagement=[];
+    let bingo_site=[];
+    let national_lottery_expend=[];
 
     
     async function getData(){
@@ -21,26 +21,26 @@
         const res = await fetch(BASE_API_PATH);
         if(res.ok){
             console.log("Ok.");
-            suicides = await res.json();
+            activities = await res.json();
 
             
-            suicides.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
-            suicides.sort((a,b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : 0));
+            activities.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
+            activities.sort((a,b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : 0));
 
-            suicides.forEach(element => {
-                suicKeys.push(element.province+","+element.year);
-                suicMan.push(parseInt(element.suic_man));
-                suicWoman.push(parseInt(element.suic_woman));
-                suicTotal.push(parseInt(element.suic_total));
-                suicRate.push(parseInt(element.suic_rate_mw));
+            activities.forEach(element => {
+                activitieskeys.push(element.province+","+element.year);
+                catering_bingo_machine.push(parseInt(element.catering_bingo_machine));
+                lottery_engagement.push(parseInt(element.lottery_engagement));
+                bingo_site.push(parseInt(element.bingo_site));
+                national_lottery_expend.push(parseInt(element.national_lottery_expend));
 
                 
             });
 
-            console.log(suicWoman);
+            console.log(catering_bingo_machine);
 
 
-            console.log(`We have received ${suicides.length} data points.`);
+            console.log(`We have received ${activities.length} data points.`);
         }else{
             console.log("Error!");
         }
@@ -53,18 +53,18 @@
     
     Highcharts.chart('container', {
       title: {
-        text: "Gráfica de Suicidios",
+        text: "Gráfica de Actividad en loteria",
       },
       yAxis: {
         title: {
-          text: "Número de Personas",
+          text: "Actividad en bingo",
         },
       },
       xAxis: {
         title: {
           text: "Provincia,Año",
         },
-        categories: suicKeys,
+        categories: activitieskeys,
       },
       legend: {
         layout: "vertical",
@@ -88,20 +88,20 @@
       ],
         series: [
         {
-          name: "Hombres",
-          data: suicMan,
+          name: "Maquinas de bingo",
+          data: catering_bingo_machine,
         },
         {
-          name: "Mujeres",
-          data: suicWoman,
+          name: "Participacion en loteria",
+          data: lottery_engagement,
         },
         {
-          name: "Total",
-          data: suicTotal,
+          name: "Locales de bingo",
+          data: bingo_site,
         },
         {
-          name: "Ratio",
-          data: suicRate,
+          name: "Gastos en loteria nacional",
+          data: national_lottery_expend,
         }
         
       ],
@@ -137,7 +137,7 @@
 <main>
   <body>
   <Jumbotron class="p-3" style="background-color: #FFB833">
-      <h1 class="titulo; mainDiv" style="color: white">Presupuesto por provincia y año, e inversión en promoción social</h1>
+      <h1 class="titulo; mainDiv" style="color: white">Actividad en juegos de azar por  provincia y año</h1>
   </Jumbotron>
       <Navbar style="background-color: #FFB833; color:white;" light expand="lg" >
           <NavbarBrand href="#/">INICIO</NavbarBrand>
@@ -169,7 +169,7 @@
   <div style="margin-bottom: 15px">
       <figure class="highcharts-figure">
         <div id="container" />
-        <p style="centrado"> Gráfica que relaciona el presupuesto de cada provincia y año con la inversión que realiza cada una de estas en promoción social. </p>
+        <p style="centrado"> Gráfica que relaciona la actividad en loteria de cada provincia y  año  </p>
       </figure>
     </div>
 </main>

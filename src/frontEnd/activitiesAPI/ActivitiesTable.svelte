@@ -1,6 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import { Button, Table, Pagination, PaginationItem, PaginationLink, } from "sveltestrap";
+import Info from "../info.svelte";
 
 
     let activities = [];
@@ -43,14 +44,22 @@
             console.log("Ok.");
             const json = await res.json();
             activities = json;
-
+            okPrint = "Se han encontrado" + activities.length + "recursos";
+            errorPrint = ""
+            infoPrint = ""
 
             activities.sort((a,b) => (a.year < b.year) ? 1 : ((b.year < a.year) ? -1 : 0))
             activities.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0))
             
             console.log(`Received ${activities.length} records.`);
-        } else {
-            console.log("Error");
+        } else if (res.status==404) {
+           okPrint="";
+           errorPrint = "No se han encontrado registros con dichos parametros";
+           infoPrint = "";
+        } else {okPrint="";
+           errorPrint = "Error interno del servidor al buscar el recurso";
+           infoPrint = "";
+
         }
         pagination();
     }
@@ -125,7 +134,7 @@
         ).then((res) => {
             if (res.status == 200) {
                 activities.push(newActivity);
-
+                alert("Registro borrado correctamente")
                 okPrint = "Registro eliminado correctamente;"
                 errorPrint = "";
                 infoPrint="";
