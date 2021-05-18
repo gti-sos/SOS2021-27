@@ -57,7 +57,7 @@
       },
       yAxis: {
         title: {
-          text: "Número de Personas",
+          text: "Actividad en bingo",
         },
       },
       xAxis: {
