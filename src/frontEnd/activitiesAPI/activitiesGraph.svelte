@@ -169,7 +169,7 @@
   <div style="margin-bottom: 15px">
       <figure class="highcharts-figure">
         <div id="container" />
-        <p style="centrado"> Gráfica que relaciona la actividad en loteria de cada provincia y año  </p>
+        <p style="centrado"> Gráfica que relaciona la actividad en loteria de cada provincia y  año  </p>
       </figure>
     </div>
 </main>
