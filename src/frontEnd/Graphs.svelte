@@ -88,7 +88,7 @@
       activities.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
 
       activities.forEach(element=>{
-        activitiesGraph.push(element.national_lottery_expend);
+        activitiesGraph.push(parseint(element.national_lottery_expend));
       });
 
       
