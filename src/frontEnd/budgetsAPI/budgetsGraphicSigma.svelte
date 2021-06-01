@@ -1,7 +1,7 @@
 <script>
 
 
-  /* Te lo comento pa q ya lo arregles cuando puedas q sino no me deja hacer na en toda la pagina
+  
 
 
 
@@ -11,6 +11,13 @@
     import {Jumbotron, Navbar, Nav, NavItem, NavLink, NavbarBrand, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from 'sveltestrap';
 
     let isOpen = false;
+
+
+
+    /* Te lo comento pa q ya lo arregles cuando puedas q sino no me deja hacer na en toda la pagina <-----------
+
+
+
 
     var BASE_API_PATH = "/api/v2/province-budget-and-investment-in-social-promotion";
 
