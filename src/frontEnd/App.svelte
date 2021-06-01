@@ -12,6 +12,8 @@
 	import ActivitiesGraph from './activitiesAPI/activitiesGraph.svelte';
 	import About from './About.svelte';
 	import SuicideGraph2 from './suicidesAPI/suicideGraph2.svelte';
+	import SuicideGraphUvChart from './suicidesAPI/suicideGraphUvChart.svelte';
+
 
 	import Info from './info.svelte';
 	import Landing from './Landing.svelte';
@@ -23,6 +25,7 @@
 		'/suicide-records/:province/:year':SuicideEdit,
 		'/graphics/suicide-records':SuicideGraph,
 		'/graphics/suicide-records2':SuicideGraph2,
+		'/graphics/suicide-records3':SuicideGraphUvChart,
 		'/province-budget-and-investment-in-social-promotion':Budgets,
 		'/province-budget-and-investment-in-social-promotion/:province/:year':BudgetsEdit,
 		'/graphics/province-budget-and-investment-in-social-promotion':BudgetsGraphics,
