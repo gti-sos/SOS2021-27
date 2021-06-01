@@ -4,9 +4,9 @@
 	import SuicideRecord from './suicidesAPI/suicide.svelte';
 	import SuicideEdit from './suicidesAPI/editSuicide.svelte';
 	import SuicideGraph from './suicidesAPI/suicideGraph.svelte';
-	import Budgets from './budgetsAPI/budget.svelte';
-	import BudgetsEdit from './budgetsAPI/editBudget.svelte';
-	import BudgetsGraphics from './budgetsAPI/BudgetsGraphics.svelte';
+	//import Budgets from './budgetsAPI/budget.svelte';
+	//import BudgetsEdit from './budgetsAPI/editBudget.svelte';
+	//import BudgetsGraphics from './budgetsAPI/BudgetsGraphics.svelte';
 	import Activities from './activitiesAPI/activities.svelte';
 	import ActivitiesEdit from './activitiesAPI/editactivities.svelte';
 	import ActivitiesGraph from './activitiesAPI/activitiesGraph.svelte';
