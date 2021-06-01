@@ -37,7 +37,7 @@
                 
             });
 
-            console.log(suicWoman);
+
 
 
             console.log(`We have received ${suicides.length} data points.`);

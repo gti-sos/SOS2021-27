@@ -75,8 +75,5 @@
 
     }
 
-    .titulo {
-        background-color: #FFB833;
-        color: #FFFFFF;
-    }
+
 </style>
