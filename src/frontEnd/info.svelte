@@ -65,8 +65,8 @@
             <p> <b class="color">Front End URL:</b> <a href="http://sos2021-27.herokuapp.com/#/suicide-records"> http://sos2021-27.herokuapp.com/#/suicide-records</a></p>
             <p> <b class="color">Visualizaciones de la API:</b></p>
             <Button style="background-color:cyan" href="https://sos2021-27.herokuapp.com/#/graphics/suicide-records"> Tipo Line </Button>
-            <Button style="background-color:cyan" href="https://sos2021-27.herokuapp.com/#/graphics/suicide-records"> Tipo Column </Button>
-            
+            <Button style="background-color:cyan" href="https://sos2021-27.herokuapp.com/#/graphics/suicide-records2"> Tipo Column </Button>
+
             </div>
         </slot>
     </div>
