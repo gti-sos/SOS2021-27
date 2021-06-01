@@ -1,4 +1,12 @@
 <script>
+
+
+  /* Te lo comento pa q ya lo arregles cuando puedas q sino no me deja hacer na en toda la pagina
+
+
+
+
+
     import { onMount } from "svelte";
     import {Jumbotron, Navbar, Nav, NavItem, NavLink, NavbarBrand, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from 'sveltestrap';
 
@@ -32,7 +40,7 @@
     container: 'container',
     settings: {
       defaultNodeColor: '#ec5148'
-    }
+    },
     "nodes": [
     {
       "id": "n0",
@@ -74,6 +82,7 @@
     }
   ]
   });
+  */ 
 </script>
 
 <svelte:head>
