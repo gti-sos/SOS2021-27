@@ -208,6 +208,9 @@
             >Actividad en loteria</NavLink
           >
         </NavItem>
+        <NavItem>
+          <NavLink href="#/about">Acerca de</NavLink>
+        </NavItem>
         <Dropdown nav {isOpen} toggle={() => (isOpen = !isOpen)}>
           <DropdownToggle nav caret>Gráficas</DropdownToggle>
           <DropdownMenu end>

@@ -1,5 +1,5 @@
 <script>
-  import {Jumbotron, Navbar, Nav, NavItem, NavLink, NavbarBrand, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from 'sveltestrap';
+  import {Jumbotron, Navbar, Nav, NavItem, NavLink, NavbarBrand, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,Button} from 'sveltestrap';
 
   let isOpen = false;
 </script>
@@ -20,6 +20,9 @@
               </NavItem>
               <NavItem>
                 <NavLink href="#/azar-games-and-bet-activities">Actividad en loteria</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="#/about">Acerca de</NavLink>
               </NavItem>
               <Dropdown nav {isOpen} toggle="{() => isOpen = !isOpen}">
                 <DropdownToggle nav caret> Gráficas </DropdownToggle>
@@ -60,6 +63,8 @@
             <p> <b class="color">Documentación API v1:</b> <a href="https://documenter.getpostman.com/view/14951327/TzJsfdhf"> https://documenter.getpostman.com/view/14951327/TzJsfdhf</a></p>
             <p> <b class="color">Documentación API v2:</b> <a href="https://documenter.getpostman.com/view/14951327/TzRSh81n"> https://documenter.getpostman.com/view/14951327/TzRSh81n</a></p>
             <p> <b class="color">Front End URL:</b> <a href="http://sos2021-27.herokuapp.com/#/suicide-records"> http://sos2021-27.herokuapp.com/#/suicide-records</a></p>
+            <p> <b class="color">Visualizaciones de la API:</b></p>
+            <Button style="background-color:cyan" href="https://sos2021-27.herokuapp.com/#/graphics/suicide-records"> Tipo Line </Button>
             </div>
         </slot>
     </div>
@@ -107,7 +112,8 @@
 		box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
 		padding: 1em;
 		margin-left: auto;
-        margin-right: auto;
+    margin-right: auto;
+    
 	}
 
     .mainDiv {

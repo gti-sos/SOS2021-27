@@ -10,6 +10,7 @@
 	import Activities from './activitiesAPI/activities.svelte';
 	import ActivitiesEdit from './activitiesAPI/editactivities.svelte';
 	import ActivitiesGraph from './activitiesAPI/activitiesGraph.svelte';
+	import About from './About.svelte';
 
 	import Info from './info.svelte';
 	import Landing from './Landing.svelte';
@@ -26,6 +27,7 @@
 		'/azar-games-and-bet-activities':Activities,
 		'/azar-games-and-bet-activities/:province/:year':ActivitiesEdit,
 		'/graphics/azar-games-and-bet-activities':ActivitiesGraph,
+		'/about':About,
 
 
 		'/info':Info,
