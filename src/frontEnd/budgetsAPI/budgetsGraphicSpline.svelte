@@ -29,6 +29,9 @@
     }
     
     Highcharts.chart("container", {
+      chart: {
+        type: 'spline'
+      },
       title: {
         text: "",
       },
@@ -63,6 +66,19 @@
           ],
         },
       ],
+      tooltip: {
+        crosshairs: true,
+        shared: true
+      },
+      plotOptions: {
+        spline: {
+            marker: {
+                radius: 4,
+                lineColor: '#666666',
+                lineWidth: 1
+            }
+        }
+      },
       series: [
         {
           name: "Presupuesto",
@@ -145,7 +161,7 @@
     <div style="margin-bottom: 15px">
         <figure class="highcharts-figure">
           <div id="container"/>
-          <p class="centrado"> Gráfica que relaciona el presupuesto de cada provincia y año con la inversión que realiza cada una de estas en promoción social. </p>
+          <p class="centrado"> Gráfica que relaciona el presupuesto de cada provincia y año con la inversión que realiza cada una de estas en promoción social de tipo Spline. </p>
         </figure>
       </div>
 </main>
