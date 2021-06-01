@@ -86,13 +86,6 @@
         });
     }
 
-    /*
-    var chartObject = uv.chart(
-        chartType,
-        graphDefinition,
-        optionalConfiguration
-    );
-    */
 </script>
 
 <svelte:head>
