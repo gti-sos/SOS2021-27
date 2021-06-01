@@ -36,7 +36,7 @@
     "nodes": [
     {
       "id": "n0",
-      "label": "A node",
+      "label": "AAAAA",
       "x": 0,
       "y": 0,
       "size": 3
