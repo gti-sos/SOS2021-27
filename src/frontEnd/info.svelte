@@ -42,7 +42,7 @@
 
     <div class="mainDiv">
     <p> En nuestro grupo analizaremos la situación económica de los habitantes en diferentes provincias españolas con el objetivo de poder relacionar este factor con la 		evolución en la actividad de juegos de azar y apuestas ¿aumentan o disminuyen según el nivel económico, se apuesta más cantidad o menos? y con el nivel de suicidios, 
-      donde la participación en las apuestas puede ser un factor clave para estos. </p>
+      donde la participación en las apuestas puede ser un factor clave para estos.   </p>
     <p> <b class="color">Repositorio:</b><a href="https://github.com/gti-sos/SOS2021-27"> https://github.com/gti-sos/SOS2021-27</a> </p>
     <p> <b class="color">URL:</b><a href="http://sos2021-27.herokuapp.com"> http://sos2021-27.herokuapp.com</a> </p>
     </div> 
