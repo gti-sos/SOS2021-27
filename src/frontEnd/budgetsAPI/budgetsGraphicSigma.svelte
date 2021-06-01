@@ -32,7 +32,7 @@
     container: 'container',
     settings: {
       defaultNodeColor: '#ec5148'
-    }
+    },
     "nodes": [
     {
       "id": "n0",
