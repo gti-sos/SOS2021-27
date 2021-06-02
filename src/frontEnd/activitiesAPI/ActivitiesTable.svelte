@@ -263,9 +263,12 @@ paramsBusqueda="";
 >
 
 <td
-    ><Button on:click={deleteAll} color="red">Limpiar Lista</Button
-    ></td
+><Button
+    on:click={deleteAll}
+    style="background-color:red; margin:5px">Limpiar Lista</Button
+></td
 >
+
 <td
 ><Button style="background-color:orange"
     ><a
