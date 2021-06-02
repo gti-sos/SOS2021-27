@@ -13,7 +13,7 @@
 
     export let params={};
 
-    let activitie={}
+    let actividad={}
     let updatedBingoMachine=0;
     let updatedLottery=0;
 
