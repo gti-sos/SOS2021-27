@@ -66,3 +66,4 @@ var options = {
   end: "2014-06-18",
 };
 var graph2d = new vis.Graph2d(container, items, groups, options);
+</script>
