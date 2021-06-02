@@ -1,8 +1,6 @@
 <script>
     import { onMount } from "svelte";
     import { Button, Table, Pagination, PaginationItem, PaginationLink, } from "sveltestrap";
-import Info from "../info.svelte";
-
 
     let activities = [];
     let newActivity = {
@@ -28,7 +26,7 @@ import Info from "../info.svelte";
     let lastPage = 1;
     let total = 0;
 
-    let estructuraBusqueda=newActivity;
+    let estructuraBusqueda = newActivity;
 
 
     var BASE_API_PATH = "/api/v2/azar-games-and-bet-activities";
@@ -44,7 +42,7 @@ import Info from "../info.svelte";
             console.log("Ok.");
             const json = await res.json();
             activities = json;
-            okPrint = "Se han encontrado" + activities.length + "recursos";
+            okPrint = "Se han encontrado" + "" + activities.length + "" + "recursos";
             errorPrint = ""
             infoPrint = ""
 
@@ -258,18 +256,24 @@ paramsBusqueda="";
 
         </tbody>
     </Table>
-    <h2>Registro de juegos de azar por año y provincia.</h2>
+    <tr>
     <td
     ><Button on:click={initialActivity} color="primary">Generar Lista</Button
     ></td
 >
 
 <td
-    ><Button on:click={deleteAll} color="secondary">Limpiar Lista</Button
+    ><Button on:click={deleteAll} color="red">Limpiar Lista</Button
     ></td
 >
-
-
+<td
+><Button style="background-color:orange"
+    ><a
+        href="http://sos2021-27.herokuapp.com/#/graphics/azar-games-and-bet-activities"
+        >Gráfico de datos</a
+    ></Button
+></td>
+    </tr>
     <Table bordered>
         <thead>
 
@@ -319,6 +323,7 @@ paramsBusqueda="";
 
                     <td
                         ><Button
+                            color="danger"
                             on:click={deleteActivity(
                                 activitie.province,
                                 activitie.year
