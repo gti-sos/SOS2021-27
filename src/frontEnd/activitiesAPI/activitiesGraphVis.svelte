@@ -54,7 +54,7 @@
                 for (let x of provinciasTemp) {
                     if (x.name == element.province) { // x.name es el nombre de la provincia en mi array temporal
                         x.value =
-                            parseInt(x.value) + parseInt(element.national_lottery_expend);
+                            parseInt(x.value) + parseInt(element.bingo_site);
                     }
                 }
             });
