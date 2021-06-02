@@ -37,7 +37,8 @@ var budgetsDBV2 = new Datastore({filename: "src/backEnd/budgetsAPI/budgetsV2/bud
 
 var activitiesDB=new Datastore({filename: "src/backEnd/activitiesAPI/activitiesV1/activities.db",autoload:true});
 var activitiesDBV2=new Datastore({filename: "src/backEnd/activitiesAPI/activitiesV2/activities.db",autoload:true});
- 
+var activitiesDBV3=new Datastore({filename: "src/backEnd/activitiesAPI/integration/activities.db",autoload:true});
+
 // -->      Funciones del servidor
 
 app.listen(port, () =>{ // Cuando el servidor está listo, ejecuta el código interior.
@@ -73,7 +74,8 @@ activitiesAPI.register(app,activitiesDB);
 var activitiesAPIV2 = require("./src/backEnd/activitiesAPI/activitiesV2");
 activitiesAPIV2.register(app,activitiesDBV2);
 
-
+var activities_integration=require("./src/backEnd/activitiesAPI/integration");
+activities_integration.register(app,activitiesDBV3);
 
 
 
