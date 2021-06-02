@@ -57,7 +57,7 @@
       },
       yAxis: {
         title: {
-          text: "Actividad en bingo",
+          text: "Actividad en juegos de azar",
         },
       },
       xAxis: {

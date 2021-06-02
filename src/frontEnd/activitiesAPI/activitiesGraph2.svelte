@@ -53,14 +53,14 @@
     
     Highcharts.chart('container', {
         chart: {
-    type: 'column'
+    type: 'bar'
 },
       title: {
         text: "Gráfica de Actividad en loteria",
       },
       yAxis: {
         title: {
-          text: "Actividad en bingo",
+          text: "Actividad en juegos de azar",
         },
       },
       xAxis: {
