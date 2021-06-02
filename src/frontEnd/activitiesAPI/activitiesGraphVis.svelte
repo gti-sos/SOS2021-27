@@ -24,7 +24,7 @@
 
         if (res.ok) {
             console.log("Ok.");
-            suicides = await res.json();
+            activities = await res.json();
 
             let provinciasTemp = [];
 
