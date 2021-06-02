@@ -53,7 +53,7 @@
     
     Highcharts.chart('container', {
         chart: {
-    type: 'pie'
+    type: 'column'
 },
       title: {
         text: "Gráfica de Actividad en loteria",
