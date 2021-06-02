@@ -149,19 +149,20 @@
     </body>
     <br />
     <h1 class="titulo2">Gráfica de datos</h1>
-    <div style="margin-bottom: 15px">
+    <div style="width:800px; margin:0 auto;">
         <figure class="highcharts-figure">
             <div id="container" />
             <p style="centrado">
-                Gráfica que relaciona el presupuesto de cada provincia y año con
-                la inversión que realiza cada una de estas en promoción social.
+                Gráfica que nos muestra el total de suicidios según las provincias en los años registrados en la base de datos.
             </p>
         </figure>
+
+        <div id='uv-div' ></div>
     </div>
 
     
 
-    <div id='uv-div'></div>
+    
 </main>
 
 <style>

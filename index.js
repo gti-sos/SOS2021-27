@@ -6,16 +6,31 @@ var path=require("path");
 var Datastore=require('nedb');
 
 
+
+
+// Cabeceras cors
+var cors = require("cors");
+
+
+
+
+
+
+
 // -->      Variables para el uso del servidor y módulos
+
+
 
 var app=express(); // Generamos una aplicación que hace uso de express
 app.use(bodyParser.json());
 var port= (process.env.PORT || 10000); // Obtiene el puerto que se le indique o el 10000 en caso de no existir  (Heroku no trabaja con puerto 10000)
 
 
+app.use(cors());
 // -->      Bases de datos
 var suicideDB=new Datastore({filename: "src/backEnd/suicidesAPI/suicidesV1/suicide.db",autoload:true});
 var suicideDB2=new Datastore({filename: "src/backEnd/suicidesAPI/suicidesV2/suicide.db",autoload:true});
+var suicideDB3=new Datastore({filename: "src/backEnd/suicidesAPI/integration/suicide.db",autoload:true});
 
 var budgetsDB = new Datastore({filename: "src/backEnd/budgetsAPI/budgetsV1/budgets.db",autoload:true});
 var budgetsDBV2 = new Datastore({filename: "src/backEnd/budgetsAPI/budgetsV2/budgets.db",autoload:true});
@@ -42,6 +57,10 @@ suicideAPI.register(app,suicideDB2);
 var suicideAPI=require("./src/backEnd/suicidesAPI/suicidesV1");
 suicideAPI.register(app,suicideDB);
 
+
+var suicide_integration=require("./src/backEnd/suicidesAPI/integration");
+suicide_integration.register(app,suicideDB3);
+
 var budgetsAPI = require("./src/backEnd/budgetsAPI/budgetsV1");
 budgetsAPI.register(app,budgetsDB);
 
@@ -60,5 +79,10 @@ activitiesAPIV2.register(app,activitiesDBV2);
 
 
 
+
+
+// Proxys
+
+const request = require("request");
 
 

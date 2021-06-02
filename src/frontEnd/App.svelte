@@ -14,6 +14,8 @@
 	import SuicideGraph2 from './suicidesAPI/suicideGraph2.svelte';
 	import SuicideGraphUvChart from './suicidesAPI/suicideGraphUvChart.svelte';
 
+	import Integrations from './Integrations.svelte'
+
 
 	import Info from './info.svelte';
 	import Landing from './Landing.svelte';
@@ -33,6 +35,7 @@
 		'/azar-games-and-bet-activities/:province/:year':ActivitiesEdit,
 		'/graphics/azar-games-and-bet-activities':ActivitiesGraph,
 		'/about':About,
+		'/integrations':Integrations,
 
 
 		'/info':Info,

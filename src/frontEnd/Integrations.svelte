@@ -1,0 +1,140 @@
+<script>
+    import {
+      Jumbotron,
+      Navbar,
+      Nav,
+      NavItem,
+      NavLink,
+      NavbarBrand,
+      Dropdown,
+      DropdownToggle,
+      DropdownMenu,
+      DropdownItem,
+    } from "sveltestrap";
+  
+    let isOpen = false;
+  </script>
+  
+  <main>
+    <body>
+      <Jumbotron class="p-3" style="background-color: #FFB833">
+        <h1 class="titulo; mainDiv" style="color: white">SOS2021-27</h1>
+      </Jumbotron>
+      <Navbar style="background-color: #FFB833; color:white;" light expand="lg">
+        <NavbarBrand href="#/">INICIO</NavbarBrand>
+        <Nav navbar>
+          <NavItem>
+            <NavLink href="#/suicide-records">Registro de suicidios</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="#/province-budget-and-investment-in-social-promotion"
+              >Inversion promoción social</NavLink
+            >
+          </NavItem>
+          <NavItem>
+            <NavLink href="#/azar-games-and-bet-activities"
+              >Actividad en loteria</NavLink
+            >
+          </NavItem>
+          <NavItem>
+            <NavLink href="#/about">Acerca de</NavLink>
+          </NavItem>
+
+          
+          <NavItem>
+            <NavLink href="#/integrations">Integraciones</NavLink>
+          </NavItem>
+          <Dropdown Dropdown nav {isOpen} toggle={() => (isOpen = !isOpen)}>
+            <DropdownToggle nav caret>Gráficas</DropdownToggle>
+            <DropdownMenu end>
+              <DropdownItem href="#/graphics/suicide-records"
+                >Registro de suicidios</DropdownItem
+              >
+              <DropdownItem
+                href="#/graphics/province-budget-and-investment-in-social-promotion"
+                >Inversion promoción social</DropdownItem
+              >
+              <DropdownItem href="#/graphics/azar-games-and-bet-activities"
+                >Actividad en loteria</DropdownItem
+              >
+              <DropdownItem divider />
+              <DropdownItem href="#/graphics">Conjunto</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        </Nav>
+      </Navbar>
+    </body>
+  
+    <br />
+  
+    <div class="box">
+      <slot>
+        <div>
+          <h2>Integraciones de Javier García</h2>
+        </div>
+      </slot>
+    </div>
+    <div class="box">
+      <slot>
+        <div>
+          <h2>Integraciones de Fernando Nuevo</h2>
+        </div>
+      </slot>
+    </div>
+    <div class="box">
+      <slot>
+        <div>
+          <h2>Integraciones de Humberto Garcia</h2>
+        </div>
+      </slot>
+    </div>
+  
+    <div class="mainDiv">
+      <br />
+  
+      <a href="https://github.com/gti-sos/SOS2021-27" class="fakeButton"
+        >REPOSITORIO</a
+      >
+      <a href="http://sos2021-27.herokuapp.com" class="fakeButton">URL</a>
+      <a href="#/info" class="fakeButton">INFO</a>
+    </div>
+  </main>
+  
+  <style>
+    .fakeButton {
+      background-color: #ffb833;
+      border: none;
+      color: white;
+      padding: 16px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+      margin-right: 60px;
+      border-radius: 12px;
+    }
+  
+    .mainDiv {
+      text-align: center;
+      margin: 20px;
+    }
+  
+    .box {
+      width: 50%;
+      border: 1px solid #aaa;
+      border-radius: 2px;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 1em;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+    .mainDiv {
+      text-align: center;
+      margin: 20px;
+    }
+  </style>
+  
