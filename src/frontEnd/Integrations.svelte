@@ -10,6 +10,7 @@
       DropdownToggle,
       DropdownMenu,
       DropdownItem,
+      Button,
     } from "sveltestrap";
   
     let isOpen = false;
@@ -71,6 +72,7 @@
       <slot>
         <div>
           <h2>Integraciones de Javier García</h2>
+          <Button style="background-color:cyan" href="https://sos2021-27.herokuapp.com/#/graphics/integrations/covid"> covid19 (Externa) </Button>
         </div>
       </slot>
     </div>

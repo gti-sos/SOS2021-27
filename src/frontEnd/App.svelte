@@ -11,8 +11,10 @@
 	import ActivitiesEdit from './activitiesAPI/editactivities.svelte';
 	import ActivitiesGraph from './activitiesAPI/activitiesGraph.svelte';
 	import About from './About.svelte';
+
 	import SuicideGraph2 from './suicidesAPI/suicideGraph2.svelte';
 	import SuicideGraphUvChart from './suicidesAPI/suicideGraphUvChart.svelte';
+	import suiCovid from './suicidesAPI/covidGraph.svelte';
 
 	import Integrations from './Integrations.svelte'
 
@@ -28,6 +30,7 @@
 		'/graphics/suicide-records':SuicideGraph,
 		'/graphics/suicide-records2':SuicideGraph2,
 		'/graphics/suicide-records3':SuicideGraphUvChart,
+		'/graphics/integrations/covid':suiCovid,
 		//'/province-budget-and-investment-in-social-promotion':Budgets,
 		//'/province-budget-and-investment-in-social-promotion/:province/:year':BudgetsEdit,
 		//'/graphics/province-budget-and-investment-in-social-promotion':BudgetsGraphics,
