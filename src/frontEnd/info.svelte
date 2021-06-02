@@ -106,7 +106,7 @@
                 <p> <b class="color">Front End:</b> <a href="http://sos2021-27.herokuapp.com/#/azar-games-and-bet-activities"> http://sos2021-27.herokuapp.com/#/azar-games-and-bet-activities</a></p>
                 <p> <b class="color">Visualizaciones de la API:</b></p>
                 <Button style="background-color:cyan" href="https://sos2021-27.herokuapp.com/#/graphics/azar-games-and-bet-activities"> Tipo Line </Button>
-                <Button style="background-color:cyan" href="https://sos2021-27.herokuapp.com/#/graphics/azar-games-and-bet-activities2"> Tipo Column </Button>
+                <Button style="background-color:cyan" href="https://sos2021-27.herokuapp.com/#/graphics/azar-games-and-bet-activities2"> Tipo Bar </Button>
                 <Button style="background-color:cyan" href="https://sos2021-27.herokuapp.com/#/graphics/azar-games-and-bet-activities3"> Vis </Button>
     
               </div>

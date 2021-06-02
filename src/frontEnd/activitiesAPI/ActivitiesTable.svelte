@@ -273,9 +273,11 @@ paramsBusqueda="";
 ><Button style="background-color:orange"
     ><a
         href="http://sos2021-27.herokuapp.com/#/graphics/azar-games-and-bet-activities"
-        >Gráfico de datos</a
+        >Gráfico tipo line</a
     ></Button
 ></td>
+<Button style="background-color:green" href="https://sos2021-27.herokuapp.com/#/graphics/azar-games-and-bet-activities2"> Grafico tipo Bar </Button>
+<Button style="background-color:yellow" href="https://sos2021-27.herokuapp.com/#/graphics/azar-games-and-bet-activities3"> Grafico tipo Vis </Button>
     </tr>
     <Table bordered>
         <thead>
