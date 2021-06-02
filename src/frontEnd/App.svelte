@@ -16,8 +16,7 @@
 	import SuicideGraphUvChart from './suicidesAPI/suicideGraphUvChart.svelte';
 	import suiCovid from './suicidesAPI/covidGraph.svelte';
 
-	import ActivitiesGraph2 from './activitiesAPI/activitiesGraph2.svelte';
-	import ActivitiesGraphVis from './activitiesAPI/activitiesGraphVis.svelte';
+
 	import Integrations from './Integrations.svelte'
 
 
