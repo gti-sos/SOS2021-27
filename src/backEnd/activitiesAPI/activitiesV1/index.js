@@ -39,7 +39,7 @@ module.exports.register= (app,db)=>{
                 "catering_bingo_machine":"13389",
                 "lottery_engagement": "56425240",
                 "bingo_site": "34",
-                "national_lottery-expend":"486535860"
+                "national_lottery_expend":"486535860"
             },
             {
                 "province": 'Barcelona',
