@@ -1,7 +1,7 @@
 <script>
-    import BudgetsGraphicLine from './BudgetsGraphicLine.svelte'
-    import BudgetsGraphicSpline from './BudgetsGraphicSpline.svelte'
-    import BudgetsGraphicSigma from './BudgetsGraphicSigma.svelte'
+    import BudgetsGraphicLine from './budgetsGraphicLine.svelte'
+    import BudgetsGraphicSpline from './budgetsGraphicSpline.svelte'
+    import BudgetsGraphicSigma from './budgetsGraphicSigma.svelte'
     import {Jumbotron, Navbar, Nav, NavItem, NavLink, NavbarBrand, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from 'sveltestrap';
 
     let isOpen = false;
