@@ -154,6 +154,9 @@
             <NavItem>
               <NavLink href="#/azar-games-and-bet-activities">Actividad en loteria</NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink href="#/integrations">Integraciones</NavLink>
+            </NavItem>
             <Dropdown nav {isOpen} toggle="{() => isOpen = !isOpen}">
               <DropdownToggle nav caret> Gráficas </DropdownToggle>
               <DropdownMenu end>

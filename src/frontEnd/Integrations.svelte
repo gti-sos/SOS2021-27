@@ -73,6 +73,7 @@
         <div>
           <h2>Integraciones de Javier García</h2>
           <Button style="background-color:cyan" href="https://sos2021-27.herokuapp.com/#/graphics/integrations/covid"> covid19 (Externa) </Button>
+          <Button style="background-color:cyan" href="https://sos2021-27.herokuapp.com/#/graphics/integrations/dogs"> Reservoir Dogs (Externa) </Button>
         </div>
       </slot>
     </div>

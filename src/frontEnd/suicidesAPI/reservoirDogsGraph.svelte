@@ -7,95 +7,79 @@
     let isOpen = false;
 
     
-    var europe=[]
-    var europe_deaths=[];
+    var ratings=[]
+    
     
     async function getData(){
 
-        const covidData= await fetch("https://covid-193.p.rapidapi.com/statistics", {
+        // Especificamos el ID de la película en la consulta, en este caso corresponde a RESERVOIR DOGS
+        const allData= await fetch("https://imdb8.p.rapidapi.com/title/get-ratings?tconst=tt0105236", { 
                 "method":"GET",
                 "headers":{
                     "x-rapidapi-key": "b8725c41c3msh1a6b8216d9f4f17p1fa8dcjsn85cd61011197",
-	                "x-rapidapi-host": "covid-193.p.rapidapi.com",
-                    "useQueryString": true
+	                "x-rapidapi-host": "imdb8.p.rapidapi.com",
+	                "useQueryString": true
 
-                }
-
+                },
         });
 
-
-        // Como la api no cuenta con un filtro por continentes lo haré yo.
-        let covidJsons=[];
-        covidJsons=await covidData.json();
-
-
-    
-        for(let x of covidJsons.response){
-            let obj={}
-
-            if(x.continent=="Europe"){
-
-                if(x.country!="Europe" && x.population>10000000){ // Necesario porque considera a Europa como un país.
-                    obj["name"]=x.country;
-                    obj["value"]=x.cases.total;
-                    europe.push(obj);
-                }
+        let data=[];
+        data=await allData.json();
+        console.log(data)
 
 
-                
-                
-            }
-            
-        }
 
-        for(let x of covidJsons.response){
-            let obj={}
+        // La API NO nos devuelve un array de objetos con las votaciones, por lo que añado las categorias que quiero manualmente.
 
-            if(x.continent=="Europe"){
-
-                if(x.country!="Europe" && x.population>10000000){ // Necesario porque considera a Europa como un país.
-                    obj["name"]=x.country;
-                    obj["value"]=x.deaths.total;
-                    europe_deaths.push(obj);
-                }
+        let obj_under18={}
+        obj_under18["name"]=data.ratingsHistograms["Aged under 18"].demographic;
+        obj_under18["value"]=data.ratingsHistograms["Aged under 18"].aggregateRating;
+        ratings.push(obj_under18);
 
 
-                
-                
-            }
-            
-        }
+        let obj_female={}
+        obj_female["name"]=data.ratingsHistograms.Females.demographic;
+        obj_female["value"]=data.ratingsHistograms.Females.aggregateRating;
+        ratings.push(obj_female);
 
-        console.log(europe);
+        let obj_male={}
+        obj_male["name"]=data.ratingsHistograms.Males.demographic;
+        obj_male["value"]=data.ratingsHistograms.Males.aggregateRating;
+        ratings.push(obj_male);
+
+        let obj_staff={}
+        obj_staff["name"]=data.ratingsHistograms["IMDb Staff"].demographic;
+        obj_staff["value"]=data.ratingsHistograms["IMDb Staff"].aggregateRating;
+        ratings.push(obj_staff);
+
+        let obj_users={}
+        obj_users["name"]=data.ratingsHistograms["IMDb Users"].demographic;
+        obj_users["value"]=data.ratingsHistograms["IMDb Users"].aggregateRating;
+        ratings.push(obj_users);
         
+        console.log(ratings)
 
     }   
     
   //  onMount(getData);
   async function loadGraph(){  
     getData().then(()=>{
+
         var graphdef={
-            categories: ['Casos','Muertes'],
+            categories: ['Nota'],
             dataset:{
-
-                'Casos': europe,
-                'Muertes':europe_deaths
-
-
+                'Nota': ratings
             }
         }
 
-        var chart = uv.chart ('Bar', graphdef,{
+        var chart = uv.chart ('StackedArea', graphdef,{
             meta:{
-                caption:'Casos y Muertes en los principales paises europeos (más de 10M habitantes)',
+                caption:'Nota media según el tipo de usuario para la película Reservoir Dogs.',
 
             }
         });
-	
 
-
-
-        console.log("fin");
+        
 
   });
 }

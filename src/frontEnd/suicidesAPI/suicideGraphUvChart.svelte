@@ -76,11 +76,12 @@
         getData().then(() => {
             console.log(show)
             var graphdef = {
-                categories: ["uvCharts"],
+                categories: ["uvCharts"], //La categoria uvChart procesará los 2 parámetros que acabamos de tratar en la función anterior.
                 dataset: {
                     uvCharts:show
                 },
             };
+
 
             var chart = uv.chart('Donut', graphdef);
         });
@@ -125,6 +126,9 @@
                     <NavLink href="#/azar-games-and-bet-activities"
                         >Actividad en loteria</NavLink
                     >
+                </NavItem>
+                <NavItem>
+                    <NavLink href="#/integrations">Integraciones</NavLink>
                 </NavItem>
                 <Dropdown nav {isOpen} toggle={() => (isOpen = !isOpen)}>
                     <DropdownToggle nav caret>Gráficas</DropdownToggle>
