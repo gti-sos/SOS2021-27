@@ -20,7 +20,7 @@
       }
       async function loadChart() {
       console.log("Fetching data...");
-      const res = await fetch(BASE_CONTACT_API_PATH);
+      const res = await fetch(BASE_API_PATH);
       pData = await res.json();
       if (res.ok) {
             console.log("Ok.");
