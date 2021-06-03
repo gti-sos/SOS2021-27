@@ -108,6 +108,8 @@
         <p style="centrado"> Gráfica que relaciona la actividad en loteria de cada provincia y  año  </p>
       </figure>
     </div>
+    <div id="myChart"></div>
+
 </main>
 
 <style>
