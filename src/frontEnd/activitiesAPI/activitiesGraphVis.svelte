@@ -25,9 +25,9 @@
 
             activities.forEach(element => {
                 activitieskeys.push(element.province+","+element.year);
-                catering_bingo_machine.push(parseInt(element.catering_bingo_machine));
+                catering_bingo_machine.push(parseInt(element["catering_bingo_machine"]));
                 lottery_engagement.push(parseInt(element.lottery_engagement));
-                bingo_site.push(parseInt(element.bingo_site));
+                bingo_site.push(parseInt(element["bingo_site"]));
                 national_lottery_expend.push(parseInt(element.national_lottery_expend));
 
                 
