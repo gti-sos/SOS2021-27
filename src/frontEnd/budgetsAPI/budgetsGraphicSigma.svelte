@@ -27,58 +27,36 @@
         budgetGraphX.sort((a,b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : 0));
         budgetGraphX.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
     }
+
+    var graphSigma = new sigma('container');
+
+    graphSigma.graph.addNode({
+      id: budgetGraphX1,
+      label: budgetGraphX,
+      x: 0,
+      y: 0,
+      size: 1,
+      color: '#f00'
+    }).addNode({
+      id: budgetGraphX2,
+      label: budgetGraphX,
+      x: 1,
+      y: 1,
+      size: 1,
+      color: '#00f'
+    }).addEdge({
+      id: budgetGraphBudget,
+      source: budgetGraphX1,
+      target: budgetGraphX2
+    });
+
+    graphSigma.refresh();
     
-    sigma.parsers.json('data.json', {
-    container: 'container',
-    settings: {
-      defaultNodeColor: '#ec5148'
-    },
-    "nodes": [
-    {
-      "id": "n0",
-      "label": "AAAAA",
-      "x": 0,
-      "y": 0,
-      "size": 3
-    },
-    {
-      "id": "n1",
-      "label": "Another node",
-      "x": 3,
-      "y": 1,
-      "size": 2
-    },
-    {
-      "id": "n2",
-      "label": "And a last one",
-      "x": 1,
-      "y": 3,
-      "size": 1
-    }
-  ],
-  "edges": [
-    {
-      "id": "e0",
-      "source": "n0",
-      "target": "n1"
-    },
-    {
-      "id": "e1",
-      "source": "n1",
-      "target": "n2"
-    },
-    {
-      "id": "e2",
-      "source": "n2",
-      "target": "n0"
-    }
-  ]
-  });
+  }  
 </script>
 
 <svelte:head>
   <script src="sigma.min.js" on:load={loadGraph}></script>
-  <script src="sigma.parsers.json.min.js"></script>
 </svelte:head>
 
 <main>
