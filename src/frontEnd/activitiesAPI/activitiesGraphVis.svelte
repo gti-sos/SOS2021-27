@@ -103,11 +103,7 @@
   </body>
   <br>
   <h1 class="titulo2"> Gráfica de datos </h1>
-  <div style="margin-bottom: 15px">
-        <div id="container" />
-        <p style="centrado"> Gráfica que relaciona la actividad en loteria de cada provincia y  año  </p>
-      
-    </div>
+ 
     <div id="myChart"></div>
 
 
