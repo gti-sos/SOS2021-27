@@ -9,22 +9,15 @@
     let national_lottery_expend=[];
 
       let pData = [];
-      let pChartData = [];
   
-      let errorMsg = "";
-      let okMsg = "";
-      function distinctRecords(MYJSON, prop) {
-      return MYJSON.filter((obj, pos, arr) => {
-          return arr.map((mapObj) => mapObj[prop]).indexOf(obj[prop]) === pos;
-      });
-      }
+     
+      
       async function loadChart() {
       console.log("Fetching data...");
       const res = await fetch(BASE_API_PATH);
       pData = await res.json();
       if (res.ok) {
-            console.log("Ok.");
-            activities = await res.json();
+            
 
             
             activities.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
