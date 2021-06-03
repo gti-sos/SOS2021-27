@@ -9,6 +9,7 @@
 	import BudgetsGraphicLine from './budgetsAPI/budgetsGraphicLine.svelte';
 	import BudgetsGraphicArea from './budgetsAPI/budgetsGraphicArea.svelte';
 	import BudgetsGraphicSigma from './budgetsAPI/budgetsGraphicSigma.svelte';
+	import IntegrationEducationExpenditures from './budgetsAPI/integrationEducationExpenditures.svelte';
 	import Activities from './activitiesAPI/activities.svelte';
 	import ActivitiesEdit from './activitiesAPI/editactivities.svelte';
 	import ActivitiesGraph from './activitiesAPI/activitiesGraph.svelte';
@@ -42,6 +43,7 @@
 		'/graphics/line/province-budget-and-investment-in-social-promotion':BudgetsGraphicLine,
 		'/graphics/area/province-budget-and-investment-in-social-promotion':BudgetsGraphicArea,
 		'/graphics/sigma/province-budget-and-investment-in-social-promotion':BudgetsGraphicSigma,
+		'/graphics/integrations/educationExpenditures':IntegrationEducationExpenditures,
 		'/azar-games-and-bet-activities':Activities,
 		'/azar-games-and-bet-activities/:province/:year':ActivitiesEdit,
 		'/graphics/azar-games-and-bet-activities':ActivitiesGraph,
