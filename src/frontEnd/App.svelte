@@ -6,7 +6,9 @@
 	import SuicideGraph from './suicidesAPI/suicideGraph.svelte';
 	import Budgets from './budgetsAPI/budget.svelte';
 	import BudgetsEdit from './budgetsAPI/editBudget.svelte';
-	import BudgetsGraphics from './budgetsAPI/BudgetsGraphics.svelte';
+	import BudgetsGraphicLine from './budgetsAPI/BudgetsGraphicLine.svelte';
+	import BudgetsGraphicArea from './budgetsAPI/BudgetsGraphicArea.svelte';
+	import BudgetsGraphicSigma from './budgetsAPI/BudgetsGraphicSigma.svelte';
 	import Activities from './activitiesAPI/activities.svelte';
 	import ActivitiesEdit from './activitiesAPI/editactivities.svelte';
 	import ActivitiesGraph from './activitiesAPI/activitiesGraph.svelte';
@@ -37,7 +39,9 @@
 		'/graphics/integrations/dogs':suiDogs,
 		'/province-budget-and-investment-in-social-promotion':Budgets,
 		'/province-budget-and-investment-in-social-promotion/:province/:year':BudgetsEdit,
-		'/graphics/province-budget-and-investment-in-social-promotion':BudgetsGraphics,
+		'/graphics/line/province-budget-and-investment-in-social-promotion':BudgetsGraphicLine,
+		'/graphics/area/province-budget-and-investment-in-social-promotion':BudgetsGraphicArea,
+		'/graphics/sigma/province-budget-and-investment-in-social-promotion':BudgetsGraphicSigma,
 		'/azar-games-and-bet-activities':Activities,
 		'/azar-games-and-bet-activities/:province/:year':ActivitiesEdit,
 		'/graphics/azar-games-and-bet-activities':ActivitiesGraph,
