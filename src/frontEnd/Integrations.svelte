@@ -58,35 +58,27 @@
     <div class="box">
       <slot>
         <div>
-          <h2>Integraciones de Javier García</h2>
-          <Button style="background-color:cyan" href="https://sos2021-27.herokuapp.com/#/graphics/integrations/covid"> covid19 (Externa) </Button>
-          <Button style="background-color:cyan" href="https://sos2021-27.herokuapp.com/#/graphics/integrations/dogs"> Reservoir Dogs (Externa) </Button>
+          <h3 class="titulo"><b>Integraciones de Javier García</b></h3>
+          <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/covid" class="fakeButton">covid19 (Externa)</a>
+          <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/dogs" class="fakeButton">Reservoir Dogs (Externa)</a>
         </div>
       </slot>
     </div>
+    <br><br>
     <div class="box">
       <slot>
         <div>
-          <h2>Integraciones de Fernando Nuevo</h2>
+          <h3 class="titulo"><b>Integraciones de Fernando Nuevo</b></h3>
         </div>
       </slot>
     </div>
+    <br><br>
     <div class="box">
       <slot>
         <div>
-          <h2>Integraciones de Humberto Garcia</h2>
+        <h3 class="titulo"><b>Integraciones de Humberto Garcia</b></h3>
         </div>
       </slot>
-    </div>
-  
-    <div class="mainDiv">
-      <br />
-  
-      <a href="https://github.com/gti-sos/SOS2021-27" class="fakeButton"
-        >REPOSITORIO</a
-      >
-      <a href="http://sos2021-27.herokuapp.com" class="fakeButton">URL</a>
-      <a href="#/info" class="fakeButton">INFO</a>
     </div>
   </main>
   
@@ -125,6 +117,15 @@
     .mainDiv {
       text-align: center;
       margin: 20px;
+    }
+    .color {
+        color: #FFB833;
+    }
+
+    .titulo {
+        background-color: #FFB833;
+        color: #FFFFFF;
+        text-align: center;
     }
   </style>
   

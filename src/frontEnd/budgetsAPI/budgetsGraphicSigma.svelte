@@ -101,8 +101,10 @@
           <p class="centrado"> Gráfica que relaciona el presupuesto de cada provincia y año con la inversión que realiza cada una de estas en promoción social de tipo Sigma. </p>
       </div>
       <br><br>
+      <div class="centrado">
       <a href="#/graphics/line/province-budget-and-investment-in-social-promotion" class="fakeButton">TIPO LINE</a>
       <a href="#/graphics/area/province-budget-and-investment-in-social-promotion" class="fakeButton">TIPO ÁREA</a>
+      </div>
 </main>
 
 <style>

@@ -160,8 +160,10 @@
         </figure>
       </div>
       <br><br>
-    <a href="#/graphics/line/province-budget-and-investment-in-social-promotion" class="fakeButton">TIPO LINE</a>
-    <a href="#/graphics/sigma/province-budget-and-investment-in-social-promotion" class="fakeButton">LIB SIGMA</a>
+      <div class="centrado">
+      <a href="#/graphics/line/province-budget-and-investment-in-social-promotion" class="fakeButton">TIPO LINE</a>
+      <a href="#/graphics/sigma/province-budget-and-investment-in-social-promotion" class="fakeButton">LIB SIGMA</a>
+      </div>
 </main>
 
 <style>
