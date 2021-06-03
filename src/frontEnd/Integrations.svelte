@@ -59,8 +59,11 @@
       <slot>
         <div>
           <h3 class="titulo"><b>Integraciones de Javier García</b></h3>
+          <br>
+          <div class="titulo">
           <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/covid" class="fakeButton">covid19 (Externa)</a>
           <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/dogs" class="fakeButton">Reservoir Dogs (Externa)</a>
+          </div>
         </div>
       </slot>
     </div>
@@ -69,6 +72,10 @@
       <slot>
         <div>
           <h3 class="titulo"><b>Integraciones de Fernando Nuevo</b></h3>
+           <br>
+           <div class="titulo">
+          
+          </div>
         </div>
       </slot>
     </div>
@@ -77,6 +84,10 @@
       <slot>
         <div>
         <h3 class="titulo"><b>Integraciones de Humberto Garcia</b></h3>
+         <br>
+         <div class="titulo">
+          
+          </div>
         </div>
       </slot>
     </div>
@@ -123,8 +134,6 @@
     }
 
     .titulo {
-        background-color: #FFB833;
-        color: #FFFFFF;
         text-align: center;
     }
   </style>

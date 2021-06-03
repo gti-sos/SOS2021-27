@@ -55,36 +55,40 @@
   <br />
 
   <div class="box">
-    <slot>
-      <div>
-        <h2>Video de Javier García</h2>
-      </div>
-    </slot>
-  </div>
-  <div class="box">
-    <slot>
-      <div>
-        <h2>Video de Fernando Nuevo</h2>
-      </div>
-    </slot>
-  </div>
-  <div class="box">
-    <slot>
-      <div>
-        <h2>Video de Humberto Garcia</h2>
-      </div>
-    </slot>
-  </div>
-
-  <div class="mainDiv">
-    <br />
-
-    <a href="https://github.com/gti-sos/SOS2021-27" class="fakeButton"
-      >REPOSITORIO</a
-    >
-    <a href="http://sos2021-27.herokuapp.com" class="fakeButton">URL</a>
-    <a href="#/info" class="fakeButton">INFO</a>
-  </div>
+      <slot>
+        <div>
+          <h3 class="titulo"><b>Vídeo de Javier García</b></h3>
+          <br>
+          <div class="titulo">
+         
+          </div>
+        </div>
+      </slot>
+    </div>
+    <br><br>
+    <div class="box">
+      <slot>
+        <div>
+          <h3 class="titulo"><b>Vídeo de Fernando Nuevo</b></h3>
+           <br>
+           <div class="titulo">
+          
+          </div>
+        </div>
+      </slot>
+    </div>
+    <br><br>
+    <div class="box">
+      <slot>
+        <div>
+        <h3 class="titulo"><b>Vídeo de Humberto Garcia</b></h3>
+         <br>
+         <div class="titulo">
+         
+          </div>
+        </div>
+      </slot>
+    </div>
 </main>
 
 <style>
@@ -123,4 +127,7 @@
     text-align: center;
     margin: 20px;
   }
+  .titulo {
+        text-align: center;
+    }
 </style>
