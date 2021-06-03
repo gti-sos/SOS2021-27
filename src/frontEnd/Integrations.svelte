@@ -74,7 +74,7 @@
           <h3 class="titulo"><b>Integraciones de Fernando Nuevo</b></h3>
            <br>
            <div class="titulo">
-          
+            <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/educationExpenditures" class="fakeButton">Gastos en educación (G04)</a>
           </div>
         </div>
       </slot>
