@@ -2,34 +2,35 @@
     var BASE_API_PATH = "/api/v2/azar-games-and-bet-activities";
     
     let activities=[];
-    let provinces=[];
-    let years=[];
-    let catering_bingo_machines=[];
-    let lottery_engagements=[];
-    let bingo_sites=[];
-    let national_lottery_expends=[];
+    let activitieskeys=[];
+    let catering_bingo_machine=[];
+    let lottery_engagement=[];
+    let bingo_site=[];
+    let national_lottery_expend=[];
 
-      let pData = [];
   
      
       
       async function loadChart() {
       console.log("Fetching data...");
       const res = await fetch(BASE_API_PATH);
-      pData = await res.json();
       if (res.ok) {
-        pData.forEach(stat => {
-            provinces.push(stat.province);
-            national_lottery_expends.push(stat.national_lottery_expend);
-            years.push(stat.year);
-            lottery_engagements.push(stat.lottery_engagement);
-            bingo_sites.push(stat["bingo_site"]);
-            catering_bingo_machines.push(stat["catering_bingo_machine"]);
-            
-            });
+            console.log("Ok.");
+            activities = await res.json();
 
             
-          }
+            activities.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
+            activities.sort((a,b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : 0));
+
+            activities.forEach(element => {
+                activitieskeys.push(element.province+","+element.year);
+                catering_bingo_machine.push(parseInt(element.catering_bingo_machine));
+                lottery_engagement.push(parseInt(element.lottery_engagement));
+                bingo_site.push(parseInt(element.bingo_site));
+                national_lottery_expend.push(parseInt(element.national_lottery_expend));
+
+                
+            });}
               var myConfig = {
                   type: 'bar',
                   'legend':{},
