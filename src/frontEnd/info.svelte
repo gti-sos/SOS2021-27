@@ -22,10 +22,6 @@
                 <NavLink href="#/azar-games-and-bet-activities">Actividad en loteria</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#/about">Acerca de</NavLink>
-              </NavItem>
-
-              <NavItem>
                 <NavLink href="#/integrations">Integraciones</NavLink>
               </NavItem>
               <Dropdown nav {isOpen} toggle="{() => isOpen = !isOpen}">
@@ -38,6 +34,9 @@
                   <DropdownItem href="#/graphics">Conjunto</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
+              <NavItem>
+                <NavLink style="float:right; color:white" href="#/about">Acerca de</NavLink>
+              </NavItem>
             </Nav>
         </Navbar>
     </body>

@@ -28,9 +28,9 @@
         budgetGraphX.sort((a,b) => (a.province > b.province) ? 1 : ((b.province > a.province) ? -1 : 0));
     }
     
-    Highcharts.stockChart("container", {
+    Highcharts.chart("container", {
       chart: {
-        type: 'spline'
+        type: 'area'
       },
       title: {
         text: "",
@@ -67,17 +67,7 @@
         },
       ],
       tooltip: {
-        crosshairs: true,
-        shared: true
-      },
-      plotOptions: {
-        spline: {
-            marker: {
-                radius: 4,
-                lineColor: '#666666',
-                lineWidth: 1
-            }
-        }
+        pointFormat: '{series.name}: <b>{point.y:,.0f}</b> en {point.x}'
       },
       series: [
         {
@@ -119,19 +109,19 @@
 </script>
 
 <svelte:head>
-  <script src="https://code.highcharts.com/stock/highstock.js" on:load={loadGraph}></script>
-  <script src="https://code.highcharts.com/stock/modules/data.js"></script>
-  <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
-  <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js" on:load={loadGraph}></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 </svelte:head>
 
 <main>
     <br>
-    <h1 class="titulo2"> Gráfica de datos tipo Spline</h1>
+    <h1 class="titulo2"> Gráfica de datos tipo Área</h1>
     <div style="margin-bottom: 15px">
         <figure class="highcharts-figure">
           <div id="container"/>
-          <p class="centrado"> Gráfica que relaciona el presupuesto de cada provincia y año con la inversión que realiza cada una de estas en promoción social de tipo Spline. </p>
+          <p class="centrado"> Gráfica que relaciona el presupuesto de cada provincia y año con la inversión que realiza cada una de estas en promoción social de tipo Área. </p>
         </figure>
       </div>
 </main>
