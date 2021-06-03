@@ -13,7 +13,7 @@
     let budgetGraphLiquid = [];
     let budgetGraphPercentage = [];
 
-    async function loadGraph() {
+    async function loadGraphSigma() {
         const data = await fetch(BASE_API_PATH);
         budgetGraph = await data.json();
         if (data.ok) {
@@ -56,7 +56,7 @@
 </script>
 
 <svelte:head>
-  <script src="sigma.min.js" on:load={loadGraph}></script>
+  <script src="sigma.min.js" on:load={loadGraphSigma}></script>
 </svelte:head>
 
 <main>

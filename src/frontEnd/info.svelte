@@ -35,7 +35,7 @@
                 </DropdownMenu>
               </Dropdown>
               <NavItem>
-                <NavLink style="float:right; color:white" href="#/about">Acerca de</NavLink>
+                <NavLink style="float:right; color:white; margin:left;" href="#/about">Acerca de</NavLink>
               </NavItem>
             </Nav>
         </Navbar>

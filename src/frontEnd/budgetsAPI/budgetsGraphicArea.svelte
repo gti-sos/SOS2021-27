@@ -13,7 +13,7 @@
     let budgetGraphLiquid = [];
     let budgetGraphPercentage = [];
 
-    async function loadGraph() {
+    async function loadGraphArea() {
         const data = await fetch(BASE_API_PATH);
         budgetGraph = await data.json();
         if (data.ok) {
@@ -67,7 +67,7 @@
         },
       ],
       tooltip: {
-        pointFormat: '{series.name}: <b>{point.y:,.0f}</b> en {point.x}'
+        pointFormat: '{series.name}: <b>{point.y:,.0f}</b>'
       },
       series: [
         {
@@ -109,7 +109,7 @@
 </script>
 
 <svelte:head>
-  <script src="https://code.highcharts.com/highcharts.js" on:load={loadGraph}></script>
+  <script src="https://code.highcharts.com/highcharts.js" on:load={loadGraphArea}></script>
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
   <script src="https://code.highcharts.com/modules/export-data.js"></script>
   <script src="https://code.highcharts.com/modules/accessibility.js"></script>

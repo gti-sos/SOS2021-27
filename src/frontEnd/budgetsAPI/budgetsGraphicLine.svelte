@@ -13,7 +13,7 @@
     let budgetGraphLiquid = [];
     let budgetGraphPercentage = [];
 
-    async function loadGraph() {
+    async function loadGraphLine() {
         const data = await fetch(BASE_API_PATH);
         budgetGraph = await data.json();
         if (data.ok) {
@@ -114,7 +114,7 @@
 </script>
 
 <svelte:head>
-  <script src="https://code.highcharts.com/highcharts.js" on:load={loadGraph}></script>
+  <script src="https://code.highcharts.com/highcharts.js" on:load={loadGraphLine}></script>
   <script src="https://code.highcharts.com/modules/series-label.js"></script>
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
   <script src="https://code.highcharts.com/modules/export-data.js"></script>
