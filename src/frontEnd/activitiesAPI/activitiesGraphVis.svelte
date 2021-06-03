@@ -71,7 +71,6 @@
   on:load={loadChart}></script>
 </svelte:head>
 <main>
-  <div id="myChart"></div>
 
 <body>
   <Jumbotron class="p-3" style="background-color: #FFB833">
@@ -105,11 +104,12 @@
   <br>
   <h1 class="titulo2"> Gráfica de datos </h1>
   <div style="margin-bottom: 15px">
-      <figure class="highcharts-figure">
         <div id="container" />
         <p style="centrado"> Gráfica que relaciona la actividad en loteria de cada provincia y  año  </p>
-      </figure>
+      
     </div>
+    <div id="myChart"></div>
+
 
 </main>
 
