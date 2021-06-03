@@ -145,7 +145,7 @@
                 <DropdownToggle nav caret> Gráficas </DropdownToggle>
                 <DropdownMenu end>
                   <DropdownItem href="#/graphics/suicide-records">Registro de suicidios</DropdownItem>
-                  <DropdownItem href="#/graphics/province-budget-and-investment-in-social-promotion">Inversion promoción social</DropdownItem>
+                  <DropdownItem href="#/graphics/line/province-budget-and-investment-in-social-promotion">Inversion promoción social</DropdownItem>
                   <DropdownItem href="#/graphics/azar-games-and-bet-activities">Actividad en loteria</DropdownItem>
                   <DropdownItem divider/>
                   <DropdownItem href="#/graphics">Conjunto</DropdownItem>
