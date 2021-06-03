@@ -21,7 +21,7 @@
         pData.forEach(stat => {
             provinces.push(stat.province);
             national_lottery_expends.push(stat.national_lottery_expend);
-            years.push(stat.year)
+            years.push(stat.year);
             lottery_engagements.push(stat.lottery_engagement);
             bingo_sites.push(stat["bingo_site"]);
             catering_bingo_machines.push(stat["catering_bingo_machine"]);
