@@ -43,8 +43,8 @@
             });
         }
 
-        integrationGraph.push(budgetData);
-        integrationGraph.push(educationData);
+        integrationGraph.push(budgetDataGraph);
+        integrationGraph.push(educationDataGraph);
     
     Highcharts.chart('container', {
         chart: {
