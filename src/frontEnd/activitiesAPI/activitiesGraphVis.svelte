@@ -71,6 +71,8 @@
   on:load={loadChart}></script>
 </svelte:head>
 <main>
+  <div id="myChart"></div>
+
 <body>
   <Jumbotron class="p-3" style="background-color: #FFB833">
       <h1 class="titulo; mainDiv" style="color: white">Actividad en juegos de azar por  provincia y año</h1>
@@ -108,7 +110,6 @@
         <p style="centrado"> Gráfica que relaciona la actividad en loteria de cada provincia y  año  </p>
       </figure>
     </div>
-    <div id="myChart"></div>
 
 </main>
 
