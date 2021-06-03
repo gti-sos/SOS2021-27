@@ -44,6 +44,7 @@
     "sveltestrap": "^3.14.1",
     "uvCharts": "^1.1.5",
     "uvcharts": "^1.1.5",
-    "vis": "^4.21.0-EOL"
+    "vis": "^4.21.0-EOL",
+    "zingchart": "^2.9.4"
   }
 }
