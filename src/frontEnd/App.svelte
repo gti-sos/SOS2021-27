@@ -6,9 +6,9 @@
 	import SuicideGraph from './suicidesAPI/suicideGraph.svelte';
 	import Budgets from './budgetsAPI/budget.svelte';
 	import BudgetsEdit from './budgetsAPI/editBudget.svelte';
-	import BudgetsGraphicLine from './budgetsAPI/BudgetsGraphicLine.svelte';
-	import BudgetsGraphicArea from './budgetsAPI/BudgetsGraphicArea.svelte';
-	import BudgetsGraphicSigma from './budgetsAPI/BudgetsGraphicSigma.svelte';
+	import BudgetsGraphicLine from './budgetsAPI/budgetsGraphicLine.svelte';
+	import BudgetsGraphicArea from './budgetsAPI/budgetsGraphicArea.svelte';
+	import BudgetsGraphicSigma from './budgetsAPI/budgetsGraphicSigma.svelte';
 	import Activities from './activitiesAPI/activities.svelte';
 	import ActivitiesEdit from './activitiesAPI/editactivities.svelte';
 	import ActivitiesGraph from './activitiesAPI/activitiesGraph.svelte';
