@@ -1,6 +1,6 @@
 <script>
-            
-            var names = ["SquareShaded", "Bargraph", "Blank", "CircleShaded"];
+// create a dataSet with groups
+var names = ["SquareShaded", "Bargraph", "Blank", "CircleShaded"];
 var groups = new vis.DataSet();
 groups.add({
   id: 0,
@@ -75,82 +75,52 @@ var items = [
 
 var dataset = new vis.DataSet(items);
 var options = {
-  dataAxis: { showMinorLabels: false },
+  dataAxis: {
+    showMinorLabels: false,
+    right: {
+      title: {
+        text: "Title (right axis)",
+      },
+    },
+  },
+  legend: { left: { position: "bottom-left" } },
   start: "2014-06-09",
   end: "2014-07-03",
 };
 var graph2d = new vis.Graph2d(container, items, groups, options);
 
-/**
- * this function fills the external legend with content using the getLegend() function.
- */
-function populateExternalLegend() {
-  var groupsData = groups.get();
-  var legendDiv = document.getElementById("Legend");
-  legendDiv.innerHTML = "";
-
-  // get for all groups:
-  for (var i = 0; i < groupsData.length; i++) {
-    // create divs
-    var containerDiv = document.createElement("div");
-    var iconDiv = document.createElement("div");
-    var descriptionDiv = document.createElement("div");
-
-    // give divs classes and Ids where necessary
-    containerDiv.className = "legend-element-container";
-    containerDiv.id = groupsData[i].id + "_legendContainer";
-    iconDiv.className = "icon-container";
-    descriptionDiv.className = "description-container";
-
-    // get the legend for this group.
-    var legend = graph2d.getLegend(groupsData[i].id, 30, 30);
-
-    // append class to icon. All styling classes from the vis-timeline-graph2d.min.css/vis-timeline-graph2d.min.css have been copied over into the head here to be able to style the
-    // icons with the same classes if they are using the default ones.
-    legend.icon.setAttributeNS(null, "class", "legend-icon");
-
-    // append the legend to the corresponding divs
-    iconDiv.appendChild(legend.icon);
-    descriptionDiv.innerHTML = legend.label;
-
-    // determine the order for left and right orientation
-    if (legend.orientation == "left") {
-      descriptionDiv.style.textAlign = "left";
-      containerDiv.appendChild(iconDiv);
-      containerDiv.appendChild(descriptionDiv);
-    } else {
-      descriptionDiv.style.textAlign = "right";
-      containerDiv.appendChild(descriptionDiv);
-      containerDiv.appendChild(iconDiv);
-    }
-
-    // append to the legend container div
-    legendDiv.appendChild(containerDiv);
-
-    // bind click event to this legend element.
-    containerDiv.onclick = toggleGraph.bind(this, groupsData[i].id);
-  }
+function showIcons(show) {
+  graph2d.setOptions({ dataAxis: { icons: show } });
 }
 
-/**
- * This function switchs the visible option of the selected group on an off.
- * @param groupId
- */
-function toggleGraph(groupId) {
-  // get the container that was clicked on.
-  var container = document.getElementById(groupId + "_legendContainer");
-  // if visible, hide
-  if (graph2d.isGroupVisible(groupId) == true) {
-    groups.update({ id: groupId, visible: false });
-    container.className = container.className + " hidden";
+function showTitle(axis, show) {
+  var title;
+  if (show == true) {
+    title = { text: "Title (" + axis + " axis)" };
   } else {
-    // if invisible, show
-    groups.update({ id: groupId, visible: true });
-    container.className = container.className.replace("hidden", "");
+    title = { text: undefined };
+  }
+
+  if (axis == "left") {
+    graph2d.setOptions({ dataAxis: { left: { title: title } } });
+  } else {
+    graph2d.setOptions({ dataAxis: { right: { title: title } } });
   }
 }
 
-populateExternalLegend();
+var colors = ["red", "green", "blue", "black", "yellow", "purple", "pink"];
+function styleTitle(axis) {
+  var title;
+  title = {
+    style: "color: " + colors[Math.floor(Math.random() * colors.length) + 1],
+  };
+
+  if (axis == "left") {
+    graph2d.setOptions({ dataAxis: { left: { title: title } } });
+  } else {
+    graph2d.setOptions({ dataAxis: { right: { title: title } } });
+  }
+}
 
 
 </script>
@@ -159,22 +129,97 @@ populateExternalLegend();
   
 
 
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.2.2/d3.v3.min.js"  ></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/uvCharts/1.1.5/uvcharts.min.js" on:load={loadGraph}></script>
 </svelte:head>
 
 <main>
-  <h2>Graph2d | External custom legend</h2>
+ 
+  <h2>Graph2d | Axis Titles and Styling</h2>
 <div style="width: 800px; font-size: 14px; text-align: justify">
-  This example shows how to create an external custom legend using the getLegend
-  function. We use normal JavaScript to show and hide the groups by updating the
-  dataset.
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          This example shows setting a title for the left and right axis.
+          Optionally the example allows the user to show icons and labels on the
+          left and right axis.
+        </td>
+        <td>
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  <input
+                    type="button"
+                    onclick="showIcons(true)"
+                    value="Show Icons"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="button"
+                    onclick="showIcons(false)"
+                    value="Hide Icons"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="button"
+                    onclick="showTitle('left', true)"
+                    value="Show Left Title"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="button"
+                    onclick="showTitle('left', false)"
+                    value="Hide Left Title"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="button"
+                    onclick="showTitle('right', true)"
+                    value="Show Right Title"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="button"
+                    onclick="showTitle('right', false)"
+                    value="Hide Right Title"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="button"
+                    onclick="styleTitle('left')"
+                    value="Color Left Title"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="button"
+                    onclick="styleTitle('right')"
+                    value="Color Right Title"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 <br />
-<div id="Legend" class="external-legend"></div>
 <div id="visualization"></div>
 
-  
 </main>
 
 <style>
@@ -187,7 +232,6 @@ populateExternalLegend();
       text-align: center;
       margin: 20px;
   }
-
   body,
 html {
   font-family: sans-serif;
@@ -213,160 +257,9 @@ html {
   stroke-width: 2px;
   stroke: #029200;
 }
-
-path.custom-style3.fill {
+path.custom-style3.vis-fill {
   fill-opacity: 0.5 !important;
   stroke: none;
-}
-
-.vis-graph-group0 {
-  fill: #4f81bd;
-  fill-opacity: 0;
-  stroke-width: 2px;
-  stroke: #4f81bd;
-}
-
-.vis-graph-group1 {
-  fill: #f79646;
-  fill-opacity: 0;
-  stroke-width: 2px;
-  stroke: #f79646;
-}
-
-.vis-graph-group2 {
-  fill: #8c51cf;
-  fill-opacity: 0;
-  stroke-width: 2px;
-  stroke: #8c51cf;
-}
-
-.vis-graph-group3 {
-  fill: #75c841;
-  fill-opacity: 0;
-  stroke-width: 2px;
-  stroke: #75c841;
-}
-
-.vis-graph-group4 {
-  fill: #ff0100;
-  fill-opacity: 0;
-  stroke-width: 2px;
-  stroke: #ff0100;
-}
-
-.vis-graph-group5 {
-  fill: #37d8e6;
-  fill-opacity: 0;
-  stroke-width: 2px;
-  stroke: #37d8e6;
-}
-
-.vis-graph-group6 {
-  fill: #042662;
-  fill-opacity: 0;
-  stroke-width: 2px;
-  stroke: #042662;
-}
-
-.vis-graph-group7 {
-  fill: #00ff26;
-  fill-opacity: 0;
-  stroke-width: 2px;
-  stroke: #00ff26;
-}
-
-.vis-graph-group8 {
-  fill: #ff00ff;
-  fill-opacity: 0;
-  stroke-width: 2px;
-  stroke: #ff00ff;
-}
-
-.vis-graph-group9 {
-  fill: #8f3938;
-  fill-opacity: 0;
-  stroke-width: 2px;
-  stroke: #8f3938;
-}
-
-.vis-fill {
-  fill-opacity: 0.1;
-  stroke: none;
-}
-
-.vis-bar {
-  fill-opacity: 0.5;
-  stroke-width: 1px;
-}
-
-.vis-point {
-  stroke-width: 2px;
-  fill-opacity: 1;
-}
-
-.vis-legend-background {
-  stroke-width: 1px;
-  fill-opacity: 0.9;
-  fill: #ffffff;
-  stroke: #c2c2c2;
-}
-
-.vis-outline {
-  stroke-width: 1px;
-  fill-opacity: 1;
-  fill: #ffffff;
-  stroke: #e5e5e5;
-}
-
-.vis-icon-fill {
-  fill-opacity: 0.3;
-  stroke: none;
-}
-
-div.description-container {
-  float: left;
-  height: 30px;
-  width: 160px;
-  padding-left: 5px;
-  padding-right: 5px;
-  line-height: 30px;
-}
-
-div.icon-container {
-  float: left;
-}
-
-div.legend-element-container {
-  display: inline-block;
-  width: 200px;
-  height: 30px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #e0e0e0;
-  background-color: #ffffff;
-  margin: 4px;
-  padding: 4px;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  cursor: pointer;
-}
-div.legend-element-container.hidden {
-  background-color: #d3e6ff;
-}
-
-svg.legend-icon {
-  width: 30px;
-  height: 30px;
-}
-
-div.external-legend {
-  position: relative;
-  margin-left: -5px;
-  width: 900px;
 }
 
 </style>
