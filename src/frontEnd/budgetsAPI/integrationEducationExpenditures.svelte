@@ -29,6 +29,7 @@
                 'z': budgetSvelte.percentage,
                 'name': 'budgetSvelte.province' + '/' + 'budgetSvelte.year'
               }
+              serie = serie.slice(0, 10);
               budgetDataGraph.push(serie);
             });
         }
@@ -41,6 +42,7 @@
                 'z': educationSvelte.education_expenditure_per_public_expenditure,
                 'name': 'educationSvelte.country' + '/' + 'educationSvelte.year'
               }
+              serie = serie.slice(0, 10);
               educationDataGraph.push(serie);
             });
         }
