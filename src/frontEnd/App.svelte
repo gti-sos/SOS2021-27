@@ -24,6 +24,7 @@
 	import ActivitiesGraph2 from './activitiesAPI/activitiesGraph2.svelte';
 	import ActivitiesGraphVis from './activitiesAPI/activitiesGraphVis.svelte';
 	import Integrations from './Integrations.svelte'
+	import Alcohol from './activitiesAPI/alcoholGraph.svelte';
 
 
 	import Info from './info.svelte';
@@ -39,20 +40,27 @@
 		'/graphics/suicide-records3':SuicideGraphUvChart,
 		'/graphics/integrations/covid':suiCovid,
 		'/graphics/integrations/dogs':suiDogs,
+<<<<<<< HEAD
 		'/graphics/integrations/anxiety':anxiety,
 
 
+=======
+		
+>>>>>>> be58d6eedade2958c7b7eaf22db6c4d10bf56308
 		'/province-budget-and-investment-in-social-promotion':Budgets,
 		'/province-budget-and-investment-in-social-promotion/:province/:year':BudgetsEdit,
 		'/graphics/line/province-budget-and-investment-in-social-promotion':BudgetsGraphicLine,
 		'/graphics/area/province-budget-and-investment-in-social-promotion':BudgetsGraphicArea,
 		'/graphics/sigma/province-budget-and-investment-in-social-promotion':BudgetsGraphicSigma,
 		'/graphics/integrations/educationExpenditures':IntegrationEducationExpenditures,
+		
 		'/azar-games-and-bet-activities':Activities,
 		'/azar-games-and-bet-activities/:province/:year':ActivitiesEdit,
 		'/graphics/azar-games-and-bet-activities':ActivitiesGraph,
 		'/graphics/azar-games-and-bet-activities2':ActivitiesGraph2,
 		'/graphics/azar-games-and-bet-activities3':ActivitiesGraphVis,
+		'/graphics/integrations/alcohol':Alcohol,
+
 		'/about':About,
 		'/integrations':Integrations,
 
