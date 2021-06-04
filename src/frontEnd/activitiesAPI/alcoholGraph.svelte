@@ -1,74 +1,92 @@
 <script>
-    import {
-        onMount
-    } from "svelte";
-
-    import {Jumbotron, Navbar, Nav, NavItem, NavLink, NavbarBrand, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from 'sveltestrap';
-    let isOpen = false;
-    let lugar=[];
-let equipos = [];
-let data=[];
-    async function getData(){
-
-const allData= await fetch("https://free-nba.p.rapidapi.com/teams", { 
-        "method":"GET",
-        "headers":{
-            "x-rapidapi-key": "94963b1181msh9874230d2ebb059p1cd8dcjsn49656282a733",
-            "x-rapidapi-host": "free-nba.p.rapidapi.com",
-            "useQueryString": true
-
-        },
-});
-
-data=await allData.json();
-console.log(data)
-let city = {}
-
-    city = data.city;
-    lugar.push(city);
+    async function loadGraph(){
+    let covid = []
+    let covidConfirmado = []
+    let covidDeath = []
+    let covidRecovered = []
+    let covidProvince = []
     
-    let division = {}
-    division= data.division;
-    equipos.push(division);
-    }
-
-    async function loadGraph(){  
-    getData().then(()=>{
-        var myConfig = {
-                  type: 'bar',
-                  'legend':{},
-                  'scale-x': {
-                      labels: "activitieskeys"
-                  },
-                  series: [
-                      { text : "equipos",
-                      values: equipos
-                      },
-                      { text : "region",
-                      values: lugar
-                      }
-                  ]
-                  };
-                  
-      zingchart.render({
-          id: 'myChart',
-          data: myConfig,
-          
-      });
+    const data = await fetch("https://covid-19-statistics.p.rapidapi.com/reports?region_name=Spain", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-key": "94963b1181msh9874230d2ebb059p1cd8dcjsn49656282a733",
+		"x-rapidapi-host": "covid-19-statistics.p.rapidapi.com"
+	}
     });
+    if(data.ok){
+        covid = await data.json();
+        console.log(covid)
+        covid.data.forEach(e => {
+            covidConfirmado.push(e.confirmed)
+            covidDeath.push(e.deaths)
+            covidRecovered.push(e.recovered)
+            covidProvince.push(e.region.province)
+        });
+    }
+    let chartConfig = {
+        type: 'bubble-pie',
+        title: {
+            text: 'Porcentaje de Covid-19 en España'
+        },
+        subtitle: {
+            text: 'Basandonos en recuperados,fallecidos y casos confirmados'
+        },
+        legend: {
+            align: 'center',
+            item: {
+            text: '%data-pie'
+            },
+            verticalAlign: 'bottom'
+        },
+        plot: {
+        values: (covidConfirmado,covidRecovered,covidDeath),
+        tooltip: {
+        text: '%data-pv% %data-pie'
+        },
+        
+        },
+        scaleX: {
+            values: covidProvince
+        },
+        series: [{
+        dataPie: 'Casos confirmados',
+        dataV: covidConfirmado,
+        marker: {
+            backgroundColor: '#5dc911'
+        }
+        },
+        {
+        dataPie: 'muertos',
+        dataV: covidDeath,
+        marker: {
+            backgroundColor: '#e32143'
+        }
+        },
+        {
+        dataPie: 'recuperados',
+        dataV: covidRecovered,
+        marker: {
+            backgroundColor: '#bfbfbf'
+        }
+        }
+    ]
+    };
+    zingchart.render({
+    id: 'myChart',
+    data: chartConfig,
+    });
+    
 }
- </script>
- 
- 
- 
- <svelte:head>
- <script
+</script>
+<svelte:head>
+
+  <script
     src="https://cdn.zingchart.com/zingchart.min.js"
     on:load={loadGraph}></script>
 </svelte:head>
 
+
 <main>
+    <h1>cOVID</h1>
     <div id="myChart"></div>
-
-
 </main>
