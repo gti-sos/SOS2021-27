@@ -88,6 +88,7 @@ async function loadGraph(){
 
 <main>
     <div id="myChart"></div>
+    <h1>funciona</h1>
 </main>
 
 <style>
