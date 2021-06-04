@@ -40,13 +40,9 @@
 		'/graphics/suicide-records3':SuicideGraphUvChart,
 		'/graphics/integrations/covid':suiCovid,
 		'/graphics/integrations/dogs':suiDogs,
-<<<<<<< HEAD
 		'/graphics/integrations/anxiety':anxiety,
 
 
-=======
-		
->>>>>>> be58d6eedade2958c7b7eaf22db6c4d10bf56308
 		'/province-budget-and-investment-in-social-promotion':Budgets,
 		'/province-budget-and-investment-in-social-promotion/:province/:year':BudgetsEdit,
 		'/graphics/line/province-budget-and-investment-in-social-promotion':BudgetsGraphicLine,
