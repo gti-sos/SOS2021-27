@@ -94,7 +94,7 @@ const request = require("request");
 // You can use a shorthand for multiple API endpoints: /api|/other_api
 
 var pathAnxiety='./src/frontEnd/suicidesAPI/axiety_suicideGraph.svelte';
-var apiServerHost = 'http://sos2021-11.herokuapp.com/api/integration/anxiety_stats';
+var apiServerHost = 'https://sos2021-11.herokuapp.com/api/integration/anxiety_stats';
 
 app.use(pathAnxiety, function(req, res) {
   var url = apiServerHost + req.baseUrl + req.url;
