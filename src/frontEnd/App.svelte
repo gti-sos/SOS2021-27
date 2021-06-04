@@ -27,7 +27,7 @@
 	import Integrations from './Integrations.svelte'
 	import Alcohol from './activitiesAPI/alcoholGraph.svelte';
 	import Cartas from './activitiesAPI/cartasGraph.svelte';
-
+	import Pobreza from './activitiesAPI/povertyriskGraph.svelte';
 
 	import Info from './info.svelte';
 	import Landing from './Landing.svelte';
@@ -60,6 +60,7 @@
 		'/graphics/azar-games-and-bet-activities3':ActivitiesGraphVis,
 		'/graphics/integrations/alcohol':Alcohol,
 		'/graphics/integrations/cards':Cartas,
+		'/graphics/integrations/poverty':Pobreza,
 
 
 		'/about':About,
