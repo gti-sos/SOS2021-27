@@ -6,12 +6,13 @@
 
     var BASE_API_PATH = "/api/v2/province-budget-and-investment-in-social-promotion";
 
+    var budgetDataGraph = [];
+    var lifePowerDataGraph = [];
+    var lifeQualityDataGraph = [];
+
     let proxy = "/proxy/";
 
     async function loadGraphLifeStats() {
-        var budgetDataGraph = [];
-        var lifePowerDataGraph = [];
-        var lifeQualityDataGraph = [];
 
         const data = await fetch(BASE_API_PATH);
         budgetData = await data.json();
@@ -155,6 +156,7 @@
       <br><br>
 </main>
 
+
 <style>
     .titulo {
         background-color: #FFB833;
@@ -191,4 +193,43 @@
         margin-right: 60px;
         border-radius: 12px;
     }
+
+     .highcharts-figure, .highcharts-data-table table {
+  min-width: 320px; 
+  max-width: 800px;
+  margin: 1em auto;
+}
+#container {
+  height: 800px;
+}
+.highcharts-tooltip h3 {
+margin: 0.3em 0;
+}
+.highcharts-data-table table {
+font-family: Verdana, sans-serif;
+border-collapse: collapse;
+border: 1px solid #EBEBEB;
+margin: 10px auto;
+text-align: center;
+width: 100%;
+max-width: 500px;
+}
+.highcharts-data-table caption {
+padding: 1em 0;
+font-size: 1.2em;
+color: #555;
+}
+.highcharts-data-table th {
+font-weight: 600;
+padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+background: #f1f7ff;
+}
 </style>
