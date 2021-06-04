@@ -116,9 +116,9 @@
       }
       data.push(total);
       console.log("Calculating activities stats...");
-      var result1 = jsonToMap(activitiesData, "date", "catering_bingo_machine");
+      var result1 = jsonToMap(activitiesData, "date", "bingo_site");
       var total1 = 0;
-      years.push("Numero de jugadores bingo (%)");
+      years.push("locales de bingo");
       for (let [key, value] of result1) {
         total1 += parseFloat(value);
       }
