@@ -29,7 +29,7 @@
     async function loadStats() {
       console.log("Loading data...");
       const res = await fetch(
-        BASE_API_PATH + "/loadInitialData"
+        BASE_API_PATH 
       ).then(function (res) {
         if (res.ok) {
           msg = "";
@@ -108,17 +108,17 @@
       var data = [];
       //-------------------poverty-risks
       console.log("Calculating poverty-risks...");
-      var result = jsonToMap(povertyData, "year", "percentage_risk_of_poverty");
-      years.push("Ratio de pobreza (%)");
+      var result = jsonToMap(povertyData, "year", "people_in_risk_of_poverty");
+      years.push("Personas en riesgo de pobreza");
       var total = 0;
       for (let [key, value] of result) {
         total += parseFloat(value);
       }
       data.push(total);
       console.log("Calculating activities stats...");
-      var result1 = jsonToMap(activitiesData, "date", "catering_bingo_machine");
+      var result1 = jsonToMap(activitiesData, "year", "bingo_site");
       var total1 = 0;
-      years.push("Numero de jugadores bingo (%)");
+      years.push("locales de bingo");
       for (let [key, value] of result1) {
         total1 += parseFloat(value);
       }
