@@ -1,8 +1,8 @@
 <script>
     import { Nav, NavItem, NavLink } from "sveltestrap";
-    const BASE_CONTACT_API_PATH = "/api/v2";
+    var BASE_API_PATH = "/api/v2/azar-games-and-bet-activities";
     var povertyData = [];
-    var natalityData = [];
+    var activitiesData = [];
     var msg = "";
      /**
      * Carga los datos de la API SOS
@@ -29,7 +29,7 @@
     async function loadStats() {
       console.log("Loading data...");
       const res = await fetch(
-        BASE_CONTACT_API_PATH + "/natality-stats/loadInitialData"
+        BASE_API_PATH + "/loadInitialData"
       ).then(function (res) {
         if (res.ok) {
           msg = "";
@@ -48,12 +48,12 @@
     async function getStats() {
       console.log("Fetching data...");
       await loadStats();
-      const res = await fetch(BASE_CONTACT_API_PATH + "/natality-stats");
+      const res = await fetch(BASE_API_PATH );
       if (res.ok) {
         console.log("OK");
-        natalityData = await res.json();
+        activitiesData = await res.json();
         msg = "";
-        console.log(`We have received ${natalityData.length} natality-stats.`);
+        console.log(`We have received ${activitiesData.length} activities.`);
       } else {
         console.log("Error");
         msg = "Error al cargar los datos de la API";
@@ -115,10 +115,10 @@
         total += parseFloat(value);
       }
       data.push(total);
-      console.log("Calculating natality-stats...");
-      var result1 = jsonToMap(natalityData, "date", "natality-rate");
+      console.log("Calculating activities stats...");
+      var result1 = jsonToMap(activitiesData, "date", "catering_bingo_machine");
       var total1 = 0;
-      years.push("Ratio natalidad (%)");
+      years.push("Numero de jugadores bingo (%)");
       for (let [key, value] of result1) {
         total1 += parseFloat(value);
       }
@@ -158,49 +158,10 @@
   </svelte:head>
   
   <main>
-    <Nav>
-      <NavItem>
-        <NavLink id="nav_home" href="/">Página Principal</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink id="nav_integrations" href="/#/integrations/">Integraciones</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink id="nav_restcountries" href="/#/integrations/restcountries">restcountries</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink id="nav_coinCap" href="/#/integrations/coinCap">coinCap</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink id="nav_vatRates" href="/#/integrations/vatRates">vatRates</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink id="nav_sanityStats" href="/#/integrations/sanityStats">sanityStats</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink id="nav_platformsStats" href="/#/integrations/platformsStats">platformsStats</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink disabled id="nav_povertyRisks" href="/#/integrations/povertyRisks">povertyRisks</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink id="nav_illiteracy" href="/#/integrations/illiteracy">illiteracy</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink id="nav_chidrenHIV" href="/#/integrations/chidrenHIV">chidrenHIV</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink id="nav_childrenEmployment" href="/#/integrations/childrenEmployment">childrenEmployment</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink id="nav_unemployment" href="/#/integrations/unemployment">unemployment</NavLink>
-      </NavItem>
-    </Nav>
-  
+   
   
     <div>
       <h2>Integración API SOS poverty-risks</h2>
-      <p>por favor espere unos segundos a que se cargue la gráfica</p>
     </div>
   
     {#if msg}
