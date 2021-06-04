@@ -4,7 +4,6 @@
     let covidConfirmado = []
     let covidDeath = []
     let covidRecovered = []
-    let covidProvince = []
     
     const data = await fetch("https://covid-19-statistics.p.rapidapi.com/reports?region_name=Spain", {
 	"method": "GET",
@@ -20,7 +19,6 @@
             covidConfirmado.push(e.confirmed)
             covidDeath.push(e.deaths)
             covidRecovered.push(e.recovered)
-            covidProvince.push(e.region.province)
         });
     }
     let chartConfig = {
@@ -59,7 +57,7 @@
         fontSize: '14px'
       },
       subtitle: {
-        text: '06/10/20 - 07/11/20',
+        text: '2020',
         padding: '5px',
         fontColor: '#777',
         fontFamily: 'Lato',
@@ -151,7 +149,7 @@
       },
       series: [
         {
-          text: 'Covid Confirmado',
+          text: 'Positivo',
           values: covidConfirmado,
           backgroundColor: '#00BAF2',
           lineColor: '#00BAF2',
