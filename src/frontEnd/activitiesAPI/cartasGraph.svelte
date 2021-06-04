@@ -1,11 +1,11 @@
 <script>
     import Button from "sveltestrap/src/Button.svelte";
     import { pop } from "svelte-spa-router";
-    
+    var cards={};
+    var cardTypes = [];  
 async function loadGraph(){
    
-    var cards={};
-    var cardTypes = [];
+  
     const resData = await fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php");
     const cardData = await resData.json();  
     console.log(cardData);
