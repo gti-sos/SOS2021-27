@@ -6,13 +6,14 @@
 
     var BASE_API_PATH = "/api/v2/province-budget-and-investment-in-social-promotion";
 
-    var budgetData = [];
-    var educationData = [];
-    var budgetDataGraph = [];
-    var educationDataGraph = [];
-    var integrationGraph = [];
 
     async function loadGraphIntegrationEducationExpenditures() {
+
+      var budgetData = [];
+      var educationData = [];
+      var budgetDataGraph = [];
+      var educationDataGraph = [];
+      var integrationGraph = [];
 
         const data = await fetch(BASE_API_PATH);
         budgetData = await data.json();

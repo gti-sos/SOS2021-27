@@ -6,15 +6,15 @@
 
     var BASE_API_PATH = "/api/v2/province-budget-and-investment-in-social-promotion";
 
-    var budgetData = [];
-    var lifeData = [];
-    var budgetDataGraph = [];
-    var lifePowerDataGraph = [];
-    var lifeQualityDataGraph = [];
-
     let proxy = "/proxy/";
 
     async function loadGraphLifeStats() {
+
+      var budgetData = [];
+      var lifeData = [];
+      var budgetDataGraph = [];
+      var lifePowerDataGraph = [];
+      var lifeQualityDataGraph = [];
 
         const data = await fetch(BASE_API_PATH);
         budgetData = await data.json();
