@@ -27,7 +27,7 @@
                 x: budgetSvelte.budget,
                 y: budgetSvelte.invest_promotion,
                 z: budgetSvelte.percentage,
-                name: budgetSvelte.province' + "/" + budgetSvelte.year
+                name: budgetSvelte.province + "/" + budgetSvelte.year
               }
               serie = serie.slice(0, 10);
               budgetDataGraph.push(serie);
