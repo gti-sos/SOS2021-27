@@ -1,22 +1,12 @@
 <script>
-  import {
-    Jumbotron,
-    Navbar,
-    Nav,
-    NavItem,
-    NavLink,
-    NavbarBrand,
-    Dropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-  } from "sveltestrap";
+    import BudgetsTable from './BudgetsTable.svelte'
+    import {Jumbotron, Navbar, Nav, NavItem, NavLink, NavbarBrand, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from 'sveltestrap';
 
-  let isOpen = false;
+    let isOpen = false;
 </script>
 
 <main>
-  <body>
+    <body>
       <Jumbotron class="p-3" style="background-color: #FFB833">
         <h1 class="titulo; mainDiv" style="color: white">SOS2021-27</h1>
       </Jumbotron>
@@ -51,83 +41,18 @@
             </Nav>
         </Navbar>
     </body>
-
-  <br />
-
-  <div class="box">
-      <slot>
-        <div>
-          <h3 class="titulo"><b>Vídeo de Javier García</b></h3>
-          <br>
-          <div class="titulo">
-         
-          </div>
-        </div>
-      </slot>
-    </div>
-    <br><br>
-    <div class="box">
-      <slot>
-        <div>
-          <h3 class="titulo"><b>Vídeo de Fernando Nuevo</b></h3>
-           <br>
-           <div class="titulo">
-          
-          </div>
-        </div>
-      </slot>
-    </div>
-    <br><br>
-    <div class="box">
-      <slot>
-        <div>
-        <h3 class="titulo"><b>Vídeo de Humberto Garcia</b></h3>
-         <br>
-         <div class="titulo">
-         
-          </div>
-        </div>
-      </slot>
-    </div>
+    <BudgetsTable></BudgetsTable>
 </main>
 
 <style>
-  .fakeButton {
-    background-color: #ffb833;
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    margin-right: 60px;
-    border-radius: 12px;
-  }
-
-  .mainDiv {
-    text-align: center;
-    margin: 20px;
-  }
-
-  .box {
-    width: 50%;
-    border: 1px solid #aaa;
-    border-radius: 2px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-    padding: 1em;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .mainDiv {
-    text-align: center;
-    margin: 20px;
-  }
-  .titulo {
+    .titulo {
+        background-color: #FFB833;
+        color: #FFFFFF;
         text-align: center;
+    }
+    
+    .mainDiv{
+        text-align: center;
+        margin: 20px;
     }
 </style>
