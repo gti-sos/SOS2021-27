@@ -4,6 +4,7 @@
     let covidConfirmado = []
     let covidDeath = []
     let covidRecovered = []
+    let covidProvince = []
     
     const data = await fetch("https://covid-19-statistics.p.rapidapi.com/reports?region_name=Spain", {
 	"method": "GET",
@@ -19,164 +20,107 @@
             covidConfirmado.push(e.confirmed)
             covidDeath.push(e.deaths)
             covidRecovered.push(e.recovered)
+            covidProvince.push(e.region.province)
         });
     }
     let chartConfig = {
-        gui: {
-    contextMenu: {
-      backgroundColor: '#306EAA', 
-      button: {
-        backgroundColor: '#2D66A4',
-        lineColor: '#2D66A4',
-        visible: true
-      },
-      docked: true,
-      gear: {
-        alpha: 1,
-        backgroundColor: '#2D66A4'
-      },
-      item: {
-        backgroundColor: '#306EAA',
-        borderColor: '#306EAA',
-        borderWidth: '0px',
-        color: '#fff',
-        fontFamily: 'Lato'
-      },
-      position: 'right'
-    }
-  },
-  graphset: [
-    {
-      type: 'ring',
-      backgroundColor: '#FBFCFE',
+        type: 'hbullet',
       title: {
-        text: 'Covid España',
-        padding: '15px',
-        fontColor: '#1E5D9E',
-        fontFamily: 'Lato',
-        fontSize: '14px'
-      },
-      subtitle: {
-        text: '2020',
-        padding: '5px',
-        fontColor: '#777',
-        fontFamily: 'Lato',
-        fontSize: '12px'
-      },
-      legend: {
-        adjustLayout: true,
-        align: 'center',
-        backgroundColor: '#FBFCFE',
-        borderWidth: '0px',
-        item: {
-          cursor: 'pointer',
-          fontColor: '#777',
-          fontSize: '12px',
-          offsetX: '-6px'
-        },
-        marker: {
-          type: 'circle',
-          borderWidth: '0px',
-          cursor: 'pointer',
-          size: 5
-        },
-        mediaRules: [
-          {
-            maxWidth: '500px',
-            visible: false
-          }
-        ],
-        toggleAction: 'remove',
-        verticalAlign: 'bottom'
+        text: 'Analisis covid España',
+        fontColor: '#212121'
       },
       plot: {
-        valueBox: [
-          {
-            type: 'all',
-            text: '%t',
-            placement: 'out'
-          },
-          {
-            type: 'all',
-            text: '%npv%',
-            placement: 'in'
-          }
-        ],
-        animation: {
-          effect: 'ANIMATION_EXPAND_VERTICAL',
-          sequence: 'ANIMATION_BY_PLOT_AND_NODE'
+        tooltip: {
+          text: '%t: %v of %g',
+          borderRadius: '3px',
+          borderWidth: '0px',
+          fontSize: '12px'
         },
-        backgroundColor: '#FBFCFE',
-        borderWidth: '0px',
-        hoverState: {
-        	cursor: 'hand',
-        },
-        slice: '60%'
+        barSpace: '8px',
+        goal: {
+          alpha: 0.9,
+          borderWidth: '0px'
+        }
       },
       plotarea: {
-        margin: '70px 0px 10px 0px',
-        backgroundColor: 'transparent',
-        borderRadius: '10px',
-        borderWidth: '0px'
+        margin: '50 50 90 120'
       },
-      scaleR: {
-        refAngle: 270
+      scaleX: {
+        guide: {
+          lineStyle: 'solid',
+          lineWidth: '1px',
+          visible: true
+        },
+        item: {
+          visible: false
+        },
+        label: {
+          text: 'provincia',
+          offsetX: '-70px',
+          values:covidProvince
+        }
       },
-      tooltip: {
-        text: '<span style="color:%color">Estado: %t</span><br><span style="color:%color">Valor: %v</span>',
-        anchor: 'c',
-        backgroundColor: 'none',
-        borderWidth: '0px',
-        fontSize: '16px',
-        mediaRules: [
-          {
-            maxWidth: '500px',
-            y: '54%'
-          }
-        ],
-        sticky: true,
-        thousandsSeparator: ',',
-        x: '50%',
-        y: '50%'
+      scaleY: {
+        guide: {
+          visible: false
+        },
+        label: {
+          text: 'Numero de casos'
+        }
       },
-      noData: {
-        text: 'No Selection',
-        alpha: .6,
-        backgroundColor: '#20b2db',
-        bold: true,
-        fontSize: '18px',
-        textAlpha: .9
-      },
-      series: [
+      labels: [{
+          text: '',
+          backgroundImage: '//demos.zingchart.com/view/6FW4FFOV/avitar11.png',
+          hook: 'scale:name=scale-x,index=0',
+          offsetX: '-50px',
+          width: '50px',
+          height: '50px'
+        },
         {
-          text: 'Positivo',
+          text: '',
+          backgroundImage: '//demos.zingchart.com/view/6FW4FFOV/avitar22.png',
+          hook: 'scale:name=scale-x,index=1',
+          offsetX: '-50px',
+          width: '50px',
+          height: '50px'
+        },
+        {
+          text: '',
+          backgroundImage: '//demos.zingchart.com/view/6FW4FFOV/avitar33.png',
+          hook: 'scale:name=scale-x,index=2',
+          offsetX: '-50px',
+          width: '50px',
+          height: '50px'
+        },
+        {
+          text: '',
+          backgroundImage: '//demos.zingchart.com/view/6FW4FFOV/avitar44.png',
+          hook: 'scale:name=scale-x,index=3',
+          offsetX: '-50px',
+          width: '50px',
+          height: '50px'
+        }
+      ],
+      series: [{
+          text: 'Casos positivos',
           values: covidConfirmado,
-          backgroundColor: '#00BAF2',
-
-          marker: {
-            backgroundColor: '#00BAF2'
-          }
+          backgroundColor: '#009688',
+          
+        },
+        {
+          text: 'Recuperados',
+          values:covidRecovered,
+          backgroundColor: '#ffc107',
+          
         },
         {
           text: 'Muertos',
           values: covidDeath,
-          backgroundColor: '#E80C60',
-          marker: {
-            backgroundColor: '#E80C60'
-          }
-        },
-        {
-          text: 'Recuperados',
-          values: covidRecovered,
-          backgroundColor: '#9B26AF',
-          marker: {
-            backgroundColor: '#9B26AF'
-          }
+          backgroundColor: '#9c27b0',
+          
         }
       ]
-    }
-  ]
-};
+    };
     zingchart.render({
     id: 'myChart',
     data: chartConfig,
@@ -193,6 +137,6 @@
 
 
 <main>
-    <h1>cOVID</h1>
+    <h1> Grafica de la API Awards </h1>
     <div id="myChart"></div>
 </main>
