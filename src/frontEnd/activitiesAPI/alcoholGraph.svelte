@@ -31,7 +31,7 @@
       },
       plot: {
         tooltip: {
-          text: '%t: %v en la region de %g ',
+          text: '%t: %v  ',
           borderRadius: '3px',
           borderWidth: '0px',
           fontSize: '12px'
@@ -46,19 +46,7 @@
         margin: '50 50 90 120'
       },
       scaleX: {
-        guide: {
-          lineStyle: 'solid',
-          lineWidth: '1px',
-          visible: true
-        },
-        item: {
-          visible: false
-        },
-        label: {
-          text:"provincias",
-          offsetX: '-70px',
-          values:covidProvince
-        }
+      values:covidProvince
       },
       scaleY: {
         guide: {
