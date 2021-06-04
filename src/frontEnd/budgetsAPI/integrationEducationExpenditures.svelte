@@ -23,23 +23,25 @@
 
         if (data.ok) {
             budgetData.forEach(budgetSvelte => {
-              budgetDataGraph['data'].push({
-                x: budgetSvelte.budget,
-                y: budgetSvelte.invest_promotion,
-                z: budgetSvelte.percentage,
-                name: budgetSvelte.province + "/" + budgetSvelte.year
-              });
+              let serie = {
+                'x': budgetSvelte.budget,
+                'y': budgetSvelte.invest_promotion,
+                'z': budgetSvelte.percentage,
+                'name': budgetSvelte.province + "/" + budgetSvelte.year
+              }
+              budgetDataGraph.push(serie);
             });
         }
 
         if (data2.ok) {
             educationData.forEach(educationSvelte => {
-              educationDataGraph['data'].push({
-                x: educationSvelte.education_expenditure_per_millions,
-                y: educationSvelte.education_expenditure_per_capita,
-                z: educationSvelte.education_expenditure_per_public_expenditure,
-                name: educationSvelte.country + "/" + educationSvelte.year
-              });
+              let serie = {
+                'x': educationSvelte.education_expenditure_per_millions,
+                'y': educationSvelte.education_expenditure_per_capita,
+                'z': educationSvelte.education_expenditure_per_public_expenditure,
+                'name': educationSvelte.country + "/" + educationSvelte.year
+              }
+              educationDataGraph.push(serie);
             });
         }
 
@@ -105,7 +107,7 @@
         },
 
         series: [{
-            data: [{integrationGraph}]
+            data: integrationGraph
         }]
 
     });

@@ -6,15 +6,15 @@
 
     var BASE_API_PATH = "/api/v2/province-budget-and-investment-in-social-promotion";
 
+    let budgetData = [];
+    let lifeData = [];
+    let budgetDataGraph = [];
+    let lifePowerDataGraph = [];
+    let lifeQualityDataGraph = [];
+
     let proxy = "/proxy/";
 
     async function loadGraphLifeStats() {
-
-      var budgetData = [];
-      var lifeData = [];
-      var budgetDataGraph = [];
-      var lifePowerDataGraph = [];
-      var lifeQualityDataGraph = [];
 
         const data = await fetch(BASE_API_PATH);
         budgetData = await data.json();
@@ -24,32 +24,34 @@
 
         if (data.ok) {
             budgetData.forEach(budgetSvelte => {
-              budgetDataGraph['data'].push({
-                name: budgetSvelte.province + "/" + budgetSvelte.year,
-                value: budgetSvelte.budget
-              });
+              let serie = {
+                'name': budgetSvelte.province + "/" + budgetSvelte.year,
+                'value': budgetSvelte.["budget"]
+              };
+              budgetDataGraph.push(serie);
             });
         }
 
         if (data2.ok) {
             lifeData.forEach(lifeSvelte => {
-              lifePowerDataGraph['data'].push({
-                name: lifeSvelte.country + "/" + lifeSvelte.date,
-                value: lifeSvelte.purchasing_power_index
-              });
+              let serie = {
+                'name': lifeSvelte.country + "/" + lifeSvelte.date,
+                'value': lifeSvelte.["purchasing_power_index"]
+              };
+              lifePowerDataGraph.push(serie);  
             });
         }
 
         if (data2.ok) {
             lifeData.forEach(lifeSvelte => {
-              lifeQualityDataGraph['data'].push({
-                name: lifeSvelte.country + "/" + lifeSvelte.date,
-                value: lifeSvelte.quality_life_index
-              });
+              let serie = {
+                'name': lifeSvelte.country + "/" + lifeSvelte.date,
+                'value': lifeSvelte.["quality_life_index"]
+              };
+              lifeQualityDataGraph.push(serie);  
             });
         }
 
-        
     
     Highcharts.chart('container', {
         chart: {
@@ -91,15 +93,15 @@
     },
          series:  [{
               name: 'Presupuestos',
-              data: [{budgetDataGraph}] 
+              data: budgetDataGraph
           },
           {
               name: 'Índices de poder adquisitivo',
-              data: [{lifePowerDataGraph}]
+              data: lifePowerDataGraph
           },
           {
               name: 'Índices de calidad de vida',
-              data: [{lifeQualityDataGraph}]
+              data: lifeQualityDataGraph
           }]
       });
   }        

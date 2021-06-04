@@ -102,8 +102,8 @@ app.use(pathAnxiety, function(req, res) {
   req.pipe(request(url)).pipe(res);
 });
 
-app.use("/proxy", function(request, response) {
-  var host = 'http://sos2021-01.herokuapp.com';
-  var url = host + request.url;
+var host = 'http://sos2021-01.herokuapp.com';
+app.use('/proxy', function(request, response) {
+  var url = host + request.baseUrl + request.url;
   request.pipe(request(url)).pipe(response);
 });
