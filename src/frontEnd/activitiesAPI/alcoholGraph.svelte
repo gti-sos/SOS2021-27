@@ -9,11 +9,11 @@
     async function getData(){
 
 // Especificamos el ID de la película en la consulta, en este caso corresponde a RESERVOIR DOGS
-const allData= await fetch("https://the-cocktail-db.p.rapidapi.com/search.php", { 
+const allData= await fetch("https://free-nba.p.rapidapi.com/players/null", { 
         "method":"GET",
         "headers":{
             "x-rapidapi-key": "94963b1181msh9874230d2ebb059p1cd8dcjsn49656282a733",
-            "x-rapidapi-host": "the-cocktail-db.p.rapidapi.com",
+            "x-rapidapi-host": "free-nba.p.rapidapi.com",
             "useQueryString": true
 
         },

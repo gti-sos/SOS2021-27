@@ -277,7 +277,7 @@ paramsBusqueda="";
     ></Button
 ></td>
 <Button style="background-color:green" href="https://sos2021-27.herokuapp.com/#/graphics/azar-games-and-bet-activities2"> Grafico tipo Bar </Button>
-<Button style="background-color:yellow" href="https://sos2021-27.herokuapp.com/#/graphics/azar-games-and-bet-activities3"> Grafico tipo Vis </Button>
+<Button style="background-color:yellow" href="https://sos2021-27.herokuapp.com/#/graphics/azar-games-and-bet-activities3"> Grafico ZingChart </Button>
     </tr>
     <Table bordered>
         <thead>
