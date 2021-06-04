@@ -25,7 +25,7 @@
         if (data.ok) {
             budgetData.forEach(budgetSvelte => {
               let serie = {
-                'name': budgetSvelte.province + "/" + budgetSvelte.year,
+                'name': 'budgetSvelte.province' + '/' + 'budgetSvelte.year',
                 'value': budgetSvelte.budget
               };
               budgetDataGraph.push(serie);
@@ -35,7 +35,7 @@
         if (data2.ok) {
             lifeData.forEach(lifeSvelte => {
               let serie = {
-                'name': lifeSvelte.country + "/" + lifeSvelte.date,
+                'name': 'lifeSvelte.country' + '/' + 'lifeSvelte.date',
                 'value': lifeSvelte.purchasing_power_index
               };
               lifePowerDataGraph.push(serie);  
@@ -45,7 +45,7 @@
         if (data2.ok) {
             lifeData.forEach(lifeSvelte => {
               let serie = {
-                'name': lifeSvelte.country + "/" + lifeSvelte.date,
+                'name': 'lifeSvelte.country' + '/' + 'lifeSvelte.date',
                 'value': lifeSvelte.quality_life_index
               };
               lifeQualityDataGraph.push(serie);  
