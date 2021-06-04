@@ -29,7 +29,7 @@
     async function loadStats() {
       console.log("Loading data...");
       const res = await fetch(
-        BASE_API_PATH + "/loadInitialData"
+        BASE_API_PATH 
       ).then(function (res) {
         if (res.ok) {
           msg = "";
