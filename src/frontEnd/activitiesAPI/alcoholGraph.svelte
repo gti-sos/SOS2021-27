@@ -123,7 +123,7 @@
         refAngle: 270
       },
       tooltip: {
-        text: '<span style="color:%color">Page Url: %t</span><br><span style="color:%color">Pageviews: %v</span>',
+        text: '<span style="color:%color">Estado: %t</span><br><span style="color:%color">Valor: %v</span>',
         anchor: 'c',
         backgroundColor: 'none',
         borderWidth: '0px',
@@ -149,31 +149,23 @@
       },
       series: [
         {
-          text: 'Positivo',
           values: covidConfirmado,
           backgroundColor: '#00BAF2',
-          lineColor: '#00BAF2',
-          lineWidth: '1px',
           marker: {
             backgroundColor: '#00BAF2'
           }
         },
         {
-          text: 'Muertos',
           values: covidDeath,
           backgroundColor: '#E80C60',
-          lineColor: '#E80C60',
-          lineWidth: '1px',
           marker: {
             backgroundColor: '#E80C60'
           }
         },
         {
-          text: 'Recuperados',
           values: covidRecovered,
           backgroundColor: '#9B26AF',
-          lineColor: '#9B26AF',
-          lineWidth: '1px',
+        
           marker: {
             backgroundColor: '#9B26AF'
           }
