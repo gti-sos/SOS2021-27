@@ -9,20 +9,9 @@
     let proxy = "/proxy/";
 
     async function loadGraphLifeStats() {
-        var budgetDataGraph = {
-          name : 'Presupuesto de varias provincias',
-          data: []
-        }
-
-        var lifePowerDataGraph = {
-          name : 'Índice de poder adquisitivo de varios países',
-          data: []
-        }
-
-        var lifeQualityDataGraph = {
-          name : 'Índice de calidad de vida de varios países',
-          data: []
-        }
+        var budgetDataGraph = [];
+        var lifePowerDataGraph = [];
+        var lifeQualityDataGraph = [];
 
         const data = await fetch(BASE_API_PATH);
         budgetData = await data.json();
