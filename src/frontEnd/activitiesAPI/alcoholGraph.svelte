@@ -55,7 +55,7 @@
           visible: false
         },
         label: {
-          text: 'provincia',
+          text:covidProvince,
           offsetX: '-70px',
           values:covidProvince
         }
