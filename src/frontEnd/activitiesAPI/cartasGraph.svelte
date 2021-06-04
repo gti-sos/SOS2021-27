@@ -1,104 +1,82 @@
 <script>
     import Button from "sveltestrap/src/Button.svelte";
     import { pop } from "svelte-spa-router";
-    var cards={};
-    var cardTypes = [];  
-async function loadGraph(){
-   
-  
-    const resData = await fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php");
-    const cardData = await resData.json();  
-    console.log(cardData);
+    let extData = [];
+    let countryName = [];
+    let countryPopulation = [];
+    async function loadChart() {
+        const res = await fetch("https://restcountries.eu/rest/v2/lang/es");
+        extData = await res.json();
+        if (res.ok) {
+          extData.forEach((stat) => {
+            countryName.push(stat.name);
+            countryPopulation.push(stat.population);
+          });
+        }
     
-    cardData.data.forEach((v) =>{
-         if(v.type in cards){
-                cards[v.type] += 1;
-            }
-            else{
-                cards[v.type]= 1;
-            }
-        });
-    
-    for (var key in cards){
-        cardTypes.push([key,cards[key]]);
-    }
-    
-    let chartConfig = {
-    type: 'pie',
-    backgroundColor: '#2B313B',
+    console.log(extData);
+        Highcharts.chart("container", {
+            chart: {
+        type: 'lollipop'
+    },
+    legend: {
+        enabled: false
+    },
     title: {
-      text: 'Cartas segun tipo',
-      align: 'left',
-      fontColor: '#fff',
-      fontFamily: 'Open Sans',
-      fontSize: '25px',
-      offsetX: '10px',
+        text: 'Población de países de habla hispana'
     },
+    tooltip: {
+        shared: true
+    },
+    xAxis: {
+        type: 'category',
+        categories: countryName
+    },
+    yAxis: {
+        title: {
+            text: 'Población'
+        }
+    },
+          series: [
+            {
+              name: "Población",
+              data: countryPopulation,
+              colorByPoint: true
+            },
+          ],
+        });
+      }
+    </script>
     
-    plot: {
-      tooltip: {
-        text: '%npv%',
-        padding: '5 10',
-        fontFamily: 'Open Sans',
-        fontSize: '18px'
-      },
-      valueBox: {
-        text: '%t\n%npv%',
-        fontFamily: 'Open Sans',
-        placement: 'out'
-      },
-      animation: {
-        effect: 'ANIMATION_EXPAND_VERTICAL',
-        method: 'ANIMATION_REGULAR_EASE_OUT',
-        sequence: 'ANIMATION_BY_PLOT',
-        speed: 500
-      },
-      borderColor: '#2B313B',
-      borderWidth: '5px'
-    },
-    plotarea: {
-      margin: '20 0 0 0'
-    },
-    source: {
-      text: 'Source: gs.statcounter.com',
-      fontColor: '#8e99a9',
-      fontFamily: 'Open Sans',
-      textAlign: 'left'
-    },
-    series: [
-      {
-        text: 'IE and Edge',
-        values: cardTypes
-      }]};
-      
-  zingchart.render({
-    id: 'myChart',
-    data: chartConfig,
-    height: '100%',
-    width: '100%',
-  });
-}
-</script>
-<svelte:head>
-
-  <script
-    src="https://cdn.zingchart.com/zingchart.min.js"
-    on:load={loadGraph}></script>
-</svelte:head>
-
-<main>
-    <div id="myChart"></div>
-    <h1>funciona</h1>
-</main>
+    <svelte:head>
+<script src="https://code.highcharts.com/highcharts.js"on:load={loadChart}></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/dumbbell.js"></script>
+<script src="https://code.highcharts.com/modules/lollipop.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    </svelte:head>
+    
+    <main>
+        <div>
+            <h1 style="text-align: center;"><strong>Uso API Ext. Restcountries</strong></h1>
+          </div>
+        
+        <div>
+            <figure class="highcharts-figure">
+              <div id="container" />
+              <p style="text-align: center;" class="highcharts-description">
+                Gráfico lollipop que muestra la cantidad de habitantes en los países de habla hispana.
+              </p>
+            </figure>
+            <Button id="back" outline color="secondary" on:click="{pop}"> Atrás</Button>
+          </div>
+    </main>
 
 <style>
-#container {
-    height: 600px;
-    width: 900px;
-}
-.highcharts-figure {
-    min-width: 350px;
-    max-width: 900px;
+.highcharts-figure{
+    min-width: 320px; 
+    max-width: 970px;
     margin: 1em auto;
 }
-</style>
+    </style>
