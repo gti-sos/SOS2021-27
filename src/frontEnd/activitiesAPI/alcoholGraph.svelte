@@ -149,13 +149,16 @@
       },
       series: [
         {
+          text: 'Positivo',
           values: covidConfirmado,
           backgroundColor: '#00BAF2',
+
           marker: {
             backgroundColor: '#00BAF2'
           }
         },
         {
+          text: 'Muertos',
           values: covidDeath,
           backgroundColor: '#E80C60',
           marker: {
@@ -163,9 +166,9 @@
           }
         },
         {
+          text: 'Recuperados',
           values: covidRecovered,
           backgroundColor: '#9B26AF',
-        
           marker: {
             backgroundColor: '#9B26AF'
           }
