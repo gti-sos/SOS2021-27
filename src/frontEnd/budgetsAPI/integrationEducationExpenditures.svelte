@@ -6,9 +6,11 @@
 
     var BASE_API_PATH = "/api/v2/province-budget-and-investment-in-social-promotion";
 
+    var budgetDataGraph = [];
+    var educationDataGraph = [];
+    var integrationGraph = [];
+
     async function loadGraphIntegrationEducationExpenditures() {
-        var budgetDataGraph = [];
-        var educationDataGraph = [];
 
         const data = await fetch(BASE_API_PATH);
         budgetData = await data.json();
@@ -19,8 +21,10 @@
         if (data.ok) {
             budgetData.forEach(budgetSvelte => {
               budgetDataGraph['data'].push({
-                name: budgetSvelte.province + "/" + budgetSvelte.year,
-                y: budgetSvelte.invest_promotion
+                x: budgetSvelte.budget,
+                y: budgetSvelte.invest_promotion,
+                z: budgetSvelte.percentage,
+                name: budgetSvelte.province + "/" + budgetSvelte.year
               });
             });
         }
@@ -28,46 +32,86 @@
         if (data2.ok) {
             educationData.forEach(educationSvelte => {
               educationDataGraph['data'].push({
-                name: educationSvelte.country + "/" + educationSvelte.year,
-                y: educationSvelte.education_expenditure_per_millions
+                x: educationSvelte.education_expenditure_per_millions,
+                y: educationSvelte.education_expenditure_per_capita,
+                z: educationSvelte.education_expenditure_per_public_expenditure,
+                name: educationSvelte.country + "/" + educationSvelte.year
               });
             });
         }
+
+        integrationGraph.push(educationDataGraph);
+        integrationGraph.push(budgetDataGraph);
     
     Highcharts.chart('container', {
         chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false,
-            type: 'pie'
+            type: 'bubble',
+            plotBorderWidth: 1,
+            zoomType: 'xy'
+        },
+        legend: {
+            enabled: false
         },
         title: {
             text: ''
         },
-        tooltip: {
-            useHTML: true
+        accessibility: {
+          point: {
+            valueDescriptionFormat: '{index}. {point.name}, Presupuesto: {point.x}€, Inversión: {point.y}€, Porcentaje: {point.z}%.'
+          }
         },
-        plotOptions: {
-             pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                }
+        xAxis: {
+          gridLineWidth: 1,
+            title: {
+              text: 'Presupuestos'
             },
-         series: [{
-                name: 'Inversión',
-                colorByPoint: true,
-                data: [
-                    {budgetDataGraph},
-                    {educationDataGraph}
-                ]
-            }]
-        });
+            labels: {
+              format: '{value} €'
+            }, 
+        },
+
+        yAxis: {
+          startOnTick: false,
+          endOnTick: false,
+            title: {
+              text: 'Inversiones'
+            },
+          labels: {
+            format: '{value} €'
+          },  
+        },
+
+        tooltip: {
+          useHTML: true,
+          headerFormat: '<table>',
+          pointFormat: '<tr><th colspan="2"><h3>{point.name}</h3></th></tr>' +
+            '<tr><th>Presupuesto:</th><td>{point.x}€</td></tr>' +
+            '<tr><th>Inversión:</th><td>{point.y}€</td></tr>' +
+            '<tr><th>Porcentaje:</th><td>{point.z}%</td></tr>',
+          footerFormat: '</table>',
+          followPointer: true
+        },
+
+        plotOptions: {
+            series: {
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+
+        series: [{
+            data: [{integrationGraph}]
+        }]
+
+    });
   }
 </script>
 
 <svelte:head>
   <script src="https://code.highcharts.com/highcharts.js"></script>
-  <script src="https://code.highcharts.com/modules/series-label.js"></script>
+  <script src="https://code.highcharts.com/highcharts-more.js"></script>
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
   <script src="https://code.highcharts.com/modules/export-data.js"></script>
   <script src="https://code.highcharts.com/modules/accessibility.js" on:load="{loadGraphIntegrationEducationExpenditures}"></script>
@@ -114,7 +158,7 @@
     <div style="margin-bottom: 15px">
         <figure class="highcharts-figure">
           <div id="container"/>
-          <p class="centrado"> Gráfica que relaciona la inversión en promoción social con la inversión en educación en millones de euros. </p>
+          <p class="centrado"> Gráfica que relaciona la inversión en promoción social con la inversión en educación en millones de euros, indicando el presupuesto inicial, así como la inversión en educación per capita, y los porcentajes de inversión. </p>
         </figure>
       </div>
       <br><br>
@@ -158,41 +202,45 @@
     }
 
     .highcharts-figure, .highcharts-data-table table {
-    min-width: 320px; 
+    min-width: 310px; 
     max-width: 800px;
     margin: 1em auto;
-}
+    }
 
-.highcharts-data-table table {
-	font-family: Verdana, sans-serif;
-	border-collapse: collapse;
-	border: 1px solid #EBEBEB;
-	margin: 10px auto;
-	text-align: center;
-	width: 100%;
-	max-width: 500px;
-}
-.highcharts-data-table caption {
-    padding: 1em 0;
-    font-size: 1.2em;
-    color: #555;
-}
-.highcharts-data-table th {
-	font-weight: 600;
-    padding: 0.5em;
-}
-.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
-    padding: 0.5em;
-}
-.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
-    background: #f8f8f8;
-}
-.highcharts-data-table tr:hover {
-    background: #f1f7ff;
-}
+    #container {
+        height: 400px;
+    }
 
+    .highcharts-tooltip h3 {
+        margin: 0.3em 0;
+    }
 
-input[type="number"] {
-	min-width: 50px;
-}
+    .highcharts-data-table table {
+      font-family: Verdana, sans-serif;
+      border-collapse: collapse;
+      border: 1px solid #EBEBEB;
+      margin: 10px auto;
+      text-align: center;
+      width: 100%;
+      max-width: 500px;
+    }
+    .highcharts-data-table caption {
+        padding: 1em 0;
+        font-size: 1.2em;
+        color: #555;
+    }
+    .highcharts-data-table th {
+      font-weight: 600;
+        padding: 0.5em;
+    }
+    .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+        padding: 0.5em;
+    }
+    .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+        background: #f8f8f8;
+    }
+    .highcharts-data-table tr:hover {
+        background: #f1f7ff;
+    }
+
 </style>
