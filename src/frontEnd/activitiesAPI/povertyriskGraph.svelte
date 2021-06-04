@@ -116,7 +116,7 @@
       }
       data.push(total);
       console.log("Calculating activities stats...");
-      var result1 = jsonToMap(activitiesData, "date", "bingo_site");
+      var result1 = jsonToMap(activitiesData, "year", "bingo_site");
       var total1 = 0;
       years.push("locales de bingo");
       for (let [key, value] of result1) {
