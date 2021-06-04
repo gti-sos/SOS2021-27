@@ -85,7 +85,9 @@
         <div>
         <h3 class="titulo"><b>Integraciones de Humberto Garcia</b></h3>
          <br>
-         <div class="titulo">
+          <div class="titulo">
+         <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/alcohol" class="fakeButton">Cocteles (Externa)</a>
+        
           
           </div>
         </div>
