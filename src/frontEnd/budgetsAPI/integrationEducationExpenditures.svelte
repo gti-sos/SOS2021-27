@@ -21,31 +21,31 @@
         const data2 = await fetch("https://education-expenditures.herokuapp.com/api/v1/reduced");
         educationData = await data2.json();
 
-        if (data.ok) {
+    
             budgetData.forEach(budgetSvelte => {
               let serie = {
-                'x': budgetSvelte.budget,
-                'y': budgetSvelte.invest_promotion,
-                'z': budgetSvelte.percentage,
-                'name': 'budgetSvelte.province' + '/' + 'budgetSvelte.year'
+                x: budgetSvelte.budget,
+                y: budgetSvelte.invest_promotion,
+                z: budgetSvelte.percentage,
+                name: budgetSvelte.province' + "/" + budgetSvelte.year
               }
               serie = serie.slice(0, 10);
               budgetDataGraph.push(serie);
             });
-        }
+        
 
-        if (data2.ok) {
+        
             educationData.forEach(educationSvelte => {
               let serie = {
-                'x': educationSvelte.education_expenditure_per_millions,
-                'y': educationSvelte.education_expenditure_per_capita,
-                'z': educationSvelte.education_expenditure_per_public_expenditure,
-                'name': 'educationSvelte.country' + '/' + 'educationSvelte.year'
+                x: educationSvelte.education_expenditure_per_millions,
+                y: educationSvelte.education_expenditure_per_capita,
+                z: educationSvelte.education_expenditure_per_public_expenditure,
+                name: educationSvelte.country + "/" + educationSvelte.year
               }
               serie = serie.slice(0, 10);
               educationDataGraph.push(serie);
             });
-        }
+        
 
         integrationGraph.push(educationDataGraph);
         integrationGraph.push(budgetDataGraph);

@@ -22,35 +22,35 @@
         const data2 = await fetch(proxy + "/api/v2/life-stats");
         lifeData = await data2.json();
 
-        if (data.ok) {
+        
             budgetData.forEach(budgetSvelte => {
               let serie = {
-                'name': 'budgetSvelte.province' + '/' + 'budgetSvelte.year',
-                'value': budgetSvelte.budget
+                name: budgetSvelte.province + "/" + budgetSvelte.year,
+                value: budgetSvelte.budget
               };
               budgetDataGraph.push(serie);
             });
-        }
+        
 
-        if (data2.ok) {
+        
             lifeData.forEach(lifeSvelte => {
               let serie = {
-                'name': 'lifeSvelte.country' + '/' + 'lifeSvelte.date',
-                'value': lifeSvelte.purchasing_power_index
+                name: lifeSvelte.country + "/" + lifeSvelte.date,
+                value: lifeSvelte.purchasing_power_index
               };
               lifePowerDataGraph.push(serie);  
             });
-        }
+        
 
-        if (data2.ok) {
+        
             lifeData.forEach(lifeSvelte => {
               let serie = {
-                'name': 'lifeSvelte.country' + '/' + 'lifeSvelte.date',
-                'value': lifeSvelte.quality_life_index
+                name: lifeSvelte.country + "/" + lifeSvelte.date,
+                value: lifeSvelte.quality_life_index
               };
               lifeQualityDataGraph.push(serie);  
             });
-        }
+        
 
     
     Highcharts.chart('container', {
