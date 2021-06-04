@@ -18,11 +18,58 @@ const allData= await fetch("https://free-nba.p.rapidapi.com/teams", {
 
         },
 });
-
+var lugar=[];
+var equipos = [];
 let data=[];
 data=await allData.json();
 console.log(data)
-}   
+let city = {}
+
+    city = data.division;
+    lugar.push(city);
     
-     onMount(getData);
-     </script>
+    let division = {}
+    division= data.division;
+    equipos.push(division);
+    }
+
+    async function loadGraph(){  
+    getData().then(()=>{
+        var myConfig = {
+                  type: 'bar',
+                  'legend':{},
+                  'scale-x': {
+                      labels: activitieskeys
+                  },
+                  series: [
+                      { text : "equipos",
+                      values: equipos
+                      },
+                      { text : "region",
+                      values: lugar
+                      }
+                  ]
+                  };
+                  
+      zingchart.render({
+          id: 'myChart',
+          data: myConfig,
+          
+      });
+    });
+}
+ </script>
+ 
+ 
+ 
+ <svelte:head>
+ <script
+    src="https://cdn.zingchart.com/zingchart.min.js"
+    on:load={loadGraph}></script>
+</svelte:head>
+
+<main>
+    <div id="myChart"></div>
+
+
+</main>
