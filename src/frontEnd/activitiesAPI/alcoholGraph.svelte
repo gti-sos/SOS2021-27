@@ -31,7 +31,7 @@
       },
       plot: {
         tooltip: {
-          text: '%t: %v of ' + covidProvince,
+          text: '%t: %v en la region de ' + covidProvince,
           borderRadius: '3px',
           borderWidth: '0px',
           fontSize: '12px'
