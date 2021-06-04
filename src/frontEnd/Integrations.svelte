@@ -94,6 +94,7 @@
           <div class="titulo">
          <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/alcohol" class="fakeButton">Covid2 (Externa)</a>
          <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/cards" class="fakeButton">cartas (Externa)</a>
+         <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/poverty" class="fakeButton">Pobreza (G04)</a>
 
           
           </div>
