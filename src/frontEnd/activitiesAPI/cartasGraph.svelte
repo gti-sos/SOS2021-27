@@ -107,9 +107,7 @@ async function loadChart(){
         </body>
   <figure class="highcharts-figure">
   <div id ="container"></div>
-  <p class="highcharts-description">
-    Grafica de la cantidad de cartas segun su tipo.
-  </p>
+
   </figure>
     <Button id="back" outline color="secondary" on:click="{pop}"> Atrás</Button>
 </main>
