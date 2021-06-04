@@ -156,7 +156,7 @@
         </Navbar>
     </body>
     <br>
-    <h1 class="titulo2"> Gráfica de Integración</h1>
+    <h1 class="titulo2"> Gráfica de Integración con proxy propio</h1>
     <div style="margin-bottom: 15px">
         <figure class="highcharts-figure">
           <div id="container"/>
