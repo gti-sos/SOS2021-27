@@ -76,6 +76,11 @@
            <br>
            <div class="titulo">
             <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/educationExpenditures" class="fakeButton">Gastos en educación (G04)</a>
+            <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/lifeStats" class="fakeButton">Índice calidad de vida (G01)</a>
+          </div>
+          <div class="titulo">
+            //<a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/educationExpenditures" class="fakeButton">Gastos en educación (G04)</a>
+            //<a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/lifeStats" class="fakeButton">Índice calidad de vida (G01)</a>
           </div>
         </div>
       </slot>

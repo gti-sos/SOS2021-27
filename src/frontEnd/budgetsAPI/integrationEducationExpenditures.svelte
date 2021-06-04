@@ -6,8 +6,6 @@
 
     var BASE_API_PATH = "/api/v2/province-budget-and-investment-in-social-promotion";
 
-    var integrationGraph = [];
-
     async function loadGraphIntegrationEducationExpenditures() {
         var budgetDataGraph = {
           name : 'Inversión en promoción social',
@@ -42,14 +40,13 @@
               });
             });
         }
-
-        integrationGraph.push(budgetDataGraph);
-        integrationGraph.push(educationDataGraph);
     
     Highcharts.chart('container', {
         chart: {
-            type: 'packedbubble',
-            height: '85%'
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
         },
         title: {
             text: ''
@@ -58,36 +55,24 @@
             useHTML: true
         },
         plotOptions: {
-            packedbubble: {
-                minSize: '20%',
-                maxSize: '70%',
-                zMin: 0,
-                zMax: 1000,
-                layoutAlgorithm: {
-                    gravitationalConstant: 0.02,
-                    splitSeries: true,
-                    seriesInteraction: false,
-                    dragBetweenSeries: true,
-                    parentNodeLimit: true
-                },
-                dataLabels: {
-                    enabled: true,
-                    format: '{point.name}',
-                    filter: {
-                        property: 'y',
-                        operator: '>',
-                        value: 200
-                    },
-                    style: {
-                        color: 'black',
-                        textOutline: 'none',
-                        fontWeight: 'normal'
+             pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        connectorColor: 'silver'
                     }
                 }
-            }
-        },
-        series: integrationGraph
-    });
+            },
+         series: [{
+                name: 'Inversión',
+                data: [
+                    {budgetDataGraph},
+                    {educationDataGraph}
+                ]
+            }]
+        });
   }
 </script>
 

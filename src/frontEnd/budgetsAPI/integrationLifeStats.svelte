@@ -6,7 +6,7 @@
 
     var BASE_API_PATH = "/api/v2/province-budget-and-investment-in-social-promotion";
 
-    var integrationGraph = [];
+    let proxy = "/proxy/";
 
     async function loadGraphLifeStats() {
         var budgetDataGraph = {
@@ -14,7 +14,12 @@
           data: []
         }
 
-        var lifeDataGraph = {
+        var lifePowerDataGraph = {
+          name : 'Índice de poder adquisitivo de varios países',
+          data: []
+        }
+
+        var lifeQualityDataGraph = {
           name : 'Índice de calidad de vida de varios países',
           data: []
         }
@@ -22,7 +27,7 @@
         const data = await fetch(BASE_API_PATH);
         budgetData = await data.json();
 
-        const data2 = await fetch("https://sos2021-01.herokuapp.com/api/v2/life-stats");
+        const data2 = await fetch(proxy + "/api/v2/life-stats");
         lifeData = await data2.json();
 
         if (data.ok) {
@@ -36,15 +41,23 @@
 
         if (data2.ok) {
             lifeData.forEach(lifeSvelte => {
-              lifeDataGraph['data'].push({
+              lifePowerDataGraph['data'].push({
+                name: lifeSvelte.country + "/" + lifeSvelte.date,
+                value: lifeSvelte.purchasing_power_index
+              });
+            });
+        }
+
+        if (data2.ok) {
+            lifeData.forEach(lifeSvelte => {
+              lifeQualityDataGraph['data'].push({
                 name: lifeSvelte.country + "/" + lifeSvelte.date,
                 value: lifeSvelte.quality_life_index
               });
             });
         }
 
-        integrationGraph.push(budgetDataGraph);
-        integrationGraph.push(lifeDataGraph);
+        
     
     Highcharts.chart('container', {
         chart: {
@@ -64,11 +77,8 @@
                 zMin: 0,
                 zMax: 1000,
                 layoutAlgorithm: {
-                    gravitationalConstant: 0.02,
-                    splitSeries: true,
-                    seriesInteraction: false,
-                    dragBetweenSeries: true,
-                    parentNodeLimit: true
+                    splitSeries: false,
+                    gravitationalConstant: 0.02
                 },
                 dataLabels: {
                     enabled: true,
@@ -86,18 +96,27 @@
                 }
             }
         },
-        series: integrationGraph
-    });
-  }
+         series:  [{
+              name: 'Presupuestos',
+              data: budgetDataGraph
+          },
+          {
+              name: 'Índices de poder adquisitivo',
+              data: lifePowerDataGraph
+          },
+          {
+              name: 'Índices de calidad de vida',
+              data: lifeQualityDataGraph
+          }]
+      });
+  }        
 </script>
 
 <svelte:head>
-  <script src="https://code.highcharts.com/highcharts.js" on:load={loadGraphLifeStats}></script>
-  <script src="https://code.highcharts.com/modules/series-label.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/highcharts.src.js"></script>
   <script src="https://code.highcharts.com/highcharts-more.js"></script>
-  <script src="https://code.highcharts.com/modules/exporting.js"></script>
-  <script src="https://code.highcharts.com/modules/export-data.js"></script>
-  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"  on:load={loadGraphLifeStats}></script>
 </svelte:head>
 
 <main>
@@ -141,7 +160,7 @@
     <div style="margin-bottom: 15px">
         <figure class="highcharts-figure">
           <div id="container"/>
-          <p class="centrado"> Gráfica que relaciona el presupuesto de varias provincias con el índice de calidad de vida de varios países. </p>
+          <p class="centrado"> Gráfica que relaciona el presupuesto de varias provincias con el índice de poder adquisitivo y calidad de vida de varios países. </p>
         </figure>
       </div>
       <br><br>
