@@ -31,7 +31,7 @@ async function loadChart(){
     
     Highcharts.chart('container', {
     chart: {
-        type: 'arearange',
+        type: 'pie',
         options3d: {
             enabled: true,
             alpha: 45,
