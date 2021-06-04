@@ -5,7 +5,9 @@
 
     import {Jumbotron, Navbar, Nav, NavItem, NavLink, NavbarBrand, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from 'sveltestrap';
     let isOpen = false;
-
+    let lugar=[];
+let equipos = [];
+let data=[];
     async function getData(){
 
 const allData= await fetch("https://free-nba.p.rapidapi.com/teams", { 
@@ -17,14 +19,12 @@ const allData= await fetch("https://free-nba.p.rapidapi.com/teams", {
 
         },
 });
-var lugar=[];
-var equipos = [];
-let data=[];
+
 data=await allData.json();
 console.log(data)
 let city = {}
 
-    city = data.division;
+    city = data.city;
     lugar.push(city);
     
     let division = {}
