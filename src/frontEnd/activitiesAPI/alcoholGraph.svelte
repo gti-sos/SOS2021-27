@@ -31,7 +31,7 @@
       },
       plot: {
         tooltip: {
-          text: '%t: %v of %g',
+          text: '%t: %v of ' + covidProvince,
           borderRadius: '3px',
           borderWidth: '0px',
           fontSize: '12px'
@@ -55,7 +55,7 @@
           visible: false
         },
         label: {
-          text:covidProvince,
+          text:"provincias",
           offsetX: '-70px',
           values:covidProvince
         }
