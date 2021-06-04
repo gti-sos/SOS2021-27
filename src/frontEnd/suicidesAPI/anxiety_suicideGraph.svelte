@@ -91,7 +91,7 @@
             
             Highcharts.chart("container", {
                 title: {
-                    text: "Combination chart",
+                    text: "",
                 },
                 xAxis: {
                     categories: keys,
@@ -225,7 +225,7 @@
         </Navbar>
     </body>
     <br />
-    <h1 class="titulo2">Gráfica de datos</h1>
+    <h1 class="titulo2">Ansiedad en regiones y suicidios en la capital.</h1>
     <div style="width:800px; margin:0 auto;">
         <figure class="highcharts-figure">
             <div id="container" />
