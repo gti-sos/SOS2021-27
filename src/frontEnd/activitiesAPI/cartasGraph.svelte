@@ -1,11 +1,11 @@
 <script>
     import Button from "sveltestrap/src/Button.svelte";
     import { pop } from "svelte-spa-router";
-    var cards={};
-    var cardTypes = [];  
-async function loadGraph(){
+    
+async function loadChart(){
    
-  
+    var cards={};
+    var cardTypes = [];
     const resData = await fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php");
     const cardData = await resData.json();  
     console.log(cardData);
@@ -23,72 +23,60 @@ async function loadGraph(){
         cardTypes.push([key,cards[key]]);
     }
     
-    let chartConfig = {
-    type: 'pie',
-    backgroundColor: '#2B313B',
+    Highcharts.chart('container', {
+    chart: {
+        type: 'pie',
+        options3d: {
+            enabled: true,
+            alpha: 45,
+            beta: 0
+        }
+    },
     title: {
-      text: 'Cartas segun tipo',
-      align: 'left',
-      fontColor: '#fff',
-      fontFamily: 'Open Sans',
-      fontSize: '25px',
-      offsetX: '10px',
+        text: 'Cartas de Yu-Gi-Oh según su tipo'
     },
-    
-    plot: {
-      tooltip: {
-        text: '%npv%',
-        padding: '5 10',
-        fontFamily: 'Open Sans',
-        fontSize: '18px'
-      },
-      valueBox: {
-        text: '%t\n%npv%',
-        fontFamily: 'Open Sans',
-        placement: 'out'
-      },
-      animation: {
-        effect: 'ANIMATION_EXPAND_VERTICAL',
-        method: 'ANIMATION_REGULAR_EASE_OUT',
-        sequence: 'ANIMATION_BY_PLOT',
-        speed: 500
-      },
-      borderColor: '#2B313B',
-      borderWidth: '5px'
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
     },
-    plotarea: {
-      margin: '20 0 0 0'
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
     },
-    source: {
-      text: 'Source: gs.statcounter.com',
-      fontColor: '#8e99a9',
-      fontFamily: 'Open Sans',
-      textAlign: 'left'
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            depth: 35,
+            dataLabels: {
+                enabled: true,
+                format: '{point.name}'
+            }
+        }
     },
-    series: [
-      {
-        text: 'IE and Edge',
-        values: cardTypes
-      }]};
-      
-  zingchart.render({
-    id: 'myChart',
-    data: chartConfig,
-    height: '100%',
-    width: '100%',
-  });
+    series: [{
+        name: 'Porcentaje de cartas',
+        data: cardTypes
+    }]
+});
 }
 </script>
 <svelte:head>
-
-  <script
-    src="https://cdn.zingchart.com/zingchart.min.js"
-    on:load={loadGraph}></script>
+  <script src="https://code.highcharts.com/highcharts.js" on:load={loadChart}></script>
+  <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 </svelte:head>
 
 <main>
-    <div id="myChart"></div>
-    <h1>funciona</h1>
+  <figure class="highcharts-figure">
+  <div id ="container"></div>
+  <p class="highcharts-description">
+      Gráfico 3D que muestra la cantidad de cartas de YU-GI-OH segun su tipo.
+  </p>
+  </figure>
+    <Button id="back" outline color="secondary" on:click="{pop}"> Atrás</Button>
 </main>
 
 <style>
