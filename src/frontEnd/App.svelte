@@ -39,19 +39,15 @@
 		'/graphics/suicide-records3':SuicideGraphUvChart,
 		'/graphics/integrations/covid':suiCovid,
 		'/graphics/integrations/dogs':suiDogs,
-<<<<<<< HEAD
-		'graphics/integrations/anxiety':anxiety,
-		//'/province-budget-and-investment-in-social-promotion':Budgets,
-		//'/province-budget-and-investment-in-social-promotion/:province/:year':BudgetsEdit,
-		//'/graphics/province-budget-and-investment-in-social-promotion':BudgetsGraphics,
-=======
+		'/graphics/integrations/anxiety':anxiety,
+
+
 		'/province-budget-and-investment-in-social-promotion':Budgets,
 		'/province-budget-and-investment-in-social-promotion/:province/:year':BudgetsEdit,
 		'/graphics/line/province-budget-and-investment-in-social-promotion':BudgetsGraphicLine,
 		'/graphics/area/province-budget-and-investment-in-social-promotion':BudgetsGraphicArea,
 		'/graphics/sigma/province-budget-and-investment-in-social-promotion':BudgetsGraphicSigma,
 		'/graphics/integrations/educationExpenditures':IntegrationEducationExpenditures,
->>>>>>> 18bc0b1829ce7a122f6fc394b668e784d169ad79
 		'/azar-games-and-bet-activities':Activities,
 		'/azar-games-and-bet-activities/:province/:year':ActivitiesEdit,
 		'/graphics/azar-games-and-bet-activities':ActivitiesGraph,
