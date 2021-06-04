@@ -8,7 +8,6 @@
 
     async function getData(){
 
-// Especificamos el ID de la película en la consulta, en este caso corresponde a RESERVOIR DOGS
 const allData= await fetch("https://free-nba.p.rapidapi.com/teams", { 
         "method":"GET",
         "headers":{
@@ -39,7 +38,7 @@ let city = {}
                   type: 'bar',
                   'legend':{},
                   'scale-x': {
-                      labels: activitieskeys
+                      labels: "activitieskeys"
                   },
                   series: [
                       { text : "equipos",
