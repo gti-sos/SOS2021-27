@@ -31,7 +31,7 @@
       },
       plot: {
         tooltip: {
-          text: '%t: %v en la region de ' + covidProvince,
+          text: '%t: %v en la region de %p ',
           borderRadius: '3px',
           borderWidth: '0px',
           fontSize: '12px'
@@ -105,19 +105,19 @@
           text: 'Casos positivos',
           values: covidConfirmado,
           backgroundColor: '#009688',
-          
+          province: covidProvince
         },
         {
           text: 'Recuperados',
           values:covidRecovered,
           backgroundColor: '#ffc107',
-          
+          province: covidProvince
         },
         {
           text: 'Muertos',
           values: covidDeath,
           backgroundColor: '#9c27b0',
-          
+          province: covidProvince
         }
       ]
     };
