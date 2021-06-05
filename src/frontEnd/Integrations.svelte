@@ -67,6 +67,7 @@
           <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/anxiety" class="fakeButton">anxiety</a>
           <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/depression" class="fakeButton">depression</a>
           <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/stress" class="fakeButton">stress</a>
+          <a href="https://sos2021-27.herokuapp.com/#/info" class="fakeButton" style="background-color:#80ced6">Vistas de la API personal.</a>
           </div>
         </div>
       </slot>

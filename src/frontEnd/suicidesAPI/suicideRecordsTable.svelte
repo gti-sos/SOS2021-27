@@ -118,6 +118,7 @@
         }).then((res) => {
             if (res.status == 201) {
                 suicides.push(newSuicide);
+                alert("Registro Introducido Correctamente");
                 okPrint = "Nuevo dato introducido correctamente;";
                 errorPrint = "";
                 infoPrint = "";
@@ -310,6 +311,15 @@
                 ></Button
             ></td
         >
+
+        <td
+        ><Button style="background-color:orange"
+            ><a
+                href="https://sos2021-27.herokuapp.com/#/integrations"
+                >Integraciones</a
+            ></Button
+        ></td
+    >
     </tr>
 
     <Table bordered>
