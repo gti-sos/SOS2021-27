@@ -6,14 +6,14 @@
 
     var BASE_API_PATH = "/api/v2/province-budget-and-investment-in-social-promotion";
 
+    let budgetData = [];
+    let educationData = [];
+    let budgetDataGraph = [];
+    let educationDataGraph = [];
+    let integrationGraph = [];
+    let serie = [];
 
     async function loadGraphIntegrationEducationExpenditures() {
-
-      var budgetData = [];
-      var educationData = [];
-      var budgetDataGraph = [];
-      var educationDataGraph = [];
-      var integrationGraph = [];
 
         const data = await fetch(BASE_API_PATH);
         budgetData = await data.json();
@@ -24,10 +24,10 @@
     
             budgetData.forEach(budgetSvelte => {
               let serie = {
-                x: budgetSvelte.budget,
-                y: budgetSvelte.invest_promotion,
-                z: budgetSvelte.percentage,
-                name: budgetSvelte.province + "/" + budgetSvelte.year
+                'x': budgetSvelte["budget"],
+                'y': budgetSvelte["invest_promotion"],
+                'z': budgetSvelte["percentage"],
+                'name': budgetSvelte.province + "/" + budgetSvelte.year
               }
               serie = serie.slice(0, 10);
               budgetDataGraph.push(serie);
@@ -37,10 +37,10 @@
         
             educationData.forEach(educationSvelte => {
               let serie = {
-                x: educationSvelte.education_expenditure_per_millions,
-                y: educationSvelte.education_expenditure_per_capita,
-                z: educationSvelte.education_expenditure_per_public_expenditure,
-                name: educationSvelte.country + "/" + educationSvelte.year
+                'x': educationSvelte["education_expenditure_per_millions"],
+                'y': educationSvelte["education_expenditure_per_capita"],
+                'z': educationSvelte["education_expenditure_per_public_expenditure"],
+                'name': educationSvelte.country + "/" + educationSvelte.year
               }
               serie = serie.slice(0, 10);
               educationDataGraph.push(serie);
