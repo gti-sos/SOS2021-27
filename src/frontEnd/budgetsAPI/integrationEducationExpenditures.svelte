@@ -164,7 +164,7 @@
     <h1 class="titulo2"> Gráfica de Integración</h1>
     <div style="margin-bottom: 15px">
         <figure class="highcharts-figure">
-          <div id="container"/></div>
+          <div id="container"></div>
           <p class="centrado"> Gráfica que relaciona la inversión en promoción social con la inversión en educación en millones de euros, indicando el presupuesto inicial, así como la inversión en educación per capita, y los porcentajes de inversión. </p>
         </figure>
       </div>

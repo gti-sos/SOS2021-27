@@ -154,7 +154,7 @@
     <h1 class="titulo2"> Gráfica de Integración con proxy propio</h1>
     <div style="margin-bottom: 15px">
         <figure class="highcharts-figure">
-          <div id="container"/></div>
+          <div id="container"></div>
           <p class="centrado"> Gráfica que relaciona el presupuesto de varias provincias con el índice de poder adquisitivo y calidad de vida de varios países. </p>
         </figure>
       </div>
