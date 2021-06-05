@@ -23,6 +23,7 @@
 	import anxiety from './suicidesAPI/anxiety_suicideGraph.svelte';
 	import depression from './suicidesAPI/depression_suicideGraph.svelte';
 	import stress from './suicidesAPI/stress_suicideGraph.svelte';
+	import cripto from './suicidesAPI/criptos_Graph.svelte';
 
 	import ActivitiesGraph2 from './activitiesAPI/activitiesGraph2.svelte';
 	import ActivitiesGraphVis from './activitiesAPI/activitiesGraphVis.svelte';
@@ -47,6 +48,7 @@
 		'/graphics/integrations/anxiety':anxiety,
 		'/graphics/integrations/depression':depression,
 		'/graphics/integrations/stress':stress,
+		'/graphics/integrations/criptos':cripto,
 
 
 
