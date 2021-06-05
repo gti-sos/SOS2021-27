@@ -6,122 +6,112 @@
 
     var BASE_API_PATH = "/api/v2/province-budget-and-investment-in-social-promotion";
 
+    let budgetData = [];
+    let lifeData = [];
+    let budgetDataGraph = [];
+    let lifePowerDataGraph = [];
+    let lifeQualityDataGraph = [];
 
-    async function loadGraphIntegrationEducationExpenditures() {
+    let proxy = "/proxy/";
 
-      var budgetData = [];
-      var educationData = [];
-      var budgetDataGraph = [];
-      var educationDataGraph = [];
-      var integrationGraph = [];
+    async function loadGraphLifeStats() {
 
         const data = await fetch(BASE_API_PATH);
         budgetData = await data.json();
 
-        const data2 = await fetch("https://education-expenditures.herokuapp.com/api/v1/reduced");
-        educationData = await data2.json();
+        const data2 = await fetch(proxy + "/api/v2/life-stats");
+        lifeData = await data2.json();
 
-    
+        
             budgetData.forEach(budgetSvelte => {
               let serie = {
-                x: budgetSvelte.budget,
-                y: budgetSvelte.invest_promotion,
-                z: budgetSvelte.percentage,
-                name: budgetSvelte.province + "/" + budgetSvelte.year
-              }
-              serie = serie.slice(0, 10);
+                name: budgetSvelte.province + "/" + budgetSvelte.year,
+                value: budgetSvelte.budget
+              };
               budgetDataGraph.push(serie);
             });
         
 
         
-            educationData.forEach(educationSvelte => {
+            lifeData.forEach(lifeSvelte => {
               let serie = {
-                x: educationSvelte.education_expenditure_per_millions,
-                y: educationSvelte.education_expenditure_per_capita,
-                z: educationSvelte.education_expenditure_per_public_expenditure,
-                name: educationSvelte.country + "/" + educationSvelte.year
-              }
-              serie = serie.slice(0, 10);
-              educationDataGraph.push(serie);
+                name: lifeSvelte.country + "/" + lifeSvelte.date,
+                value: lifeSvelte.purchasing_power_index
+              };
+              lifePowerDataGraph.push(serie);  
             });
         
 
-        integrationGraph.push(educationDataGraph);
-        integrationGraph.push(budgetDataGraph);
+        
+            lifeData.forEach(lifeSvelte => {
+              let serie = {
+                name: lifeSvelte.country + "/" + lifeSvelte.date,
+                value: lifeSvelte.quality_life_index
+              };
+              lifeQualityDataGraph.push(serie);  
+            });
+        
+
     
     Highcharts.chart('container', {
         chart: {
-            type: 'bubble',
-            plotBorderWidth: 1,
-            zoomType: 'xy'
-        },
-        legend: {
-            enabled: false
+            type: 'packedbubble',
+            height: '100%'
         },
         title: {
             text: ''
         },
-        accessibility: {
-          point: {
-            valueDescriptionFormat: '{index}. {point.name}, Presupuesto: {point.x}€, Inversión: {point.y}€, Porcentaje: {point.z}%.'
-          }
-        },
-        xAxis: {
-          gridLineWidth: 1,
-            title: {
-              text: 'Presupuestos'
-            },
-            labels: {
-              format: '{value} €'
-            }, 
-        },
-
-        yAxis: {
-          startOnTick: false,
-          endOnTick: false,
-            title: {
-              text: 'Inversiones'
-            },
-          labels: {
-            format: '{value} €'
-          },  
-        },
-
         tooltip: {
-          useHTML: true,
-          headerFormat: '<table>',
-          pointFormat: '<tr><th colspan="2"><h3>{point.name}</h3></th></tr>' +
-            '<tr><th>Presupuesto:</th><td>{point.x}€</td></tr>' +
-            '<tr><th>Inversión:</th><td>{point.y}€</td></tr>' +
-            '<tr><th>Porcentaje:</th><td>{point.z}%</td></tr>',
-          footerFormat: '</table>',
-          followPointer: true
+            useHTML: true,
+            pointFormat: '<b>{point.name}:</b> {point.value}</sub>'
         },
-
         plotOptions: {
-            series: {
-                dataLabels: {
-                    enabled: true,
-                    format: '{point.name}'
+            packedbubble: {
+              minSize: '30%',
+              maxSize: '120%',
+              zMin: 0,
+              zMax: 1000,
+              layoutAlgorithm: {
+                  splitSeries: false,
+                  gravitationalConstant: 0.02
+              },
+              dataLabels: {
+                  enabled: true,
+                  format: '{point.name}',
+                  filter: {
+                      property: 'y',
+                      operator: '>',
+                      value: 250
+                  },
+                style: {
+                    color: 'black',
+                    textOutline: 'none',
+                    fontWeight: 'normal'
                 }
             }
-        },
-
-        series: [{
-            data: integrationGraph
-        }]
-
-    });
-  }
+        }
+    },
+         series:  [{
+              name: 'Presupuestos',
+              data: budgetDataGraph
+          },
+          {
+              name: 'Índices de poder adquisitivo',
+              data: lifePowerDataGraph
+          },
+          {
+              name: 'Índices de calidad de vida',
+              data: lifeQualityDataGraph
+          }]
+      });
+  }        
 </script>
 
 <svelte:head>
   <script src="https://code.highcharts.com/highcharts.js"></script>
   <script src="https://code.highcharts.com/highcharts-more.js"></script>
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
-  <script src="https://code.highcharts.com/modules/export-data.js"></script>
-  <script src="https://code.highcharts.com/modules/accessibility.js" on:load="{loadGraphIntegrationEducationExpenditures}"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"  on:load={loadGraphLifeStats}></script>
 </svelte:head>
 
 <main>
@@ -161,15 +151,16 @@
         </Navbar>
     </body>
     <br>
-    <h1 class="titulo2"> Gráfica de Integración</h1>
+    <h1 class="titulo2"> Gráfica de Integración con proxy propio</h1>
     <div style="margin-bottom: 15px">
         <figure class="highcharts-figure">
           <div id="container"/>
-          <p class="centrado"> Gráfica que relaciona la inversión en promoción social con la inversión en educación en millones de euros, indicando el presupuesto inicial, así como la inversión en educación per capita, y los porcentajes de inversión. </p>
+          <p class="centrado"> Gráfica que relaciona el presupuesto de varias provincias con el índice de poder adquisitivo y calidad de vida de varios países. </p>
         </figure>
       </div>
       <br><br>
 </main>
+
 
 <style>
     .titulo {
@@ -208,18 +199,10 @@
         border-radius: 12px;
     }
 
-    .highcharts-figure, .highcharts-data-table table {
-    min-width: 310px; 
+     .highcharts-figure, .highcharts-data-table table {
+    min-width: 320px; 
     max-width: 800px;
     margin: 1em auto;
-    }
-
-    #container {
-        height: 400px;
-    }
-
-    .highcharts-tooltip h3 {
-        margin: 0.3em 0;
     }
 
     .highcharts-data-table table {

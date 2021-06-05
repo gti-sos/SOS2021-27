@@ -10,6 +10,7 @@
 	import BudgetsGraphicArea from './budgetsAPI/budgetsGraphicArea.svelte';
 	import BudgetsGraphicSigma from './budgetsAPI/budgetsGraphicSigma.svelte';
 	import IntegrationEducationExpenditures from './budgetsAPI/integrationEducationExpenditures.svelte';
+	import IntegrationLifeStats from './budgetsAPI/integrationLifeStats.svelte';
 	import Activities from './activitiesAPI/activities.svelte';
 	import ActivitiesEdit from './activitiesAPI/editactivities.svelte';
 	import ActivitiesGraph from './activitiesAPI/activitiesGraph.svelte';
@@ -25,7 +26,8 @@
 	import ActivitiesGraphVis from './activitiesAPI/activitiesGraphVis.svelte';
 	import Integrations from './Integrations.svelte'
 	import Alcohol from './activitiesAPI/alcoholGraph.svelte';
-
+	import Cartas from './activitiesAPI/cartasGraph.svelte';
+	import Pobreza from './activitiesAPI/povertyriskGraph.svelte';
 
 	import Info from './info.svelte';
 	import Landing from './Landing.svelte';
@@ -49,6 +51,7 @@
 		'/graphics/area/province-budget-and-investment-in-social-promotion':BudgetsGraphicArea,
 		'/graphics/sigma/province-budget-and-investment-in-social-promotion':BudgetsGraphicSigma,
 		'/graphics/integrations/educationExpenditures':IntegrationEducationExpenditures,
+		'/graphics/integrations/lifeStats':IntegrationLifeStats,
 		
 		'/azar-games-and-bet-activities':Activities,
 		'/azar-games-and-bet-activities/:province/:year':ActivitiesEdit,
@@ -56,6 +59,9 @@
 		'/graphics/azar-games-and-bet-activities2':ActivitiesGraph2,
 		'/graphics/azar-games-and-bet-activities3':ActivitiesGraphVis,
 		'/graphics/integrations/alcohol':Alcohol,
+		'/graphics/integrations/cards':Cartas,
+		'/graphics/integrations/poverty':Pobreza,
+
 
 		'/about':About,
 		'/integrations':Integrations,

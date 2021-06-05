@@ -111,3 +111,11 @@ app.use(pathDepression, function(req, res) {
   console.log('piped: '+req.baseUrl + req.url);
   req.pipe(request(url)).pipe(res);
 });
+
+
+
+var host = 'http://sos2021-01.herokuapp.com';
+app.use('/proxy', function(request, response) {
+  var url = host + request.baseUrl + request.url;
+  request.pipe(request(url)).pipe(response);
+});

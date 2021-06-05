@@ -76,6 +76,11 @@
            <br>
            <div class="titulo">
             <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/educationExpenditures" class="fakeButton">Gastos en educación (G04)</a>
+            <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/lifeStats" class="fakeButton">Índice calidad de vida (G01)</a>
+          </div>
+          <div class="titulo">
+            <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/educationExpenditures" class="fakeButton">Gastos en educación (G04)</a>
+            <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/lifeStats" class="fakeButton">Índice calidad de vida (G01)</a>
           </div>
         </div>
       </slot>
@@ -87,8 +92,10 @@
         <h3 class="titulo"><b>Integraciones de Humberto Garcia</b></h3>
          <br>
           <div class="titulo">
-         <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/alcohol" class="fakeButton">Cocteles (Externa)</a>
-        
+         <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/alcohol" class="fakeButton">Covid2 (Externa)</a>
+         <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/cards" class="fakeButton">cartas (Externa)</a>
+         <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/poverty" class="fakeButton">Pobreza (G04)</a>
+
           
           </div>
         </div>
