@@ -12,14 +12,14 @@
     let lifePowerDataGraph = [];
     let lifeQualityDataGraph = [];
 
-    let proxy = "/proxy/";
+    let proxy = "/api/v2/proxy_lifeStats";
 
     async function loadGraphLifeStats() {
 
         const data = await fetch(BASE_API_PATH);
         budgetData = await data.json();
 
-        const data2 = await fetch(proxy + "/api/v2/life-stats");
+        const data2 = await fetch(proxy);
         lifeData = await data2.json();
 
         
