@@ -11,6 +11,7 @@
 	import BudgetsGraphicSigma from './budgetsAPI/budgetsGraphicSigma.svelte';
 	import IntegrationEducationExpenditures from './budgetsAPI/integrationEducationExpenditures.svelte';
 	import IntegrationLifeStats from './budgetsAPI/integrationLifeStats.svelte';
+	import IntegrationCurrencyConverter from './budgetsAPI/integrationCurrencyConverter.svelte';
 	import Activities from './activitiesAPI/activities.svelte';
 	import ActivitiesEdit from './activitiesAPI/editactivities.svelte';
 	import ActivitiesGraph from './activitiesAPI/activitiesGraph.svelte';
@@ -60,6 +61,7 @@
 		'/graphics/sigma/province-budget-and-investment-in-social-promotion':BudgetsGraphicSigma,
 		'/graphics/integrations/educationExpenditures':IntegrationEducationExpenditures,
 		'/graphics/integrations/lifeStats':IntegrationLifeStats,
+		'/graphics/integrations/currencyConverter':IntegrationCurrencyConverter,
 		
 		'/azar-games-and-bet-activities':Activities,
 		'/azar-games-and-bet-activities/:province/:year':ActivitiesEdit,
