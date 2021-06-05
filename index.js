@@ -129,7 +129,7 @@ app.use(pathStress, function(req, res) {
 // --------------------------------------------------------------
 
 
-app.use("/api/v2/proxy_lifeStats", function(request, response) {
+app.use("/proxy", function(request, response) {
   var hostUrl = 'http://sos2021-01.herokuapp.com';
   var url = hostUrl + request.url;
   request.pipe(request(url)).pipe(response);
