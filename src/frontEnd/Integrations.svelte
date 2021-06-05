@@ -64,6 +64,7 @@
           <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/covid" class="fakeButton">covid19 (Externa)</a>
           <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/dogs" class="fakeButton">Reservoir Dogs (Externa)</a>
           <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/anxiety" class="fakeButton">anxiety</a>
+          <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/depression" class="fakeButton">depression</a>
           </div>
         </div>
       </slot>

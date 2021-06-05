@@ -15,24 +15,16 @@
     } from "sveltestrap";
     let isOpen = false;
 
-    var ansHombres = [];
-    var suiHombres = [];
-
-    var ansMujeres = [];
-    var suiMujeres = [];
-
-    var keys = [];
+    var pieKeys = [];
 
     async function getData() {
         const porsiacaso = await fetch(
-            "/api/integration/anxiety_stats/loadInitialData"
+            "/api/integration/depression_stats/loadInitialData"
         ); // La bd no termina de ser consistente, es necesario esto para que funcione siempre.
 
-        const anxiety = await fetch(
-            "/api/integration/anxiety_stats"
-        );
-        let anxietyJsons = [];
-        anxietyJsons = await anxiety.json();
+        const anxiety = await fetch("/api/integration/depression_stats");
+        let depressionJsons = [];
+        depressionJsons = await anxiety.json();
 
         const suicide = await fetch(
             "https://sos2021-27.herokuapp.com/api/v2/suicide-records/"
@@ -40,133 +32,115 @@
         let suicideJsons = [];
         suicideJsons = await suicide.json();
 
-        for (let ansiedad of anxietyJsons) {
-            for (let suicidio of suicideJsons) {
-                if (ansiedad.year == suicidio.year) {
-                    if (
-                        (ansiedad.country == "Spain_Andalucia" &&
-                            suicidio.province == "SEVILLE") ||
-                        (ansiedad.country == "Spain_CValenciana" &&
-                            suicidio.province == "VALENCIA") ||
-                        (ansiedad.country == "Spain_Madrid" &&
-                            suicidio.province == "MADRID") ||
-                        (ansiedad.country == "Spain_Cataluña" &&
-                            suicidio.province == "BARCELONA")
-                    ) {
+        // La idea es obtener la depresió acumulada en el país por año (Juntando todas las provincias)
 
-                        switch(suicidio.province){
-                            case "BARCELONA":
-                                keys.push(ansiedad.country + " - " + suicidio.province + "("+suicidio.year+")")
-                                break;
-                            case "SEVILLE":
-                                keys.push(ansiedad.country + " - " + suicidio.province + "("+suicidio.year+")")
-                                break;
-                            default:
-                                keys.push(ansiedad.country + " - " + suicidio.province + "("+suicidio.year+")")
-                                break;
+        let anyos2 = [];
+        for (let depYear of depressionJsons) {
+            anyos2.push(depYear.year);
+        }
+        let anyosSet2 = new Set(anyos2);
 
-                        }
 
-                        ansHombres.push(ansiedad.anxiety_men);
-                        suiHombres.push(parseInt(suicidio.suic_man));
+        console.log(suicideJsons);
 
-                        ansMujeres.push(ansiedad.anxiety_women);
-                        suiMujeres.push(parseInt(suicidio.suic_woman));
-                    }
+        for (let anyo of anyosSet2) {
+            let anyoActual=anyo;
+            let obj = {};
+            let obj2 = {};
+            let depManAcum=0.;
+            let depWomanAcum=0.;
+
+            for (let depLog of depressionJsons) {
+                if(depLog.year==anyoActual){
+                    depManAcum+=depLog.depression_men;
+                    
+                    depWomanAcum+=depLog.depression_women;
                 }
+
             }
+
+            obj["name"]="Depresión acumulada en el País (Hombres) - "+ anyo;
+            obj["value"]=Math.round(depManAcum);
+
+            obj2["name"]="Depresión acumulada en el País (Mujeres) - "+ anyo;
+            obj2["value"]=Math.round(depWomanAcum);
+
+            pieKeys.push(obj);
+            pieKeys.push(obj2);
         }
 
-        console.log(ansHombres);
-        console.log(suiHombres);
+        console.log(pieKeys)
 
-        console.log(ansMujeres);
-        console.log(suiMujeres);
+        // -----------------------------------------------------------------------
+
+        // La idea es acumular el total de suicidio por año (Juntando todas las provincias)
+
+        let anyos = [];
+        for (let suicYear of suicideJsons) {
+            anyos.push(suicYear.year);
+        }
+        let anyosSet = new Set(anyos);
+
+        for (let anyo of anyosSet) {
+            let anyoActual=anyo;
+            let obj = {};
+            let obj2 = {};
+            let suicManAcum=0;
+            let suicWomanAcum=0;
+
+            for (let suicideLog of suicideJsons) {
+                if(suicideLog.year==anyoActual){
+                    suicManAcum+=parseInt(suicideLog.suic_man);
+                    suicWomanAcum+=parseInt(suicideLog.suic_woman);
+                }
+
+            }
+
+            obj["name"]="Suicidios Totales en el País (Hombres) - "+ anyo ;
+            obj["value"]=suicManAcum;
+
+            obj2["name"]="Suicidios Totales en el País (Mujeres) - " + anyo;
+            obj2["value"]=suicWomanAcum;
+
+            pieKeys.push(obj);
+            pieKeys.push(obj2);
+
+
+
+
+            
+        }
+
     }
 
     //  onMount(getData);
     async function loadGraph() {
         getData().then(() => {
+            var graphdef = {
+                categories: [""], // Esta vez no usaré categoria ya que viene implicita en el name.
+                dataset: {
+                    "": pieKeys,
+                },
+            };
 
-            
-            Highcharts.chart("container", {
-                title: {
-                    text: "",
+            var chart = uv.chart("Pie", graphdef, {
+                meta: {
+                    caption:
+                        "Salud mental en provincias y regiones de españa en diferentes años.",
                 },
-                xAxis: {
-                    categories: keys,
-                },
-                labels: {
-                    items: [
-                        {
-
-                            style: {
-                                left: "50px",
-                                top: "18px",
-                                color:
-                                    // theme
-                                    (Highcharts.defaultOptions.title.style &&
-                                        Highcharts.defaultOptions.title.style
-                                            .color) ||
-                                    "black",
-                            },
-                        },
-                    ],
-                },
-                series: [
-                    {
-                        type: "spline",
-                        name: "Ansiedad en la región, Hombres.",
-                        data: ansHombres,
-                        marker: {
-                            lineWidth: 2,
-                            lineColor: Highcharts.getOptions().colors[3],
-                            fillColor: "white",
-                        },
-                    },
-                    {
-                        type: "spline",
-                        name: "Suicidio en la capital, Hombres.",
-                        data: suiHombres,
-                        marker: {
-                            lineWidth: 2,
-                            lineColor: Highcharts.getOptions().colors[3],
-                            fillColor: "white",
-                        },
-                    },
-                    {
-                        type: "spline",
-                        name: "Ansiedad en la región, Mujeres.",
-                        data: ansMujeres,
-                        marker: {
-                            lineWidth: 2,
-                            lineColor: Highcharts.getOptions().colors[3],
-                            fillColor: "white",
-                        },
-                    },
-                    {
-                        type: "spline",
-                        name: "Suicidios en la capital, Mujeres.",
-                        data: suiMujeres,
-                        marker: {
-                            lineWidth: 2,
-                            lineColor: Highcharts.getOptions().colors[3],
-                            fillColor: "white",
-                        },
-                    }
-                ]
             });
+
+            console.log("fin");
         });
     }
 </script>
 
 <svelte:head>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/series-label.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script
-        src="https://code.highcharts.com/modules/accessibility.js"
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.2.2/d3.v3.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/uvCharts/1.1.5/uvcharts.min.js"
         on:load={loadGraph}></script>
 </svelte:head>
 
@@ -174,7 +148,7 @@
     <body>
         <Jumbotron class="p-3" style="background-color: #FFB833">
             <h1 class="titulo; mainDiv" style="color: white">
-                Integración Api Ansiedad
+                Integración Api Depresión
             </h1>
         </Jumbotron>
         <Navbar
@@ -225,7 +199,7 @@
         </Navbar>
     </body>
     <br />
-    <h1 class="titulo2">Ansiedad en regiones y suicidios en la capital.</h1>
+    <h1 class="titulo2">Depresión y suicidios acumulados en el país por año. </h1>
     <div style="width:800px; margin:0 auto;">
         <figure class="highcharts-figure">
             <div id="container" />

@@ -21,6 +21,7 @@
 	import suiCovid from './suicidesAPI/covidGraph.svelte';
 	import suiDogs from './suicidesAPI/reservoirDogsGraph.svelte';
 	import anxiety from './suicidesAPI/anxiety_suicideGraph.svelte';
+	import depression from './suicidesAPI/depression_suicideGraph.svelte';
 
 	import ActivitiesGraph2 from './activitiesAPI/activitiesGraph2.svelte';
 	import ActivitiesGraphVis from './activitiesAPI/activitiesGraphVis.svelte';
@@ -43,6 +44,7 @@
 		'/graphics/integrations/covid':suiCovid,
 		'/graphics/integrations/dogs':suiDogs,
 		'/graphics/integrations/anxiety':anxiety,
+		'/graphics/integrations/depression':depression,
 
 
 		'/province-budget-and-investment-in-social-promotion':Budgets,
