@@ -4,6 +4,7 @@
 	import SuicideRecord from './suicidesAPI/suicide.svelte';
 	import SuicideEdit from './suicidesAPI/editSuicide.svelte';
 	import SuicideGraph from './suicidesAPI/suicideGraph.svelte';
+
 	import Budgets from './budgetsAPI/budget.svelte';
 	import BudgetsEdit from './budgetsAPI/editBudget.svelte';
 	import BudgetsGraphicLine from './budgetsAPI/budgetsGraphicLine.svelte';
@@ -12,6 +13,9 @@
 	import IntegrationEducationExpenditures from './budgetsAPI/integrationEducationExpenditures.svelte';
 	import IntegrationLifeStats from './budgetsAPI/integrationLifeStats.svelte';
 	import IntegrationCurrencyConverter from './budgetsAPI/integrationCurrencyConverter.svelte';
+	import UseAudioDB from './budgetsAPI/useAudioDB.svelte';
+
+
 	import Activities from './activitiesAPI/activities.svelte';
 	import ActivitiesEdit from './activitiesAPI/editactivities.svelte';
 	import ActivitiesGraph from './activitiesAPI/activitiesGraph.svelte';
@@ -62,6 +66,7 @@
 		'/graphics/integrations/educationExpenditures':IntegrationEducationExpenditures,
 		'/graphics/integrations/lifeStats':IntegrationLifeStats,
 		'/graphics/integrations/currencyConverter':IntegrationCurrencyConverter,
+		'/graphics/integrations/audioDB':UseAudioDB,
 		
 		'/azar-games-and-bet-activities':Activities,
 		'/azar-games-and-bet-activities/:province/:year':ActivitiesEdit,
