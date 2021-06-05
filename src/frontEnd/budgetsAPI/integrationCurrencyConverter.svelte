@@ -128,7 +128,7 @@
     exporting: {
         allowHTML: true
     }
-
+  });
   }
 </script>
 
