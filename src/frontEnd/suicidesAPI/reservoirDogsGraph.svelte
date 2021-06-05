@@ -131,6 +131,9 @@
 
       </figure>
       <div id='uv-div' ></div>
+      <p style="centrado">
+            Gráfica que muestra la nota media en IMDb de un grupo de persona para la película Reservoir Dogs.
+      </p>
     </div>
 </main>
 

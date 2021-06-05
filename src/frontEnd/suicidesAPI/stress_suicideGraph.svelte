@@ -18,13 +18,12 @@
     var pieKeys = [];
 
     async function getData() {
-        const porsiacaso = await fetch(
-            "/api/integration/depression_stats/loadInitialData"
-        ); // La bd no termina de ser consistente, es necesario esto para que funcione siempre.
+        const porsiacaso = await fetch("/api/v2/stress_stats/loadInitialData"); // La bd no termina de ser consistente, es necesario esto para que funcione siempre.
 
-        const anxiety = await fetch("/api/integration/depression_stats");
-        let depressionJsons = [];
-        depressionJsons = await anxiety.json();
+        const stress = await fetch("/api/v2/stress_stats");
+        let stressJsons = [];
+        stressJsons = await stress.json();
+        console.log(stressJsons);
 
         const suicide = await fetch(
             "https://sos2021-27.herokuapp.com/api/v2/suicide-records/"
@@ -35,41 +34,41 @@
         // La idea es obtener la depresió acumulada en el país por año (Juntando todas las provincias)
 
         let anyos2 = [];
-        for (let depYear of depressionJsons) {
+        for (let depYear of stressJsons) {
             anyos2.push(depYear.year);
         }
         let anyosSet2 = new Set(anyos2);
 
-
         console.log(suicideJsons);
 
         for (let anyo of anyosSet2) {
-            let anyoActual=anyo;
+            let anyoActual = anyo;
             let obj = {};
             let obj2 = {};
-            let depManAcum=0.;
-            let depWomanAcum=0.;
+            let strManAcum = 0;
+            let strWomanAcum = 0;
 
-            for (let depLog of depressionJsons) {
-                if(depLog.year==anyoActual){
-                    depManAcum+=depLog.depression_men;
-                    
-                    depWomanAcum+=depLog.depression_women;
+            for (let strLog of stressJsons) {
+                if (strLog.year == anyoActual) {
+                    strManAcum += strLog.stress_men;
+
+                    strWomanAcum += strLog.stress_women;
                 }
-
             }
 
-            obj["name"]="Depresión acumulada en el País (Hombres) - "+ anyo;
-            obj["value"]=Math.round(depManAcum);
+            obj["name"] = "Estrés acumulado en el País (Hombres) - " + anyo;
+            obj["value"] = strManAcum;
 
-            obj2["name"]="Depresión acumulada en el País (Mujeres) - "+ anyo;
-            obj2["value"]=Math.round(depWomanAcum);
+            obj2["name"] = "Estrés acumulado en el País (Mujeres) - " + anyo;
+            obj2["value"] = strWomanAcum;
 
+            console.log(obj);
+            console.log(obj2);
             pieKeys.push(obj);
             pieKeys.push(obj2);
         }
 
-        console.log(pieKeys)
+        console.log(pieKeys);
 
         // -----------------------------------------------------------------------
 
@@ -82,35 +81,34 @@
         let anyosSet = new Set(anyos);
 
         for (let anyo of anyosSet) {
-            let anyoActual=anyo;
+            let anyoActual = anyo;
             let obj = {};
             let obj2 = {};
-            let suicManAcum=0;
-            let suicWomanAcum=0;
+            let suicManAcum = 0;
+            let suicWomanAcum = 0;
 
             for (let suicideLog of suicideJsons) {
-                if(suicideLog.year==anyoActual){
-                    suicManAcum+=parseInt(suicideLog.suic_man);
-                    suicWomanAcum+=parseInt(suicideLog.suic_woman);
+                if (suicideLog.year == anyoActual) {
+                    suicManAcum += parseInt(suicideLog.suic_man);
+                    suicWomanAcum += parseInt(suicideLog.suic_woman);
                 }
-
             }
 
-            obj["name"]="Suicidios Totales en el País (Hombres) - "+ anyo ;
-            obj["value"]=suicManAcum;
+            obj["name"] = "Suicidios Totales en el País (Hombres) - " + anyo;
+            obj["value"] = suicManAcum;
 
-            obj2["name"]="Suicidios Totales en el País (Mujeres) - " + anyo;
-            obj2["value"]=suicWomanAcum;
+            obj2["name"] = "Suicidios Totales en el País (Mujeres) - " + anyo;
+            obj2["value"] = suicWomanAcum;
+
+            console.log(obj);
 
             pieKeys.push(obj);
             pieKeys.push(obj2);
-
-
-
-
-            
         }
 
+        pieKeys.sort((a, b) =>
+            a.year > b.year ? 1 : b.year > a.year ? -1 : 0
+        );
     }
 
     //  onMount(getData);
@@ -123,12 +121,11 @@
                 },
             };
 
-            var chart = uv.chart("Pie", graphdef, {
-                meta: {
-                    caption:
-                        "",
-                },
-            });
+            var config = {
+                orientation:"Vertical"
+            };
+
+            var chart = uv.chart("Waterfall", graphdef, config);
 
             console.log("fin");
         });
@@ -148,7 +145,7 @@
     <body>
         <Jumbotron class="p-3" style="background-color: #FFB833">
             <h1 class="titulo; mainDiv" style="color: white">
-                Integración Api Depresión
+                Integración Api Estrés
             </h1>
         </Jumbotron>
         <Navbar
@@ -199,15 +196,11 @@
         </Navbar>
     </body>
     <br />
-    <h1 class="titulo2">Depresión y suicidios acumulados en el país por año. </h1>
+    <h1 class="titulo2">Estrés y suicidios acumulados en el país por año.</h1>
     <div style="width:800px; margin:0 auto;">
-        <figure class="highcharts-figure">
-            <div id="container" />
-        </figure>
         <div id="uv-div" />
-        <br>
         <p style="centrado">
-            Gráfica que muestra la depresión acumulada total por sexo de las regiones registradas en un año determinado y los suicidios acumulados totales por sexo de las provincias
+            Gráfica que muestra el estrés acumulado total por sexo de las regiones registradas en un año determinado y los suicidios acumulados totales por sexo de las provincias
             registradas en un determinado año.
         </p>
     </div>

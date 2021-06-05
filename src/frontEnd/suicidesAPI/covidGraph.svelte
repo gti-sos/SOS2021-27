@@ -147,6 +147,9 @@
 
       </figure>
       <div id='uv-div' ></div>
+      <p style="centrado">
+        Gráfica que muestra los contagios y muertes por covid-19 en las principales ciudades de Europa.
+    </p>
     </div>
 </main>
 

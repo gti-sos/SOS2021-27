@@ -93,6 +93,9 @@ const request = require("request");
 // Parameters
 // You can use a shorthand for multiple API endpoints: /api|/other_api
 
+
+//  ----------------- Proxis Javier García --------------------
+
 var pathAnxiety='/api/integration/anxiety_stats';
 var apiServerHost = 'https://sos2021-11.herokuapp.com';
 
@@ -113,6 +116,17 @@ app.use(pathDepression, function(req, res) {
 });
 
 
+
+var pathStress='/api/v2/stress_stats';
+var apiServerHost3 = 'http://sos2021-11.herokuapp.com';
+
+app.use(pathStress, function(req, res) {
+  var url = apiServerHost3 + req.baseUrl + req.url;
+  console.log('piped: '+req.baseUrl + req.url);
+  req.pipe(request(url)).pipe(res);
+});
+
+// --------------------------------------------------------------
 
 var host = 'http://sos2021-01.herokuapp.com';
 app.use('/proxy', function(request, response) {

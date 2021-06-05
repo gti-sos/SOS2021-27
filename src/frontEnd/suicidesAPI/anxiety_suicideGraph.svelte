@@ -54,18 +54,7 @@
                             suicidio.province == "BARCELONA")
                     ) {
 
-                        switch(suicidio.province){
-                            case "BARCELONA":
-                                keys.push(ansiedad.country + " - " + suicidio.province + "("+suicidio.year+")")
-                                break;
-                            case "SEVILLE":
-                                keys.push(ansiedad.country + " - " + suicidio.province + "("+suicidio.year+")")
-                                break;
-                            default:
-                                keys.push(ansiedad.country + " - " + suicidio.province + "("+suicidio.year+")")
-                                break;
-
-                        }
+                        keys.push(ansiedad.country + " - " + suicidio.province + "("+suicidio.year+")");
 
                         ansHombres.push(ansiedad.anxiety_men);
                         suiHombres.push(parseInt(suicidio.suic_man));
@@ -231,6 +220,9 @@
             <div id="container" />
         </figure>
         <div id="uv-div" />
+        <p style="centrado">
+            Gráfica que muestra la ansiedad por sexos de una región Española en un año determinado y los suicidios por sexo de su correspondiente capital, en el mismo año.
+        </p>
     </div>
 </main>
 
