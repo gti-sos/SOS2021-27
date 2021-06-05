@@ -59,7 +59,7 @@
       getExternalData().then(() => {
           var dataDolares = {
             DOLARES: [
-              [currencyConverted]
+              [budgetGraphX, currencyConverted]
             ]
           }
       });
@@ -94,6 +94,7 @@
         labels: {
             useHTML: true,
             animate: true,
+            name: budgetGraphX
         }
     },
     yAxis: [{
@@ -106,7 +107,7 @@
         color: 'rgb(158, 159, 163)',
         pointPlacement: -0.2,
         linkedTo: 'main',
-        data: dataGraph[DOLARES].slice(),
+        data: dataEUROS.slice(),
         name: 'EUROS'
     }, {
         name: 'DOLARES',
@@ -122,12 +123,11 @@
                 fontSize: '16px'
             }
         }],
-        data: gdataGraph[DOLARES].slice()
+        data: dataDOLARES.slice()
     }],
     exporting: {
         allowHTML: true
     }
-});
 
   }
 </script>
@@ -190,10 +190,6 @@
       </div>
 
     <br><br>
-    <div class="centrado">
-    <a href="#/graphics/area/province-budget-and-investment-in-social-promotion" class="fakeButton">TIPO ÁREA</a>
-    <a href="#/graphics/sigma/province-budget-and-investment-in-social-promotion" class="fakeButton">LIB SIGMA</a>
-    </div>
 </main>
 
 <style>
