@@ -101,3 +101,13 @@ app.use(pathAnxiety, function(req, res) {
   console.log('piped: '+req.baseUrl + req.url);
   req.pipe(request(url)).pipe(res);
 });
+
+
+var pathDepression='/api/integration/depression_stats';
+var apiServerHost2 = 'http://sos2021-11.herokuapp.com';
+
+app.use(pathDepression, function(req, res) {
+  var url = apiServerHost2 + req.baseUrl + req.url;
+  console.log('piped: '+req.baseUrl + req.url);
+  req.pipe(request(url)).pipe(res);
+});
