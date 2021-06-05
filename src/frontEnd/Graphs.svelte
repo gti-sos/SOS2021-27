@@ -109,6 +109,9 @@
   async function loadGraph() {
     getData().then(() => {
       Highcharts.chart("container", {
+        chart:{
+        type: 'scatter',
+      },
         title: {
           text: "",
         },

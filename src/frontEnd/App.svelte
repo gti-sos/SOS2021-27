@@ -70,7 +70,7 @@
 
 
 		'/info':Info,
-		'/graphics':Graphics,
+		'/analytics':Graphics,
 		'*':NotFound
 	};
 
