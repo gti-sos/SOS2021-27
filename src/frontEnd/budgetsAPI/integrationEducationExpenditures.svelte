@@ -73,7 +73,7 @@
               text: 'Presupuestos'
             },
             labels: {
-              format: '{value} €'
+              format: '{x} €'
             }, 
         },
 
@@ -84,7 +84,7 @@
               text: 'Inversiones'
             },
           labels: {
-            format: '{value} €'
+            format: '{y} €'
           },  
         },
 
