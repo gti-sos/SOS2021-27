@@ -25,8 +25,8 @@
         
             budgetData.forEach(budgetSvelte => {
               let serie = {
-                name: budgetSvelte.province + "/" + budgetSvelte.year,
-                value: budgetSvelte.budget
+                'name': budgetSvelte.province + "/" + budgetSvelte.year,
+                'value': budgetSvelte.budget
               };
               budgetDataGraph.push(serie);
             });
@@ -35,8 +35,8 @@
         
             lifeData.forEach(lifeSvelte => {
               let serie = {
-                name: lifeSvelte.country + "/" + lifeSvelte.date,
-                value: lifeSvelte.purchasing_power_index
+                'name': lifeSvelte.country + "/" + lifeSvelte.date,
+                'value': lifeSvelte.["purchasing_power_index"]
               };
               lifePowerDataGraph.push(serie);  
             });
@@ -45,8 +45,8 @@
         
             lifeData.forEach(lifeSvelte => {
               let serie = {
-                name: lifeSvelte.country + "/" + lifeSvelte.date,
-                value: lifeSvelte.quality_life_index
+                'name': lifeSvelte.country + "/" + lifeSvelte.date,
+                'value': lifeSvelte.["quality_life_index"]
               };
               lifeQualityDataGraph.push(serie);  
             });
