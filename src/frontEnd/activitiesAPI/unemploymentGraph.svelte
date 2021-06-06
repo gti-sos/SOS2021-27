@@ -73,8 +73,8 @@ for (let pobreza of pobresJsons) {
 
   //  onMount(getData);
   async function loadGraph() {
-      getData().then(() => {
-        let chartConfig = {
+      
+        var myConfig = {
   type: 'pie',
   backgroundColor: '#2B313B',
   title: {
@@ -127,12 +127,12 @@ for (let pobreza of pobresJsons) {
   series: [
     {
       text: 'locales de bingo',
-      values: 3,
+      values: bingomaq,
       backgroundColor: '#50ADF5'
     },
     {
       text: 'Tasa de desempleo',
-      values: 2,
+      values: sintecho,
       backgroundColor: '#FF7965'
     }
   ]
@@ -142,24 +142,21 @@ for (let pobreza of pobresJsons) {
 // -----------------------------
 zingchart.render({
   id: 'myChart',
-  data: chartConfig,
+  data: myConfig,
   height: '100%',
   width: '100%',
 });
           
-          
-      });
+        
   }
 </script>
 
 <svelte:head>
-  <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
-  <script
+
+ <script
     src="https://cdn.zingchart.com/zingchart.min.js"
     on:load={loadGraph}></script>
 </svelte:head>
-
-
 
 <main>
   <body>
