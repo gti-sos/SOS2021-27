@@ -14,10 +14,9 @@
       DropdownItem,
   } from "sveltestrap";
   let isOpen = false;
-
   var sintecho = [];
   var bingomaq = [];
-
+let sumasintecho = 0;
   var personaspobresjeres = [];
   var jugadoresjeres = [];
 
@@ -65,7 +64,6 @@
               }
           }
       }
-      let sumasintecho=0;
       sintecho.forEach(function(numero){
         sumasintecho+=numero;
       });
@@ -251,7 +249,7 @@
   <body>
       <Jumbotron class="p-3" style="background-color: #FFB833">
           <h1 class="titulo; mainDiv" style="color: white">
-              Integración Api Ansiedad
+              Integración Api Desempleo
           </h1>
       </Jumbotron>
       <Navbar
