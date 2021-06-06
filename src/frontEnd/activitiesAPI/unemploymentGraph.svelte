@@ -67,8 +67,9 @@ let sumasintecho = 0;
       
       
       }
-      forEach(sintecho, function(numero){
-        sumasintecho+=numero;});
+      sintecho.forEach (function(numero){
+        sumasintecho+=numero;
+      });
 
       console.log(sumasintecho);
       console.log(bingomaq);
