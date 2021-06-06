@@ -15,11 +15,11 @@
     } from "sveltestrap";
     let isOpen = false;
 
-    var ansHombres = [];
-    var suiHombres = [];
+    var pobres = [];
+    var locbingo = [];
 
-    var ansMujeres = [];
-    var suiMujeres = [];
+    var casaspob = [];
+    var localbingo = [];
 
     var keys = [];
 
@@ -45,7 +45,7 @@
                 if (ansiedad.year == suicidio.year) {
                     if (
                         (ansiedad.country == "España" &&
-                            suicidio.province == "Seville") ||
+                            suicidio.province == "SEVILLE") ||
                         (ansiedad.country == "España" &&
                             suicidio.province == "Valencia") ||
                         (ansiedad.country == "España" &&
@@ -58,7 +58,7 @@
                             case "Barcelona":
                                 keys.push(ansiedad.country + " - " + suicidio.province + "("+suicidio.year+")")
                                 break;
-                            case "Seville":
+                            case "SEVILLE":
                                 keys.push(ansiedad.country + " - " + suicidio.province + "("+suicidio.year+")")
                                 break;
                             default:
@@ -67,21 +67,21 @@
 
                         }
 
-                        ansHombres.push(ansiedad.people_in_risk_of_poverty);
-                        suiHombres.push(parseInt(bingo_site));
+                        pobres.push(ansiedad.people_in_risk_of_poverty);
+                        locbingo.push(parseInt(bingo_site));
 
-                        ansMujeres.push(ansiedad.home_poverty_line);
-                        suiMujeres.push(parseInt(suicidio.catering_bingo_machine));
+                        casaspob.push(ansiedad.home_poverty_line);
+                        localbingo.push(parseInt(suicidio.catering_bingo_machine));
                     }
                 }
             }
         }
 
-        console.log(ansHombres);
-        console.log(suiHombres);
+        console.log(pobres);
+        console.log(locbingo);
 
-        console.log(ansMujeres);
-        console.log(suiMujeres);
+        console.log(casaspob);
+        console.log(localbingo);
     }
 
     //  onMount(getData);
@@ -117,7 +117,7 @@
                     {
                         type: "spline",
                         name: "Ansiedad en la región, Hombres.",
-                        data: ansHombres,
+                        data: pobres,
                         marker: {
                             lineWidth: 2,
                             lineColor: Highcharts.getOptions().colors[3],
@@ -127,7 +127,7 @@
                     {
                         type: "spline",
                         name: "Suicidio en la capital, Hombres.",
-                        data: suiHombres,
+                        data: locbingo,
                         marker: {
                             lineWidth: 2,
                             lineColor: Highcharts.getOptions().colors[3],
@@ -137,7 +137,7 @@
                     {
                         type: "spline",
                         name: "Ansiedad en la región, Mujeres.",
-                        data: ansMujeres,
+                        data: casaspob,
                         marker: {
                             lineWidth: 2,
                             lineColor: Highcharts.getOptions().colors[3],
@@ -147,7 +147,7 @@
                     {
                         type: "spline",
                         name: "Suicidios en la capital, Mujeres.",
-                        data: suiMujeres,
+                        data: localbingo,
                         marker: {
                             lineWidth: 2,
                             lineColor: Highcharts.getOptions().colors[3],
