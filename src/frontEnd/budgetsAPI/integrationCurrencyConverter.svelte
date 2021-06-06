@@ -6,18 +6,14 @@
 
     var BASE_API_PATH = "/api/v2/province-budget-and-investment-in-social-promotion";
 
-    let internalData = [];
-    let externalData = [];
-    let currencyData = [];
-    let currencyConverted = [];
-
-    let budgetData = [];
-    let budgetGraphX = [];
-    let budgetEuros = 0;
-
     let dataGraph = [];
 
     async function getInternalData(){
+
+      let budgetData = [];
+      let budgetGraphX = [];
+      let budgetEuros = 0;
+
       const internalData = await fetch(BASE_API_PATH);
         budgetData = await internalData.json();
 
@@ -30,22 +26,24 @@
     }
 
     async function getExternalData(){
-        const externalData = await fetch("https://currencyconverter.p.rapidapi.com?to=USD?from=€?from_amount=" + budgetEuros, { 
-                "method":"GET",
-                "headers":{
-                    "x-rapidapi-key": "b92358230bmshe53cee188c483ecp147ff1jsn450fa502bd55",
-	                  "x-rapidapi-host": "currencyconverter.p.rapidapi.com",
-	                  "useQueryString": true
-                },
-        });
+
+        let currencyData = [];
+        let currencyConverted = [];
+        budgetEuros.forEach(euros => {
+
+        const externalData = await fetch("https://currency-exchange.p.rapidapi.com/exchange?to=USD&from=EUR&q=" + euros, {
+	        "method": "GET",
+	          "headers": {
+		          "x-rapidapi-key": "b92358230bmshe53cee188c483ecp147ff1jsn450fa502bd55",
+		            "x-rapidapi-host": "currency-exchange.p.rapidapi.com"
+	              }
+          });
         currencyData = await externalData.json();
 
         if(externalData.ok){
-          currencyData.forEach(currencySvelte => {
-            currencyConverted.push(currencySvelte["to_amount"]);
-          })
+            currencyConverted.push(currencyData);
         }
-
+        });
         }
     
     async function loadGraphCurrencyConverter() {
@@ -94,7 +92,7 @@
         labels: {
             useHTML: true,
             animate: true,
-            name: budgetGraphX
+            name: getInternalData().budgetGraphX
         }
     },
     yAxis: [{
@@ -107,10 +105,10 @@
         color: 'rgb(158, 159, 163)',
         pointPlacement: -0.2,
         linkedTo: 'main',
-        data: dataEUROS.slice(),
-        name: 'EUROS'
+        data: dataDolares.slice(),
+        name: 'USD'
     }, {
-        name: 'DOLARES',
+        name: '€',
         id: 'main',
         dataSorting: {
             enabled: true,
@@ -123,7 +121,7 @@
                 fontSize: '16px'
             }
         }],
-        data: dataDOLARES.slice()
+        data: dataEuros.slice()
     }],
     exporting: {
         allowHTML: true

@@ -11,16 +11,22 @@
     let dataGraph = [];
     
     async function loadGraphDaftPunkDiscography() {
-        const useData = await fetch("https://theaudiodb.p.rapidapi.com/discography.php?s=daft%20punk", {
+        const useData = await fetch("https://theaudiodb.com/api/v1/json/1/discography.php?s=daft%20punk", {
 	          "method": "GET",
 	            "headers": {
-		            "x-rapidapi-key": "b92358230bmshe53cee188c483ecp147ff1jsn450fa502bd55",
+		            "x-rapidapi-key": "1",
 		            "x-rapidapi-host": "theaudiodb.p.rapidapi.com"
 	            }
         });
         daftPunkDiscography = await useData.json();
 
-       window.print(daftPunkDiscography);
+        daftPunkDiscography.forEach(daftPunkSvelte => {
+          dataGraph = {
+            name: daftPunkSvelte.album.strAlbum,
+            label: daftPunkSvelte.album.intYearReleased
+          }
+        })
+
 
     Highcharts.chart('container', {
     chart: {
@@ -35,7 +41,7 @@
                 '<div>{viewTableButton}</div>'
         },
         point: {
-            valueDescriptionFormat: '{index}. {point.label}. {point.description}.'
+            valueDescriptionFormat: '{index}. {point.label}.'
         }
     },
     xAxis: {
@@ -59,31 +65,7 @@
         '#363C46'
     ],
     series: [{
-        data: [{
-            name: 'First dogs',
-            label: '1951: First dogs in space',
-            description: '22 July 1951 First dogs in space (Dezik and Tsygan) '
-        }, {
-            name: 'Sputnik 1',
-            label: '1957: First artificial satellite',
-            description: '4 October 1957 First artificial satellite. First signals from space.'
-        }, {
-            name: 'First human spaceflight',
-            label: '1961: First human spaceflight (Yuri Gagarin)',
-            description: 'First human spaceflight (Yuri Gagarin), and the first human-crewed orbital flight'
-        }, {
-            name: 'First human on the Moon',
-            label: '1969: First human on the Moon',
-            description: 'First human on the Moon, and first space launch from a celestial body other than the Earth. First sample return from the Moon'
-        }, {
-            name: 'First space station',
-            label: '1971: First space station',
-            description: 'Salyut 1 was the first space station of any kind, launched into low Earth orbit by the Soviet Union on April 19, 1971.'
-        }, {
-            name: 'Apollo–Soyuz Test Project',
-            label: '1975: First multinational manned mission',
-            description: 'The mission included both joint and separate scientific experiments, and provided useful engineering experience for future joint US–Russian space flights, such as the Shuttle–Mir Program and the International Space Station.'
-        }]
+       dataGraph
     }]
 });
   }
