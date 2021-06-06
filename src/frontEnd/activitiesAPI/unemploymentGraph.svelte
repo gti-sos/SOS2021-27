@@ -110,14 +110,8 @@
         tooltip: {
             pointFormat: '(error range: {point.low}-{point.high} mm)<br/>'
         }
-    }, {
-        name: 'ratio desempleo intperc ',
-        type: 'errorbar',
-        data: personaspobresjeres,
-        tooltip: {
-            pointFormat: '<span style="font-weight: bold; color: {series.color}">{series.name}</span>: <b>{point.y:.1f}°C</b> '
-        }
-    }, ]
+    }, 
+     ]
 });
       });
   }
