@@ -1,155 +1,239 @@
 <script>
-    import Button from "sveltestrap/src/Button.svelte";
+    import { onMount } from "svelte";
+
     import {
-        pop
-    } from "svelte-spa-router";
-   var CBData= [];
-    var yAxe=[];
-    async function loadGraph() {
-            
-        /* Asking for the data to the back */
-        const BASE_API_URL = "https://sos2021-07.herokuapp.com/api/v2/unemployment";
-        const res_CB_Data = await fetch("https://sos2021-27.herokuapp.com/api/v2/azar-games-and-bet-activities/"
-);
-        CBData = await res_CB_Data.json();
-        for (var i=0; i<CBData.length; i++){
-            yAxe.push(CBData[i].state);
-        }
-        const resData = await fetch(BASE_API_URL);
-        let MyData = await resData.json();   
-        /* Getting the countries */
-        let countries = Array.from(new Set(MyData.map((d) => {return d.autonomous_community;})));
-       
-        MyData = MyData.map((d) => {
-            return [countries.indexOf(d.autonomous_community),d["youth_unemployment_rate"], d["unemployment_rate"], d["occupation_variation"]]; 
-        });
-        /* 
-        The following array turn this:
-        [0, 2000, 0.0, 0.0, 0.0]
-        into this:
-        {name: "Country", data: [0, 2000, 0.0, 0.0, 0.0]}
-        That is how the chart needs it
-         */
-        let ChartData = MyData.map(function (set, i) {
-            for(var i=0; i<CBData.length; i++){
-            return {
-                name: "Comunidades y estados",
-                data: set,
-                shadow: false
-            }
-        };
-    });
-        
-        /* Setting the chart */
-        Highcharts.chart('container', {
-            chart: {
-                type: 'spline',
-                parallelCoordinates: true,
-                parallelAxes: {
-                    lineWidth: 3
-                }
-            },
-            title: {
-                text: 'Energías renovables'
-            },
-            plotOptions: {
-                series: {
-                    animation: false,
-                    marker: {
-                        enabled: false,
-                        states: {
-                            hover: {
-                                enabled: false
-                            }
-                        }
-                    },
-                    states: {
-                        hover: {
-                            halo: {
-                                size: 0
-                            }
-                        }
-                    },
-                    events: {
-                        mouseOver: function () {
-                            this.group.toFront();
-                        }
+        Jumbotron,
+        Navbar,
+        Nav,
+        NavItem,
+        NavLink,
+        NavbarBrand,
+        Dropdown,
+        DropdownToggle,
+        DropdownMenu,
+        DropdownItem,
+    } from "sveltestrap";
+    let isOpen = false;
+
+    var ansHombres = [];
+    var suiHombres = [];
+
+    var ansMujeres = [];
+    var suiMujeres = [];
+
+    var keys = [];
+
+    async function getData() {
+        const porsiacaso = await fetch(
+            "/api/integration/anxiety_stats/loadInitialData"
+        ); // La bd no termina de ser consistente, es necesario esto para que funcione siempre.
+
+        const anxiety = await fetch(
+            "/api/integration/anxiety_stats"
+        );
+        let anxietyJsons = [];
+        anxietyJsons = await anxiety.json();
+
+        const suicide = await fetch(
+            "https://sos2021-27.herokuapp.com/api/v2/suicide-records/"
+        );
+        let suicideJsons = [];
+        suicideJsons = await suicide.json();
+
+        for (let ansiedad of anxietyJsons) {
+            for (let suicidio of suicideJsons) {
+                if (ansiedad.year == suicidio.year) {
+                    if (
+                        (ansiedad.country == "Spain_Andalucia" &&
+                            suicidio.province == "SEVILLE") ||
+                        (ansiedad.country == "Spain_CValenciana" &&
+                            suicidio.province == "VALENCIA") ||
+                        (ansiedad.country == "Spain_Madrid" &&
+                            suicidio.province == "MADRID") ||
+                        (ansiedad.country == "Spain_Cataluña" &&
+                            suicidio.province == "BARCELONA")
+                    ) {
+
+                        keys.push(ansiedad.country + " - " + suicidio.province + "("+suicidio.year+")");
+
+                        ansHombres.push(ansiedad.anxiety_men);
+                        suiHombres.push(parseInt(suicidio.suic_man));
+
+                        ansMujeres.push(ansiedad.anxiety_women);
+                        suiMujeres.push(parseInt(suicidio.suic_woman));
                     }
                 }
-            },
-            tooltip: {
-                pointFormat: '<span style="color:{point.color}">\u25CF</span>' +
-                    '{series.name}: <b>{point.formattedValue}</b><br/>'
-            },
-            xAxis: {
-                categories: [
-                    'Estados',
-                    'Variación de ocupación',
-                    'Ratio de desempleo joven',
-                    'Ratio de desempleo',
-                    ''
-                ],
-                offset: 50
-            },
-            yAxis: [
-            {
-                categories: yAxe[2] ,
-                tooltipValueFormat: '{value}'
-            },
-            {
-                min: 0,
-                tooltipValueFormat: '{value}'
-            }, {
-                min: 0,
-                tooltipValueFormat: '{value} %'
-            }, {
-                min: 0,
-                tooltipValueFormat: '{value} %'
-            }],
-            colors: ['rgba(129, 131, 202, 0.8)'],
-            series: ChartData
+            }
+        }
+
+        console.log(ansHombres);
+        console.log(suiHombres);
+
+        console.log(ansMujeres);
+        console.log(suiMujeres);
+    }
+
+    //  onMount(getData);
+    async function loadGraph() {
+        getData().then(() => {
+
+            
+            Highcharts.chart("container", {
+                title: {
+                    text: "",
+                },
+                xAxis: {
+                    categories: keys,
+                },
+                labels: {
+                    items: [
+                        {
+
+                            style: {
+                                left: "50px",
+                                top: "18px",
+                                color:
+                                    // theme
+                                    (Highcharts.defaultOptions.title.style &&
+                                        Highcharts.defaultOptions.title.style
+                                            .color) ||
+                                    "black",
+                            },
+                        },
+                    ],
+                },
+                series: [
+                    {
+                        type: "spline",
+                        name: "Ansiedad en la región, Hombres.",
+                        data: ansHombres,
+                        marker: {
+                            lineWidth: 2,
+                            lineColor: Highcharts.getOptions().colors[3],
+                            fillColor: "white",
+                        },
+                    },
+                    {
+                        type: "spline",
+                        name: "Suicidio en la capital, Hombres.",
+                        data: suiHombres,
+                        marker: {
+                            lineWidth: 2,
+                            lineColor: Highcharts.getOptions().colors[3],
+                            fillColor: "white",
+                        },
+                    },
+                    {
+                        type: "spline",
+                        name: "Ansiedad en la región, Mujeres.",
+                        data: ansMujeres,
+                        marker: {
+                            lineWidth: 2,
+                            lineColor: Highcharts.getOptions().colors[3],
+                            fillColor: "white",
+                        },
+                    },
+                    {
+                        type: "spline",
+                        name: "Suicidios en la capital, Mujeres.",
+                        data: suiMujeres,
+                        marker: {
+                            lineWidth: 2,
+                            lineColor: Highcharts.getOptions().colors[3],
+                            fillColor: "white",
+                        },
+                    }
+                ]
+            });
         });
     }
-    loadGraph();
 </script>
 
 <svelte:head>
-    <script src="https://code.highcharts.com/highcharts.js"  defer> </script>
-    <script src="https://code.highcharts.com/modules/data.js"  defer ></script>
-    <script src="https://code.highcharts.com/modules/parallel-coordinates.js"  defer></script>
-	<script src="https://code.highcharts.com/modules/exporting.js"  defer ></script>
-	
-	<!--Highcharts Oil Coal...-->
-	<script src="https://code.highcharts.com/highcharts.js" defer  ></script>
-    <script src="https://code.highcharts.com/modules/heatmap.js" defer ></script>
-    <script src="https://code.highcharts.com/modules/exporting.js" defer  ></script>
-    <script src="https://code.highcharts.com/modules/export-data.js" defer ></script>
-	<script src="https://code.highcharts.com/modules/accessibility.js" defer ></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
-	
-    <script src="https://code.highcharts.com/highcharts.js"  defer> </script>
-    <script src="https://code.highcharts.com/modules/data.js"  defer ></script>
-    <script src="https://code.highcharts.com/modules/parallel-coordinates.js" defer></script>
-    <script src="https://code.highcharts.com/modules/exporting.js" defer ></script>
-
-	<!--Highcharts Oil Coal...-->
-    <script src="https://code.highcharts.com/modules/heatmap.js"  defer></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"  defer></script>
-	<script src="https://code.highcharts.com/modules/accessibility.js"  defer></script>
-    
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script
+        src="https://code.highcharts.com/modules/accessibility.js"
+        on:load={loadGraph}></script>
 </svelte:head>
 
 <main>
-    <h1 class="display-4" style="text-align: center;" > Gráfica con HighChart </h1>
-    <figure class="highcharts-figure">
-        <div id="container"></div>
-        <p></p>
-        <p class="highcharts-description">
-            Gráfica que representa los datos de las energías renovables por países. Los datos de las energías renovables son los porcentajes de: uso de energías renovables sobre el total, uso de energía hidroeléctrica y uso de energía eólica.
-            Esta gráfica está hecha con HighChart.
+    <body>
+        <Jumbotron class="p-3" style="background-color: #FFB833">
+            <h1 class="titulo; mainDiv" style="color: white">
+                Integración Api Ansiedad
+            </h1>
+        </Jumbotron>
+        <Navbar
+            style="background-color: #FFB833; color:white;"
+            light
+            expand="lg"
+        >
+            <NavbarBrand href="#/">INICIO</NavbarBrand>
+            <Nav navbar>
+                <NavItem>
+                    <NavLink href="#/suicide-records"
+                        >Registro de suicidios</NavLink
+                    >
+                </NavItem>
+                <NavItem>
+                    <NavLink
+                        href="#/province-budget-and-investment-in-social-promotion"
+                        >Presupuesto/Inversión</NavLink
+                    >
+                </NavItem>
+                <NavItem>
+                    <NavLink href="#/azar-games-and-bet-activities"
+                        >Actividad en loteria</NavLink
+                    >
+                </NavItem>
+                <NavItem>
+                    <NavLink href="#/integrations">Integraciones</NavLink>
+                </NavItem>
+                <Dropdown nav {isOpen} toggle={() => (isOpen = !isOpen)}>
+                    <DropdownToggle nav caret>Gráficas</DropdownToggle>
+                    <DropdownMenu end>
+                        <DropdownItem href="#/graphics/suicide-records"
+                            >Registro de suicidios</DropdownItem
+                        >
+                        <DropdownItem
+                            href="#/graphics/province-budget-and-investment-in-social-promotion"
+                            >Presupuesto/Inversión</DropdownItem
+                        >
+                        <DropdownItem
+                            href="#/graphics/azar-games-and-bet-activities"
+                            >Actividad en loteria</DropdownItem
+                        >
+                        <DropdownItem divider />
+                        <DropdownItem href="#/graphics">Conjunto</DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+            </Nav>
+        </Navbar>
+    </body>
+    <br />
+    <h1 class="titulo2">Ansiedad en regiones y suicidios en la capital.</h1>
+    <div style="width:800px; margin:0 auto;">
+        <figure class="highcharts-figure">
+            <div id="container" />
+        </figure>
+        <div id="uv-div" />
+        <p style="centrado">
+            Gráfica que muestra la ansiedad por sexos de una región Española en un año determinado y los suicidios por sexo de su correspondiente capital, en el mismo año.
         </p>
-    </figure>
-
-    <p></p>
-    <Button outline color="secondary" on:click="{pop}"> <i class="fas fa-arrow-circle-left"></i> Atrás </Button>
+    </div>
 </main>
+
+<style>
+    .titulo2 {
+        color: #000000;
+        text-align: center;
+        font-size: 150%;
+    }
+    .mainDiv {
+        text-align: center;
+        margin: 20px;
+    }
+</style>
