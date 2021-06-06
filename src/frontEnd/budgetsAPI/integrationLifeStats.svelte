@@ -21,8 +21,6 @@
 
         const data2 = await fetch(proxy + "/api/v2/life-stats");
         lifeData = await data2.json();
-
-        console.log(lifeData);
         
             budgetData.forEach(budgetSvelte => {
               let serie = {
@@ -33,7 +31,6 @@
             });
         
 
-        
             lifeData.forEach(lifeSvelte => {
               let serie = {
                 name: lifeSvelte.country + "/" + lifeSvelte.date,
@@ -41,8 +38,7 @@
               };
               lifePowerDataGraph.push(serie);  
             });
-        
-
+    
         
             lifeData.forEach(lifeSvelte => {
               let serie = {
@@ -53,7 +49,6 @@
             });
         
 
-    
     Highcharts.chart('container', {
         chart: {
             type: 'packedbubble',

@@ -45,7 +45,7 @@
             currencyConverted.push(currencyData);
         }
        
-        }
+    }
     
     async function loadGraphCurrencyConverter() {
       getInternalData().then(() => {
@@ -62,9 +62,7 @@
             ]
           }
       });
-      
-      dataGraph.push(dataEuros);
-      dataGraph.push(dataDolares);
+  
     
     var chart = Highcharts.chart('container', {
     chart: {
