@@ -15,6 +15,8 @@
   } from "sveltestrap";
 
   let isOpen = false;
+let valor1 = sintecho[0];
+let valor2 = bingomaq[0];
 
   var sintecho = [];
   var bingomaq = [];
@@ -62,8 +64,8 @@ for (let pobreza of pobresJsons) {
 
       console.log(sintecho);
       console.log(bingomaq);
-      console.log(sintecho[0]);
-      console.log(bingomaq[0]);
+      console.log(valor1);
+      console.log(valor2);
 
 
 
@@ -194,7 +196,7 @@ for (let pobreza of pobresJsons) {
         },
         series: [{
             text: 'Jugadores de bingo',
-            values: bingomaq[0],
+            values: valor1,
             backgroundColor: '#00BAF2',
             lineColor: '#00BAF2',
             lineWidth: '1px',
@@ -204,7 +206,7 @@ for (let pobreza of pobresJsons) {
           },
           {
             text: 'ratio desempleo',
-            values: sintecho[0],
+            values: valor2,
             backgroundColor: '#E80C60',
             lineColor: '#E80C60',
             lineWidth: '1px',
