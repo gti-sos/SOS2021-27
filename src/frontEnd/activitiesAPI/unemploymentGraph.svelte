@@ -73,7 +73,7 @@ for (let pobreza of pobresJsons) {
 
   //  onMount(getData);
   async function loadGraph() {
-      
+    getData().then(() => {
         var myConfig = {
   type: 'pie',
   backgroundColor: '#2B313B',
@@ -146,7 +146,7 @@ zingchart.render({
   height: '100%',
   width: '100%',
 });
-          
+}); 
         
   }
 </script>
