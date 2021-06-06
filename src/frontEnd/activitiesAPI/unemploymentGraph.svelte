@@ -19,8 +19,6 @@
 
   let sintecho = [];
   let bingomaq = [];
-  var valor1 = sintecho [0];
-  var valor2 = bingomaq [0];
 
   var keys = [];
 
@@ -61,18 +59,13 @@ for (let pobreza of pobresJsons) {
     
           }
         
-          console.log(sintecho);
-      console.log(bingomaq);
-      console.log(valor1);
-      console.log(valor2);
+ 
         
         }
-        var valor1 = sintecho [0];
-  var valor2 = bingomaq [0];
+
   console.log(sintecho);
       console.log(bingomaq);
-      console.log(valor1);
-      console.log(valor2);
+
 
 
 
@@ -203,7 +196,7 @@ for (let pobreza of pobresJsons) {
         },
         series: [{
             text: 'Jugadores de bingo',
-            values: valor1,
+            values: sintecho,
             backgroundColor: '#00BAF2',
             lineColor: '#00BAF2',
             lineWidth: '1px',
@@ -213,7 +206,7 @@ for (let pobreza of pobresJsons) {
           },
           {
             text: 'ratio desempleo',
-            values: valor2,
+            values: bingomaq,
             backgroundColor: '#E80C60',
             lineColor: '#E80C60',
             lineWidth: '1px',
