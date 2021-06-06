@@ -154,6 +154,9 @@
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/dumbbell.js"></script>
+<script src="https://code.highcharts.com/modules/lollipop.js"></script>
     <script
         src="https://code.highcharts.com/modules/accessibility.js"
         on:load={loadGraph}></script>
