@@ -74,11 +74,11 @@ for (let pobreza of pobresJsons) {
   //  onMount(getData);
   async function loadGraph() {
     getData().then(() => {
-        var myConfig = {
+      let chartConfig = {
   type: 'pie',
   backgroundColor: '#2B313B',
   title: {
-    text: 'Desempleo  en España vs locales de bingo en Barcelona ',
+    text: 'Global Browser Usage',
     align: 'left',
     fontColor: '#fff',
     fontFamily: 'Open Sans',
@@ -86,7 +86,7 @@ for (let pobreza of pobresJsons) {
     offsetX: '10px',
   },
   subtitle: {
-    text: ' 2020',
+    text: 'June 2020',
     align: 'left',
     fontColor: '#8e99a9',
     fontFamily: 'Open Sans',
@@ -126,14 +126,29 @@ for (let pobreza of pobresJsons) {
   },
   series: [
     {
-      text: 'locales de bingo',
-      values: bingomaq,
+      text: 'IE and Edge',
+      values: [4.8],
       backgroundColor: '#50ADF5'
     },
     {
-      text: 'Tasa de desempleo',
-      values: sintecho,
+      text: 'Chrome',
+      values: [63.69],
       backgroundColor: '#FF7965'
+    },
+    {
+      text: 'Firefox',
+      values: [4.64],
+      backgroundColor: '#FFCB45'
+    },
+    {
+      text: 'Safari',
+      values: [15.15],
+      backgroundColor: '#6877e5'
+    },
+    {
+      text: 'Other',
+      values: [11.72],
+      backgroundColor: '#6FB07F'
     }
   ]
 };
@@ -142,7 +157,7 @@ for (let pobreza of pobresJsons) {
 // -----------------------------
 zingchart.render({
   id: 'myChart',
-  data: myConfig,
+  data: chartConfig,
   height: '100%',
   width: '100%',
 });
