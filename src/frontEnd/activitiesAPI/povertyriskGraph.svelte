@@ -42,7 +42,7 @@
 
         for (let ansiedad of anxietyJsons) {
             for (let suicidio of suicideJsons) {
-                if (ansiedad.year == suicidio.year) {
+                if (ansiedad.year != suicidio.year) {
                     if (
                         (ansiedad.country == "España" &&
                             suicidio.province == "Seville") ||
