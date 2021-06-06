@@ -4,138 +4,96 @@
 
     let isOpen = false;
 
-    var BASE_API_PATH = "/api/v2/province-budget-and-investment-in-social-promotion";
 
-    let internalData = [];
-    let externalData = [];
-    let currencyData = [];
-    let currencyConverted = [];
-
-    let budgetData = [];
-    let budgetGraphX = [];
-    let budgetEuros = 0;
+    let useData = [];
+    let daftPunkDiscography = [];
 
     let dataGraph = [];
-
-    async function getInternalData(){
-      const internalData = await fetch(BASE_API_PATH);
-        budgetData = await internalData.json();
-
-        if(internalData.ok){
-            budgetData.forEach(budgetSvelte => {
-              budgetGraphX.push(budgetSvelte.province + "/" + budgetSvelte.year);
-              budgetEuros.push(budgetSvelte.budget);
-            })
-        }
-    }
-
-    async function getExternalData(){
-        const externalData = await fetch("https://currencyconverter.p.rapidapi.com?to=USD?from=€?from_amount=" + budgetEuros, { 
-                "method":"GET",
-                "headers":{
-                    "x-rapidapi-key": "b92358230bmshe53cee188c483ecp147ff1jsn450fa502bd55",
-	                  "x-rapidapi-host": "currencyconverter.p.rapidapi.com",
-	                  "useQueryString": true
-                },
+    
+    async function loadGraphDaftPunkDiscography() {
+        const useData = await fetch("https://theaudiodb.p.rapidapi.com/discography.php?s=daft%20punk", {
+	          "method": "GET",
+	            "headers": {
+		            "x-rapidapi-key": "b92358230bmshe53cee188c483ecp147ff1jsn450fa502bd55",
+		            "x-rapidapi-host": "theaudiodb.p.rapidapi.com"
+	            }
         });
-        currencyData = await externalData.json();
+        daftPunkDiscography = await useData.json();
 
-        if(externalData.ok){
-          currencyData.forEach(currencySvelte => {
-            currencyConverted.push(currencySvelte["to_amount"]);
-          })
-        }
+       window.print(daftPunkDiscography);
 
-        }
-    
-    async function loadGraphCurrencyConverter() {
-      getInternalData().then(() => {
-          var dataEuros = {
-            EUROS: [
-              [budgetGraphX, budgetEuros]
-            ]
-          }
-      });
-      getExternalData().then(() => {
-          var dataDolares = {
-            DOLARES: [
-              [budgetGraphX, currencyConverted]
-            ]
-          }
-      });
-      
-      dataGraph.push(dataEuros);
-      dataGraph.push(dataDolares);
-    
-    var chart = Highcharts.chart('container', {
+    Highcharts.chart('container', {
     chart: {
-        type: 'column'
+        type: 'timeline'
+    },
+    accessibility: {
+        screenReaderSection: {
+            beforeChartFormat: '<h5>{chartTitle}</h5>' +
+                '<div>{typeDescription}</div>' +
+                '<div>{chartSubtitle}</div>' +
+                '<div>{chartLongdesc}</div>' +
+                '<div>{viewTableButton}</div>'
+        },
+        point: {
+            valueDescriptionFormat: '{index}. {point.label}. {point.description}.'
+        }
+    },
+    xAxis: {
+        visible: false
+    },
+    yAxis: {
+        visible: false
     },
     title: {
         text: ''
     },
-    plotOptions: {
-        series: {
-            grouping: false,
-            borderWidth: 0
-        }
+    subtitle: {
+        text: ''
     },
-    legend: {
-        enabled: false
-    },
-    tooltip: {
-        shared: true,
-        headerFormat: '<span style="font-size: 15px">{point.point.name}</span><br/>',
-        pointFormat: '<span>\u25CF</span> {series.name}: <b>{point.y} </b><br/>'
-    },
-    xAxis: {
-        type: 'category',
-        max: 4,
-        labels: {
-            useHTML: true,
-            animate: true,
-            name: budgetGraphX
-        }
-    },
-    yAxis: [{
-        title: {
-            text: 'Presupuesto'
-        },
-        showFirstLabel: false
-    }],
+    colors: [
+        '#4185F3',
+        '#427CDD',
+        '#406AB2',
+        '#3E5A8E',
+        '#3B4A68',
+        '#363C46'
+    ],
     series: [{
-        color: 'rgb(158, 159, 163)',
-        pointPlacement: -0.2,
-        linkedTo: 'main',
-        data: dataEUROS.slice(),
-        name: 'EUROS'
-    }, {
-        name: 'DOLARES',
-        id: 'main',
-        dataSorting: {
-            enabled: true,
-            matchByName: true
-        },
-        dataLabels: [{
-            enabled: true,
-            inside: true,
-            style: {
-                fontSize: '16px'
-            }
-        }],
-        data: dataDOLARES.slice()
-    }],
-    exporting: {
-        allowHTML: true
-    }
-  });
+        data: [{
+            name: 'First dogs',
+            label: '1951: First dogs in space',
+            description: '22 July 1951 First dogs in space (Dezik and Tsygan) '
+        }, {
+            name: 'Sputnik 1',
+            label: '1957: First artificial satellite',
+            description: '4 October 1957 First artificial satellite. First signals from space.'
+        }, {
+            name: 'First human spaceflight',
+            label: '1961: First human spaceflight (Yuri Gagarin)',
+            description: 'First human spaceflight (Yuri Gagarin), and the first human-crewed orbital flight'
+        }, {
+            name: 'First human on the Moon',
+            label: '1969: First human on the Moon',
+            description: 'First human on the Moon, and first space launch from a celestial body other than the Earth. First sample return from the Moon'
+        }, {
+            name: 'First space station',
+            label: '1971: First space station',
+            description: 'Salyut 1 was the first space station of any kind, launched into low Earth orbit by the Soviet Union on April 19, 1971.'
+        }, {
+            name: 'Apollo–Soyuz Test Project',
+            label: '1975: First multinational manned mission',
+            description: 'The mission included both joint and separate scientific experiments, and provided useful engineering experience for future joint US–Russian space flights, such as the Shuttle–Mir Program and the International Space Station.'
+        }]
+    }]
+});
   }
 </script>
 
 <svelte:head>
-  <script src="https://code.highcharts.com/highcharts.js" on:load={loadGraphCurrencyConverter}></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/timeline.js"></script>
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
-  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js" on:load={loadGraphDaftPunkDiscography}></script>
 </svelte:head>
 
 <main>
@@ -177,11 +135,11 @@
     <br>
     <h1 class="titulo2"> Gráfica de uso</h1>
     <div style="margin-bottom: 15px">
-       
+       <figure class="highcharts-figure">
           <div id="container"></div>
           <p class="centrado"> Gráfica que muestra la discografía completa de Daft Punk en orden cronológico. </p>
+          </figure>
       </div>
-
     <br><br>
 </main>
 
@@ -222,52 +180,43 @@
         border-radius: 12px;
     }
 
-    #container {
-      min-width: 310px;
-      max-width: 800px;
-      height: 400px;
-      margin: 0 auto
+    .highcharts-strong {
+    font-weight: bold;
     }
 
-    .buttons {
-      min-width: 310px;
+    .highcharts-figure, .highcharts-data-table table {
+        min-width: 320px; 
+        max-width: 600px;
+        margin: 1em auto;
+    }
+
+    .highcharts-data-table table {
+      font-family: Verdana, sans-serif;
+      border-collapse: collapse;
+      border: 1px solid #EBEBEB;
+      margin: 10px auto;
       text-align: center;
-      margin-bottom: 1.5rem;
-      font-size: 0;
+      width: 100%;
+      max-width: 500px;
+    }
+    .highcharts-data-table caption {
+        padding: 1em 0;
+        font-size: 1.2em;
+        color: #555;
+    }
+    .highcharts-data-table th {
+      font-weight: 600;
+        padding: 0.5em;
+    }
+    .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+        padding: 0.5em;
+    }
+    .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+        background: #f8f8f8;
+    }
+    .highcharts-data-table tr:hover {
+        background: #f1f7ff;
     }
 
-    .buttons button {
-      cursor: pointer;
-      border: 1px solid silver;
-      border-right-width: 0;
-      background-color: #f8f8f8;
-      font-size: 1rem;
-      padding: 0.5rem;
-      outline: none;
-      transition-duration: 0.3s;
-      margin: 0;
-    }
-
-    .buttons button:first-child {
-      border-top-left-radius: 0.3em;
-      border-bottom-left-radius: 0.3em;
-    }
-
-    .buttons button:last-child {
-      border-top-right-radius: 0.3em;
-      border-bottom-right-radius: 0.3em;
-      border-right-width: 1px;
-    }
-
-    .buttons button:hover {
-      color: white;
-      background-color: rgb(158, 159, 163);
-      outline: none;
-    }
-
-    .buttons button.active {
-      background-color: #0051B4;
-      color: white;
-    }
 
 </style>
