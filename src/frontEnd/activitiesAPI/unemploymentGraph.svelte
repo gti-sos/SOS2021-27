@@ -56,10 +56,10 @@
 
                       keys.push(pobreza.country + " - " + ludopatia.province + "("+ludopatia.year+")");
 
-                      sintecho.push(pobreza.home_poverty_line);
+                      sintecho.push(pobreza.knoperc);
                       bingomaq.push(parseInt(ludopatia.bingo_site));
 
-                      personaspobresjeres.push(pobreza.people_in_risk_of_poverty);
+                      personaspobresjeres.push(pobreza.intperc);
                       jugadoresjeres.push(parseInt(ludopatia.catering_bingo_machine));
                   }
               }
