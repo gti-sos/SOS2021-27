@@ -104,7 +104,7 @@
                 },
                 series: [
                     {
-                        type: "spline",
+                        type: "lollipop",
                         name: "pobreza en el hogar ",
                         data: sintecho,
                         marker: {
@@ -114,7 +114,7 @@
                         },
                     },
                     {
-                        type: "spline",
+                        type: "lollipop",
                         name: "Locales de bingo",
                         data: bingomaq,
                         marker: {
@@ -124,7 +124,7 @@
                         },
                     },
                     {
-                        type: "spline",
+                        type: "lollipop",
                         name: "numero de pobres",
                         data: personaspobresjeres,
                         marker: {
@@ -134,7 +134,7 @@
                         },
                     },
                     {
-                        type: "spline",
+                        type: "lollipop",
                         name: "Jugadores activos.",
                         data: jugadoresjeres,
                         marker: {
@@ -214,14 +214,14 @@
         </Navbar>
     </body>
     <br />
-    <h1 class="titulo2">Ansiedad en regiones y suicidios en la capital.</h1>
+    <h1 class="titulo2">Pobreza relacionada con la actividad en juegos</h1>
     <div style="width:800px; margin:0 auto;">
         <figure class="highcharts-figure">
             <div id="container" />
         </figure>
         <div id="uv-div" />
         <p style="centrado">
-            Gráfica que muestra la ansiedad por sexos de una región Española en un año determinado y los suicidios por sexo de su correspondiente capital, en el mismo año.
+            Gráfica que muestra la pobreza en el hogar y el numero de pobres frente a los locales de bingo y jugadores activos.
         </p>
     </div>
 </main>
