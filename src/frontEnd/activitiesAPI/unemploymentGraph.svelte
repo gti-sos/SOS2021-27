@@ -17,8 +17,8 @@
   let isOpen = false;
  
 
-  let sintecho = [];
-  let bingomaq = [];
+  var sintecho = [];
+  var bingomaq = [];
 
   var keys = [];
 
@@ -60,11 +60,11 @@ for (let pobreza of pobresJsons) {
           }
         
  
+  console.log(sintecho);
+      console.log(bingomaq);
         
         }
 
-  console.log(sintecho);
-      console.log(bingomaq);
 
 
 
