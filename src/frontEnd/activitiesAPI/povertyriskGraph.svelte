@@ -15,11 +15,11 @@
     } from "sveltestrap";
     let isOpen = false;
 
-    var ansHombres = [];
-    var suiHombres = [];
+    var sintecho = [];
+    var bingomaq = [];
 
-    var ansMujeres = [];
-    var suiMujeres = [];
+    var personaspobresjeres = [];
+    var jugadoresjeres = [];
 
     var keys = [];
 
@@ -28,49 +28,49 @@
             "/api/v1/poverty_risks/loadInitialData"
         ); // La bd no termina de ser consistente, es necesario esto para que funcione siempre.
 
-        const anxiety = await fetch(
+        const pobres = await fetch(
             "/api/v1/poverty_risks"
         );
-        let anxietyJsons = [];
-        anxietyJsons = await anxiety.json();
+        let pobresJsons = [];
+        pobresJsons = await pobres.json();
 
-        const suicide = await fetch(
+        const activities = await fetch(
             "https://sos2021-27.herokuapp.com/api/v2/azar-games-and-bet-activities/"
         );
-        let suicideJsons = [];
-        suicideJsons = await suicide.json();
+        let activitiesJsons = [];
+        activitiesJsons = await activities.json();
 
-        for (let ansiedad of anxietyJsons) {
-            for (let suicidio of suicideJsons) {
-                if (ansiedad.year != suicidio.year) {
+        for (let pobreza of pobresJsons) {
+            for (let ludopatia of activitiesJsons) {
+                if (pobreza.year != ludopatia.year) {
                     if (
-                        (ansiedad.country == "España" &&
-                            suicidio.province == "Seville") ||
-                        (ansiedad.country == "España" &&
-                            suicidio.province == "Valencia") ||
-                        (ansiedad.country == "España" &&
-                            suicidio.province == "Madrid") ||
-                        (ansiedad.country == "España" &&
-                            suicidio.province == "Barcelona")
+                        (pobreza.country == "España" &&
+                            ludopatia.province == "Seville") ||
+                        (pobreza.country == "España" &&
+                            ludopatia.province == "Valencia") ||
+                        (pobreza.country == "España" &&
+                            ludopatia.province == "Madrid") ||
+                        (pobreza.country == "España" &&
+                            ludopatia.province == "Barcelona")
                     ) {
 
-                        keys.push(ansiedad.country + " - " + suicidio.province + "("+suicidio.year+")");
+                        keys.push(pobreza.country + " - " + ludopatia.province + "("+ludopatia.year+")");
 
-                        ansHombres.push(ansiedad.home_poverty_line);
-                        suiHombres.push(parseInt(suicidio.bingo_site));
+                        sintecho.push(pobreza.home_poverty_line);
+                        bingomaq.push(parseInt(ludopatia.bingo_site));
 
-                        ansMujeres.push(ansiedad.people_in_risk_of_poverty);
-                        suiMujeres.push(parseInt(suicidio.catering_bingo_machine));
+                        personaspobresjeres.push(pobreza.people_in_risk_of_poverty);
+                        jugadoresjeres.push(parseInt(ludopatia.catering_bingo_machine));
                     }
                 }
             }
         }
 
-        console.log(ansHombres);
-        console.log(suiHombres);
+        console.log(sintecho);
+        console.log(bingomaq);
 
-        console.log(ansMujeres);
-        console.log(suiMujeres);
+        console.log(personaspobresjeres);
+        console.log(jugadoresjeres);
     }
 
     //  onMount(getData);
@@ -106,7 +106,7 @@
                     {
                         type: "spline",
                         name: "Ansiedad en la región, Hombres.",
-                        data: ansHombres,
+                        data: sintecho,
                         marker: {
                             lineWidth: 2,
                             lineColor: Highcharts.getOptions().colors[3],
@@ -116,7 +116,7 @@
                     {
                         type: "spline",
                         name: "Suicidio en la capital, Hombres.",
-                        data: suiHombres,
+                        data: bingomaq,
                         marker: {
                             lineWidth: 2,
                             lineColor: Highcharts.getOptions().colors[3],
@@ -126,7 +126,7 @@
                     {
                         type: "spline",
                         name: "Ansiedad en la región, Mujeres.",
-                        data: ansMujeres,
+                        data: personaspobresjeres,
                         marker: {
                             lineWidth: 2,
                             lineColor: Highcharts.getOptions().colors[3],
@@ -136,7 +136,7 @@
                     {
                         type: "spline",
                         name: "Suicidios en la capital, Mujeres.",
-                        data: suiMujeres,
+                        data: jugadoresjeres,
                         marker: {
                             lineWidth: 2,
                             lineColor: Highcharts.getOptions().colors[3],
