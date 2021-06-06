@@ -106,14 +106,14 @@
         name: 'Ratio desempleo knoperc',
         type: 'errorbar',
         yAxis: 1,
-        data: knoperc,
+        data: sintecho,
         tooltip: {
             pointFormat: '(error range: {point.low}-{point.high} mm)<br/>'
         }
     }, {
         name: 'ratio desempleo intperc ',
         type: 'errorbar',
-        data: intperc,
+        data: personaspobresjeres,
         tooltip: {
             pointFormat: '<span style="font-weight: bold; color: {series.color}">{series.name}</span>: <b>{point.y:.1f}°C</b> '
         }
