@@ -29,7 +29,7 @@
 
         let currencyData = [];
         let currencyConverted = [];
-        budgetEuros.forEach(euros => {
+      budgetEuros.forEach(euros => {
 
         const externalData = fetch("https://currency-exchange.p.rapidapi.com/exchange?to=USD&from=EUR&q=" + euros, {
 	        "method": "GET",
@@ -38,12 +38,14 @@
 		            "x-rapidapi-host": "currency-exchange.p.rapidapi.com"
 	              }
           });
+          
+      });
         currencyData = await externalData.json();
 
         if(externalData.ok){
             currencyConverted.push(currencyData);
         }
-        });
+       
         }
     
     async function loadGraphCurrencyConverter() {
