@@ -25,11 +25,11 @@
 
     async function getData() {
         const porsiacaso = await fetch(
-            "/api/integration/poverty_risks/loadInitialData"
+            "https://endpoint-poverty-risks.herokuapp.com/api/v1/loadInitialData"
         ); // La bd no termina de ser consistente, es necesario esto para que funcione siempre.
 
         const anxiety = await fetch(
-            "/api/integration/poverty_risks"
+            "https://endpoint-poverty-risks.herokuapp.com/api/v1"
         );
         let anxietyJsons = [];
         anxietyJsons = await anxiety.json();
