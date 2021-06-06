@@ -36,6 +36,8 @@
 	import Alcohol from './activitiesAPI/alcoholGraph.svelte';
 	import Cartas from './activitiesAPI/cartasGraph.svelte';
 	import Pobreza from './activitiesAPI/povertyriskGraph.svelte';
+	import Desempleo from './activitiesAPI/unemploymentGraph.svelte';
+
 
 	import Info from './info.svelte';
 	import Landing from './Landing.svelte';
@@ -76,6 +78,7 @@
 		'/graphics/integrations/alcohol':Alcohol,
 		'/graphics/integrations/cards':Cartas,
 		'/graphics/integrations/poverty':Pobreza,
+		'/graphics/integrations/unemployment':Desempleo,
 
 
 		'/about':About,
