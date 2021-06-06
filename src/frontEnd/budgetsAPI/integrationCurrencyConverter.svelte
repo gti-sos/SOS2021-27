@@ -12,10 +12,12 @@
 
       let budgetData = [];
       let budgetGraphX = [];
-      let budgetEuros = 0;
+      let budgetEuros = [];
 
       const internalData = await fetch(BASE_API_PATH);
         budgetData = await internalData.json();
+
+        console.log(budgetData);
 
         if(internalData.ok){
             budgetData.forEach(budgetSvelte => {
@@ -25,20 +27,17 @@
         }
     }
 
-    async function getExternalData(){
+    async function getExternalData(euros){
 
         let currencyData = [];
         let currencyConverted = [];
-      budgetEuros.forEach(euros => {
-
+  
         const externalData = fetch("https://currency-exchange.p.rapidapi.com/exchange?to=USD&from=EUR&q=" + euros, {
 	        "method": "GET",
 	          "headers": {
 		          "x-rapidapi-key": "b92358230bmshe53cee188c483ecp147ff1jsn450fa502bd55",
 		            "x-rapidapi-host": "currency-exchange.p.rapidapi.com"
-	              }
-          });
-          
+            }
       });
         currencyData = await externalData.json();
 
