@@ -16,7 +16,6 @@
   let isOpen = false;
   var sintecho = [];
   var bingomaq = [];
-let sumasintecho = 0;
   var personaspobresjeres = [];
   var jugadoresjeres = [];
 
@@ -41,25 +40,18 @@ let sumasintecho = 0;
 
       for (let pobreza of pobresJsons) {
           for (let ludopatia of activitiesJsons) {
-              if (pobreza.year != ludopatia.year) {
+              if (pobreza.country == "Spain") {
                   if (
-                      (pobreza.country == "Spain" &&
-                          ludopatia.province == "Seville") ||
-                      (pobreza.country == "Spain" &&
-                          ludopatia.province == "Valencia") ||
-                      (pobreza.country == "Spain" &&
-                          ludopatia.province == "Madrid") ||
-                      (pobreza.country == "Spain" &&
+                      (
                           ludopatia.province == "Barcelona")
                   ) {
 
-                      keys.push(pobreza.country + " - " + ludopatia.province + "("+ludopatia.year+")");
+                      keys.push(pobreza.country + " - " + ludopatia.province );
 
                       sintecho.push(parseInt(pobreza.knoperc));
                       bingomaq.push(parseInt(ludopatia.bingo_site));
 
-                      personaspobresjeres.push(parseInt(pobreza.intperc));
-                      jugadoresjeres.push(parseInt(ludopatia.catering_bingo_machine));
+                    
                   }
               }
           }
@@ -67,11 +59,9 @@ let sumasintecho = 0;
       
       
       }
-      sintecho.forEach (function(numero){
-        sumasintecho+=numero;
-      });
+      
 
-      console.log(sumasintecho);
+      console.log(sintecho);
       console.log(bingomaq);
 
       console.log(personaspobresjeres);
