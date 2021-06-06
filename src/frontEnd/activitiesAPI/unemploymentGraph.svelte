@@ -122,7 +122,7 @@
     },
 
     series: [{
-        name: 'Rainfall',
+        name: 'maquinas bingo',
         type: 'column',
         yAxis: 1,
         data: bingomaq,
@@ -130,17 +130,17 @@
             pointFormat: '<span style="font-weight: bold; color: {series.color}">{series.name}</span>: <b>{point.y:.1f} mm</b> '
         }
     }, {
-        name: 'Rainfall error',
+        name: 'Personas desempleadas',
         type: 'errorbar',
         yAxis: 1,
-        data: [[48, 51], [68, 73], [92, 110], [128, 136], [140, 150], [171, 179], [135, 143], [142, 149], [204, 220], [189, 199], [95, 110], [52, 56]],
+        data: sintecho,
         tooltip: {
             pointFormat: '(error range: {point.low}-{point.high} mm)<br/>'
         }
     }, {
-        name: 'Temperature',
+        name: 'otra cosa',
         type: 'spline',
-        data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
+        data: jugadoresjeres,
         tooltip: {
             pointFormat: '<span style="font-weight: bold; color: {series.color}">{series.name}</span>: <b>{point.y:.1f}°C</b> '
         }
