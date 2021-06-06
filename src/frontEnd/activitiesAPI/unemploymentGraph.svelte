@@ -13,11 +13,12 @@
       DropdownMenu,
       DropdownItem,
   } from "sveltestrap";
+
   let isOpen = false;
+
   var sintecho = [];
   var bingomaq = [];
-  var personaspobresjeres = [];
-  var jugadoresjeres = [];
+ 
 
   var keys = [];
 
@@ -40,11 +41,7 @@
 
       for (let pobreza of pobresJsons) {
           for (let ludopatia of activitiesJsons) {
-              if (pobreza.country == "Spain" && ludopatia.province == "Barcelona") {
-                  
-                      
-                          
-                   
+              if (pobreza.country == "Spain" && ludopatia.province == "Barcelona"&& ludopatia.year == "2017") {
 
                       keys.push(pobreza.country + " - " + ludopatia.province );
 
