@@ -25,7 +25,7 @@
 
     async function getData() {
         const porsiacaso = await fetch(
-            "/api/integration/poverty_stats/loadInitialData"
+            "/api/integration/poverty_risks/loadInitialData"
         ); // La bd no termina de ser consistente, es necesario esto para que funcione siempre.
 
         const anxiety = await fetch(
