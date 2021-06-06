@@ -48,7 +48,7 @@ for (let pobreza of pobresJsons) {
 
                         keys.push(pobreza.country + " - " + ludopatia.province + "("+ludopatia.year+")");
 
-                        sintecho.push(pobreza.knoperc);
+                        sintecho.push(parseInt(pobreza.knoperc));
                         bingomaq.push(parseInt(ludopatia.bingo_site));
 
                        
@@ -62,6 +62,8 @@ for (let pobreza of pobresJsons) {
 
       console.log(sintecho);
       console.log(bingomaq);
+      console.log(sintecho[0]);
+      console.log(bingomaq[0]);
 
 
 
@@ -192,7 +194,7 @@ for (let pobreza of pobresJsons) {
         },
         series: [{
             text: 'Jugadores de bingo',
-            values: bingomaq,
+            values: bingomaq[0],
             backgroundColor: '#00BAF2',
             lineColor: '#00BAF2',
             lineWidth: '1px',
@@ -202,7 +204,7 @@ for (let pobreza of pobresJsons) {
           },
           {
             text: 'ratio desempleo',
-            values: sintecho,
+            values: sintecho[0],
             backgroundColor: '#E80C60',
             lineColor: '#E80C60',
             lineWidth: '1px',
