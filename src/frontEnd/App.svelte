@@ -78,6 +78,7 @@
 		'/graphics/integrations/alcohol':Alcohol,
 		'/graphics/integrations/cards':Cartas,
 		'/graphics/integrations/poverty':Pobreza,
+		'/graphics/integrations/unemployment':Desempleo,
 
 
 		'/about':About,
