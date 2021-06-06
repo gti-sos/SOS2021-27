@@ -213,7 +213,7 @@ zingchart.render({
       </Navbar>
   </body>
   <br />
-  <h1 class="titulo2">Pobreza relacionada con la actividad en juegos</h1>
+  <h1 class="titulo2">Desempleo relacionada con la actividad en juegos</h1>
  
   <div id="myChart"></div>
 </main>
