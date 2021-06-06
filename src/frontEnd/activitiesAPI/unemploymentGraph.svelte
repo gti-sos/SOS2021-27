@@ -15,8 +15,8 @@
   } from "sveltestrap";
   let isOpen = false;
 
-  var sintecho = [];
-  var bingomaq = [];
+  var sintechos = [];
+  var bingomaqs = [];
 
 
 
@@ -48,8 +48,8 @@ for (let pobreza of pobresJsons) {
 
                         keys.push(pobreza.country + " - " + ludopatia.province + "("+ludopatia.year+")");
 
-                        sintecho.push(parseInt(pobreza.knoperc));
-                        bingomaq.push(parseInt(ludopatia.bingo_site));
+                        sintechos.push(parseInt(pobreza.knoperc));
+                        bingomaqs.push(parseInt(ludopatia.bingo_site));
 
                        
                     }
@@ -60,8 +60,8 @@ for (let pobreza of pobresJsons) {
           }
         
  
-  console.log(sintecho);
-      console.log(bingomaq);
+  console.log(sintechos);
+      console.log(bingomaqs);
         
         }
 
@@ -78,9 +78,8 @@ for (let pobreza of pobresJsons) {
 
       let chartConfig = {
   type: 'pie',
-  backgroundColor: '#2B313B',
   title: {
-    text: 'Global Browser Usage',
+    text: 'Casinos en barcelona vs pobreza en españa',
     align: 'left',
     fontColor: '#fff',
     fontFamily: 'Open Sans',
@@ -88,7 +87,7 @@ for (let pobreza of pobresJsons) {
     offsetX: '10px',
   },
   subtitle: {
-    text: 'June 2020',
+    text: 'varios años',
     align: 'left',
     fontColor: '#8e99a9',
     fontFamily: 'Open Sans',
@@ -129,12 +128,12 @@ for (let pobreza of pobresJsons) {
   series: [
     {
       text: 'IE and Edge',
-      values: sintecho,
+      values: sintechos,
       backgroundColor: '#50ADF5'
     },
     {
       text: 'Chrome',
-      values: bingomaq,
+      values: bingomaqs,
       backgroundColor: '#FF7965'
     }
     
