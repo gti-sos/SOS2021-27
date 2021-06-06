@@ -127,12 +127,12 @@ for (let pobreza of pobresJsons) {
   series: [
     {
       text: 'locales de bingo',
-      values: bingomaq,
+      values: 3,
       backgroundColor: '#50ADF5'
     },
     {
       text: 'Tasa de desempleo',
-      values: sintecho,
+      values: 2,
       backgroundColor: '#FF7965'
     }
   ]
