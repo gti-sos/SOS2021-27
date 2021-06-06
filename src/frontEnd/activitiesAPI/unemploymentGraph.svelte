@@ -15,11 +15,10 @@
   } from "sveltestrap";
 
   let isOpen = false;
-let valor1 = sintecho[0];
-let valor2 = bingomaq[0];
 
-  var sintecho = [];
-  var bingomaq = [];
+
+  let sintecho = [];
+  let bingomaq = [];
  
 
   var keys = [];
