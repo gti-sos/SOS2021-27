@@ -35,7 +35,7 @@
         anxietyJsons = await anxiety.json();
 
         const suicide = await fetch(
-            "https://sos2021-27.herokuapp.com/api/v2/suicide-records/"
+            "https://sos2021-27.herokuapp.com/api/v2/azar-games-and-bet-activities/"
         );
         let suicideJsons = [];
         suicideJsons = await suicide.json();
@@ -45,22 +45,22 @@
                 if (ansiedad.year == suicidio.year) {
                     if (
                         (ansiedad.country == "Spain_Andalucia" &&
-                            suicidio.province == "SEVILLE") ||
+                            suicidio.province == "Seville") ||
                         (ansiedad.country == "Spain_CValenciana" &&
-                            suicidio.province == "VALENCIA") ||
+                            suicidio.province == "Valencia") ||
                         (ansiedad.country == "Spain_Madrid" &&
-                            suicidio.province == "MADRID") ||
+                            suicidio.province == "Madrid") ||
                         (ansiedad.country == "Spain_Cataluña" &&
-                            suicidio.province == "BARCELONA")
+                            suicidio.province == "Barcelona")
                     ) {
 
                         keys.push(ansiedad.country + " - " + suicidio.province + "("+suicidio.year+")");
 
                         ansHombres.push(ansiedad.anxiety_men);
-                        suiHombres.push(parseInt(suicidio.suic_man));
+                        suiHombres.push(parseInt(suicidio.bingo_site));
 
                         ansMujeres.push(ansiedad.anxiety_women);
-                        suiMujeres.push(parseInt(suicidio.suic_woman));
+                        suiMujeres.push(parseInt(suicidio.catering_bingo_machine));
                     }
                 }
             }
