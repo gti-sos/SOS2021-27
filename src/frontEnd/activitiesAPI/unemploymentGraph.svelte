@@ -15,11 +15,12 @@
   } from "sveltestrap";
 
   let isOpen = false;
-
+ 
 
   let sintecho = [];
   let bingomaq = [];
- 
+  var valor1 = sintecho [0];
+  var valor2 = bingomaq [0];
 
   var keys = [];
 
@@ -58,10 +59,17 @@ for (let pobreza of pobresJsons) {
             }
       
     
-          }}
-      
-
-      console.log(sintecho);
+          }
+        
+          console.log(sintecho);
+      console.log(bingomaq);
+      console.log(valor1);
+      console.log(valor2);
+        
+        }
+        var valor1 = sintecho [0];
+  var valor2 = bingomaq [0];
+  console.log(sintecho);
       console.log(bingomaq);
       console.log(valor1);
       console.log(valor2);
