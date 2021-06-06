@@ -17,11 +17,6 @@
 
   var sintechos = [];
   var bingomaqs = [];
-
-
-
-  var keys = [];
-
   async function getData() {
       const porsiacaso = await fetch(
           "/api/v1/unemployment-stats/loadInitialData"
@@ -46,7 +41,6 @@ for (let pobreza of pobresJsons) {
                             ludopatia.province == "Seville" && ludopatia.year == "2018")
                     ) {
 
-                        keys.push(pobreza.country + " - " + ludopatia.province + "("+ludopatia.year+")");
 
                         sintechos.push(parseInt(pobreza.knoperc));
                         bingomaqs.push(parseInt(ludopatia.bingo_site));
@@ -86,15 +80,7 @@ for (let pobreza of pobresJsons) {
     fontSize: '25px',
     offsetX: '10px',
   },
-  subtitle: {
-    text: 'varios años',
-    align: 'left',
-    fontColor: '#8e99a9',
-    fontFamily: 'Open Sans',
-    fontSize: '16px',
-    offsetX: '10px',
-    offsetY: '10px'
-  },
+
   plot: {
     tooltip: {
       text: '%npv%',
@@ -127,12 +113,12 @@ for (let pobreza of pobresJsons) {
   },
   series: [
     {
-      text: 'IE and Edge',
+      text: 'Indice de pobreza',
       values: sintechos,
       backgroundColor: '#50ADF5'
     },
     {
-      text: 'Chrome',
+      text: 'Numero de maquinas de bingo',
       values: bingomaqs,
       backgroundColor: '#FF7965'
     }
@@ -215,7 +201,7 @@ zingchart.render({
       </Navbar>
   </body>
   <br />
-  <h1 class="titulo2">Desempleo relacionada con la actividad en juegos</h1>
+  <h1 class="titulo2">Desempleo relacionado con la actividad en juegos de azar</h1>
  
   <div id="myChart" class="chart--container"></div>>
 </main>
