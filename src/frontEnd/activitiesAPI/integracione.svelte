@@ -1,247 +1,114 @@
 <script>
     import { onMount } from "svelte";
-
-    import {
-        Jumbotron,
-        Navbar,
-        Nav,
-        NavItem,
-        NavLink,
-        NavbarBrand,
-        Dropdown,
-        DropdownToggle,
-        DropdownMenu,
-        DropdownItem,
-    } from "sveltestrap";
-    let isOpen = false;
-
-    var ansHombres = [];
-    var suiHombres = [];
-
-    var ansMujeres = [];
-    var suiMujeres = [];
-
-    var keys = [];
-
-    async function getData() {
-        const porsiacaso = await fetch(
-            "/api/integration/poverty_risks/loadInitialData"
-        ); // La bd no termina de ser consistente, es necesario esto para que funcione siempre.
-
-        const anxiety = await fetch(
-            "/api/integration/poverty_risks"
-        );
-        let anxietyJsons = [];
-        anxietyJsons = await anxiety.json();
-
-        const suicide = await fetch(
-            "https://sos2021-27.herokuapp.com/api/v2/azar-games-and-bet-activities/"
-        );
-        let suicideJsons = [];
-        suicideJsons = await suicide.json();
-
-        for (let ansiedad of anxietyJsons) {
-            for (let suicidio of suicideJsons) {
-                if (ansiedad.year == suicidio.year) {
-                    if (
-                        (ansiedad.country == "España" &&
-                            suicidio.province == "Seville") ||
-                        (ansiedad.country == "España" &&
-                            suicidio.province == "Valencia") ||
-                        (ansiedad.country == "España" &&
-                            suicidio.province == "Madrid") ||
-                        (ansiedad.country == "España" &&
-                            suicidio.province == "Barcelona")
-                    ) {
-
-                        switch(suicidio.province){
-                            case "Barcelona":
-                                keys.push(ansiedad.country + " - " + suicidio.province + "("+suicidio.year+")")
-                                break;
-                            case "Seville":
-                                keys.push(ansiedad.country + " - " + suicidio.province + "("+suicidio.year+")")
-                                break;
-                            default:
-                                keys.push(ansiedad.country + " - " + suicidio.province + "("+suicidio.year+")")
-                                break;
-
-                        }
-
-                        ansHombres.push(ansiedad.people_in_risk_of_poverty);
-                        suiHombres.push(parseInt(bingo_site));
-
-                        ansMujeres.push(ansiedad.home_poverty_line);
-                        suiMujeres.push(parseInt(suicidio.catering_bingo_machine));
-                    }
-                }
-            }
-        }
-
-        console.log(ansHombres);
-        console.log(suiHombres);
-
-        console.log(ansMujeres);
-        console.log(suiMujeres);
-    }
-
-    //  onMount(getData);
-    async function loadGraph() {
-        getData().then(() => {
-
-            
-            Highcharts.chart("container", {
-                title: {
-                    text: "",
-                },
-                xAxis: {
-                    categories: keys,
-                },
-                labels: {
-                    items: [
-                        {
-
-                            style: {
-                                left: "50px",
-                                top: "18px",
-                                color:
-                                    // theme
-                                    (Highcharts.defaultOptions.title.style &&
-                                        Highcharts.defaultOptions.title.style
-                                            .color) ||
-                                    "black",
-                            },
-                        },
-                    ],
-                },
-                series: [
-                    {
-                        type: "spline",
-                        name: "Ansiedad en la región, Hombres.",
-                        data: ansHombres,
-                        marker: {
-                            lineWidth: 2,
-                            lineColor: Highcharts.getOptions().colors[3],
-                            fillColor: "white",
-                        },
-                    },
-                    {
-                        type: "spline",
-                        name: "Suicidio en la capital, Hombres.",
-                        data: suiHombres,
-                        marker: {
-                            lineWidth: 2,
-                            lineColor: Highcharts.getOptions().colors[3],
-                            fillColor: "white",
-                        },
-                    },
-                    {
-                        type: "spline",
-                        name: "Ansiedad en la región, Mujeres.",
-                        data: ansMujeres,
-                        marker: {
-                            lineWidth: 2,
-                            lineColor: Highcharts.getOptions().colors[3],
-                            fillColor: "white",
-                        },
-                    },
-                    {
-                        type: "spline",
-                        name: "Suicidios en la capital, Mujeres.",
-                        data: suiMujeres,
-                        marker: {
-                            lineWidth: 2,
-                            lineColor: Highcharts.getOptions().colors[3],
-                            fillColor: "white",
-                        },
-                    }
-                ]
-            });
+  
+    import { Table, Button, Nav, NavItem, NavLink } from "sveltestrap";
+  
+    const BASE_CONTACT_API_PATH = "/api/v1";
+  
+    let gamesData = [];
+    let gamesChartData = [];
+  
+  let gamesChartCountry = [];
+  let gamesChartGame = [];
+  let gamesChartYear = [];
+  let gamesChartUnit = [];
+  let gamesChartCompany = [];
+  let povertyData = [];
+  let povertyChartCountry = [];
+  let povertyChartYear = [];
+  let povertyChartPeople_in_risk_of_poverty = [];
+  let povertyChartPeople_poverty_line = [];
+  let povertyChartHome_poverty_line = [];
+  let povertyChartPercentage_risk_of_poverty = [];
+  
+  let urlproxy = "/proxy-poverty/"
+  
+  async function getDataGraph() {
+        console.log("Fetching data...");
+        const res = await fetch(BASE_CONTACT_API_PATH + "/games");
+        gamesData = await res.json();
+        if (res.ok) {
+            console.log(`We have received ${gamesData.length} resources.`);
+          gamesData.forEach(stat => {
+        gamesChartCountry.push(stat.country);
+        gamesChartGame.push(stat.game);
+        gamesChartYear.push(stat.year);
+        gamesChartUnit.push(stat["sold-unit"]);
+        gamesChartCompany.push(stat.company)
         });
+        console.log("Done");
+      }
+      await fetch(urlproxy + "/api/v1/suicide-records/loadInitialData");
+      const res2 = await fetch(urlproxy + "/api/v1/");
+        if (res2.ok) {
+            console.log("Ok");
+            const json = await res2.json();
+            povertyData = json;
+            console.log(`We have received ${povertyData.length} resources.`);
+            povertyData.forEach((data) => {
+                povertyChartCountry.push(data.country);
+                povertyChartYear.push(data.year);
+                povertyChartPeople_in_risk_of_poverty.push(data.people_in_risk_of_poverty);
+            });            
+        } else {
+            console.log("Error");
+        }
+var chart = c3.generate({
+  bindto: '#chart',
+    data: {
+      x : 'x',
+        columns: [
+            ['x', gamesChartYear[0], gamesChartYear[1], gamesChartYear[2], gamesChartYear[3], gamesChartYear[4], gamesChartYear[5]],
+            ['Unidades Vendidas', gamesChartUnit[0], gamesChartUnit[1], gamesChartUnit[2], gamesChartUnit[3], gamesChartUnit[4], gamesChartUnit[5]],
+        ['Personas en riesgo de pobreza', povertyChartPeople_in_risk_of_poverty[0], povertyChartPeople_in_risk_of_poverty[1],povertyChartPeople_in_risk_of_poverty[2],povertyChartPeople_in_risk_of_poverty[3],povertyChartPeople_in_risk_of_poverty[4],povertyChartPeople_in_risk_of_poverty[5]],
+        ],
+        
+        type : 'pie',
+        onclick: function (d, i) { console.log("onclick", d, i); },
+        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+        
+        /*
+        type: 'area-step',
+        labels: true
+        */
+    },
+    grid: {
+        y: {
+            lines: [{value: 0}]
+        }
+    },
+    bar: {
+        width: {
+            ratio: 0.5 
+        }
     }
+});
+}
+  
 </script>
 
+
+
+
 <svelte:head>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/series-label.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script
-        src="https://code.highcharts.com/modules/accessibility.js"
-        on:load={loadGraph}></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.js" on:load={getDataGraph}></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.js" on:load={getDataGraph}></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.css" rel="stylesheet" type="text/css">
 </svelte:head>
 
 <main>
-    <body>
-        <Jumbotron class="p-3" style="background-color: #FFB833">
-            <h1 class="titulo; mainDiv" style="color: white">
-                Integración Api Ansiedad
-            </h1>
-        </Jumbotron>
-        <Navbar
-            style="background-color: #FFB833; color:white;"
-            light
-            expand="lg"
-        >
-            <NavbarBrand href="#/">INICIO</NavbarBrand>
-            <Nav navbar>
-                <NavItem>
-                    <NavLink href="#/suicide-records"
-                        >Registro de suicidios</NavLink
-                    >
-                </NavItem>
-                <NavItem>
-                    <NavLink
-                        href="#/province-budget-and-investment-in-social-promotion"
-                        >Presupuesto/Inversión</NavLink
-                    >
-                </NavItem>
-                <NavItem>
-                    <NavLink href="#/azar-games-and-bet-activities"
-                        >Actividad en loteria</NavLink
-                    >
-                </NavItem>
-                <NavItem>
-                    <NavLink href="#/integrations">Integraciones</NavLink>
-                </NavItem>
-                <Dropdown nav {isOpen} toggle={() => (isOpen = !isOpen)}>
-                    <DropdownToggle nav caret>Gráficas</DropdownToggle>
-                    <DropdownMenu end>
-                        <DropdownItem href="#/graphics/suicide-records"
-                            >Registro de suicidios</DropdownItem
-                        >
-                        <DropdownItem
-                            href="#/graphics/province-budget-and-investment-in-social-promotion"
-                            >Presupuesto/Inversión</DropdownItem
-                        >
-                        <DropdownItem
-                            href="#/graphics/azar-games-and-bet-activities"
-                            >Actividad en loteria</DropdownItem
-                        >
-                        <DropdownItem divider />
-                        <DropdownItem href="#/graphics">Conjunto</DropdownItem>
-                    </DropdownMenu>
-                </Dropdown>
-            </Nav>
-        </Navbar>
-    </body>
-    <br />
-    <h1 class="titulo2">Ansiedad en regiones y suicidios en la capital.</h1>
-    <div style="width:800px; margin:0 auto;">
-        <figure class="highcharts-figure">
-            <div id="container" />
-        </figure>
-        <div id="uv-div" />
-    </div>
+  <Nav>
+    <NavItem>
+      <NavLink href="/">Página Principal</NavLink>
+    </NavItem>
+    <NavItem>
+      <NavLink href="#/games">Datos</NavLink>
+    </NavItem>
+  </Nav> 
+  <div id="chart"></div> 
 </main>
 
 <style>
-    .titulo2 {
-        color: #000000;
-        text-align: center;
-        font-size: 150%;
-    }
-    .mainDiv {
-        text-align: center;
-        margin: 20px;
-    }
 </style>
