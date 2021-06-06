@@ -64,10 +64,12 @@ let sumasintecho = 0;
               }
           }
       }
-      sintecho.forEach(function(numero){
-        sumasintecho+=numero;
-      });
+      
+      
       }
+      sintecho.forEach(function(numero){
+        sumasintecho+=numero;});
+        
       console.log(sumasintecho);
       console.log(bingomaq);
 
