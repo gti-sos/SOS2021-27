@@ -126,6 +126,14 @@ app.use(pathStress, function(req, res) {
   req.pipe(request(url)).pipe(res);
 });
 
+var pathPoverty='/api/v2/poverty_risks';
+var apiServerHost4 = 'http://sos2021-04.herokuapp.com';
+
+app.use(pathPoverty, function(req, res) {
+  var url = apiServerHost4 + req.baseUrl + req.url;
+  console.log('piped: '+req.baseUrl + req.url);
+  req.pipe(request(url)).pipe(res);
+});
 // --------------------------------------------------------------
 
 

@@ -25,11 +25,11 @@
 
     async function getData() {
         const porsiacaso = await fetch(
-            "/api/integration/anxiety_stats/loadInitialData"
+            "/api/integration/poverty_stats/loadInitialData"
         ); // La bd no termina de ser consistente, es necesario esto para que funcione siempre.
 
         const anxiety = await fetch(
-            "/api/integration/anxiety_stats"
+            "/api/integration/poverty_risks"
         );
         let anxietyJsons = [];
         anxietyJsons = await anxiety.json();
@@ -44,22 +44,22 @@
             for (let suicidio of suicideJsons) {
                 if (ansiedad.year == suicidio.year) {
                     if (
-                        (ansiedad.country == "Spain_Andalucia" &&
+                        (ansiedad.country == "España" &&
                             suicidio.province == "Seville") ||
-                        (ansiedad.country == "Spain_CValenciana" &&
+                        (ansiedad.country == "España" &&
                             suicidio.province == "Valencia") ||
-                        (ansiedad.country == "Spain_Madrid" &&
+                        (ansiedad.country == "España" &&
                             suicidio.province == "Madrid") ||
-                        (ansiedad.country == "Spain_Cataluña" &&
+                        (ansiedad.country == "España" &&
                             suicidio.province == "Barcelona")
                     ) {
 
                         keys.push(ansiedad.country + " - " + suicidio.province + "("+suicidio.year+")");
 
-                        ansHombres.push(ansiedad.anxiety_men);
+                        ansHombres.push(ansiedad.home_poverty_line);
                         suiHombres.push(parseInt(suicidio.bingo_site));
 
-                        ansMujeres.push(ansiedad.anxiety_women);
+                        ansMujeres.push(ansiedad.people_in_risk_of_poverty);
                         suiMujeres.push(parseInt(suicidio.catering_bingo_machine));
                     }
                 }
