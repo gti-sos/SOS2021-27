@@ -293,7 +293,8 @@
   </body>
   <br />
   <h1 class="titulo2">Pobreza relacionada con la actividad en juegos</h1>
-  <div id="myChart" class="chart--container"><a class="zc-ref" href="https://www.zingchart.com/">Powered by ZingChart</a></div>
+ 
+  <div id="myChart"></div>
 </main>
 
 <style>
