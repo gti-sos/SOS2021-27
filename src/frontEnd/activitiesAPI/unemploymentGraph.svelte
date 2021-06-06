@@ -65,13 +65,18 @@
               }
           }
       }
-
-      console.log(sintecho);
+      let sumasintecho=0;
+      sintecho.forEach(function(numero){
+        sumasintecho+=numero;
+      });
+      }
+      console.log(sumasintecho);
       console.log(bingomaq);
 
       console.log(personaspobresjeres);
       console.log(jugadoresjeres);
-  }
+
+  
 
   //  onMount(getData);
   async function loadGraph() {
