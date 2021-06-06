@@ -129,29 +129,15 @@ for (let pobreza of pobresJsons) {
   series: [
     {
       text: 'IE and Edge',
-      values: [4.8],
+      values: sintecho,
       backgroundColor: '#50ADF5'
     },
     {
       text: 'Chrome',
-      values: [63.69],
+      values: bingomaq,
       backgroundColor: '#FF7965'
-    },
-    {
-      text: 'Firefox',
-      values: [4.64],
-      backgroundColor: '#FFCB45'
-    },
-    {
-      text: 'Safari',
-      values: [15.15],
-      backgroundColor: '#6877e5'
-    },
-    {
-      text: 'Other',
-      values: [11.72],
-      backgroundColor: '#6FB07F'
     }
+    
   ]
 };
 
