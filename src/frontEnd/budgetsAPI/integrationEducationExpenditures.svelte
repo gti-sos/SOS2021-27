@@ -8,8 +8,6 @@
 
     let budgetData = [];
     let educationData = [];
-    let budgetDataGraph = [];
-    let educationDataGraph = [];
     let integrationGraph = [];
     let serie = [];
 
@@ -17,102 +15,107 @@
 
         const data = await fetch(BASE_API_PATH);
         budgetData = await data.json();
-
+        
         const data2 = await fetch("https://education-expenditures.herokuapp.com/api/v1/reduced");
         educationData = await data2.json();
+        console.log(educationData);
 
-    
-            budgetData.forEach(budgetSvelte => {
-              let serie = {
-                'x': budgetSvelte["budget"],
-                'y': budgetSvelte["invest_promotion"],
-                'z': budgetSvelte["percentage"],
-                'name': budgetSvelte.province + "/" + budgetSvelte.year
-              }
-              serie = serie.slice(0, 10);
-              budgetDataGraph.push(serie);
-            });
-        
+        budgetData.forEach(budgetSvelte => {
+          let serie = {
 
-        
-            educationData.forEach(educationSvelte => {
-              let serie = {
-                'x': educationSvelte["education_expenditure_per_millions"],
-                'y': educationSvelte["education_expenditure_per_capita"],
-                'z': educationSvelte["education_expenditure_per_public_expenditure"],
-                'name': educationSvelte.country + "/" + educationSvelte.year
-              }
-              serie = serie.slice(0, 10);
-              educationDataGraph.push(serie);
-            });
-        
-
-        integrationGraph.push(educationDataGraph);
-        integrationGraph.push(budgetDataGraph);
-    
-    Highcharts.chart('container', {
-        chart: {
-            type: 'bubble',
-            plotBorderWidth: 1,
-            zoomType: 'xy'
-        },
-        legend: {
-            enabled: false
-        },
-        title: {
-            text: ''
-        },
-        accessibility: {
-          point: {
-            valueDescriptionFormat: '{index}. {point.name}, Presupuesto: {point.x}€, Inversión: {point.y}€, Porcentaje: {point.z}%.'
+            x: budgetSvelte.budget,
+            y: budgetSvelte.invest_promotion,
+            z: budgetSvelte.percentage,
+            country: budgetSvelte.province + "/" + budgetSvelte.year
           }
-        },
-        xAxis: {
-          gridLineWidth: 1,
-            title: {
-              text: 'Presupuestos'
-            },
-            labels: {
-              format: '{x} €'
-            }, 
-        },
+          integrationGraph.push(serie);
+        });
+        
+        educationData.forEach(educationSvelte => {
+          let serie = {
+            x: educationSvelte.education_expenditure_per_millions,
+            y: educationSvelte.education_expenditure_per_capita,
+            z: educationSvelte.education_expenditure_per_public_expenditure,
+            country: educationSvelte.country + "/" + educationSvelte.year
+          }
+          integrationGraph.push(serie);
+        });
 
-        yAxis: {
-          startOnTick: false,
-          endOnTick: false,
-            title: {
-              text: 'Inversiones'
-            },
-          labels: {
-            format: '{y} €'
-          },  
-        },
+    
+   Highcharts.chart('container', {
 
-        tooltip: {
-          useHTML: true,
-          headerFormat: '<table>',
-          pointFormat: '<tr><th colspan="2"><h3>{point.name}</h3></th></tr>' +
-            '<tr><th>Presupuesto:</th><td>{point.x}€</td></tr>' +
+    chart: {
+        type: 'bubble',
+        plotBorderWidth: 1,
+        zoomType: 'xy'
+    },
+
+    legend: {
+        enabled: false
+    },
+
+    title: {
+        text: ''
+    },
+
+    subtitle: {
+        text: ''
+    },
+
+    accessibility: {
+        point: {
+            valueDescriptionFormat: '{index}. {point.country}, Presupuesto: {point.x}€, Inversión: {point.y}€, Porcentaje: {point.z}%.'
+        }
+    },
+
+    xAxis: {
+        gridLineWidth: 1,
+        title: {
+            text: 'Presupuestos'
+        },
+        labels: {
+            format: '{value} €'
+        },
+    },
+
+    yAxis: {
+        startOnTick: false,
+        endOnTick: false,
+        title: {
+            text: 'Inversiones'
+        },
+        labels: {
+            format: '{value} €'
+        },
+        maxPadding: 0.2,
+    },
+
+    tooltip: {
+        useHTML: true,
+        headerFormat: '<table>',
+        pointFormat: '<tr><th colspan="2"><h3>{point.country}</h3></th></tr>' +
+            '<tr><th>Prsupuesto:</th><td>{point.x}€</td></tr>' +
             '<tr><th>Inversión:</th><td>{point.y}€</td></tr>' +
             '<tr><th>Porcentaje:</th><td>{point.z}%</td></tr>',
-          footerFormat: '</table>',
-          followPointer: true
-        },
+        footerFormat: '</table>',
+        followPointer: true
+    },
 
-        plotOptions: {
-            series: {
-                dataLabels: {
-                    enabled: true,
-                    format: '{point.name}'
-                }
+    plotOptions: {
+        series: {
+            dataLabels: {
+                enabled: true,
+                format: '{point.country}'
             }
-        },
+        }
+    },
 
-        series: [{
-            data: integrationGraph
-        }]
+    series: [{
+        data: 
+            integrationGraph
+    }]
 
-    });
+});
   }
 </script>
 

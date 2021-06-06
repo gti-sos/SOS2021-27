@@ -146,9 +146,10 @@ app.use(pathUnemployment, function(req, res) {
 
 // --------------------------------------------------------------
 
+var hostUrl = 'http://sos2021-01.herokuapp.com';
 
-app.use("/proxy", function(request, response) {
-  var hostUrl = 'http://sos2021-01.herokuapp.com';
-  var url = hostUrl + request.url;
-  request.pipe(request(url)).pipe(response);
+app.use("/proxy", function(req, res) {
+  var url = hostUrl + req.baseUrl + req.url;
+  req.pipe(request(url)).pipe(res);
 });
+

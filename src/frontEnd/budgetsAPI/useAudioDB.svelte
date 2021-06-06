@@ -1,32 +1,25 @@
 <script>
-    import { onMount } from "svelte";
     import {Jumbotron, Navbar, Nav, NavItem, NavLink, NavbarBrand, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from 'sveltestrap';
 
     let isOpen = false;
 
-
-    let useData = [];
     let daftPunkDiscography = [];
-
-    let dataGraph = [];
+    let albums = [];
+    let names = [];
+    let years = [];
     
     async function loadGraphDaftPunkDiscography() {
-        const useData = await fetch("https://theaudiodb.com/api/v1/json/1/discography.php?s=daft%20punk", {
-	          "method": "GET",
-	            "headers": {
-		            "x-rapidapi-key": "1",
-		            "x-rapidapi-host": "theaudiodb.p.rapidapi.com"
-	            }
-        });
+
+        const useData = await fetch("https://theaudiodb.com/api/v1/json/1/discography.php?s=daft%20punk");
         daftPunkDiscography = await useData.json();
 
         daftPunkDiscography.forEach(daftPunkSvelte => {
-          dataGraph = {
-            name: daftPunkSvelte.album.strAlbum,
-            label: daftPunkSvelte.album.intYearReleased
-          }
-        })
-
+          albums.push(daftPunkSvelte.album);
+          }); 
+          albums.forEach(albumSvelte => {
+            names.push(albumSvelte.strAlbum);
+            years.push(albumSvelte.intYearReleased);
+        });
 
     Highcharts.chart('container', {
     chart: {
@@ -41,7 +34,7 @@
                 '<div>{viewTableButton}</div>'
         },
         point: {
-            valueDescriptionFormat: '{index}. {point.label}.'
+            valueDescriptionFormat: '{index}. {point.label}. {point.description}.'
         }
     },
     xAxis: {
@@ -51,10 +44,10 @@
         visible: false
     },
     title: {
-        text: ''
+        text: 'Timeline of Space Exploration'
     },
     subtitle: {
-        text: ''
+        text: 'Info source: <a href="https://en.wikipedia.org/wiki/Timeline_of_space_exploration">www.wikipedia.org</a>'
     },
     colors: [
         '#4185F3',
@@ -65,7 +58,31 @@
         '#363C46'
     ],
     series: [{
-       dataGraph
+        data: [{
+            name: 'First dogs',
+            label: '1951: First dogs in space',
+            description: '22 July 1951 First dogs in space (Dezik and Tsygan) '
+        }, {
+            name: 'Sputnik 1',
+            label: '1957: First artificial satellite',
+            description: '4 October 1957 First artificial satellite. First signals from space.'
+        }, {
+            name: 'First human spaceflight',
+            label: '1961: First human spaceflight (Yuri Gagarin)',
+            description: 'First human spaceflight (Yuri Gagarin), and the first human-crewed orbital flight'
+        }, {
+            name: 'First human on the Moon',
+            label: '1969: First human on the Moon',
+            description: 'First human on the Moon, and first space launch from a celestial body other than the Earth. First sample return from the Moon'
+        }, {
+            name: 'First space station',
+            label: '1971: First space station',
+            description: 'Salyut 1 was the first space station of any kind, launched into low Earth orbit by the Soviet Union on April 19, 1971.'
+        }, {
+            name: 'Apollo–Soyuz Test Project',
+            label: '1975: First multinational manned mission',
+            description: 'The mission included both joint and separate scientific experiments, and provided useful engineering experience for future joint US–Russian space flights, such as the Shuttle–Mir Program and the International Space Station.'
+        }]
     }]
 });
   }

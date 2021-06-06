@@ -296,30 +296,6 @@
 </main>
 
 <style>
-    .color {
-        color: #FFB833;
-    }
-
-    .titulo {
-        background-color: #FFB833;
-        color: #FFFFFF;
-    }
-
-    .fakeButton {
-        background-color: #FFB833;
-        border: none;
-        color: white;
-        padding: 16px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 14px;
-        transition-duration: 0.4s;
-        cursor: pointer;
-        margin-right: 20px;
-        border-radius: 12px;
-    }
-
     .alertOK {
         margin: 0 auto;
         display: table;
@@ -377,18 +353,4 @@
         }
     }
 
-    .closebtn {
-        margin-left: 15px;
-        color: white;
-        font-weight: bold;
-        float: right;
-        font-size: 22px;
-        line-height: 20px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    .closebtn:hover {
-    color: black;
-    }
 </style>

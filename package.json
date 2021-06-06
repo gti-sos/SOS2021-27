@@ -38,6 +38,7 @@
     "cors": "^2.8.5",
     "d3": "^6.7.0",
     "express": "^4.17.1",
+    "highcharts": "^9.1.1",
     "nedb": "^1.8.0",
     "request": "^2.88.2",
     "svelte-spa-router": "^3.1.0",

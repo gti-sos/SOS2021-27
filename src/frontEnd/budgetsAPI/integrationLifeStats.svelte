@@ -12,7 +12,7 @@
     let lifePowerDataGraph = [];
     let lifeQualityDataGraph = [];
 
-    let proxy = "/proxy/";
+    let proxy = "/proxy";
 
     async function loadGraphLifeStats() {
 
@@ -22,11 +22,12 @@
         const data2 = await fetch(proxy + "/api/v2/life-stats");
         lifeData = await data2.json();
 
+        console.log(lifeData);
         
             budgetData.forEach(budgetSvelte => {
               let serie = {
-                'name': budgetSvelte.province + "/" + budgetSvelte.year,
-                'value': budgetSvelte["budget"]
+                name: budgetSvelte.province + "/" + budgetSvelte.year,
+                value: budgetSvelte.budget
               };
               budgetDataGraph.push(serie);
             });
@@ -35,8 +36,8 @@
         
             lifeData.forEach(lifeSvelte => {
               let serie = {
-                'name': lifeSvelte.country + "/" + lifeSvelte.date,
-                'value': lifeSvelte["purchasing_power_index"]
+                name: lifeSvelte.country + "/" + lifeSvelte.date,
+                value: lifeSvelte.purchasing_power_index
               };
               lifePowerDataGraph.push(serie);  
             });
@@ -45,8 +46,8 @@
         
             lifeData.forEach(lifeSvelte => {
               let serie = {
-                'name': lifeSvelte.country + "/" + lifeSvelte.date,
-                'value': lifeSvelte["quality_life_index"]
+                name: lifeSvelte.country + "/" + lifeSvelte.date,
+                value: lifeSvelte.quality_life_index
               };
               lifeQualityDataGraph.push(serie);  
             });
