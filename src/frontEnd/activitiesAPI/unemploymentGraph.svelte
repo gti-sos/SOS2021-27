@@ -74,6 +74,8 @@ for (let pobreza of pobresJsons) {
   //  onMount(getData);
   async function loadGraph() {
     getData().then(() => {
+      ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"]; // CHART CONFIG
+
       let chartConfig = {
   type: 'pie',
   backgroundColor: '#2B313B',
@@ -230,17 +232,22 @@ zingchart.render({
   <br />
   <h1 class="titulo2">Desempleo relacionada con la actividad en juegos</h1>
  
-  <div id="myChart"></div>
+  <div id="myChart" class="chart--container"></div>>
 </main>
 
 <style>
-  .titulo2 {
-      color: #000000;
-      text-align: center;
-      font-size: 150%;
+  @import 'https://fonts.googleapis.com/css?family=Open+Sans';
+  .zc-body {
+    background-color: #2B313B;
   }
-  .mainDiv {
-      text-align: center;
-      margin: 20px;
+
+  .chart--container {
+    height: 100%;
+    width: 100%;
+    min-height: 530px;
+  }
+
+  .zc-ref {
+    display: none;
   }
 </style>
