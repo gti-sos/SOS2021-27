@@ -1,247 +1,110 @@
 <script>
-    import { onMount } from "svelte";
-
-    import {
-        Jumbotron,
-        Navbar,
-        Nav,
-        NavItem,
-        NavLink,
-        NavbarBrand,
-        Dropdown,
-        DropdownToggle,
-        DropdownMenu,
-        DropdownItem,
-    } from "sveltestrap";
-    let isOpen = false;
-
-    var pobres = [];
-    var locbingo = [];
-
-    var casaspob = [];
-    var localbingo = [];
-
-    var keys = [];
-
-    async function getData() {
-        const porsiacaso = await fetch(
-            "https://endpoint-poverty-risks.herokuapp.com/api/v1/loadInitialData"
-        ); // La bd no termina de ser consistente, es necesario esto para que funcione siempre.
-
-        const anxiety = await fetch(
-            "https://endpoint-poverty-risks.herokuapp.com/api/v1"
-        );
-        let anxietyJsons = [];
-        anxietyJsons = await anxiety.json();
-
-        const suicide = await fetch(
-            "https://sos2021-27.herokuapp.com/api/v2/azar-games-and-bet-activities/"
-        );
-        let suicideJsons = [];
-        suicideJsons = await suicide.json();
-
-        for (let ansiedad of anxietyJsons) {
-            for (let suicidio of suicideJsons) {
-                if (ansiedad.year == suicidio.year) {
-                    if (
-                        (ansiedad.country == "España" &&
-                            suicidio.province == "SEVILLE") ||
-                        (ansiedad.country == "España" &&
-                            suicidio.province == "Valencia") ||
-                        (ansiedad.country == "España" &&
-                            suicidio.province == "Madrid") ||
-                        (ansiedad.country == "España" &&
-                            suicidio.province == "Barcelona")
-                    ) {
-
-                        switch(suicidio.province){
-                            case "Barcelona":
-                                keys.push(ansiedad.country + " - " + suicidio.province + "("+suicidio.year+")")
-                                break;
-                            case "SEVILLE":
-                                keys.push(ansiedad.country + " - " + suicidio.province + "("+suicidio.year+")")
-                                break;
-                            default:
-                                keys.push(ansiedad.country + " - " + suicidio.province + "("+suicidio.year+")")
-                                break;
-
-                        }
-
-                        pobres.push(ansiedad.people_in_risk_of_poverty);
-                        locbingo.push(parseInt(bingo_site));
-
-                        casaspob.push(ansiedad.home_poverty_line);
-                        localbingo.push(parseInt(suicidio.catering_bingo_machine));
-                    }
-                }
-            }
+    import { pop }from "svelte-spa-router";
+    import { Button } from "sveltestrap";
+    import Dygraph from 'dygraphs';
+    //Uso API grupo 11
+    const BASE_API_PATH = "/api/v2";
+    var povertyStats = [];
+    var alcoholData = [];
+    var errorMsg = "";
+    console.log("Cargando página...");
+    async function getStats() {
+        console.log("Fetching alcohol data...");
+        const res = await fetch(BASE_API_PATH + "/alcohol-consumption-stats/loadInitialData");
+        if (res.ok) {
+          console.log("OK");
+          alcoholData = await res.json();
+          console.log("Datos alcohol recibidos ahora mismo")
+          console.log(alcoholData);
+          console.log(`We have received ${alcoholData.length} alcohol-consumption-stats.`);
+        } else {
+          console.log("Error");
+          errorMsg = "Error al cargar los datos de la API";
         }
-
-        console.log(pobres);
-        console.log(locbingo);
-
-        console.log(casaspob);
-        console.log(localbingo);
     }
-
-    //  onMount(getData);
+    async function getPovertyStats() {
+        console.log("Fetching poverty data...");
+        await fetch("https://endpoint-poverty-risks.herokuapp.com/api/v1/loadInitialData");
+        const res = await fetch("https://endpoint-poverty-risks.herokuapp.com/api/v1/");
+        console.log(res);
+        if (res.ok) {
+          const json = await res.json();
+          povertyStats = json;
+          console.log(`We have received ${povertyStats.length} poverty-stats.`);
+          console.log(povertyStats);
+          console.log("Ok");
+        } else {
+          errorMsg = "Error recuperando datos de pobreza";
+          console.log("ERROR!" + errorMsg);
+        }
+    }
     async function loadGraph() {
-        getData().then(() => {
-
-            
-            Highcharts.chart("container", {
-                title: {
-                    text: "",
-                },
-                xAxis: {
-                    categories: keys,
-                },
-                labels: {
-                    items: [
-                        {
-
-                            style: {
-                                left: "50px",
-                                top: "18px",
-                                color:
-                                    // theme
-                                    (Highcharts.defaultOptions.title.style &&
-                                        Highcharts.defaultOptions.title.style
-                                            .color) ||
-                                    "black",
-                            },
-                        },
-                    ],
-                },
-                series: [
-                    {
-                        type: "spline",
-                        name: "Ansiedad en la región, Hombres.",
-                        data: pobres,
-                        marker: {
-                            lineWidth: 2,
-                            lineColor: Highcharts.getOptions().colors[3],
-                            fillColor: "white",
-                        },
-                    },
-                    {
-                        type: "spline",
-                        name: "Suicidio en la capital, Hombres.",
-                        data: locbingo,
-                        marker: {
-                            lineWidth: 2,
-                            lineColor: Highcharts.getOptions().colors[3],
-                            fillColor: "white",
-                        },
-                    },
-                    {
-                        type: "spline",
-                        name: "Ansiedad en la región, Mujeres.",
-                        data: casaspob,
-                        marker: {
-                            lineWidth: 2,
-                            lineColor: Highcharts.getOptions().colors[3],
-                            fillColor: "white",
-                        },
-                    },
-                    {
-                        type: "spline",
-                        name: "Suicidios en la capital, Mujeres.",
-                        data: localbingo,
-                        marker: {
-                            lineWidth: 2,
-                            lineColor: Highcharts.getOptions().colors[3],
-                            fillColor: "white",
-                        },
-                    }
-                ]
+      console.log("Inicio getStats loadGraph");
+      await getPovertyStats();
+      await getStats();
+      console.log('Datos alcohol recibidos para pintar el grafo:');
+      console.log(alcoholData);
+      console.log('Datos pobreza recibidos para pintar el grafo:');
+      console.log(povertyStats);
+      let mediaPobreza = [];
+      for (let index = 0; index < povertyStats.length; index++) {
+        mediaPobreza.push(povertyStats[index].people_in_risk_of_poverty);
+      }// Calcular media y representarlo en una linea en el grafico , ampliar los campos del grafico a 4
+      let arrayDatos = [];
+      for (let index = 0; index < alcoholData.length; index++) {
+        let separa = alcoholData[index].ageRange.split('-'); 
+        let parseo = parseInt(separa[1]);
+        arrayDatos.push([parseo,alcoholData[index].alcoholPrematureDeath,povertyStats[index].percentage_risk_of_poverty]);
+        
+      } // Etiqueta (Valorx) Numero asociado al rango de edad, Dato grafica muertes , Dato grafica ansiedad
+      console.log("Array de datos para el grafo:");
+      console.log(arrayDatos);
+      new Dygraph(document.getElementById("grafo1"),arrayDatos,
+      { 
+              labels:["RangoEdad","Muertes","Porcentaje riesgo de pobreza mundial"],
+              legend: 'always',
+              title: 'Muertes prematuras y ansiedad España 2017',
+              titleHeight: 32,
+              ylabel: 'Valor',
+              xlabel: 'Rango de edad'
+    
             });
-        });
-    }
-</script>
-
-<svelte:head>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/series-label.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script
-        src="https://code.highcharts.com/modules/accessibility.js"
-        on:load={loadGraph}></script>
-</svelte:head>
-
-<main>
-    <body>
-        <Jumbotron class="p-3" style="background-color: #FFB833">
-            <h1 class="titulo; mainDiv" style="color: white">
-                Integración Api Ansiedad
-            </h1>
-        </Jumbotron>
-        <Navbar
-            style="background-color: #FFB833; color:white;"
-            light
-            expand="lg"
-        >
-            <NavbarBrand href="#/">INICIO</NavbarBrand>
-            <Nav navbar>
-                <NavItem>
-                    <NavLink href="#/suicide-records"
-                        >Registro de suicidios</NavLink
-                    >
-                </NavItem>
-                <NavItem>
-                    <NavLink
-                        href="#/province-budget-and-investment-in-social-promotion"
-                        >Presupuesto/Inversión</NavLink
-                    >
-                </NavItem>
-                <NavItem>
-                    <NavLink href="#/azar-games-and-bet-activities"
-                        >Actividad en loteria</NavLink
-                    >
-                </NavItem>
-                <NavItem>
-                    <NavLink href="#/integrations">Integraciones</NavLink>
-                </NavItem>
-                <Dropdown nav {isOpen} toggle={() => (isOpen = !isOpen)}>
-                    <DropdownToggle nav caret>Gráficas</DropdownToggle>
-                    <DropdownMenu end>
-                        <DropdownItem href="#/graphics/suicide-records"
-                            >Registro de suicidios</DropdownItem
-                        >
-                        <DropdownItem
-                            href="#/graphics/province-budget-and-investment-in-social-promotion"
-                            >Presupuesto/Inversión</DropdownItem
-                        >
-                        <DropdownItem
-                            href="#/graphics/azar-games-and-bet-activities"
-                            >Actividad en loteria</DropdownItem
-                        >
-                        <DropdownItem divider />
-                        <DropdownItem href="#/graphics">Conjunto</DropdownItem>
-                    </DropdownMenu>
-                </Dropdown>
-            </Nav>
-        </Navbar>
-    </body>
-    <br />
-    <h1 class="titulo2">Ansiedad en regiones y suicidios en la capital.</h1>
-    <div style="width:800px; margin:0 auto;">
-        <figure class="highcharts-figure">
-            <div id="container" />
-        </figure>
-        <div id="uv-div" />
+    };
+  </script>
+  
+  <svelte:head>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.js" on:load={loadGraph}></script>
+  </svelte:head>
+  
+  <main>
+    <div>
+      <h2>Integración API SOS poverty-stats</h2>
     </div>
-</main>
-
-<style>
-    .titulo2 {
-        color: #000000;
-        text-align: center;
-        font-size: 150%;
+    {#if errorMsg}
+      <p>{errorMsg}</p>
+    {:else}
+    <style>.dygraph-legend { text-align: right; background: none; }
+        #grafo1 .dygraph-label { font-family: Georgia, Verdana, serif; }
+        #grafo1 .dygraph-title { font-size: 20px; text-shadow: gray 2px 2px 2px; margin: -30px 0px 0px 50px}
+        #grafo1 .dygraph-ylabel { font-size: 18px; text-shadow: gray -2px 2px 2px; margin: 0px 0px 0px 90px }
+        #grafo1 .dygraph-xlabel { font-size: 18px; text-shadow: gray -2px 2px 2px; margin: 20px 0px 0px 0px }
+        .chart { border: 1px hidden black; margin: 50px 5px 5px 400px; padding: 2px; }
+    </style>
+    <div  id="grafo1" class="chart" style="width:600px; height:300px;"></div>
+    <br>
+    <br>
+    <h6>Gráfico en dónde se muestra el riesgo de pobreza junto con las muertes prematuras</h6>
+    {/if}
+    <Button outline color="secondary" on:click="{pop}">Atrás</Button>
+  </main>
+  
+  <style>
+    main {
+      text-align: center;
+      padding: 1em;
+      margin: 0 auto;
     }
-    .mainDiv {
-        text-align: center;
-        margin: 20px;
+    div {
+      margin-bottom: 15px;
     }
-</style>
+  </style>
