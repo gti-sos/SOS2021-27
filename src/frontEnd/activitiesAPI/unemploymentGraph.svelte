@@ -56,10 +56,10 @@
 
                       keys.push(pobreza.country + " - " + ludopatia.province + "("+ludopatia.year+")");
 
-                      sintecho.push(pobreza.knoperc);
+                      sintecho.push(parseInt(pobreza.knoperc));
                       bingomaq.push(parseInt(ludopatia.bingo_site));
 
-                      personaspobresjeres.push(pobreza.intperc);
+                      personaspobresjeres.push(parseInt(pobreza.intperc));
                       jugadoresjeres.push(parseInt(ludopatia.catering_bingo_machine));
                   }
               }
@@ -78,73 +78,81 @@
       getData().then(() => {
 
           
-          Highcharts.chart("container", {
-              title: {
-                  text: "",
-              },
-              xAxis: {
-                  categories: keys,
-              },
-              labels: {
-                  items: [
-                      {
+        Highcharts.chart('container', {
+    chart: {
+        zoomType: 'xy'
+    },
+    title: {
+        text: 'Temperature vs Rainfall'
+    },
+    xAxis: [{
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    }],
+    yAxis: [{ // Primary yAxis
+        labels: {
+            format: '{value} °C',
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        },
+        title: {
+            text: 'Temperature',
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        }
+    }, { // Secondary yAxis
+        title: {
+            text: 'Rainfall',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        labels: {
+            format: '{value} mm',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        opposite: true
+    }],
 
-                          style: {
-                              left: "50px",
-                              top: "18px",
-                              color:
-                                  // theme
-                                  (Highcharts.defaultOptions.title.style &&
-                                      Highcharts.defaultOptions.title.style
-                                          .color) ||
-                                  "black",
-                          },
-                      },
-                  ],
-              },
-              series: [
-                  {
-                      type: "lollipop",
-                      name: "pobreza en el hogar ",
-                      data: sintecho,
-                      marker: {
-                          lineWidth: 2,
-                          lineColor: Highcharts.getOptions().colors[3],
-                          fillColor: "white",
-                      },
-                  },
-                  {
-                      type: "lollipop",
-                      name: "Locales de bingo",
-                      data: bingomaq,
-                      marker: {
-                          lineWidth: 2,
-                          lineColor: Highcharts.getOptions().colors[3],
-                          fillColor: "white",
-                      },
-                  },
-                  {
-                      type: "lollipop",
-                      name: "numero de pobres",
-                      data: personaspobresjeres,
-                      marker: {
-                          lineWidth: 2,
-                          lineColor: Highcharts.getOptions().colors[3],
-                          fillColor: "white",
-                      },
-                  },
-                  {
-                      type: "lollipop",
-                      name: "Jugadores activos.",
-                      data: jugadoresjeres,
-                      marker: {
-                          lineWidth: 2,
-                          lineColor: Highcharts.getOptions().colors[3],
-                          fillColor: "white",
-                      },
-                  }
-              ]
-          });
+    tooltip: {
+        shared: true
+    },
+
+    series: [{
+        name: 'maquinas bingo',
+        type: 'column',
+        yAxis: 1,
+        data: bingomaq,
+        tooltip: {
+            pointFormat: '<span style="font-weight: bold; color: {series.color}">{series.name}</span>: <b>{point.y:.1f} mm</b> '
+        }
+    }, {
+        name: 'Personas desempleadas',
+        type: 'errorbar',
+        yAxis: 1,
+        data: sintecho,
+        tooltip: {
+            pointFormat: '(error range: {point.low}-{point.high} mm)<br/>'
+        }
+    }, {
+        name: 'otra cosa',
+        type: 'spline',
+        data: jugadoresjeres,
+        tooltip: {
+            pointFormat: '<span style="font-weight: bold; color: {series.color}">{series.name}</span>: <b>{point.y:.1f}°C</b> '
+        }
+    }, {
+        name: 'Temperature error',
+        type: 'errorbar',
+        data: [[6, 8], [5.9, 7.6], [9.4, 10.4], [14.1, 15.9], [18.0, 20.1], [21.0, 24.0], [23.2, 25.3], [26.1, 27.8], [23.2, 23.9], [18.0, 21.1], [12.9, 14.0], [7.6, 10.0]],
+        tooltip: {
+            pointFormat: '(error range: {point.low}-{point.high}°C)<br/>'
+        }
+    }]
+});
       });
   }
 </script>
@@ -157,6 +165,8 @@
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/dumbbell.js"></script>
 <script src="https://code.highcharts.com/modules/lollipop.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
   <script
       src="https://code.highcharts.com/modules/accessibility.js"
       on:load={loadGraph}></script>
