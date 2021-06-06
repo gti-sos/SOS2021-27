@@ -42,8 +42,8 @@
           for (let ludopatia of activitiesJsons) {
               if (pobreza.country == "Spain") {
                   if (
-                      (
-                          ludopatia.province == "Barcelona")
+                      
+                          ludopatia.province == "Barcelona"
                   ) {
 
                       keys.push(pobreza.country + " - " + ludopatia.province );
@@ -64,8 +64,7 @@
       console.log(sintecho);
       console.log(bingomaq);
 
-      console.log(personaspobresjeres);
-      console.log(jugadoresjeres);
+
 
   
 
