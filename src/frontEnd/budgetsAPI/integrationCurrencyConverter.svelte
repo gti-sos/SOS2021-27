@@ -31,7 +31,7 @@
         let currencyConverted = [];
         budgetEuros.forEach(euros => {
 
-        const externalData = await fetch("https://currency-exchange.p.rapidapi.com/exchange?to=USD&from=EUR&q=" + euros, {
+        const externalData = fetch("https://currency-exchange.p.rapidapi.com/exchange?to=USD&from=EUR&q=" + euros, {
 	        "method": "GET",
 	          "headers": {
 		          "x-rapidapi-key": "b92358230bmshe53cee188c483ecp147ff1jsn450fa502bd55",
