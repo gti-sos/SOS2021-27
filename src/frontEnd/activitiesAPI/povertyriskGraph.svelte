@@ -105,7 +105,7 @@
                 series: [
                     {
                         type: "spline",
-                        name: "Ansiedad en la región, Hombres.",
+                        name: "pobreza en el hogar ",
                         data: sintecho,
                         marker: {
                             lineWidth: 2,
@@ -115,7 +115,7 @@
                     },
                     {
                         type: "spline",
-                        name: "Suicidio en la capital, Hombres.",
+                        name: "Locales de bingo",
                         data: bingomaq,
                         marker: {
                             lineWidth: 2,
@@ -125,7 +125,7 @@
                     },
                     {
                         type: "spline",
-                        name: "Ansiedad en la región, Mujeres.",
+                        name: "numero de pobres",
                         data: personaspobresjeres,
                         marker: {
                             lineWidth: 2,
@@ -135,7 +135,7 @@
                     },
                     {
                         type: "spline",
-                        name: "Suicidios en la capital, Mujeres.",
+                        name: "Jugadores activos.",
                         data: jugadoresjeres,
                         marker: {
                             lineWidth: 2,
