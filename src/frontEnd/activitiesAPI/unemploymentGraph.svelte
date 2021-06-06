@@ -76,101 +76,171 @@
   //  onMount(getData);
   async function loadGraph() {
       getData().then(() => {
-
+        let chartConfig = {
+      gui: {
+        contextMenu: {
+          backgroundColor: '#306EAA', // sets background for entire contextMenu
+          button: {
+            backgroundColor: '#2D66A4',
+            lineColor: '#2D66A4',
+            visible: true
+          },
+          docked: true,
+          gear: {
+            alpha: 1,
+            backgroundColor: '#2D66A4'
+          },
+          item: {
+            backgroundColor: '#306EAA',
+            borderColor: '#306EAA',
+            borderWidth: '0px',
+            color: '#fff',
+            fontFamily: 'Lato'
+          },
+          position: 'right'
+        }
+      },
+      graphset: [{
+        type: 'ring',
+        backgroundColor: '#FBFCFE',
+        title: {
+          text: 'numero de locales de  bingo',
+          padding: '15px',
+          fontColor: '#1E5D9E',
+          fontFamily: 'Lato',
+          fontSize: '14px'
+        },
+        subtitle: {
+          text: 'varios años',
+          padding: '5px',
+          fontColor: '#777',
+          fontFamily: 'Lato',
+          fontSize: '12px'
+        },
+        legend: {
+          adjustLayout: true,
+          align: 'center',
+          backgroundColor: '#FBFCFE',
+          borderWidth: '0px',
+          item: {
+            cursor: 'pointer',
+            fontColor: '#777',
+            fontSize: '12px',
+            offsetX: '-6px'
+          },
+          marker: {
+            type: 'circle',
+            borderWidth: '0px',
+            cursor: 'pointer',
+            size: 5
+          },
+          mediaRules: [{
+            maxWidth: '500px',
+            visible: false
+          }],
+          toggleAction: 'remove',
+          verticalAlign: 'bottom'
+        },
+        plot: {
+          valueBox: [{
+              type: 'all',
+              text: '%t',
+              placement: 'out'
+            },
+            {
+              type: 'all',
+              text: '%npv%',
+              placement: 'in'
+            }
+          ],
+          animation: {
+            effect: 'ANIMATION_EXPAND_VERTICAL',
+            sequence: 'ANIMATION_BY_PLOT_AND_NODE'
+          },
+          backgroundColor: '#FBFCFE',
+          borderWidth: '0px',
+          hoverState: {
+            cursor: 'hand',
+          },
+          slice: '60%'
+        },
+        plotarea: {
+          margin: '70px 0px 10px 0px',
+          backgroundColor: 'transparent',
+          borderRadius: '10px',
+          borderWidth: '0px'
+        },
+        scaleR: {
+          refAngle: 270
+        },
+        tooltip: {
+          text: '<span style="color:%color">Page Url: %t</span><br><span style="color:%color">Pageviews: %v</span>',
+          anchor: 'c',
+          backgroundColor: 'none',
+          borderWidth: '0px',
+          fontSize: '16px',
+          mediaRules: [{
+            maxWidth: '500px',
+            y: '54%'
+          }],
+          sticky: true,
+          thousandsSeparator: ',',
+          x: '50%',
+          y: '50%'
+        },
+        noData: {
+          text: 'No Selection',
+          alpha: .6,
+          backgroundColor: '#20b2db',
+          bold: true,
+          fontSize: '18px',
+          textAlpha: .9
+        },
+        series: [{
+            text: 'Jugadores de bingo',
+            values: bingomaq,
+            backgroundColor: '#00BAF2',
+            lineColor: '#00BAF2',
+            lineWidth: '1px',
+            marker: {
+              backgroundColor: '#00BAF2'
+            }
+          },
+          {
+            text: 'ratio desempleo',
+            values: sintecho,
+            backgroundColor: '#E80C60',
+            lineColor: '#E80C60',
+            lineWidth: '1px',
+            marker: {
+              backgroundColor: '#E80C60'
+            }
+          }
           
-        Highcharts.chart('container', {
-    chart: {
-        zoomType: 'xy'
-    },
-    title: {
-        text: 'Temperature vs Rainfall'
-    },
-    xAxis: [{
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    }],
-    yAxis: [{ // Primary yAxis
-        labels: {
-            format: '{value} °C',
-            style: {
-                color: Highcharts.getOptions().colors[1]
-            }
-        },
-        title: {
-            text: 'Temperature',
-            style: {
-                color: Highcharts.getOptions().colors[1]
-            }
-        }
-    }, { // Secondary yAxis
-        title: {
-            text: 'Rainfall',
-            style: {
-                color: Highcharts.getOptions().colors[0]
-            }
-        },
-        labels: {
-            format: '{value} mm',
-            style: {
-                color: Highcharts.getOptions().colors[0]
-            }
-        },
-        opposite: true
-    }],
+        ]
+      }]
+    };
 
-    tooltip: {
-        shared: true
-    },
-
-    series: [{
-        name: 'maquinas bingo',
-        type: 'column',
-        yAxis: 1,
-        data: bingomaq,
-        tooltip: {
-            pointFormat: '<span style="font-weight: bold; color: {series.color}">{series.name}</span>: <b>{point.y:.1f} mm</b> '
-        }
-    }, {
-        name: 'Personas desempleadas',
-        type: 'errorbar',
-        yAxis: 1,
-        data: sintecho,
-        tooltip: {
-            pointFormat: '(error range: {point.low}-{point.high} mm)<br/>'
-        }
-    }, {
-        name: 'otra cosa',
-        type: 'spline',
-        data: jugadoresjeres,
-        tooltip: {
-            pointFormat: '<span style="font-weight: bold; color: {series.color}">{series.name}</span>: <b>{point.y:.1f}°C</b> '
-        }
-    }, {
-        name: 'Temperature error',
-        type: 'errorbar',
-        data: [[6, 8], [5.9, 7.6], [9.4, 10.4], [14.1, 15.9], [18.0, 20.1], [21.0, 24.0], [23.2, 25.3], [26.1, 27.8], [23.2, 23.9], [18.0, 21.1], [12.9, 14.0], [7.6, 10.0]],
-        tooltip: {
-            pointFormat: '(error range: {point.low}-{point.high}°C)<br/>'
-        }
-    }]
-});
+    zingchart.render({
+      id: 'myChart',
+      data: chartConfig,
+      height: '100%',
+      width: '100%',
+    });
+          
+          
       });
   }
 </script>
 
 <svelte:head>
-  <script src="https://code.highcharts.com/highcharts.js"></script>
-  <script src="https://code.highcharts.com/modules/series-label.js"></script>
-  <script src="https://code.highcharts.com/modules/exporting.js"></script>
-  <script src="https://code.highcharts.com/modules/export-data.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
-<script src="https://code.highcharts.com/modules/dumbbell.js"></script>
-<script src="https://code.highcharts.com/modules/lollipop.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
-<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
   <script
-      src="https://code.highcharts.com/modules/accessibility.js"
-      on:load={loadGraph}></script>
+    src="https://cdn.zingchart.com/zingchart.min.js"
+    on:load={loadGraph}></script>
 </svelte:head>
+
+
 
 <main>
   <body>
@@ -228,15 +298,7 @@
   </body>
   <br />
   <h1 class="titulo2">Pobreza relacionada con la actividad en juegos</h1>
-  <div style="width:800px; margin:0 auto;">
-      <figure class="highcharts-figure">
-          <div id="container" />
-      </figure>
-      <div id="uv-div" />
-      <p style="centrado">
-          Gráfica que muestra la pobreza en el hogar y el numero de pobres frente a los locales de bingo y jugadores activos.
-      </p>
-  </div>
+  <div id="myChart" class="chart--container"><a class="zc-ref" href="https://www.zingchart.com/">Powered by ZingChart</a></div>
 </main>
 
 <style>
