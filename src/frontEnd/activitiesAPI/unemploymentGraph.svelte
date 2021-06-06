@@ -40,11 +40,11 @@
 
       for (let pobreza of pobresJsons) {
           for (let ludopatia of activitiesJsons) {
-              if (pobreza.country == "Spain") {
-                  if (
+              if (pobreza.country == "Spain" && ludopatia.province == "Barcelona") {
+                  
                       
-                          ludopatia.province == "Barcelona"
-                  ) {
+                          
+                   
 
                       keys.push(pobreza.country + " - " + ludopatia.province );
 
@@ -52,7 +52,7 @@
                       bingomaq.push(parseInt(ludopatia.bingo_site));
 
                     
-                  }
+                  
               }
           }
       }
