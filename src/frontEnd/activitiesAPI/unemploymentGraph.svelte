@@ -38,24 +38,26 @@
       );
       let activitiesJsons = [];
       activitiesJsons = await activities.json();
+for (let pobreza of pobresJsons) {
+            for (let ludopatia of activitiesJsons) {
+                if (pobreza.year != ludopatia.year) {
+                    if (
+                        (pobreza.country == "Spain" &&
+                            ludopatia.province == "Seville" && ludopatia.year == "2018")
+                    ) {
 
-      for (let pobreza of pobresJsons) {
-          for (let ludopatia of activitiesJsons) {
-              if ((pobreza.country == "Spain" ) && (ludopatia.province == "Barcelona") && (ludopatia.year == "2017")) {
+                        keys.push(pobreza.country + " - " + ludopatia.province + "("+ludopatia.year+")");
 
-                      keys.push(pobreza.country + " - " + ludopatia.province );
+                        sintecho.push(pobreza.knoperc);
+                        bingomaq.push(parseInt(ludopatia.bingo_site));
 
-                      sintecho.push(parseInt(pobreza.knoperc));
-                      bingomaq.push(parseInt(ludopatia.bingo_site));
-
-                    
-                  
-              }
-          }
-      }
+                       
+                    }
+                }
+            }
       
-      
-      }
+    
+          }}
       
 
       console.log(sintecho);
