@@ -78,73 +78,47 @@
       getData().then(() => {
 
           
-          Highcharts.chart("container", {
-              title: {
-                  text: "",
-              },
-              xAxis: {
-                  categories: keys,
-              },
-              labels: {
-                  items: [
-                      {
+        Highcharts.chart('container', {
+    chart: {
+        zoomType: 'xy'
+    },
+    title: {
+        text: 'Desempleo frente a actividad ludica'
+    },
+    xAxis: [{
+        categories: keys
+    }],
+    
 
-                          style: {
-                              left: "50px",
-                              top: "18px",
-                              color:
-                                  // theme
-                                  (Highcharts.defaultOptions.title.style &&
-                                      Highcharts.defaultOptions.title.style
-                                          .color) ||
-                                  "black",
-                          },
-                      },
-                  ],
-              },
-              series: [
-                  {
-                      type: "lollipop",
-                      name: "pobreza en el hogar ",
-                      data: sintecho,
-                      marker: {
-                          lineWidth: 2,
-                          lineColor: Highcharts.getOptions().colors[3],
-                          fillColor: "white",
-                      },
-                  },
-                  {
-                      type: "lollipop",
-                      name: "Locales de bingo",
-                      data: bingomaq,
-                      marker: {
-                          lineWidth: 2,
-                          lineColor: Highcharts.getOptions().colors[3],
-                          fillColor: "white",
-                      },
-                  },
-                  {
-                      type: "lollipop",
-                      name: "numero de pobres",
-                      data: personaspobresjeres,
-                      marker: {
-                          lineWidth: 2,
-                          lineColor: Highcharts.getOptions().colors[3],
-                          fillColor: "white",
-                      },
-                  },
-                  {
-                      type: "lollipop",
-                      name: "Jugadores activos.",
-                      data: jugadoresjeres,
-                      marker: {
-                          lineWidth: 2,
-                          lineColor: Highcharts.getOptions().colors[3],
-                          fillColor: "white",
-                      },
-                  }
-              ]
-          });
+    tooltip: {
+        shared: true
+    },
+
+    series: [{
+        name: 'Jugadores de bingo',
+        type: 'column',
+        yAxis: 1,
+        data: bingomaq,
+        tooltip: {
+            pointFormat: '<span style="font-weight: bold; color: {series.color}">{series.name}</span>: <b>{point.y:.1f} mm</b> '
+        }
+    }, {
+        name: 'Ratio desempleo knoperc',
+        type: 'errorbar',
+        yAxis: 1,
+        data: knoperc,
+        tooltip: {
+            pointFormat: '(error range: {point.low}-{point.high} mm)<br/>'
+        }
+    }, {
+        name: 'ratio desempleo intperc ',
+        type: 'errorbar',
+        data: intperc,
+        tooltip: {
+            pointFormat: '<span style="font-weight: bold; color: {series.color}">{series.name}</span>: <b>{point.y:.1f}°C</b> '
+        }
+    }, ]
+});
       });
   }
 </script>
@@ -157,6 +131,8 @@
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/dumbbell.js"></script>
 <script src="https://code.highcharts.com/modules/lollipop.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
   <script
       src="https://code.highcharts.com/modules/accessibility.js"
       on:load={loadGraph}></script>
