@@ -134,6 +134,16 @@ app.use(pathPoverty, function(req, res) {
   console.log('piped: '+req.baseUrl + req.url);
   req.pipe(request(url)).pipe(res);
 });
+
+var pathUnemployment='/api/v1/unemployment-stats';
+var apiServerHost4 = 'http://sos2021-23.herokuapp.com';
+
+app.use(pathUnemployment, function(req, res) {
+  var url = apiServerHost4 + req.baseUrl + req.url;
+  console.log('piped: '+req.baseUrl + req.url);
+  req.pipe(request(url)).pipe(res);
+});
+
 // --------------------------------------------------------------
 
 
