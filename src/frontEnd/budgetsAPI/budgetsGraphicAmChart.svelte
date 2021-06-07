@@ -83,9 +83,11 @@
     </body>
     <br>
     <h1 class="titulo2"> Gráfica de datos librería amCharts </h1>
+    <div  class="centered">
     <div id="chartdiv">
+    </div></div>
           <p class="centrado"> Gráfica que relaciona el presupuesto de cada provincia y año con la inversión que realiza cada una de estas en promoción social. </p>
-      </div>
+      
       <br><br>
       <div class="centrado">
       <a href="#/graphics/line/province-budget-and-investment-in-social-promotion" class="fakeButton">TIPO LINE</a>
@@ -114,6 +116,11 @@
         padding: 1em;
         margin: 0;
     }
+    .centered {
+      margin: auto;
+      width: 60%;
+      padding: 10px;
+    }
      .fakeButton {
         background-color: #FFB833;
         border: none;
@@ -130,10 +137,12 @@
         border-radius: 12px;
     }
     #chartdiv {
+      display: inline-block;
       text-align: center;
+      float: center;
       padding: 1em;
       margin: 0;
-      width: 70%;
+      width: 100%;
       height: 500px;
     }
     
