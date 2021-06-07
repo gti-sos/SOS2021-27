@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
 import { Table, Button, Nav, NavItem, NavLink } from "sveltestrap";
   async function loadGraph() {
-      const resDataStarWars = await fetch("https://swapi.dev/api/people/?page=1");
+      const resDataStarWars = await fetch("https://swapi.dev/api/people");
       
       let starwar1 = await resDataStarWars.json();
       let starwar2 = starwar1.results;
@@ -13,7 +13,7 @@ import { Table, Button, Nav, NavItem, NavLink } from "sveltestrap";
       let dataStarWars = starwar2.map((d) => {
           let res = {
               name: d.name,
-              y: parseInt(d["weight"])
+              y: parseInt(d["mass"])
           };
           return res;
       });
