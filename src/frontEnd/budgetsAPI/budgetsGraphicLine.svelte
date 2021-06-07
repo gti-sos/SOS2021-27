@@ -172,7 +172,7 @@
     <br><br>
     <div class="centrado">
     <a href="#/graphics/area/province-budget-and-investment-in-social-promotion" class="fakeButton">TIPO ÁREA</a>
-    <a href="#/graphics/sigma/province-budget-and-investment-in-social-promotion" class="fakeButton">LIB SIGMA</a>
+    <a href="#/graphics/amCharts/province-budget-and-investment-in-social-promotion" class="fakeButton">LIB AMCHARTS</a>
     </div>
 </main>
 

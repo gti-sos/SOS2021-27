@@ -139,7 +139,7 @@
     <h1 class="titulo2"> Gráfica de Uso</h1>
     <div style="margin-bottom: 15px">
     <p class="centrado" style="font-size:130%">
-    <label for="id">Seleciona la ID del superhéroe de esta <a href="https://superheroapi.com/ids.html">LISTA IDs</a> e introducela aquí:</label>
+    <label for="id">Seleciona la ID del superhéroe de esta <a href="https://superheroapi.com/ids.html" style="color:red">LISTA IDs</a> e introducela aquí:</label>
     <input type="number" id="id" name="idHero" maxlength="4" size="4" bind:value={id}>
     <Button color="info" on:click="{loadGraphHeroPowerStats(id)}" type="button" class="btn btn-primary btn-lg" style ="position:relative; top:-4px"> Buscar </Button>
     </p>

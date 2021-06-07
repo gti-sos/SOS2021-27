@@ -9,6 +9,7 @@ const puppeteer = require('puppeteer');
     console.log("Landing page opened");
     await page.screenshot({ path: './tests/screenshots/01_inicio.png' });
 
+//Info
 
     await Promise.all([
         page.waitForNavigation(),
@@ -18,6 +19,7 @@ const puppeteer = require('puppeteer');
     console.log("Clicked on Info");
     await page.screenshot({ path: './tests/screenshots/02_info.png' });
 
+//===================================Analytics========================
 
 
 

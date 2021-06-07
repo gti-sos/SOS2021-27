@@ -9,7 +9,7 @@
 	import BudgetsEdit from './budgetsAPI/editBudget.svelte';
 	import BudgetsGraphicLine from './budgetsAPI/budgetsGraphicLine.svelte';
 	import BudgetsGraphicArea from './budgetsAPI/budgetsGraphicArea.svelte';
-	import BudgetsGraphicSigma from './budgetsAPI/budgetsGraphicSigma.svelte';
+	import BudgetsGraphicAmCharts from './budgetsAPI/budgetsGraphicAmChart.svelte';
 	import IntegrationEducationExpenditures from './budgetsAPI/integrationEducationExpenditures.svelte';
 	import IntegrationLifeStats from './budgetsAPI/integrationLifeStats.svelte';
 	import UseSuperheroStats from './budgetsAPI/useSuperheroStats.svelte';
@@ -68,7 +68,7 @@ import { children } from 'svelte/internal';
 		'/province-budget-and-investment-in-social-promotion/:province/:year':BudgetsEdit,
 		'/graphics/line/province-budget-and-investment-in-social-promotion':BudgetsGraphicLine,
 		'/graphics/area/province-budget-and-investment-in-social-promotion':BudgetsGraphicArea,
-		'/graphics/sigma/province-budget-and-investment-in-social-promotion':BudgetsGraphicSigma,
+		'/graphics/amCharts/province-budget-and-investment-in-social-promotion':BudgetsGraphicAmCharts,
 		'/graphics/integrations/educationExpenditures':IntegrationEducationExpenditures,
 		'/graphics/integrations/lifeStats':IntegrationLifeStats,
 		'/graphics/integrations/superheroStats':UseSuperheroStats,
