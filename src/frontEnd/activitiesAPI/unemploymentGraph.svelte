@@ -18,10 +18,7 @@
   var sintechos = [];
   var bingomaqs = [];
   async function getData() {
-      const porsiacaso = await fetch(
-          "/api/v1/unemployment-stats/loadInitialData"
-      ); // La bd no termina de ser consistente, es necesario esto para que funcione siempre.
-
+     
       const pobres = await fetch(
           "/api/v1/unemployment-stats"
       );
@@ -73,7 +70,7 @@ for (let pobreza of pobresJsons) {
       let chartConfig = {
   type: 'pie',
   title: {
-    text: 'Casinos en barcelona vs pobreza en españa',
+    text: 'Casinos en barcelona vs desempleo en españa',
     align: 'left',
     fontColor: '#fff',
     fontFamily: 'Open Sans',
@@ -113,7 +110,7 @@ for (let pobreza of pobresJsons) {
   },
   series: [
     {
-      text: 'Indice de pobreza',
+      text: 'Indice de desempleo',
       values: sintechos,
       backgroundColor: '#50ADF5'
     },
