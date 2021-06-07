@@ -83,7 +83,7 @@
       <slot>
         <div>
         <h3 class="titulo"><b>Vídeo de Humberto Garcia.</b></h3>
-        <a href="https://youtu.be/MA7f7JfWNS8" class="fakeButton">Video azar games</a>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/MA7f7JfWNS8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
          <br>
          <div class="titulo">
          
