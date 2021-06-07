@@ -37,6 +37,7 @@
 	import Cartas from './activitiesAPI/cartasGraph.svelte';
 	import Pobreza from './activitiesAPI/povertyriskGraph.svelte';
 	import Desempleo from './activitiesAPI/unemploymentGraph.svelte';
+	import StarWar from './activitiesAPI/starwarGraph.svelte';
 
 
 	import Info from './info.svelte';
@@ -79,6 +80,7 @@
 		'/graphics/integrations/cards':Cartas,
 		'/graphics/integrations/poverty':Pobreza,
 		'/graphics/integrations/unemployment':Desempleo,
+		'/graphics/integrations/starwar':StarWar,
 
 
 		'/about':About,
