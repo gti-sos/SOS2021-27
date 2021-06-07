@@ -15,7 +15,7 @@ jobs:
       - run: npx newman run tests/integrationBudgetsV1.json
       - run: npx newman run tests/integrationSuicide.json
       - run: npx newman run tests/integrationActivitiesV2.json
-       - run: node tests/e2e.js
+      - run: node tests/e2e.js
       
 
 
