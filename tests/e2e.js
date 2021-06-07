@@ -9,9 +9,8 @@ const puppeteer = require('puppeteer');
 //await page.goto('http://localhost:10000/');
 await page.goto("http://sos2021-27.herokuapp.com/");
 console.log("Landing page opened");
-await page.screenshot({ path: './tests/screenshots/01_landing.png' });
+await page.screenshot({ path: './tests/01_inicio.png' });
 
-//Info
 
 await Promise.all([
     page.waitForNavigation(),
