@@ -70,7 +70,7 @@
     <div class="box">
       <slot>
         <div>
-          <h3 class="titulo"><b>Vídeo de Fernando Nuevo</b></h3>
+          <h3 class="titulo"><b>Vídeo de Fernando Nuevo.</b></h3>
            <br>
            <div class="titulo">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/BFnAANVKiBo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
