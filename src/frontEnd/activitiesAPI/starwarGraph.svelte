@@ -1,6 +1,6 @@
 <script>
     import { onMount } from "svelte";
-  
+
     import {
         Jumbotron,
         Navbar,
@@ -14,8 +14,9 @@
         DropdownItem,
     } from "sveltestrap";
     let isOpen = false;
+
   async function loadGraph() {
-      const resDataStarWars = await fetch("https://swapi.dev/api/people");
+      const resDataStarWars = await fetch("https://swapi.dev/api/people/?page=1");
       
       let starwar1 = await resDataStarWars.json();
       let starwar2 = starwar1.results;
@@ -51,7 +52,7 @@
     },
     accessibility: {
         point: {
-            valueSuffix: 'cm'
+            valueSuffix: 'kg'
         }
     },
     plotOptions: {
@@ -72,7 +73,7 @@
     },
     series: [{
         type: 'pie',
-        name: 'Peso',
+        name: 'z',
         innerSize: '50%',
         data: dataStarWars
     }]
@@ -91,54 +92,52 @@
 <main>
   <figure class="highcharts-figure">
       <div id="container"></div>
-      
-  </figure>
-  <body>
-    <Jumbotron class="p-3" style="background-color: #FFB833">
-        <h1 class="titulo; mainDiv" style="color: white">
-            Integración api star wars
-        </h1>
-    </Jumbotron>
-    <Navbar style="background-color: #FFB833; color:white;" light expand="lg" >
-        <NavbarBrand href="#/">INICIO</NavbarBrand>
-        <Nav navbar>
-          <NavItem>
-            <NavLink href="#/suicide-records">Registro de suicidios</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="#/province-budget-and-investment-in-social-promotion">Inversion promoción social</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="#/azar-games-and-bet-activities">Actividad en loteria</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="#/integrations">Integraciones</NavLink>
-          </NavItem>
-          <Dropdown nav {isOpen} toggle="{() => isOpen = !isOpen}">
-            <DropdownToggle nav caret> Gráficas </DropdownToggle>
-            <DropdownMenu end>
-              <DropdownItem href="#/graphics/suicide-records">Registro de suicidios</DropdownItem>
-              <DropdownItem href="#/graphics/line/province-budget-and-investment-in-social-promotion">Inversion promoción social</DropdownItem>
-              <DropdownItem href="#/graphics/azar-games-and-bet-activities">Actividad en loteria</DropdownItem>
-              <DropdownItem divider/>
-              <DropdownItem href="#/analytics">Conjunto</DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-          <NavItem>
-            <NavLink style="float:right; color:white; margin:left;" href="#/about">Acerca de</NavLink>
-          </NavItem>
-        </Nav>
-    </Navbar>
-</body>
-<br />
-<h1 class="titulo2">Peso de los personajes de Star wars</h1>
-<div style="width:800px; margin:0 auto;">
-    <figure class="highcharts-figure">
-        <div id="container" />
-    </figure>
-    <div id="uv-div" />
-    <p style="centrado">
-        Gráfica que muestra el peso de los personajes de star wars
-    </p>
-</div>
+      <body>
+        <Jumbotron class="p-3" style="background-color: #FFB833">
+            <h1 class="titulo; mainDiv" style="color: white">
+                Integración api externa star wars
+            </h1>
+        </Jumbotron>
+        <Navbar style="background-color: #FFB833; color:white;" light expand="lg" >
+            <NavbarBrand href="#/">INICIO</NavbarBrand>
+            <Nav navbar>
+              <NavItem>
+                <NavLink href="#/suicide-records">Registro de suicidios</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="#/province-budget-and-investment-in-social-promotion">Inversion promoción social</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="#/azar-games-and-bet-activities">Actividad en loteria</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="#/integrations">Integraciones</NavLink>
+              </NavItem>
+              <Dropdown nav {isOpen} toggle="{() => isOpen = !isOpen}">
+                <DropdownToggle nav caret> Gráficas </DropdownToggle>
+                <DropdownMenu end>
+                  <DropdownItem href="#/graphics/suicide-records">Registro de suicidios</DropdownItem>
+                  <DropdownItem href="#/graphics/line/province-budget-and-investment-in-social-promotion">Inversion promoción social</DropdownItem>
+                  <DropdownItem href="#/graphics/azar-games-and-bet-activities">Actividad en loteria</DropdownItem>
+                  <DropdownItem divider/>
+                  <DropdownItem href="#/analytics">Conjunto</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+              <NavItem>
+                <NavLink style="float:right; color:white; margin:left;" href="#/about">Acerca de</NavLink>
+              </NavItem>
+            </Nav>
+        </Navbar>
+    </body>
+    <br />
+    <h1 class="titulo2">Peso personaje star wars</h1>
+    <div style="width:800px; margin:0 auto;">
+        <figure class="highcharts-figure">
+            <div id="container" />
+        </figure>
+        <div id="uv-div" />
+        <p style="centrado">
+            Diferentes pesos en star wars
+        </p>
+    </div>
 </main>
