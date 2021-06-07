@@ -22,7 +22,7 @@
         if(data.ok){
             frases = await data.json();
             console.log(frases)
-            covid.data.forEach(e => {
+            frases.data.forEach(e => {
                 aleatorio.push(e.value)
                 
             });
