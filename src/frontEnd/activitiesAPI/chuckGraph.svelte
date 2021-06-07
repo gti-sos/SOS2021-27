@@ -28,12 +28,12 @@
         }
         ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"]; // CHART CONFIG
         zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
-      
-     
+      palabra = aleatorio.toString();
+     console.log(palabra);
         let chartConfig ={
       type: 'wordcloud',
       options: {
-        data: aleatorio,
+        text: palabra,
         aspect: 'spiral',
         colorType: 'palette',
         maxItems: 50,
@@ -42,7 +42,7 @@
         rotate: true,
         style: {
           tooltip: {
-            data: aleatorio,
+            text: palabra,
             padding: '5px',
             alpha: 0.9,
             backgroundColor: '#D32F2F',
