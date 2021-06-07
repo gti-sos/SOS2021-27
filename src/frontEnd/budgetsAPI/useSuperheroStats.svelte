@@ -1,35 +1,62 @@
 <script>
     import { onMount } from "svelte";
-    import {Jumbotron, Navbar, Nav, NavItem, NavLink, NavbarBrand, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from 'sveltestrap';
+    import {Button,Jumbotron, Navbar, Nav, NavItem, NavLink, NavbarBrand, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from 'sveltestrap';
 
     let isOpen = false;
 
     let powerStats = [];
-    let ironmanStats = [];
+    let heroStats = [];
     let dataGraph = [];
-    
-    async function loadGraphIronManPowerStats() {
 
-      const data = await fetch("https://www.superheroapi.com/api.php/10223504096584818/346/powerstats");
+    let id = 346;
+    let nameHero = "";
+    let url = "";
+    let fetchUrl = "";
+    let errorPrint = "";
+
+    async function checkHero(idHero){
+      if(idHero < 1 || idHero > 731){
+      errorPrint = "La ID debe ser un número entre el 1 y el 731.";
+      }
+    }
+
+   
+    async function loadGraphHeroPowerStats(idButton) {
+
+      console.log(idButton);
+      checkHero(idButton);
+      if(idButton != 346){
+        idButton = id;
+      }
+      
+      url = "https://www.superheroapi.com/api.php/10223504096584818/" + idButton + "/powerstats";
+
+      console.log(url);
+
+      const data = await fetch(url);
         powerStats = await data.json();
 
-        ironmanStats.push(powerStats);
+        heroStats = [];
+
+        heroStats.push(powerStats);
 
         console.log(powerStats);
 
-        delete ironmanStats[0].response;
-        delete ironmanStats[0].id;
-        delete ironmanStats[0].name;
+        nameHero = heroStats[0].name;
 
-        console.log(ironmanStats);
+        delete heroStats[0].response;
+        delete heroStats[0].id;
+        delete heroStats[0].name;
+
+        console.log(heroStats);
 
         dataGraph = [
-          ['Combate', parseInt(ironmanStats[0].combat)],
-          ['Durabilidad', parseInt(ironmanStats[0].durability)],
-          ['Inteligencia', parseInt(ironmanStats[0].intelligence)],
-          ['Poder', parseInt(ironmanStats[0].power)],
-          ['Velocidad', parseInt(ironmanStats[0].speed)],
-          ['Fuerza', parseInt(ironmanStats[0].strength)]
+          ['Combate', parseInt(heroStats[0].combat)],
+          ['Durabilidad', parseInt(heroStats[0].durability)],
+          ['Inteligencia', parseInt(heroStats[0].intelligence)],
+          ['Poder', parseInt(heroStats[0].power)],
+          ['Velocidad', parseInt(heroStats[0].speed)],
+          ['Fuerza', parseInt(heroStats[0].strength)]
         ]
 
         console.log(dataGraph);
@@ -69,7 +96,7 @@
   <script src="https://code.highcharts.com/highcharts-3d.js"></script>
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
   <script src="https://code.highcharts.com/modules/export-data.js"></script>
-  <script src="https://code.highcharts.com/modules/accessibility.js" on:load={loadGraphIronManPowerStats}></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js" on:load={loadGraphHeroPowerStats}></script>
 </svelte:head>
 
 <main>
@@ -111,17 +138,73 @@
     <br>
     <h1 class="titulo2"> Gráfica de Uso</h1>
     <div style="margin-bottom: 15px">
+    <p class="centrado" style="font-size:130%">
+    <label for="id">Seleciona la ID del superhéroe de esta <a href="https://superheroapi.com/ids.html">LISTA IDs</a> e introducela aquí:</label>
+    <input type="number" id="id" name="idHero" maxlength="4" size="4" bind:value={id}>
+    <Button color="info" on:click="{loadGraphHeroPowerStats(id)}" type="button" class="btn btn-primary btn-lg" style ="position:relative; top:-4px"> Buscar </Button>
+    </p>
+    
     <figure class="highcharts-figure">
           <div id="container"></div>
-          <p class="centrado"> Gráfica que muestra las estadísticas del superhéroe Iron Man. </p>
+          <p class="centrado"> Gráfica que muestra las estadísticas del superhéroe {nameHero} </p>
           <p class="centrado"><a href="https://superheroapi.com/index.html"> www.superheroapi.com </a></p>
           </figure>
       </div>
+      <div>
+      {#if errorPrint}
+        <div class = "hideMe">
+            <span class = "alertERROR">
+            <strong style="align:center">ERROR! </strong><p></p> {errorPrint}
+            </span>
+        </div>
+        {/if}
+        </div>
 
     <br><br>
 </main>
 
 <style>
+
+    .alertERROR {
+        margin: 0 auto;
+        display: table;
+        padding: 20px;
+        background-color: #f44336;
+        color: white;
+    }
+
+    .hideMe {
+        -moz-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Firefox */
+        -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Safari and Chrome */
+        -o-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Opera */
+        animation: cssAnimation 0s ease-in 5s forwards;
+        -webkit-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
+    }
+    @keyframes cssAnimation {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+            left: -9999px; 
+            position: absolute;   
+        }
+    }
+
+    @-webkit-keyframes cssAnimation {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+            left: -9999px; 
+            position: absolute;   
+        }
+    }
     .titulo {
         background-color: #FFB833;
         color: #FFFFFF;
