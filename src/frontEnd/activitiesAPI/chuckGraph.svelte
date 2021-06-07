@@ -42,7 +42,7 @@
         rotate: true,
         style: {
           tooltip: {
-            text: aleatorio,
+            values: aleatorio,
             padding: '5px',
             alpha: 0.9,
             backgroundColor: '#D32F2F',
