@@ -17,11 +17,11 @@ async function loadChart(){
     console.log(cardData);
     
     cardData.data.forEach((v) =>{
-         if(v.type in cards){
-                cards[v.type] += 1;
+         if(v.race in cards){
+                cards[v.race] += 1;
             }
             else{
-                cards[v.type]= 1;
+                cards[v.race]= 1;
             }
         });
     
