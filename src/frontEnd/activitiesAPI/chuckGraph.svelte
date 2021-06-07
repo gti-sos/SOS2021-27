@@ -33,7 +33,7 @@
         let chartConfig ={
       type: 'wordcloud',
       options: {
-        values: aleatorio,
+        data: aleatorio,
         aspect: 'spiral',
         colorType: 'palette',
         maxItems: 50,
@@ -42,7 +42,7 @@
         rotate: true,
         style: {
           tooltip: {
-            values: aleatorio,
+            data: aleatorio,
             padding: '5px',
             alpha: 0.9,
             backgroundColor: '#D32F2F',
