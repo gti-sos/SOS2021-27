@@ -68,72 +68,159 @@
     //  onMount(getData);
     async function loadGraph() {
       getData().then(() => {
-        ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"]; // CHART CONFIG
-  
+        ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
         let chartConfig = {
-    type: 'pie',
-    title: {
-      text: 'Casinos en barcelona vs desempleo en españa',
-      align: 'left',
-      fontColor: '#fff',
-      fontFamily: 'Open Sans',
-      fontSize: '25px',
-      offsetX: '10px',
-    },
-  
-    plot: {
-      tooltip: {
-        text: '%npv%',
-        padding: '5 10',
-        fontFamily: 'Open Sans',
-        fontSize: '18px'
+      gui: {
+        contextMenu: {
+          backgroundColor: '#306EAA', // sets background for entire contextMenu
+          button: {
+            backgroundColor: '#2D66A4',
+            lineColor: '#2D66A4',
+            visible: true
+          },
+          docked: true,
+          gear: {
+            alpha: 1,
+            backgroundColor: '#2D66A4'
+          },
+          item: {
+            backgroundColor: '#306EAA',
+            borderColor: '#306EAA',
+            borderWidth: '0px',
+            color: '#fff',
+            fontFamily: 'Lato'
+          },
+          position: 'right'
+        }
       },
-      valueBox: {
-        text: '%t\n%npv%',
-        fontFamily: 'Open Sans',
-        placement: 'out'
-      },
-      animation: {
-        effect: 'ANIMATION_EXPAND_VERTICAL',
-        method: 'ANIMATION_REGULAR_EASE_OUT',
-        sequence: 'ANIMATION_BY_PLOT',
-        speed: 500
-      },
-      borderColor: '#2B313B',
-      borderWidth: '5px'
-    },
-    plotarea: {
-      margin: '20 0 0 0'
-    },
-    source: {
-      text: 'Source: gs.statcounter.com',
-      fontColor: '#8e99a9',
-      fontFamily: 'Open Sans',
-      textAlign: 'left'
-    },
-    series: [
-      {
-        text: 'Indice de desempleo',
-        values: sintechos,
-        backgroundColor: '#50ADF5'
-      },
-      {
-        text: 'Numero de maquinas de bingo',
-        values: bingomaqs,
-        backgroundColor: '#FF7965'
-      }
-      
-    ]
-  };
-  
-  // RENDER CHARTS
-  // -----------------------------
-  zingchart.render({
-    id: 'myChart',
-    data: chartConfig,
-    height: '100%',
-    width: '100%',
-  });
+      graphset: [{
+        type: 'ring',
+        backgroundColor: '#FBFCFE',
+        title: {
+          text: 'Diferencia entre abandono y maquinas de bingo',
+          padding: '15px',
+          fontColor: '#1E5D9E',
+          fontFamily: 'Lato',
+          fontSize: '14px'
+        },
+        subtitle: {
+          text: '2016',
+          padding: '5px',
+          fontColor: '#777',
+          fontFamily: 'Lato',
+          fontSize: '12px'
+        },
+        legend: {
+          adjustLayout: true,
+          align: 'center',
+          backgroundColor: '#FBFCFE',
+          borderWidth: '0px',
+          item: {
+            cursor: 'pointer',
+            fontColor: '#777',
+            fontSize: '12px',
+            offsetX: '-6px'
+          },
+          marker: {
+            type: 'circle',
+            borderWidth: '0px',
+            cursor: 'pointer',
+            size: 5
+          },
+          mediaRules: [{
+            maxWidth: '500px',
+            visible: false
+          }],
+          toggleAction: 'remove',
+          verticalAlign: 'bottom'
+        },
+        plot: {
+          valueBox: [{
+              type: 'all',
+              text: '%t',
+              placement: 'out'
+            },
+            {
+              type: 'all',
+              text: '%npv%',
+              placement: 'in'
+            }
+          ],
+          animation: {
+            effect: 'ANIMATION_EXPAND_VERTICAL',
+            sequence: 'ANIMATION_BY_PLOT_AND_NODE'
+          },
+          backgroundColor: '#FBFCFE',
+          borderWidth: '0px',
+          hoverState: {
+            cursor: 'hand',
+          },
+          slice: '60%'
+        },
+        plotarea: {
+          margin: '70px 0px 10px 0px',
+          backgroundColor: 'transparent',
+          borderRadius: '10px',
+          borderWidth: '0px'
+        },
+        scaleR: {
+          refAngle: 270
+        },
+        tooltip: {
+          text: '<span style="color:%color">Page Url: %t</span><br><span style="color:%color">Pageviews: %v</span>',
+          anchor: 'c',
+          backgroundColor: 'none',
+          borderWidth: '0px',
+          fontSize: '16px',
+          mediaRules: [{
+            maxWidth: '500px',
+            y: '54%'
+          }],
+          sticky: true,
+          thousandsSeparator: ',',
+          x: '50%',
+          y: '50%'
+        },
+        noData: {
+          text: 'No Selection',
+          alpha: .6,
+          backgroundColor: '#20b2db',
+          bold: true,
+          fontSize: '18px',
+          textAlpha: .9
+        },
+        series: [{
+            text: 'maquinas de bingo',
+            values: bingomaqs,
+            backgroundColor: '#00BAF2',
+            lineColor: '#00BAF2',
+            lineWidth: '1px',
+            marker: {
+              backgroundColor: '#00BAF2'
+            }
+          },
+          {
+            text: 'abandono escolar',
+            values: sintechos,
+            backgroundColor: '#E80C60',
+            lineColor: '#E80C60',
+            lineWidth: '1px',
+            marker: {
+              backgroundColor: '#E80C60'
+            }
+          }
+        
+          
+        ]
+      }]
+    };
+
+    zingchart.render({
+      id: 'myChart',
+      data: chartConfig,
+      height: '100%',
+      width: '100%',
+    })
   }); 
           
     }
@@ -150,7 +237,7 @@
     <body>
         <Jumbotron class="p-3" style="background-color: #FFB833">
             <h1 class="titulo; mainDiv" style="color: white">
-                Integración Api Desempleo
+                Integración Api abandono
             </h1>
         </Jumbotron>
         <Navbar style="background-color: #FFB833; color:white;" light expand="lg" >
@@ -185,23 +272,20 @@
       </Navbar>
     </body>
     <br />
-    <h1 class="titulo2">Desempleo relacionado con la actividad en juegos de azar</h1>
+    <h1 class="titulo2">Abandono escolar y maquinas de bingo activas</h1>
    
     <div id="myChart" class="chart--container"></div>>
   </main>
   
   <style>
-    @import 'https://fonts.googleapis.com/css?family=Open+Sans';
-    .zc-body {
-      background-color: #2B313B;
-    }
-  
+   @import 'https://fonts.googleapis.com/css?family=Montserrat';
+    @import 'https://fonts.googleapis.com/css?family=Lato:400';
     .chart--container {
       height: 100%;
       width: 100%;
       min-height: 530px;
     }
-  
+
     .zc-ref {
       display: none;
     }
