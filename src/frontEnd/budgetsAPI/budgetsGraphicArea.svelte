@@ -35,6 +35,9 @@
       title: {
         text: "",
       },
+      subtitle: {
+        text: "Area in Highcharts",
+      },
       yAxis: {
         title: {
           text: "Presupuesto en euros",
