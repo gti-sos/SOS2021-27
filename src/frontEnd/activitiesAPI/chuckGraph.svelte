@@ -23,26 +23,26 @@
             frases = await data.json();
             console.log(frases)
            aleatorio.push(frases.value);
+           console.log(aleatorio);
+
         }
         ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"]; // CHART CONFIG
         zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
-        var ackbar = aleatorio;
       
      
         let chartConfig ={
       type: 'wordcloud',
       options: {
-        text: ackbar,
+        text: aleatorio,
         aspect: 'spiral',
         colorType: 'palette',
-        ignore: ['establish', 'this'],
         maxItems: 50,
         minLength: '4px',
         palette: ['#D32F2F', '#1976D2', '#9E9E9E', '#E53935', '#1E88E5', '#7E57C2', '#F44336', '#2196F3', '#A1887F'],
         rotate: true,
         style: {
           tooltip: {
-            text: ackbar,
+            text: aleatorio,
             padding: '5px',
             alpha: 0.9,
             backgroundColor: '#D32F2F',
