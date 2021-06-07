@@ -41,6 +41,7 @@
     "highcharts": "^9.1.1",
     "nedb": "^1.8.0",
     "request": "^2.88.2",
+    "sigma": "^2.0.0-beta5",
     "svelte-spa-router": "^3.1.0",
     "sveltestrap": "^3.14.1",
     "uvCharts": "^1.1.5",
