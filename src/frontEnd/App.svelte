@@ -39,6 +39,7 @@
 	import Desempleo from './activitiesAPI/unemploymentGraph.svelte';
 	import StarWar from './activitiesAPI/starwarGraph.svelte';
 	import Children from './activitiesAPI/outschoolGraph.svelte';
+	import Chuck from './activitiesAPI/chuckGraph.svelte';
 
 
 	import Info from './info.svelte';
@@ -84,6 +85,7 @@ import { children } from 'svelte/internal';
 		'/graphics/integrations/unemployment':Desempleo,
 		'/graphics/integrations/starwar':StarWar,
 		'/graphics/integrations/outschool':Children,
+		'/graphics/integrations/chuck':Chuck,
 
 
 		'/about':About,
