@@ -38,7 +38,7 @@
                   if (pobreza.year == ludopatia.year) {
                       if (
                           (pobreza.country == "Spain" &&
-                              ludopatia.province == "Seville" && ludopatia.year == "2016")
+                              ludopatia.province == "Seville" && ludopatia.year == "2016"&& pobreza.year == "2016")
                       ) {
   
   

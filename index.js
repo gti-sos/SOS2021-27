@@ -147,7 +147,7 @@ app.use(pathUnemployment, function(req, res) {
 var pathChildren='/api/v2/children-out-school';
 var apiServerHost6 = 'http://sos2021-24.herokuapp.com';
 
-app.use(pathUnemployment, function(req, res) {
+app.use(pathChildren, function(req, res) {
   var url = apiServerHost6 + req.baseUrl + req.url;
   console.log('piped: '+req.baseUrl + req.url);
   req.pipe(request(url)).pipe(res);
