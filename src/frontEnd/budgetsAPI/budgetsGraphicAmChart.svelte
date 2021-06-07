@@ -30,13 +30,15 @@
             var chart = am4core.create("chartdiv", am4charts.SlicedChart);
             chart.data = dataGraph;
             chart.colors.step = 2;
-            let series = chart.series.push(new am4charts.FunnelSeries());
+            var series = chart.series.push(new am4charts.FunnelSeries());
             series.dataFields.value = "value";
             series.dataFields.category = "name";
             series.alignLabels = true;
             series.orientation = "horizontal"; 
         }); 
 	}
+
+  loadGraphAmChart();
 
 </script>
 
