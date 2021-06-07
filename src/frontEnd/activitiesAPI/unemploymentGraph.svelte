@@ -150,52 +150,36 @@ zingchart.render({
               Integración Api Desempleo
           </h1>
       </Jumbotron>
-      <Navbar
-          style="background-color: #FFB833; color:white;"
-          light
-          expand="lg"
-      >
-          <NavbarBrand href="#/">INICIO</NavbarBrand>
-          <Nav navbar>
-              <NavItem>
-                  <NavLink href="#/suicide-records"
-                      >Registro de suicidios</NavLink
-                  >
-              </NavItem>
-              <NavItem>
-                  <NavLink
-                      href="#/province-budget-and-investment-in-social-promotion"
-                      >Presupuesto/Inversión</NavLink
-                  >
-              </NavItem>
-              <NavItem>
-                  <NavLink href="#/azar-games-and-bet-activities"
-                      >Actividad en loteria</NavLink
-                  >
-              </NavItem>
-              <NavItem>
-                  <NavLink href="#/integrations">Integraciones</NavLink>
-              </NavItem>
-              <Dropdown nav {isOpen} toggle={() => (isOpen = !isOpen)}>
-                  <DropdownToggle nav caret>Gráficas</DropdownToggle>
-                  <DropdownMenu end>
-                      <DropdownItem href="#/graphics/suicide-records"
-                          >Registro de suicidios</DropdownItem
-                      >
-                      <DropdownItem
-                          href="#/graphics/province-budget-and-investment-in-social-promotion"
-                          >Presupuesto/Inversión</DropdownItem
-                      >
-                      <DropdownItem
-                          href="#/graphics/azar-games-and-bet-activities"
-                          >Actividad en loteria</DropdownItem
-                      >
-                      <DropdownItem divider />
-                      <DropdownItem href="#/graphics">Conjunto</DropdownItem>
-                  </DropdownMenu>
-              </Dropdown>
-          </Nav>
-      </Navbar>
+      <Navbar style="background-color: #FFB833; color:white;" light expand="lg" >
+        <NavbarBrand href="#/">INICIO</NavbarBrand>
+        <Nav navbar>
+          <NavItem>
+            <NavLink href="#/suicide-records">Registro de suicidios</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="#/province-budget-and-investment-in-social-promotion">Inversion promoción social</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="#/azar-games-and-bet-activities">Actividad en loteria</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="#/integrations">Integraciones</NavLink>
+          </NavItem>
+          <Dropdown nav {isOpen} toggle="{() => isOpen = !isOpen}">
+            <DropdownToggle nav caret> Gráficas </DropdownToggle>
+            <DropdownMenu end>
+              <DropdownItem href="#/graphics/suicide-records">Registro de suicidios</DropdownItem>
+              <DropdownItem href="#/graphics/line/province-budget-and-investment-in-social-promotion">Inversion promoción social</DropdownItem>
+              <DropdownItem href="#/graphics/azar-games-and-bet-activities">Actividad en loteria</DropdownItem>
+              <DropdownItem divider/>
+              <DropdownItem href="#/analytics">Conjunto</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+          <NavItem>
+            <NavLink style="float:right; color:white; margin:left;" href="#/about">Acerca de</NavLink>
+          </NavItem>
+        </Nav>
+    </Navbar>
   </body>
   <br />
   <h1 class="titulo2">Desempleo relacionado con la actividad en juegos de azar</h1>
