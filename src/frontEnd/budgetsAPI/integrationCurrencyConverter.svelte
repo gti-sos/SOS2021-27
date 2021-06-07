@@ -6,33 +6,17 @@
 
     var BASE_API_PATH = "/api/v2/province-budget-and-investment-in-social-promotion";
 
-    let dataGraph = [];
+    let budgetData = [];
+    let budgetGraphX = [];
+    let budgetEuros = [];
+    let currencyData = [];
+    let currencyConverted = [];
+    let budgetDolares = [];
 
-    async function getInternalData(){
 
-      let budgetData = [];
-      let budgetGraphX = [];
-      let budgetEuros = [];
-
-      const internalData = await fetch(BASE_API_PATH);
-        budgetData = await internalData.json();
-
-        console.log(budgetData);
-
-        if(internalData.ok){
-            budgetData.forEach(budgetSvelte => {
-              budgetGraphX.push(budgetSvelte.province + "/" + budgetSvelte.year);
-              budgetEuros.push(budgetSvelte.budget);
-            })
-        }
-    }
-
-    async function getExternalData(euros){
-
-        let currencyData = [];
-        let currencyConverted = [];
-  
-        const externalData = fetch("https://currency-exchange.p.rapidapi.com/exchange?to=USD&from=EUR&q=" + euros, {
+    async function getDolars(euros){
+        var url = "https://currency-exchange.p.rapidapi.com/exchange?to=USD&from=EUR&q=" + euros;
+        const externalData = fetch(url, {
 	        "method": "GET",
 	          "headers": {
 		          "x-rapidapi-key": "b92358230bmshe53cee188c483ecp147ff1jsn450fa502bd55",
@@ -44,26 +28,30 @@
         if(externalData.ok){
             currencyConverted.push(currencyData);
         }
-       
     }
+        
     
     async function loadGraphCurrencyConverter() {
-      getInternalData().then(() => {
-          var dataEuros = {
-            EUROS: [
-              [budgetGraphX, budgetEuros]
-            ]
-          }
+
+      const internalData = await fetch(BASE_API_PATH);
+        budgetData = await internalData.json();
+
+        if(internalData.ok){
+            budgetData.forEach(budgetSvelte => {
+              budgetGraphX.push(budgetSvelte.province + "/" + budgetSvelte.year);
+              budgetEuros.push(budgetSvelte.budget);
+            })
+        }
+
+      budgetEuros.forEach(euros => {
+      budgetDolares.push(getDolars(euros));
       });
-      getExternalData().then(() => {
-          var dataDolares = {
-            DOLARES: [
-              [budgetGraphX, currencyConverted]
-            ]
-          }
-      });
-  
-    
+
+      console.log(budgetData);
+      console.log(budgetGraphX);
+      console.log(budgetEuros);
+      console.log(budgetDolares);
+      
     var chart = Highcharts.chart('container', {
     chart: {
         type: 'column'
@@ -91,7 +79,7 @@
         labels: {
             useHTML: true,
             animate: true,
-            name: getInternalData().budgetGraphX
+            name: budgetGraphX
         }
     },
     yAxis: [{
@@ -103,12 +91,12 @@
     series: [{
         color: 'rgb(158, 159, 163)',
         pointPlacement: -0.2,
-        linkedTo: 'main',
-        data: dataDolares.slice(),
-        name: 'USD'
+        linkedTo: 'EUR',
+        data: budgetEuros,
+        name: "EUROS"
     }, {
-        name: '€',
-        id: 'main',
+        name: 'EUROS',
+        id: 'EUR',
         dataSorting: {
             enabled: true,
             matchByName: true
@@ -120,13 +108,18 @@
                 fontSize: '16px'
             }
         }],
-        data: dataEuros.slice()
+        data: budgetDolares
+       
     }],
     exporting: {
         allowHTML: true
     }
   });
+
+
   }
+
+
 </script>
 
 <svelte:head>
@@ -175,11 +168,11 @@
     <h1 class="titulo2"> Gráfica de Integración</h1>
     <div style="margin-bottom: 15px">
         <div class='buttons'>
-            <button id='EUROS' class='active'>
-              €
+            <button id='USD'>
+              DÓLARES
             </button>
-            <button id='DOLARES'>
-              USD
+            <button id='EUR' class='active'>
+              EUROS
             </button>
           </div>
           <div id="container"></div>

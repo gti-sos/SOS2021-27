@@ -20,7 +20,7 @@
                 description: ""
             }
             daftPunkGraph.push(serie);
-        });
+          });
 
     console.log(daftPunkGraph);
     Highcharts.chart('container', {
@@ -53,7 +53,7 @@
     },
     
     series: [{
-        data: daftPunkGraph
+        data: daftPunkGraph.reverse()
     }]
 });
   }
