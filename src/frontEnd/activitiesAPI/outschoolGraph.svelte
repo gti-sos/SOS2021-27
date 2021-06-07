@@ -167,7 +167,7 @@
           refAngle: 270
         },
         tooltip: {
-          text: '<span style="color:%color">Page Url: %t</span><br><span style="color:%color">Pageviews: %v</span>',
+          text: '<span style="color:%color">Variable: %t</span><br><span style="color:%color">Valor: %v</span>',
           anchor: 'c',
           backgroundColor: 'none',
           borderWidth: '0px',
