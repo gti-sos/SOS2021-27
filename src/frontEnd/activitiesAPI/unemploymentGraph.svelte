@@ -18,7 +18,10 @@
   var sintechos = [];
   var bingomaqs = [];
   async function getData() {
-     
+    const porsiacaso = await fetch(
+            "/api/v2/unemployment-stats/loadInitialData"
+        ); // La bd no termina de ser consistente, es necesario esto para que funcione siempre.
+
       const pobres = await fetch(
           "/api/v2/unemployment-stats"
       );
