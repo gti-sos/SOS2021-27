@@ -81,7 +81,7 @@
            <div class="titulo">
             <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/educationExpenditures" class="fakeButton">Gastos en educación (G04)</a>
             <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/lifeStats" class="fakeButton">Índice calidad de vida (G01)</a>
-            <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/superheroStats" class="fakeButton">Estadísticas de Iron Man (externa)</a>
+            <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/superheroStats" class="fakeButton">Estadísticas de SuperHéroes (externa)</a>
             <a href="https://sos2021-27.herokuapp.com/#/graphics/integrations/audioDB" class="fakeButton">Discografía Daft Punk (externa)</a>
           </div>
         </div>

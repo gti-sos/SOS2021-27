@@ -40,6 +40,30 @@ await page.screenshot({ path: './tests/screenshots/05_use_azar1.png' });
 //Volver
 await page.click("body > nav > ul > li:nth-child(4) > a");
 
+//=====================Fer - Integración - Gastos en educación (G04)
+
+await page.click("body > main > main > div:nth-child(6) > div > div > a:nth-child(1)");
+await page.waitForTimeout(5000);
+await page.screenshot({ path: './tests/screenshots/fer-integracion-gastoseducacion.png' });
+
+//=====================Fer - Integración - Índice calidad de vida (G01)
+
+await page.click("body > main > main > div:nth-child(6) > div > div > a:nth-child(2)");
+await page.waitForTimeout(5000);
+await page.screenshot({ path: './tests/screenshots/fer-integracion-calidadvida.png' });
+
+//=====================Fer - Uso - Estadísticas de superhéroes (externa)
+
+await page.click("body > main > main > div:nth-child(6) > div > div > a:nth-child(3)");
+await page.waitForTimeout(5000);
+await page.screenshot({ path: './tests/screenshots/fer-uso-estadisticassuperheroes.png' });
+
+//=====================Fer - Uso - Discografía de Daft Punk (externa)
+
+await page.click("body > main > main > div:nth-child(6) > div > div > a:nth-child(4)");
+await page.waitForTimeout(5000);
+await page.screenshot({ path: './tests/screenshots/fer-uso-discografiadaftpunk.png' });
+
 //=====================Unemployment
 console.log("Integration of unemployment");
 await page.click("body > main > main > div:nth-child(9) > div > div > a:nth-child(4)");
@@ -243,6 +267,98 @@ await page.screenshot({ path: './tests/screenshots/12elimina.png' });
 
     // ------------------- Fin Espacio PruebaSuicidios    ------------------------
 
+
+    //  ------------------ Espacio Prueba Front Promoción Social -----------------------------
+
+    // Tabla Promoción Social
+
+
+    console.log("Abriendo Tabla Promoción Social");
+    await Promise.all([
+        page.waitForNavigation(),
+        page.click("body > nav > ul > li:nth-child(2) > a"),
+    ]);
+    await page.waitForTimeout(1000);
+    await page.screenshot({ path: './tests/screenshots/budget01-TablaPromocionSocial.png' });
+
+
+    console.log("Borrar Tabla");
+    await page.click("body > main > main > main > div:nth-child(2) > td:nth-child(2) > button");
+    await page.waitForTimeout(2000);
+    await page.screenshot({ path: './tests/screenshots/budget02-BorrarTabla.png' });
+
+
+    console.log("Cargar Tabla");
+    await page.click("body > main > main > main > div:nth-child(2) > td:nth-child(1) > button");
+    await page.waitForTimeout(2000);
+    await page.screenshot({ path: './tests/screenshots/budget03-CargarTabla.png' });
+
+
+    console.log("Paginación");
+    await page.click("body > main > main > main > div:nth-child(8) > td:nth-child(1) > nav > ul > li:nth-child(3) > a > span:nth-child(1)");
+    await page.waitForTimeout(2000);
+    await page.screenshot({ path: './tests/screenshots/budget04-Paginacion.png' });
+
+    console.log("Guardar dato");
+    await page.focus('body > main > main > main > table.table.table-bordered.table-hover > tbody > tr > td:nth-child(1) > input');
+    await page.keyboard.type("CADIZ");
+
+    await page.focus('body > main > main > main > table.table.table-bordered.table-hover > tbody > tr > td:nth-child(2) > input');
+    await page.keyboard.type("2020");
+
+    await page.focus('body > main > main > main > table.table.table-bordered.table-hover > tbody > tr > td:nth-child(3) > input');
+    await page.keyboard.type("200");
+
+    await page.focus('body > main > main > main > table.table.table-bordered.table-hover > tbody > tr > td:nth-child(4) > input');
+    await page.keyboard.type("50");
+
+    console.log("Guardar");
+    await page.click("body > main > main > main > table.table.table-bordered.table-hover > tbody > tr:nth-child(1) > td:nth-child(7) > button");
+    await page.screenshot({ path: './tests/screenshots/budget05-Guardado.png' });
+
+    await page.waitForTimeout(2000);
+    
+
+    page.on('dialog', async dialog => {
+        console.log('here');
+        await dialog.accept();
+    });
+
+    await page.click('body > nav > ul > li:nth-child(2) > a');
+
+    
+    console.log("Comprobación guardado.")
+    await page.waitForTimeout(2000);
+    await page.screenshot({ path: './tests/screenshots/budget06-ComprobacionGuardado.png' });
+
+
+
+    
+    console.log("Comprobación borrado");
+    await page.click("body > main > main > main > table.table.table-bordered.table-hover > tbody > tr:nth-child(2) > td:nth-child(8) > button");
+    await page.waitForTimeout(2000);
+
+    
+    page.on('dialog', async dialog => {
+        console.log('here');
+        await dialog.accept();
+    });
+
+
+    await page.screenshot({ path: './tests/screenshots/budget07-ComprobacionBorrado.png' });
+
+    console.log("Editar");
+    await page.click("body > main > main > main > table.table.table-bordered.table-hover > tbody > tr:nth-child(2) > td:nth-child(7) > a");
+    await page.screenshot({ path: './tests/screenshots/budget08-Editar.png' });
+    await page.waitForTimeout(2000);
+
+    console.log("Comprobación editar");
+    await page.click("body > main > main > table > tbody > tr > td:nth-child(7) > button");
+    await page.waitForTimeout(1000);
+    await page.screenshot({ path: './tests/screenshots/budget09-ComprobacionEditar.png' });
+    await page.waitForTimeout(2000);
+
+    // ------------------- Fin Espacio Prueba Promoción Social    ------------------------
 
 
 

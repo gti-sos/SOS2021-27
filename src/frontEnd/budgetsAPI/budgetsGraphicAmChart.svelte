@@ -130,6 +130,9 @@
         border-radius: 12px;
     }
     #chartdiv {
+      text-align: center;
+      padding: 1em;
+      margin: 0;
       width: 70%;
       height: 500px;
     }
