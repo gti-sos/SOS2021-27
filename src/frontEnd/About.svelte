@@ -82,7 +82,7 @@
     <div class="box">
       <slot>
         <div>
-        <h3 class="titulo"><b>Vídeo de Humberto Garcia</b></h3>
+        <h3 class="titulo"><b>Vídeo de Humberto Garcia.</b></h3>
         <a href="https://youtu.be/MA7f7JfWNS8" class="fakeButton">Video azar games</a>
          <br>
          <div class="titulo">
