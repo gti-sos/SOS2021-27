@@ -11,7 +11,7 @@
 async function loadChart(){
    
     var cards={};
-    var cardTypes = [];
+    var cardRaces = [];
     const resData = await fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php");
     const cardData = await resData.json();  
     console.log(cardData);
@@ -26,7 +26,7 @@ async function loadChart(){
         });
     
     for (var key in cards){
-        cardTypes.push([key,cards[key]]);
+        cardRaces.push([key,cards[key]]);
     }
     
     Highcharts.chart('container', {
@@ -39,7 +39,7 @@ async function loadChart(){
         }
     },
     title: {
-        text: 'Diferentes tipos de  cartas de yugioh'
+        text: 'Diferentes razas de  cartas'
     },
     accessibility: {
         point: {
@@ -62,7 +62,7 @@ async function loadChart(){
     },
     series: [{
         name: 'Porcentaje de cartas',
-        data: cardTypes
+        data: cardRaces
     }]
 });
 }
