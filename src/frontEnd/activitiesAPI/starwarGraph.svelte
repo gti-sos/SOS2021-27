@@ -34,64 +34,47 @@
       console.log(dataStarWars);
      
       
-          Highcharts.chart('container', {
-    chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: 0,
-        plotShadow: false
-    },
-    title: {
-        text: 'Peso <br>Personajes<br>StarWars',
-        align: 'center',
-        verticalAlign: 'middle',
-        y: 60
-    },
-    tooltip: {
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:.1f} cm</b></td></tr>',
-    },
-    accessibility: {
-        point: {
-            valueSuffix: 'kg'
-        }
-    },
-    plotOptions: {
-        pie: {
-            dataLabels: {
-                enabled: true,
-                distance: -50,
-                style: {
-                    fontWeight: 'bold',
-                    color: 'white'
-                }
-            },
-            startAngle: -90,
-            endAngle: 90,
-            center: ['50%', '75%'],
-            size: '110%'
-        }
-    },
-    series: [{
-        type: 'pie',
-        name: 'z',
-        innerSize: '50%',
-        data: dataStarWars
-    }]
+      Highcharts.chart('container', {
+  chart: {
+    type: 'cylinder',
+    options3d: {
+      enabled: true,
+      alpha: 15,
+      beta: 15,
+      depth: 50,
+      viewDistance: 25
+    }
+  },
+  title: {
+    text: 'Highcharts Cylinder Chart'
+  },
+  plotOptions: {
+    series: {
+      depth: 25,
+      colorByPoint: true
+    }
+  },
+  series: [{
+    data:dataStarWars,
+    name: 'Cylinders',
+    showInLegend: false
+  }]
 });
   }
   loadGraph();
 </script>
 
 <svelte:head>
-    <script src="https://code.highcharts.com/highcharts.js" on:load={loadGraph}></script>
-    <script src="https://code.highcharts.com/highcharts-more.js" on:load={loadGraph}></script>
-    <script src="https://code.highcharts.com/modules/exporting.js" on:load={loadGraph}></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js" on:load={loadGraph}></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+    <script src="https://code.highcharts.com/modules/cylinder.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 </svelte:head>
 
 <main>
-  <figure class="highcharts-figure">
-      <div id="container"></div>
+  
       <body>
         <Jumbotron class="p-3" style="background-color: #FFB833">
             <h1 class="titulo; mainDiv" style="color: white">
@@ -140,4 +123,46 @@
             Diferentes pesos en star wars
         </p>
     </div>
+    <figure class="highcharts-figure">
+        <div id="container"></div>
 </main>
+<style>
+
+#container {
+  height: 400px; 
+}
+
+.highcharts-figure, .highcharts-data-table table {
+  min-width: 310px; 
+  max-width: 800px;
+  margin: 1em auto;
+}
+
+.highcharts-data-table table {
+  font-family: Verdana, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid #EBEBEB;
+  margin: 10px auto;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+.highcharts-data-table caption {
+  padding: 1em 0;
+  font-size: 1.2em;
+  color: #555;
+}
+.highcharts-data-table th {
+	font-weight: 600;
+  padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+  padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+  background: #f1f7ff;
+}
+</style>
