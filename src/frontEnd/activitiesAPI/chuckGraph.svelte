@@ -120,7 +120,7 @@
           </Navbar>
             </body>
             <br>
-            <h1 class="titulo2"> Gráfica de datos </h1>
+            <h1 class="titulo2"> Gráfica de Frases aleatorias de chuck norris </h1>
            
               <div id="myChart"></div>
           
