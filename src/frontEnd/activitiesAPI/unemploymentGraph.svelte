@@ -20,7 +20,7 @@
   async function getData() {
      
       const pobres = await fetch(
-          "/api/v1/unemployment-stats"
+          "/api/v2/unemployment-stats"
       );
       let pobresJsons = [];
       pobresJsons = await pobres.json();
