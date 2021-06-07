@@ -59,7 +59,7 @@
     },
 
     subtitle: {
-        text: ''
+        text: 'Bubble in Highcharts'
     },
 
     accessibility: {
@@ -169,6 +169,7 @@
         <figure class="highcharts-figure">
           <div id="container"></div>
           <p class="centrado"> Gráfica que relaciona la inversión en promoción social con la inversión en educación en millones de euros, indicando el presupuesto inicial, así como la inversión en educación per capita, y los porcentajes de inversión. </p>
+          <p class="centrado"><a href="https://sos2021-04.herokuapp.com/#/education_expenditures"> https://sos2021-04.herokuapp.com/#/education_expenditures </a></p>
         </figure>
       </div>
       <br><br>

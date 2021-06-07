@@ -57,6 +57,9 @@
         title: {
             text: ''
         },
+        subtitle: {
+            text: 'PackedBubble in Highcharts'
+        },
         tooltip: {
             useHTML: true,
             pointFormat: '<b>{point.name}:</b> {point.value}</sub>'
@@ -152,6 +155,7 @@
         <figure class="highcharts-figure">
           <div id="container"></div>
           <p class="centrado"> Gráfica que relaciona el presupuesto de varias provincias con el índice de poder adquisitivo y calidad de vida de varios países. </p>
+          <p class="centrado"><a href="https://sos2021-01.herokuapp.com/#/life-stats"> https://sos2021-01.herokuapp.com/#/life-stats </a></p>
         </figure>
       </div>
       <br><br>

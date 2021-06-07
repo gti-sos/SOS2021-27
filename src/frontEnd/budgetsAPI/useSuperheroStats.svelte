@@ -1,69 +1,75 @@
 <script>
+    import { onMount } from "svelte";
     import {Jumbotron, Navbar, Nav, NavItem, NavLink, NavbarBrand, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,} from 'sveltestrap';
 
     let isOpen = false;
 
-    let daftPunkDiscography = [];
-    let serie = [];
-    let daftPunkGraph = [];
- 
+    let powerStats = [];
+    let ironmanStats = [];
+    let dataGraph = [];
     
-    async function loadGraphDaftPunkDiscography() {
+    async function loadGraphIronManPowerStats() {
 
-        const useData = await fetch("https://theaudiodb.com/api/v1/json/1/discography.php?s=daft%20punk");
-        daftPunkDiscography = await useData.json();
+      const data = await fetch("https://www.superheroapi.com/api.php/10223504096584818/346/powerstats");
+        powerStats = await data.json();
 
-        daftPunkDiscography.album.forEach(daftPunkSvelte => {
-            let serie = {
-                name: daftPunkSvelte.strAlbum,
-                label: daftPunkSvelte.intYearReleased,
-                description: ""
-            }
-            daftPunkGraph.push(serie);
-          });
+        ironmanStats.push(powerStats);
 
-    console.log(daftPunkGraph);
+        console.log(powerStats);
+
+        delete ironmanStats[0].response;
+        delete ironmanStats[0].id;
+        delete ironmanStats[0].name;
+
+        console.log(ironmanStats);
+
+        dataGraph = [
+          ['Combate', parseInt(ironmanStats[0].combat)],
+          ['Durabilidad', parseInt(ironmanStats[0].durability)],
+          ['Inteligencia', parseInt(ironmanStats[0].intelligence)],
+          ['Poder', parseInt(ironmanStats[0].power)],
+          ['Velocidad', parseInt(ironmanStats[0].speed)],
+          ['Fuerza', parseInt(ironmanStats[0].strength)]
+        ]
+
+        console.log(dataGraph);
+        
     Highcharts.chart('container', {
-    chart: {
-        type: 'timeline'
-    },
-    accessibility: {
-        screenReaderSection: {
-            beforeChartFormat: '<h5>{chartTitle}</h5>' +
-                '<div>{typeDescription}</div>' +
-                '<div>{chartSubtitle}</div>' +
-                '<div>{chartLongdesc}</div>' +
-                '<div>{viewTableButton}</div>'
-        },
-        point: {
-            valueDescriptionFormat: '{index}. {point.label}. {point.description}.'
-        }
-    },
-    xAxis: {
-        visible: false
-    },
-    yAxis: {
-        visible: false
-    },
-    title: {
-        text: ''
-    },
-    subtitle: {
-        text: 'Timeline in Highcharts'
-    },
-    
-    series: [{
-        data: daftPunkGraph.reverse()
-    }]
-});
-  }
+      chart: {
+          type: 'pie',
+          options3d: {
+              enabled: true,
+              alpha: 45
+          }
+      },
+      title: {
+          text: ''
+      },
+      subtitle: {
+          text: '3D donut in Highcharts'
+      },
+      plotOptions: {
+          pie: {
+              innerSize: 100,
+              depth: 45
+          }
+      },
+      series: [{
+          name: 'Estadística de poder',
+          data: dataGraph
+      }]
+  });
+}
+
+
 </script>
 
 <svelte:head>
   <script src="https://code.highcharts.com/highcharts.js"></script>
-  <script src="https://code.highcharts.com/modules/timeline.js"></script>
+  <script src="https://code.highcharts.com/highcharts-3d.js"></script>
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
-  <script src="https://code.highcharts.com/modules/accessibility.js" on:load={loadGraphDaftPunkDiscography}></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js" on:load={loadGraphIronManPowerStats}></script>
 </svelte:head>
 
 <main>
@@ -103,14 +109,15 @@
         </Navbar>
     </body>
     <br>
-    <h1 class="titulo2"> Gráfica de uso</h1>
+    <h1 class="titulo2"> Gráfica de Uso</h1>
     <div style="margin-bottom: 15px">
-       <figure class="highcharts-figure">
+    <figure class="highcharts-figure">
           <div id="container"></div>
-          <p class="centrado"> Gráfica que muestra la discografía completa de Daft Punk en orden cronológico. </p>
-          <p class="centrado"><a href="https://www.theaudiodb.com/"> www.theaudiodb.com </a></p>
+          <p class="centrado"> Gráfica que muestra las estadísticas del superhéroe Iron Man. </p>
+          <p class="centrado"><a href="https://superheroapi.com/index.html"> www.superheroapi.com </a></p>
           </figure>
       </div>
+
     <br><br>
 </main>
 
@@ -151,14 +158,14 @@
         border-radius: 12px;
     }
 
-    .highcharts-strong {
-    font-weight: bold;
+    #container {
+  height: 400px; 
     }
 
     .highcharts-figure, .highcharts-data-table table {
-        min-width: 320px; 
-        max-width: 600px;
-        margin: 1em auto;
+      min-width: 310px; 
+      max-width: 800px;
+      margin: 1em auto;
     }
 
     .highcharts-data-table table {
@@ -171,22 +178,22 @@
       max-width: 500px;
     }
     .highcharts-data-table caption {
-        padding: 1em 0;
-        font-size: 1.2em;
-        color: #555;
+      padding: 1em 0;
+      font-size: 1.2em;
+      color: #555;
     }
     .highcharts-data-table th {
       font-weight: 600;
-        padding: 0.5em;
+      padding: 0.5em;
     }
     .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
-        padding: 0.5em;
+      padding: 0.5em;
     }
     .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
-        background: #f8f8f8;
+      background: #f8f8f8;
     }
     .highcharts-data-table tr:hover {
-        background: #f1f7ff;
+      background: #f1f7ff;
     }
 
 
