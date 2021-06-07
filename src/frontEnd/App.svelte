@@ -38,11 +38,13 @@
 	import Pobreza from './activitiesAPI/povertyriskGraph.svelte';
 	import Desempleo from './activitiesAPI/unemploymentGraph.svelte';
 	import StarWar from './activitiesAPI/starwarGraph.svelte';
+	import Children from './activitiesAPI/outschoolGraph.svelte';
 
 
 	import Info from './info.svelte';
 	import Landing from './Landing.svelte';
 	import Graphics from './Graphs.svelte';
+import { children } from 'svelte/internal';
 
 	const routes={
 		'/':Landing,
@@ -81,6 +83,7 @@
 		'/graphics/integrations/poverty':Pobreza,
 		'/graphics/integrations/unemployment':Desempleo,
 		'/graphics/integrations/starwar':StarWar,
+		'/graphics/integrations/outschool':Children,
 
 
 		'/about':About,
