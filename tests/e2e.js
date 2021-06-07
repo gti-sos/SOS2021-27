@@ -5,8 +5,6 @@ const puppeteer = require('puppeteer');
     const page = await browser.newPage();
     await page.setViewport({width: 1500, height: 1200 });
 
-//Landing page
-//await page.goto('http://localhost:10000/');
 await page.goto("http://sos2021-27.herokuapp.com/");
 console.log("Landing page opened");
 await page.screenshot({ path: './tests/screenshots/01_landing.png' });
@@ -114,7 +112,7 @@ await page.screenshot({ path: './tests/screenshots/12elimina.png' });
 await page.close();
 await browser.close();
 console.log("Closing browser")
-})();
+
 
 
 
@@ -125,4 +123,16 @@ console.log("Closing browser")
 
 
 
+
 // ------------------- Fin Espacio PruebaSuicidios    ------------------------
+
+
+
+
+
+
+})();
+
+
+
+
