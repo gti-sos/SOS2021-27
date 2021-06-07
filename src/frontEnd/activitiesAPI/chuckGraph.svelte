@@ -33,7 +33,7 @@
         let chartConfig ={
       type: 'wordcloud',
       options: {
-        text: aleatorio,
+        values: aleatorio,
         aspect: 'spiral',
         colorType: 'palette',
         maxItems: 50,
