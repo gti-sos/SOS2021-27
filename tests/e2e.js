@@ -40,29 +40,7 @@ await page.screenshot({ path: './tests/screenshots/05_use_azar1.png' });
 //Volver
 await page.click("body > nav > ul > li:nth-child(4) > a");
 
-//=====================Fer - Integración - Gastos en educación (G04)
 
-await page.click("body > main > main > div:nth-child(6) > div > div > a:nth-child(1)");
-await page.waitForTimeout(5000);
-await page.screenshot({ path: './tests/screenshots/fer-integracion-gastoseducacion.png' });
-
-//=====================Fer - Integración - Índice calidad de vida (G01)
-
-await page.click("body > main > main > div:nth-child(6) > div > div > a:nth-child(2)");
-await page.waitForTimeout(5000);
-await page.screenshot({ path: './tests/screenshots/fer-integracion-calidadvida.png' });
-
-//=====================Fer - Uso - Estadísticas de superhéroes (externa)
-
-await page.click("body > main > main > div:nth-child(6) > div > div > a:nth-child(3)");
-await page.waitForTimeout(5000);
-await page.screenshot({ path: './tests/screenshots/fer-uso-estadisticassuperheroes.png' });
-
-//=====================Fer - Uso - Discografía de Daft Punk (externa)
-
-await page.click("body > main > main > div:nth-child(6) > div > div > a:nth-child(4)");
-await page.waitForTimeout(5000);
-await page.screenshot({ path: './tests/screenshots/fer-uso-discografiadaftpunk.png' });
 
 //=====================Unemployment
 console.log("Integration of unemployment");
@@ -268,7 +246,8 @@ await page.screenshot({ path: './tests/screenshots/12elimina.png' });
     // ------------------- Fin Espacio PruebaSuicidios    ------------------------
 
 
-    //  ------------------ Espacio Prueba Front Promoción Social -----------------------------
+        //  ------------------ Espacio Prueba Front Promoción Social -----------------------------
+
 
     // Tabla Promoción Social
 
@@ -356,10 +335,47 @@ await page.screenshot({ path: './tests/screenshots/12elimina.png' });
     await page.click("body > main > main > table > tbody > tr > td:nth-child(7) > button");
     await page.waitForTimeout(1000);
     await page.screenshot({ path: './tests/screenshots/budget09-ComprobacionEditar.png' });
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(10000);
+
+    await page.click("body > nav > ul > li:nth-child(4) > a");
+
+    //=====================Fer - Integración - Gastos en educación (G04)
+
+    console.log("Integración - Gastos en educación");
+    await page.click("body > main > main > div:nth-child(6) > div > div > a:nth-child(1)");
+    await page.waitForTimeout(10000);
+    await page.screenshot({ path: './tests/screenshots/fer-integracion-gastoseducacion.png' });
+
+    await page.click("body > nav > ul > li:nth-child(4) > a");
+
+    //=====================Fer - Integración - Índice calidad de vida (G01)
+
+    console.log("Integración - Índice calidad de vida");
+    await page.click("body > main > main > div:nth-child(6) > div > div > a:nth-child(2)");
+    await page.waitForTimeout(10000);
+    await page.screenshot({ path: './tests/screenshots/fer-integracion-calidadvida.png' });
+
+    await page.click("body > nav > ul > li:nth-child(4) > a");
+
+    //=====================Fer - Uso - Estadísticas de superhéroes (externa)
+
+    console.log("Uso - Estadísticas de superhéroes");
+    await page.click("body > main > main > div:nth-child(6) > div > div > a:nth-child(3)");
+    await page.waitForTimeout(10000);
+    await page.screenshot({ path: './tests/screenshots/fer-uso-estadisticassuperheroes.png' });
+
+    await page.click("body > nav > ul > li:nth-child(4) > a");
+
+    //=====================Fer - Uso - Discografía de Daft Punk (externa)
+
+    console.log("Uso - Discografía de Daft Punk");
+    await page.click("body > main > main > div:nth-child(6) > div > div > a:nth-child(4)");
+    await page.waitForTimeout(10000);
+    await page.screenshot({ path: './tests/screenshots/fer-uso-discografiadaftpunk.png' });
+
+    await page.click("body > nav > ul > li:nth-child(4) > a");
 
     // ------------------- Fin Espacio Prueba Promoción Social    ------------------------
-
 
 
 
